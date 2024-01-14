@@ -1,0 +1,86 @@
+<div class="row">
+    <div class="col-8">
+        <div class="container mt-3">
+            <div class="card">
+                <div class="card-header bg-info">Transaction Details</div>
+                <div class="card-body">
+                    <form [formGroup]="transactionForm">
+                        <div class="mb-1">
+                            <label for="transactionDetails" class="form-label"></label>
+                            <input type="text" class="form-control" id="accNum" formControlName="accNum"
+                                placeholder="Sender Account No"
+                                [class.is-invalid]="transactionForm.get('accNum').invalid && transactionForm.get('accNum').touched" />
+                            <div class="invalid-feedback"
+                                *ngIf="transactionForm.get('accNum').hasError('required') &&  transactionForm.get('accNum').touched ">
+                                Please enter the Account No.
+                            </div>
+                            <div class="mt-3">
+                                <input type="text" class="form-control" id="transferType" formControlName="transferType"
+                                    placeholder="Transfer Type"
+                                    [class.is-invalid]="transactionForm.get('transferType').invalid && transactionForm.get('transferType').touched" />
+                                <div class="invalid-feedback"
+                                    *ngIf="transactionForm.get('transferType').hasError('required') &&  transactionForm.get('transferType').touched ">
+                                    Please Select Transfer Type.
+                                </div>
+                            </div>
+                            <div class="mt-3">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <input type="text" class="form-control" id="transferAmount"
+                                            formControlName="transferAmount" placeholder="Transfer Amount"
+                                            [class.is-invalid]="transactionForm.get('transferAmount').invalid && transactionForm.get('transferAmount').touched" />
+                                        <div class="invalid-feedback"
+                                            *ngIf="transactionForm.get('transferAmount').hasError('required') &&  transactionForm.get('transferAmount').touched ">
+                                            Please enter the amount.
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <input type="text" class="form-control" id="purposeOfPayment"
+                                            formControlName="purposeOfPayment" placeholder="Purpose Of Payment"
+                                            [class.is-invalid]="transactionForm.get('purposeOfPayment').invalid && transactionForm.get('purposeOfPayment').touched" />
+                                        <div class="invalid-feedback"
+                                            *ngIf="transactionForm.get('purposeOfPayment').hasError('required') &&  transactionForm.get('purposeOfPayment').touched ">
+                                            Purpose Of Payment.
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mt-3">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <input type="text" class="form-control" id="transactionRemarks"
+                                            formControlName="transactionRemarks" placeholder="Transaction Remarks"
+                                            [class.is-invalid]="transactionForm.get('transactionRemarks').invalid && transactionForm.get('transactionRemarks').touched" />
+                                        <div class="invalid-feedback"
+                                            *ngIf="transactionForm.get('transactionRemarks').hasError('required') &&  transactionForm.get('transactionRemarks').touched ">
+                                            Please enter the Remarks.
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <input type="text" class="form-control" id="transactionParticular"
+                                            formControlName="transactionParticular" placeholder="Transaction Particular"
+                                            [class.is-invalid]="transactionForm.get('transactionParticular').invalid && transactionForm.get('transactionParticular').touched" />
+                                        <div class="invalid-feedback"
+                                            *ngIf="transactionForm.get('transactionParticular').hasError('required') &&  transactionForm.get('transactionParticular').touched ">
+                                            Particulars.
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- <button type="submit" class="btn btn-primary">Submit</button> -->
+                    </form>
+                </div>
+                <!-- <div class="card-footer"></div> -->
+            </div>
+        </div>
+    </div>
+    <div class="col-4">
+        <div class="container mt-3">
+            <div class="card">
+                <div class="card-header bg-info">Customer Details</div>
+                <div class="card-body">Please enter the Account No</div>
+            </div>
+        </div>
+    </div>
+</div>
