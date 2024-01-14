@@ -1,5 +1,6 @@
 import {MoveMoneyComponent} from "../private/operations/move-money/move-money.component";
 import {ExternalMoveMoneyComponent} from "../private/operations/external-move-money/external-move-money.component";
+import { BankTransfersComponent } from "../private/operations/bank-transfers/bank-transfers.component";
 
 export class OperationsConstant {
 
@@ -9,6 +10,9 @@ export class OperationsConstant {
     }],
     ['externalMoveMoney', {
       obj: ExternalMoveMoneyComponent
+    }],
+    ['bankTransfers', {
+      obj: BankTransfersComponent
     }]
   ])
 }

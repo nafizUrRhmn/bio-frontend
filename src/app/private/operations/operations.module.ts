@@ -14,6 +14,7 @@ import {MoveMoneyComponent} from "./move-money/move-money.component";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {ExternalMoveMoneyComponent} from "./external-move-money/external-move-money.component";
 import {TabsModule} from "../../theme/shared/components/tabs/tabs.module";
+import { BankTransfersComponent } from './bank-transfers/bank-transfers.component';
 
 
 const routes: Routes = [
@@ -27,7 +28,8 @@ const routes: Routes = [
   declarations: [
     OperationsComponent,
     MoveMoneyComponent,
-    ExternalMoveMoneyComponent
+    ExternalMoveMoneyComponent,
+    BankTransfersComponent
   ],
   imports: [
     RouterModule.forChild(routes),
@@ -40,7 +42,7 @@ const routes: Routes = [
     ReactiveFormsModule,
     MatNativeDateModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
   ],
 })
 export class OperationsModule {
