@@ -14,8 +14,8 @@ export class OperationsConstant {
     }],
     ['customerSummary', {
           obj: CustomerSummaryComponent
-        }],
-    }],
+        }]
+    ,
     ['bankTransfers', {
       obj: BankTransfersComponent
     }]
