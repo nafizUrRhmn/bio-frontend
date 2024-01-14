@@ -1,7 +1,6 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from "@angular/router";
 import {OperationsComponent} from "./operations.component";
-import {PrivateModule} from "../private.module";
 import {MatTabsModule} from "@angular/material/tabs";
 import {MatIconModule} from "@angular/material/icon";
 import {SharedModule} from "../../theme/shared/shared.module";
@@ -17,9 +16,9 @@ import {CustomerSummaryComponent} from "./customer-summary/customer-summary.comp
 import {PocketStatementComponent} from "./pocket-statement/pocket-statement.component";
 import {PanelViewComponent} from "./panel-view/panel-view.component";
 import {TabsModule} from "../../theme/shared/components/tabs/tabs.module";
-import { BankTransfersComponent } from './bank-transfers/bank-transfers.component';
-import { AgGridModule } from 'ag-grid-angular';
-import { MatDialogModule } from '@angular/material/dialog';
+import {BankTransfersComponent} from './bank-transfers/bank-transfers.component';
+import {AgGridModule} from 'ag-grid-angular';
+import {MatDialogModule} from '@angular/material/dialog';
 
 
 const routes: Routes = [
@@ -36,7 +35,7 @@ const routes: Routes = [
     ExternalMoveMoneyComponent,
     CustomerSummaryComponent,
     PanelViewComponent,
-    PocketStatementComponent
+    PocketStatementComponent,
     ExternalMoveMoneyComponent,
     BankTransfersComponent
   ],
@@ -54,7 +53,7 @@ const routes: Routes = [
     MatInputModule,
     MatDatepickerModule,
     AgGridModule,
-    MatDialogModule
+    MatDialogModule,
     MatInputModule,
   ],
 })
