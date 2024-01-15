@@ -2,7 +2,7 @@ import { Component,OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import {MigrationIconRenderer} from "./migration-icon.component";
 import {ProfileViewIconRenderer} from "./profileview-icon.component";
-import {PanelViewComponent} from "../panel-view/panel-view.component";
+import {PanelViewComponent} from "../customer-summary/panel-view/panel-view.component";
 import {GridApi } from 'ag-grid-community';
 
 @Component({

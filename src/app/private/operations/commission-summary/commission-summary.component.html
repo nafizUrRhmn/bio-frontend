@@ -1,0 +1,45 @@
+<div class="container">
+  <div class="border-bottom">
+    <h4>Commission Inquiry</h4>
+  </div>
+  <div class="row">
+    <div class="col-3">
+      <select class="form-select"  id="inquiryType">
+        <option selected>Inquiry Type</option>
+        <option value="R">Pending</option>
+        <option value="C">Settled</option>
+      </select>
+    </div>
+    <div class="col-3">
+      <select class="form-select"  id="outletName">
+        <option selected>Outlet Name</option>
+        <option value="1">Outlet1</option>
+        <option value="2">Outlet2</option>
+      </select>
+    </div>
+    <div class="col-3">
+      <mat-form-field  appearance="outline" >
+        <mat-label>Choose Date Range</mat-label>
+        <mat-date-range-input [rangePicker]="picker" [formGroup]="dateRange">
+          <input matStartDate formControlName="start" placeholder="Start Date">
+          <input matEndDate formControlName="end" placeholder="End Date">
+        </mat-date-range-input>
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-date-range-picker #picker></mat-date-range-picker>
+      </mat-form-field>
+    </div>
+    <div class="col-3">
+      <button type="button" class="btn btn-warning">Search</button> &nbsp;
+      <button type="button" class="btn btn-secondary">Clear All</button>
+    </div>
+
+  </div>
+  <div class="row">
+    <ag-grid-angular
+      style="width: 100%; height: 400px;"
+      class="ag-theme-quartz"
+      [pagination]="true"
+      [rowData]="rowData"
+      [columnDefs]="columnDefs" >
+    </ag-grid-angular> </div>
+</div>

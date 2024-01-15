@@ -1,0 +1,9 @@
+.col-3{
+  padding-top : 10px;
+  padding-bottom: 10px;
+  font-size: 10px;
+}
+
+::ng-deep .mat-form-field {
+    font-size: 5px; // example
+}
