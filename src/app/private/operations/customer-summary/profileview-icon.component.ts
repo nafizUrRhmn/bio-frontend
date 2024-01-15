@@ -2,7 +2,7 @@ import { ICellRendererAngularComp } from 'ag-grid-angular';
 import { ICellRendererParams } from 'ag-grid-community';
 import { Component } from '@angular/core';
 import { Router,ActivatedRoute } from '@angular/router';
-import {PanelViewComponent} from "../panel-view/panel-view.component";
+import {PanelViewComponent} from "../customer-summary/panel-view/panel-view.component";
 import { MatDialog , MatDialogConfig } from '@angular/material/dialog';
 
 @Component({

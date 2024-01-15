@@ -4,6 +4,8 @@ import {CustomerSummaryComponent} from "../private/operations/customer-summary/c
 import { BankTransfersComponent } from "../private/operations/bank-transfers/bank-transfers.component";
 import { GenerateFacComponent } from "../private/operations/generate-fac/generate-fac.component";
 import { FacCashWithdrawalComponent } from "../private/operations/faccash-withdrawal/faccash-withdrawal.component";
+import {CommissionSummaryComponent} from "../private/operations/commission-summary/commission-summary.component";
+
 export class OperationsConstant {
 
   public static readonly OPERATIONS_COMPONENT_MAP: Map<string, any> = new Map([
@@ -16,6 +18,10 @@ export class OperationsConstant {
     ['customerSummary', {
           obj: CustomerSummaryComponent
         }],
+    }],
+    ['commissionSummary', {
+              obj: CommissionSummaryComponent
+    }],
     ['bankTransfers', {
       obj: BankTransfersComponent
     }],
