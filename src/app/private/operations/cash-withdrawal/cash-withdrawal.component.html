@@ -1,0 +1,90 @@
+<div class="container">
+  <div class="d-flex">
+    <div class="col-8 p-1">
+      <div class="" style="background-color: aliceblue">
+        <h4>Transaction Details</h4>
+      </div>
+
+      <form [formGroup]="cashWithdrawal">
+        <div class="form-group">
+          <label for="accountNo" class="form-label">Account No</label>
+          <input
+            type="text"
+            class="form-control"
+            id="accountNo"
+            formControlName="accountNo"
+            required
+            [class.is-invalid]="accountNo.touched && accountNo.invalid"
+          />
+          <div *ngIf="accountNo.touched && accountNo.hasError('required')" class="invalid-feedback">Account No. is required</div>
+
+          <label for="withdrawalAmount" class="form-label">Withdrawal Ammount</label>
+          <input
+            type="text"
+            class="form-control"
+            id="withdrawalAmount"
+            formControlName="withdrawalAmount"
+            required
+            [class.is-invalid]="withdrawalAmount.touched && withdrawalAmount.invalid"
+          />
+          <div *ngIf="withdrawalAmount.touched && withdrawalAmount.hasError('required')" class="invalid-feedback">
+            Please Enter Amount.</div
+          >
+          <div class="d-flex pt-2">
+            <div class="col-6 p-2">
+              <label for="purposeofWD" class="form-label">Purpose of Withdrawal</label>
+              <input
+                type="text"
+                class="form-control"
+                id="purposeofWD"
+                formControlName="purposeofWD"
+                required
+                [class.is-invalid]="purposeofWD.touched && purposeofWD.invalid"
+              />
+              <div *ngIf="purposeofWD.touched && purposeofWD.hasError('required')" class="invalid-feedback">
+                Purpose of Withdrawal is required.</div
+              >
+            </div>
+            <div class="col-6 p-2">
+              <label for="tranPart" class="form-label">Transaction Particular</label>
+              <input
+                type="text"
+                class="form-control"
+                id="tranPart"
+                formControlName="tranPart"
+                required
+                [class.is-invalid]="tranPart.touched && tranPart.invalid"
+              />
+              <div *ngIf="tranPart.touched && tranPart.hasError('required')" class="invalid-feedback"> Transaction Particular is required.</div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <div class="col-4 p-1">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title" style="background-color: aliceblue">Customer Details</h4>
+
+          <p class="card-text">Please enter the Account No.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="d-flex flex-row-reverse">
+    <button type="button" class="btn btn-primary d-flex align-items-end border">
+      Proceed
+      <mat-icon>arrow_forward</mat-icon>
+    </button>
+    <button type="button" class="btn d-flex align-items-center">
+      <mat-icon>rotate_left</mat-icon>
+      Reset</button
+    >
+    <button type="button" class="btn d-flex align-items-center">
+      <mat-icon>clear</mat-icon>
+      Back</button
+    >
+  </div>
+</div>
