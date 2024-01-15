@@ -22,6 +22,7 @@ import { BankTransfersComponent } from './bank-transfers/bank-transfers.componen
 import { GenerateFacComponent } from './generate-fac/generate-fac.component';
 import { AgGridModule } from 'ag-grid-angular';
 import { FacCashWithdrawalComponent } from './faccash-withdrawal/faccash-withdrawal.component';
+import { BalanceInquiryComponent } from './balance-inquiry/balance-inquiry.component';
 
 const routes: Routes = [
   {
@@ -43,7 +44,8 @@ const routes: Routes = [
     GenerateFacComponent,
     FacCashWithdrawalComponent,
     BankTransfersComponent,
-    CommissionSummaryComponent
+    CommissionSummaryComponent,
+    BalanceInquiryComponent
   ],
   imports: [
     RouterModule.forChild(routes),
