@@ -1,0 +1,90 @@
+<div class="row">
+    <div class="col-8">
+        <div class="container mt-3">
+            <div class="card">
+                <div class="card-header bg-info">Transaction Details</div>
+                <div class="card-body">
+                    <form [formGroup]="transactionForm">
+                        <div class="mb-1">
+                            <label for="transactionDetails" class="form-label"></label>
+                            <input type="text" class="form-control" id="accNumCustomer" formControlName="accNumCustomer"
+                                placeholder="Customer Account Number"
+                                [class.is-invalid]="transactionForm.get('accNumCustomer').invalid && transactionForm.get('accNumCustomer').touched" />
+                            <div class="invalid-feedback"
+                                *ngIf="transactionForm.get('accNumCustomer').hasError('required') &&  transactionForm.get('accNumCustomer').touched ">
+                                Please enter the Account No.
+                            </div>
+                            <div class="mt-3">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <input type="text" class="form-control" id=" beneficiaryMobileNo"
+                                            formControlName="beneficiaryMobileNo" placeholder=" Beneficiary Mobile No"
+                                            [class.is-invalid]="transactionForm.get('beneficiaryMobileNo').invalid && transactionForm.get('beneficiaryMobileNo').touched" />
+                                        <div class="invalid-feedback"
+                                            *ngIf="transactionForm.get('beneficiaryMobileNo').hasError('required') &&  transactionForm.get('beneficiaryMobileNo').touched ">
+                                            Please enter the beneficiary mobile number.
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <input type="text" class="form-control" id="beneficiaryName"
+                                            formControlName="beneficiaryName" placeholder="Beneficiary Name"
+                                            [class.is-invalid]="transactionForm.get('beneficiaryName').invalid && transactionForm.get('beneficiaryName').touched" />
+                                        <div class="invalid-feedback"
+                                            *ngIf="transactionForm.get('beneficiaryName').hasError('required') &&  transactionForm.get('beneficiaryName').touched ">
+                                            Beneficiary Name.
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mt-3">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <input type="text" class="form-control" id="amount" formControlName="amount"
+                                            placeholder="Amount"
+                                            [class.is-invalid]="transactionForm.get('amount').invalid && transactionForm.get('amount').touched" />
+                                        <div class="invalid-feedback"
+                                            *ngIf="transactionForm.get('amount').hasError('required') &&  transactionForm.get('amount').touched ">
+                                            Please enter the amount.
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <input type="text" class="form-control" id="transactionParticular"
+                                            formControlName="transactionParticular" placeholder="Transaction Particular"
+                                            [class.is-invalid]="transactionForm.get('transactionParticular').invalid && transactionForm.get('transactionParticular').touched" />
+                                        <div class="invalid-feedback"
+                                            *ngIf="transactionForm.get('transactionParticular').hasError('required') &&  transactionForm.get('transactionParticular').touched ">
+                                            Particulars.
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mt-3">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <input type="text" class="form-control" id="transactionRemarks"
+                                            formControlName="transactionRemarks" placeholder="Transaction Remarks"
+                                            [class.is-invalid]="transactionForm.get('transactionRemarks').invalid && transactionForm.get('transactionRemarks').touched" />
+                                        <div class="invalid-feedback"
+                                            *ngIf="transactionForm.get('transactionRemarks').hasError('required') &&  transactionForm.get('transactionRemarks').touched ">
+                                            Please enter the Remarks.
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- <button type="submit" class="btn btn-primary">Submit</button> -->
+                    </form>
+                </div>
+                <!-- <div class="card-footer"></div> -->
+            </div>
+        </div>
+    </div>
+    <div class="col-4">
+        <div class="container mt-3">
+            <div class="card">
+                <div class="card-header bg-info">Customer Details</div>
+                <div class="card-body">Please enter the Account No</div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -106,3 +106,5 @@ dist
 #angular catch file
 .angular
 .vscode/
+.package-lock.json
+./frontend/src/proxy.conf.json

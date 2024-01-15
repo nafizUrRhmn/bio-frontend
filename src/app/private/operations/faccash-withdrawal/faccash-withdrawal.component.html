@@ -1,0 +1,27 @@
+<div class="row">
+    <div class="col-12">
+        <div class="container mt-3">
+            <div class="card">
+                <div class="card-header bg-info">Transaction Details</div>
+                <div class="card-body">
+                    <form [formGroup]="facCashWithdrawal">
+                        <div class="mb-1">
+                            <label for="beneficiaryMobileNo" class="form-label">Beneficiary Mobile No</label>
+                            <div class="row">
+                                <div class="col-12">
+                                    <input type="text" class="form-control" id="beneficiaryMobileNo"
+                                        formControlName="beneficiaryMobileNo" placeholder="Beneficiary Mobile No"
+                                        [class.is-invalid]="facCashWithdrawal.get('beneficiaryMobileNo').invalid && facCashWithdrawal.get('beneficiaryMobileNo').touched" />
+                                    <div class="invalid-feedback"
+                                        *ngIf="facCashWithdrawal.get('beneficiaryMobileNo').hasError('required') &&  facCashWithdrawal.get('beneficiaryMobileNo').touched ">
+                                        Please enter the beneficiary mobile number.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
