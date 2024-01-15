@@ -17,9 +17,16 @@ import {CustomerSummaryComponent} from "./customer-summary/customer-summary.comp
 import {PocketStatementComponent} from "./pocket-statement/pocket-statement.component";
 import {PanelViewComponent} from "./panel-view/panel-view.component";
 import {TabsModule} from "../../theme/shared/components/tabs/tabs.module";
+import { BankTransfersComponent } from './bank-transfers/bank-transfers.component';
 import { AgGridModule } from 'ag-grid-angular';
 import { MatDialogModule } from '@angular/material/dialog';
 import { BankTransfersComponent } from './bank-transfers/bank-transfers.component';
+import { GenerateFacComponent } from './generate-fac/generate-fac.component';
+import { AgGridModule } from 'ag-grid-angular';
+import { FacCashWithdrawalComponent } from './faccash-withdrawal/faccash-withdrawal.component';
+
+
+
 
 
 const routes: Routes = [
@@ -34,11 +41,14 @@ const routes: Routes = [
     OperationsComponent,
     MoveMoneyComponent,
     ExternalMoveMoneyComponent,
-    BankTransfersComponent,
-    ExternalMoveMoneyComponent,
     CustomerSummaryComponent,
     PanelViewComponent,
-    PocketStatementComponent
+    PocketStatementComponent,
+    ExternalMoveMoneyComponent,
+    BankTransfersComponent,
+    GenerateFacComponent,
+    FacCashWithdrawalComponent
+
   ],
   imports: [
     RouterModule.forChild(routes),
@@ -52,9 +62,10 @@ const routes: Routes = [
     MatNativeDateModule,
     MatFormFieldModule,
     MatInputModule,
-    MatInputModule,
     MatDatepickerModule,
     AgGridModule,
+    MatDialogModule,
+    MatInputModule,
     MatDialogModule
   ],
 })
