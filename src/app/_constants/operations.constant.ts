@@ -1,9 +1,9 @@
 import {MoveMoneyComponent} from "../private/operations/move-money/move-money.component";
 import {ExternalMoveMoneyComponent} from "../private/operations/external-move-money/external-move-money.component";
 import {CustomerSummaryComponent} from "../private/operations/customer-summary/customer-summary.component";
-import { BankTransfersComponent } from "../private/operations/bank-transfers/bank-transfers.component";
-import { GenerateFacComponent } from "../private/operations/generate-fac/generate-fac.component";
-import { FacCashWithdrawalComponent } from "../private/operations/faccash-withdrawal/faccash-withdrawal.component";
+import {BankTransfersComponent} from "../private/operations/bank-transfers/bank-transfers.component";
+import {GenerateFacComponent} from "../private/operations/generate-fac/generate-fac.component";
+import {FacCashWithdrawalComponent} from "../private/operations/faccash-withdrawal/faccash-withdrawal.component";
 import {CommissionSummaryComponent} from "../private/operations/commission-summary/commission-summary.component";
 
 export class OperationsConstant {
@@ -16,11 +16,10 @@ export class OperationsConstant {
       obj: ExternalMoveMoneyComponent
     }],
     ['customerSummary', {
-          obj: CustomerSummaryComponent
-        }],
+      obj: CustomerSummaryComponent
     }],
     ['commissionSummary', {
-              obj: CommissionSummaryComponent
+      obj: CommissionSummaryComponent
     }],
     ['bankTransfers', {
       obj: BankTransfersComponent

@@ -41,7 +41,7 @@ const routes: Routes = [
     ExternalMoveMoneyComponent,
     BankTransfersComponent,
     GenerateFacComponent,
-    FacCashWithdrawalComponent
+    FacCashWithdrawalComponent,
     BankTransfersComponent,
     CommissionSummaryComponent
   ],
