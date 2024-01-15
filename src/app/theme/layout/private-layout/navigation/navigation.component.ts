@@ -1,10 +1,7 @@
 // Angular import
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {RoleConfigComponent} from "../../../../private/access-control/role-config/role-config.component";
 import {NavigationItem} from "./navigation-item";
-import {ActivatedRoute, Route, Router} from "@angular/router";
-import {UserDetailsComponent} from "../../../../private/access-control/user-details/user-details.component";
-import {DesignationConfigComponent} from "../../../../private/access-control/designation-config/designation-config.component";
+import {ActivatedRoute} from "@angular/router";
 import {AuthenticationService} from "../../../../_services";
 import {MenuService} from "../../../../_services/menu.service";
 import {AccessControlConstant} from "../../../../_constants/access-control.constant";
@@ -20,14 +17,15 @@ export class NavigationComponent implements OnInit {
   hasInitialized = false;
   @Output() NavCollapsedMob = new EventEmitter();
   @Input() accessType;
+  roles = [];
   navCollapsedMob = window.innerWidth;
   windowWidth: number;
   hashmap = new Map<string, Component>();
   path;
   navigationItems;
-   superAdminNavigationItems: NavigationItem[];
+  superAdminNavigationItems: NavigationItem[];
 
-  constructor(private route: ActivatedRoute, private authService: AuthenticationService, private menuService: MenuService ) {
+  constructor(private route: ActivatedRoute, private authService: AuthenticationService, private menuService: MenuService) {
   }
 
   // public method
@@ -41,30 +39,35 @@ export class NavigationComponent implements OnInit {
 
     this.route.url.subscribe(u => {
       this.path = u[0].path
-      this.menuService.getMenusByModule(this.path).subscribe(v => {
-        if(this.path === 'access-control'){
-          this.menuGenerator(v, AccessControlConstant.ACCESS_CONTROL_COMPONENT_MAP)
-        } else if(this.path === 'operations'){
-          this.menuGenerator(v, OperationsConstant.OPERATIONS_COMPONENT_MAP)
-        }
-
+      this.authService.user.subscribe(u => {
+        const jwtBase64 = u.jwtToken.split('.')[1];
+        const token = JSON.parse(atob(jwtBase64));
+        this.roles = token.roles.split(',');
+        console.log(this.roles);
+        this.menuService.getMenusByModule(this.path).subscribe(v => {
+          if (this.path === 'access-control' &&  u.modules.find(k => k === 'ACCESS_CONTROL')) {
+            this.menuGenerator(v, AccessControlConstant.ACCESS_CONTROL_COMPONENT_MAP)
+          } else if (this.path === 'operations' && u.modules.find(k => k === 'OPERATIONS')) {
+            this.menuGenerator(v, OperationsConstant.OPERATIONS_COMPONENT_MAP)
+          }
+        });
       });
     });
   }
 
 
-  menuGenerator(menuListObject, componentHasMap){
+  menuGenerator(menuListObject, componentHasMap) {
     let layerZero = menuListObject?.layerZero;
     let layerOne = menuListObject?.layerOne;
     let layerTwo = menuListObject?.layerTwo;
     let navigation = [];
-    for(let i =0; i< layerZero.length; i++){
+    for (let i = 0; i < layerZero.length; i++) {
       let objectLayerZero = layerZero[i];
-      let objectsLayerOne:[] = layerOne.filter(u => u.parentId === objectLayerZero.id)
-      let newObjectsLayerOne =[];
-      for(let j =0; j< objectsLayerOne.length; j++){
-        let objectLayerOne:any = objectsLayerOne[j];
-        let objectsLayerTwo = layerTwo.filter(v => v.parentId === objectLayerOne.id).map(k => {
+      let objectsLayerOne: [] = layerOne.filter(u => u.parentId === objectLayerZero.id).filter(k=> this.roles.find(w=> w === `ROLE_${k.role}`))
+      let newObjectsLayerOne = [];
+      for (let j = 0; j < objectsLayerOne.length; j++) {
+        let objectLayerOne: any = objectsLayerOne[j];
+        let objectsLayerTwo = layerTwo.filter(v => v.parentId === objectLayerOne.id).filter(k=> this.roles.find(w=> w === `ROLE_${k.role}`)).map(k => {
           return {...k, component: componentHasMap.get(k.id).obj}
         })
         objectLayerOne = {
@@ -73,7 +76,8 @@ export class NavigationComponent implements OnInit {
         }
         newObjectsLayerOne.push(objectLayerOne)
       }
-      objectLayerZero = {...objectLayerZero,
+      objectLayerZero = {
+        ...objectLayerZero,
         children: newObjectsLayerOne
       }
       navigation.push(objectLayerZero);

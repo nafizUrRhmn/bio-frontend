@@ -6,4 +6,5 @@
     lastName?: string;
     jwtToken?: string;
     route?: string;
+    modules?: string[];
 }
