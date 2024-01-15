@@ -1,7 +1,6 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from "@angular/router";
 import {OperationsComponent} from "./operations.component";
-import {PrivateModule} from "../private.module";
 import {MatTabsModule} from "@angular/material/tabs";
 import {MatIconModule} from "@angular/material/icon";
 import {SharedModule} from "../../theme/shared/shared.module";
@@ -25,10 +24,6 @@ import { GenerateFacComponent } from './generate-fac/generate-fac.component';
 import { AgGridModule } from 'ag-grid-angular';
 import { FacCashWithdrawalComponent } from './faccash-withdrawal/faccash-withdrawal.component';
 
-
-
-
-
 const routes: Routes = [
   {
     path: '',
@@ -48,7 +43,6 @@ const routes: Routes = [
     BankTransfersComponent,
     GenerateFacComponent,
     FacCashWithdrawalComponent
-
   ],
   imports: [
     RouterModule.forChild(routes),
@@ -65,8 +59,7 @@ const routes: Routes = [
     MatDatepickerModule,
     AgGridModule,
     MatDialogModule,
-    MatInputModule,
-    MatDialogModule
+    MatInputModule
   ],
 })
 export class OperationsModule {
