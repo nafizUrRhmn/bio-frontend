@@ -23,6 +23,11 @@ import { GenerateFacComponent } from './generate-fac/generate-fac.component';
 import { AgGridModule } from 'ag-grid-angular';
 import { FacCashWithdrawalComponent } from './faccash-withdrawal/faccash-withdrawal.component';
 import { BalanceInquiryComponent } from './balance-inquiry/balance-inquiry.component';
+import {CashDepositComponent} from "./cash-deposit/cash-deposit.component";
+import {CashWithdrawalComponent} from "./cash-withdrawal/cash-withdrawal.component";
+import {CashRefundComponent} from "./cash-refund/cash-refund.component";
+import {LoanDisbursementComponent} from "./loan-disbursement/loan-disbursement.component";
+import {LoanInstallmentComponent} from "./loan-installment/loan-installment.component";
 
 const routes: Routes = [
   {
@@ -45,7 +50,12 @@ const routes: Routes = [
     FacCashWithdrawalComponent,
     BankTransfersComponent,
     CommissionSummaryComponent,
-    BalanceInquiryComponent
+    BalanceInquiryComponent,
+    CashDepositComponent,
+    CashWithdrawalComponent,
+    CashRefundComponent,
+    LoanDisbursementComponent,
+    LoanInstallmentComponent
   ],
   imports: [
     RouterModule.forChild(routes),
