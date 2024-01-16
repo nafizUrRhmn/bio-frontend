@@ -28,6 +28,7 @@ import {CashWithdrawalComponent} from "./cash-withdrawal/cash-withdrawal.compone
 import {CashRefundComponent} from "./cash-refund/cash-refund.component";
 import {LoanDisbursementComponent} from "./loan-disbursement/loan-disbursement.component";
 import {LoanInstallmentComponent} from "./loan-installment/loan-installment.component";
+import { RemittanceDisbursementComponent } from './remittance-disbursement/remittance-disbursement.component';
 import {MigrateOfferComponent} from "./customer-summary/migrate-offer/migrate-offer.component";
 
 const routes: Routes = [
@@ -57,7 +58,8 @@ const routes: Routes = [
     CashRefundComponent,
     LoanDisbursementComponent,
     LoanInstallmentComponent,
-    MigrateOfferComponent
+    MigrateOfferComponent,
+    RemittanceDisbursementComponent
   ],
   imports: [
     RouterModule.forChild(routes),
