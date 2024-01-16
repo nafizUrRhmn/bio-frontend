@@ -28,6 +28,7 @@ import {CashWithdrawalComponent} from "./cash-withdrawal/cash-withdrawal.compone
 import {CashRefundComponent} from "./cash-refund/cash-refund.component";
 import {LoanDisbursementComponent} from "./loan-disbursement/loan-disbursement.component";
 import {LoanInstallmentComponent} from "./loan-installment/loan-installment.component";
+import {MigrateOfferComponent} from "./customer-summary/migrate-offer/migrate-offer.component";
 
 const routes: Routes = [
   {
@@ -55,7 +56,8 @@ const routes: Routes = [
     CashWithdrawalComponent,
     CashRefundComponent,
     LoanDisbursementComponent,
-    LoanInstallmentComponent
+    LoanInstallmentComponent,
+    MigrateOfferComponent
   ],
   imports: [
     RouterModule.forChild(routes),

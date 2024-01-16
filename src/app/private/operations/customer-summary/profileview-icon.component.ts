@@ -1,7 +1,6 @@
 import { ICellRendererAngularComp } from 'ag-grid-angular';
 import { ICellRendererParams } from 'ag-grid-community';
 import { Component } from '@angular/core';
-import { Router,ActivatedRoute } from '@angular/router';
 import {PanelViewComponent} from "../customer-summary/panel-view/panel-view.component";
 import { MatDialog , MatDialogConfig } from '@angular/material/dialog';
 
@@ -13,9 +12,7 @@ export class ProfileViewIconRenderer implements ICellRendererAngularComp {
 
   private cellValue!: string;
 
-  constructor(private router:Router,
-               private route: ActivatedRoute,
-               public dialog: MatDialog){}
+  constructor(public dialog: MatDialog){}
 
   // gets called once before the renderer is used
   agInit(params: ICellRendererParams): void {
@@ -30,12 +27,14 @@ export class ProfileViewIconRenderer implements ICellRendererAngularComp {
   }
 
   iconClicked() {
-      //alert('360 view click');
-        const dialogConfig = new MatDialogConfig();
-         dialogConfig.disableClose = false;
-         dialogConfig.height = "100%";
-         dialogConfig.width = "100%";
-      //this.router.navigate(['./panelview'], { relativeTo: this.route });
+       const dialogConfig = new MatDialogConfig();
+       dialogConfig.disableClose = false;
+       dialogConfig.height = "85%";
+       dialogConfig.width = "100%";
+       dialogConfig.position = {
+            top : "90px",
+            left : "300px"
+       };
        this.dialog.open(PanelViewComponent,dialogConfig);
   }
 
