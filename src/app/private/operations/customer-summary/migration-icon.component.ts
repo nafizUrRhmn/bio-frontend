@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { ICellRendererAngularComp } from 'ag-grid-angular';
 import { ICellRendererParams } from 'ag-grid-community';
+import {MigrateOfferComponent} from "../customer-summary/migrate-offer/migrate-offer.component";
+import { MatDialog , MatDialogConfig } from '@angular/material/dialog';
 
 @Component({
   selector: 'migration-icon-component',
@@ -11,6 +13,8 @@ import { ICellRendererParams } from 'ag-grid-community';
 })
 export class MigrationIconRenderer implements ICellRendererAngularComp {
   public cellValue!: string;
+
+  constructor(public dialog: MatDialog){}
 
   // gets called once before the renderer is used
   agInit(params: ICellRendererParams): void {
@@ -25,7 +29,15 @@ export class MigrationIconRenderer implements ICellRendererAngularComp {
   }
 
   iconClicked() {
-    alert('migration icon click');
+         const dialogConfig = new MatDialogConfig();
+         dialogConfig.disableClose = false;
+         dialogConfig.height = "85%";
+         dialogConfig.width = "100%";
+         dialogConfig.position = {
+              top : "90px",
+              left : "300px"
+         };
+         this.dialog.open(MigrateOfferComponent,dialogConfig);
   }
 
   getValueToDisplay(params: ICellRendererParams) {
