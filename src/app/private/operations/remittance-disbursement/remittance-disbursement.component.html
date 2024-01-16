@@ -1,0 +1,307 @@
+<div class="mx-auto container mt-3">
+
+    <div class="card">
+        <div class="card-header fw-bold text-muted fs-4">Transaction Details</div>
+        <div class="card-body border-top border-primary-subtle">
+            <form [formGroup]="transactionForm">
+                <!-- FIRST COLUMN -->
+                <div class="row">
+                  <div class="col-md-6 px-5">
+                    <div class="row mb-3">
+                    <label for="pinNum" class="form-label"></label>
+                        <input type="text" class="form-control" id="pinNum"
+                            formControlName="pinNum"
+                            placeholder="Remit/Pin No"
+                            [class.is-invalid]="transactionForm.get('pinNum').invalid
+                            && transactionForm.get('pinNum').touched" />
+                        <div class="invalid-feedback"
+                            *ngIf="transactionForm.get('pinNum').hasError('required')
+                            &&  transactionForm.get('pinNum').touched ">
+                            Please enter Remit/Pin No
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <label for="senderName" class="form-label"></label>
+                        <input type="text" class="form-control" id="senderName"
+                            formControlName="senderName"
+                            placeholder="Sender Name"
+                            [class.is-invalid]="transactionForm.get('senderName').invalid
+                            && transactionForm.get('senderName').touched" />
+                        <div class="invalid-feedback"
+                                *ngIf="transactionForm.get('senderName').hasError('required')
+                                &&  transactionForm.get('senderName').touched ">
+                                Please Enter Sender Name
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <label for="senderCountry" class="form-label"></label>
+                        <input type="text" class="form-control" id="senderCountry"
+                            formControlName="senderCountry"
+                            placeholder="Sender Country"
+                            [class.is-invalid]="transactionForm.get('senderCountry').invalid
+                            && transactionForm.get('senderCountry').touched" />
+                        <div class="invalid-feedback"
+                                *ngIf="transactionForm.get('senderCountry').hasError('required')
+                                &&  transactionForm.get('senderCountry').touched ">
+                                Please Enter Sender Country
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <label for="beneficiaryMobileNo" class="form-label"></label>
+                        <input type="text" class="form-control" id="beneficiaryMobileNo"
+                            formControlName="beneficiaryMobileNo"
+                            placeholder="Beneficiary Mobile No"
+                            [class.is-invalid]="transactionForm.get('beneficiaryMobileNo').invalid
+                            && transactionForm.get('beneficiaryMobileNo').touched" />
+                        <div class="invalid-feedback"
+                                *ngIf="transactionForm.get('beneficiaryMobileNo').hasError('required')
+                                &&  transactionForm.get('beneficiaryMobileNo').touched ">
+                                Please Enter Beneficiary Mobile No.
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <label for="beneficiaryAddress" class="form-label"></label>
+                        <input type="text" class="form-control" id="beneficiaryAddress"
+                            formControlName="beneficiaryAddress"
+                            placeholder="Beneficiary Address"
+                            [class.is-invalid]="transactionForm.get('beneficiaryAddress').invalid
+                            && transactionForm.get('beneficiaryAddress').touched" />
+                        <div class="invalid-feedback"
+                                *ngIf="transactionForm.get('beneficiaryAddress').hasError('required')
+                                &&  transactionForm.get('beneficiaryAddress').touched ">
+                                Please Enter Beneficiary Address.
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <select class="form-select" aria-label="Grade"  >
+
+                            <option value="" disabled selected hidden>Select Beneficiary Document Type </option>
+                            <option value="Bagerhat">Bagerhat</option>
+                            <option value="Bandarban">Bandarban</option>
+                            <option value="Bogura">Bogura</option>
+                        </select>
+                     
+                    </div>
+                    <div class="row mb-3">
+
+                        <!-- CONTAINS DATE FIELD -->
+
+                        <mat-form-field class="bg-transparent" appearance="outline">
+                            <input matInput [matDatepicker]="picker" formControlName="documentIssueDate" placeholder="Document Issue Date">
+                            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                            <mat-datepicker #picker></mat-datepicker>
+                        </mat-form-field>
+                        
+                          <!-- <div *ngIf="transactionForm.get('documentIssueDate').hasError('required')">
+                            Please choose a date.
+                          </div> -->
+
+                        
+                    </div>
+                    <div class="row mb-3">
+                        <select class="form-select" aria-label="Grade"  >
+
+                            <option value="" disabled selected hidden>Select Beneficiary District </option>
+                            <option value="Bagerhat">Bagerhat</option>
+                            <option value="Bandarban">Bandarban</option>
+                            <option value="Bogura">Bogura</option>
+                        </select>
+                        
+                    </div>
+                    <div class="row mb-3">
+                        <select class="form-select" aria-label="Grade"  >
+
+                            <option value="" disabled selected hidden>Select Beneficiary Occupation</option>
+                            <option value="Government">Bagerhat</option>
+                            <option value="Self-Employed">Bandarban</option>
+                           
+                        </select>
+                       
+                    </div>
+                    <div class="row mb-3">
+                        <select class="form-select" aria-label="Grade"  >
+
+                            <option value="" disabled selected hidden>Select Beneficiary Purpose</option>
+                            <option value="Bagerhat">Family Support</option>
+                            
+                        </select>
+                        
+                    </div>
+                    <div class="row mb-3">
+                        <label for="transactionRemarks" class="form-label"></label>
+                        <input type="text" class="form-control" id="transactionRemarks"
+                            formControlName="transactionRemarks"
+                            placeholder="Transaction Remarks"
+                            [class.is-invalid]="transactionForm.get('transactionRemarks').invalid
+                            && transactionForm.get('transactionRemarks').touched" />
+                        <div class="invalid-feedback"
+                                *ngIf="transactionForm.get('transactionRemarks').hasError('required')
+                                &&  transactionForm.get('transactionRemarks').touched ">
+                                Please Enter Transaction Remarks.
+                        </div>
+                    </div>
+
+
+                 </div>
+
+                <!-- FIRST COLUMN -->
+
+                
+                <!-- SECOND COLUMN -->
+
+                <div class="col-md-6 px-5">
+                    <div class="row mb-3">
+                    <!-- <label for="transactionDetails" class="form-label"></label> -->
+                    <select class="form-select" aria-label="Grade"  >
+
+                        <option value="" disabled selected hidden>Exchange House Name</option>
+                        <option value="Bagerhat">Al Ahalia</option>
+                        <option value="Bandarban">Al Ansari</option>
+                        <option value="Bogura">Al Falah</option>
+                    </select>
+                       
+                    </div>
+
+                    <div class="row mb-3">
+                        <label for="senderAddress" class="form-label"></label>
+                        <input type="text"  class="form-control" id="senderAddress"
+                            formControlName="senderAddress"
+                            placeholder="Sender Address"
+                            [class.is-invalid]="transactionForm.get('senderAddress').invalid
+                            && transactionForm.get('senderAddress').touched" />
+                        <div class="invalid-feedback"
+                                *ngIf="transactionForm.get('senderAddress').hasError('required')
+                                &&  transactionForm.get('senderAddress').touched ">
+                                Please Enter Sender Address
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <label for="beneficiaryName" class="form-label"></label>
+                        <input type="text" class="form-control" id="beneficiaryName"
+                            formControlName="beneficiaryName"
+                            placeholder="Beneficiary Name"
+                            [class.is-invalid]="transactionForm.get('beneficiaryName').invalid
+                            && transactionForm.get('beneficiaryName').touched" />
+                        <div class="invalid-feedback"
+                                *ngIf="transactionForm.get('beneficiaryName').hasError('required')
+                                &&  transactionForm.get('beneficiaryName').touched ">
+                                Please Enter Beneficiary Name
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <label for="requestedAmount" class="form-label"></label>
+                        <input type="text" class="form-control" id="requestedAmount"
+                            formControlName="requestedAmount"
+                            placeholder="Requested Amount"
+                            [class.is-invalid]="transactionForm.get('requestedAmount').invalid
+                            && transactionForm.get('requestedAmount').touched" />
+                        <div class="invalid-feedback"
+                                *ngIf="transactionForm.get('requestedAmount').hasError('required')
+                                &&  transactionForm.get('requestedAmount').touched ">
+                                Please Enter Requested Amount
+                        </div>
+                    </div>
+                   
+                    <div class="row mb-3">
+                        <label for="documentNo" class="form-label"></label>
+                        <input type="text" class="form-control" id="documentNo"
+                            formControlName="documentNo"
+                            placeholder="Document No"
+                            [class.is-invalid]="transactionForm.get('documentNo').invalid
+                            && transactionForm.get('documentNo').touched" />
+                        <div class="invalid-feedback"
+                                *ngIf="transactionForm.get('documentNo').hasError('required')
+                                &&  transactionForm.get('documentNo').touched ">
+                                Please Enter Document No
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                         <!-- CONTAINS DATE FIELD -->
+
+                        <mat-form-field class="bg-red" appearance="outline">
+                            <input matInput [matDatepicker]="picker3" formControlName="documentExpireDate"
+                             placeholder="Document Expire Date" >
+                            <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
+                            <mat-datepicker #picker3></mat-datepicker>
+                        </mat-form-field>
+                         <!-- <div *ngIf="transactionForm.get('documentExpireDate').hasError('required')">
+                            Please choose a date.
+                          </div> -->
+
+                    </div>
+                     <div class="row mb-3">
+                    <!-- CONTAINS DATE FIELD -->
+                        <mat-form-field class="w-100" appearance="outline">
+                            <input matInput [matDatepicker]="picker2" formControlName="beneficiaryDOB"
+                             placeholder="Beneficiary DOB">
+                            <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                            <mat-datepicker #picker2></mat-datepicker>
+                        </mat-form-field>
+
+                        <!-- <div *ngIf="transactionForm.get('beneficiaryDOB').hasError('required')">
+                            Please choose a date.
+                          </div> -->
+                        
+
+                
+                    </div>
+                    <div class="row mb-3">
+                        <label for="beneficiaryZIP" class="form-label"></label>
+                        <input type="text" class="form-control" id="beneficiaryZIP"
+                            formControlName="beneficiaryZIP"
+                            placeholder="Beneficiary ZIP"
+                            [class.is-invalid]="transactionForm.get('beneficiaryZIP').invalid
+                            && transactionForm.get('beneficiaryZIP').touched" />
+                        <div class="invalid-feedback"
+                                *ngIf="transactionForm.get('beneficiaryZIP').hasError('required')
+                                &&  transactionForm.get('beneficiaryZIP').touched ">
+                                Please Enter Beneficiary ZIP
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <select class="form-select" aria-label="Grade"  >
+
+                            <option value="" disabled selected hidden>Relationship With Sender</option>
+                            <option value="Bagerhat">Brother</option>
+                            <option value="Bandarban">Brother-in-Law</option>
+                            <option value="Bogura">Cousin</option>
+                        </select>
+                        
+                    </div>
+                    <div class="row mb-3">
+                        <label for="transactionParticular" class="form-label"></label>
+                        <input type="text" class="form-control" id="transactionParticular"
+                            formControlName="transactionParticular"
+                            placeholder="Transaction Particular"
+                            [class.is-invalid]="transactionForm.get('transactionParticular').invalid
+                            && transactionForm.get('transactionParticular').touched" />
+                        <div class="invalid-feedback"
+                                *ngIf="transactionForm.get('transactionParticular').hasError('required')
+                                &&  transactionForm.get('transactionParticular').touched ">
+                                Please Enter Transaction Particular
+                        </div>
+                    </div>
+
+
+                 </div>
+
+                <!-- SECOND COLUMN -->
+
+                
+
+
+                </div>
+
+
+
+
+            </form>
+        </div>
+
+    </div>
+</div>
+
+
+
+

@@ -11,7 +11,7 @@ import {CashWithdrawalComponent} from "../private/operations/cash-withdrawal/cas
 import {CashRefundComponent} from "../private/operations/cash-refund/cash-refund.component";
 import {LoanDisbursementComponent} from "../private/operations/loan-disbursement/loan-disbursement.component";
 import {LoanInstallmentComponent} from "../private/operations/loan-installment/loan-installment.component";
-
+import { RemittanceDisbursementComponent } from "../private/operations/remittance-disbursement/remittance-disbursement.component";
 export class OperationsConstant {
 
   public static readonly OPERATIONS_COMPONENT_MAP: Map<string, any> = new Map([
@@ -53,6 +53,9 @@ export class OperationsConstant {
     }],
     ['loanDisbursement', {
       obj: LoanInstallmentComponent
-    }]
+    }],
+    ['remittanceDisbursement', {
+      obj: RemittanceDisbursementComponent
+    }],
   ])
 }
