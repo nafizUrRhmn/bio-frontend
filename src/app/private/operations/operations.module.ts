@@ -30,6 +30,8 @@ import {LoanDisbursementComponent} from "./loan-disbursement/loan-disbursement.c
 import {LoanInstallmentComponent} from "./loan-installment/loan-installment.component";
 import { RemittanceDisbursementComponent } from './remittance-disbursement/remittance-disbursement.component';
 import {MigrateOfferComponent} from "./customer-summary/migrate-offer/migrate-offer.component";
+import { InsurancePremiumCollectionComponent } from './bill-pay/insurance-premium-collection/insurance-premium-collection.component';
+import { CreditCardComponent } from './bill-pay/credit-card/credit-card.component';
 
 const routes: Routes = [
   {
@@ -59,7 +61,9 @@ const routes: Routes = [
     LoanDisbursementComponent,
     LoanInstallmentComponent,
     MigrateOfferComponent,
-    RemittanceDisbursementComponent
+    RemittanceDisbursementComponent,
+    InsurancePremiumCollectionComponent,
+    CreditCardComponent
   ],
   imports: [
     RouterModule.forChild(routes),
