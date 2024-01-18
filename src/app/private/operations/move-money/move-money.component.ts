@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
+import { of } from 'rxjs';
+import * as accountData from '../../../../../account-data.json'
 
 @Component({
   selector: 'app-move-money',
@@ -14,7 +17,7 @@ export class MoveMoneyComponent implements OnInit {
 
   ngOnInit(): void {
     this.moveMoneyForm = this.fb.group({
-      sourceaccnum: ['', [Validators.required]],
+      sourceaccnum: ['', [Validators.required, this.accountNumberValidator]],
       sourceaccoutlet: ['', [Validators.required]],
       destaccounttitle: ['', [Validators.required]],
       amount: ['', [Validators.required]],
@@ -24,8 +27,62 @@ export class MoveMoneyComponent implements OnInit {
       transactionremarks: ['', [Validators.required]]
     });
 
+    this.moveMoneyForm
+      .get('sourceaccnum')
+      .valueChanges.pipe(
+        debounceTime(1000),
+        distinctUntilChanged(),
+        switchMap((accountNumber) => this.getAccountData(accountNumber))
+      )
+      .subscribe((data) => {
+        if (data) {
+          this.moveMoneyForm.patchValue(data);
+        } else {
+          // this.moveMoneyForm.reset();
+        }
+      });
   }
-  // Getters for easy access in the template
+
+  getAccountData(accountNumber: string) {
+    if (accountData[accountNumber]) {
+      return of(accountData[accountNumber]);
+    } else {
+      return of(null);
+    }
+  }
+
+  accountNumberValidator(control) {
+    const value = control.value;
+
+    // Check if the account number is 13 or 16 digits long
+    if (value && !/^\d{13}$|^\d{16}$/.test(value)) {
+      return { invalidAccountNumber: true };
+    }
+
+    return null;
+  }
+
+  submitForm() {
+    if (this.moveMoneyForm.valid) {
+      // console.log(this.moveMoneyForm.value);
+      const formData = this.moveMoneyForm.value;
+      alert(JSON.stringify(formData));
+      // Add logic to proceed with the form data, such as sending it to a server.
+    } else {
+      this.markFormGroupTouched(this.moveMoneyForm);
+    }
+  }
+
+  markFormGroupTouched(formGroup: FormGroup) {
+    Object.values(formGroup.controls).forEach((control) => {
+      control.markAsTouched();
+
+      if (control instanceof FormGroup) {
+        this.markFormGroupTouched(control);
+      }
+    });
+  }
+
   get sourceaccnum() {
     return this.moveMoneyForm.get('sourceaccnum');
   }
@@ -41,7 +98,7 @@ export class MoveMoneyComponent implements OnInit {
   get amount() {
     return this.moveMoneyForm.get('amount');
   }
-  
+
   get sourceacctitle() {
     return this.moveMoneyForm.get('sourceacctitle');
   }

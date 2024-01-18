@@ -15,11 +15,14 @@
         id="sourceaccnum"
         formControlName="sourceaccnum"
         required
-        [class.is-invalid]="sourceaccnum.touched && sourceaccnum.invalid"
+        [class.is-invalid]="sourceaccnum.touched && (sourceaccnum.invalid || sourceaccnum.hasError('invalidAccountNumber'))"
       />
       <div *ngIf="sourceaccnum.touched && sourceaccnum.hasError('required')" class="invalid-feedback"
         >Source Account Number is required.</div
       >
+      <div *ngIf="sourceaccnum.touched && sourceaccnum.hasError('invalidAccountNumber')" class="invalid-feedback">
+        Account should be 13 or 16 digits.
+      </div>
 
       <label for="sourceaccoutlet" class="form-label pt-1">Source Account Outlet Name</label>
       <input
@@ -115,7 +118,7 @@
   </form>
 
   <div class="d-flex flex-row-reverse">
-    <button type="button" class="btn btn-primary d-flex align-items-end border">
+    <button type="button" class="btn btn-primary d-flex align-items-end border" (click)="submitForm()">
       Proceed
       <mat-icon>arrow_forward</mat-icon>
     </button>
