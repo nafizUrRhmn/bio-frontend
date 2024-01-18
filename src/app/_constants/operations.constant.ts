@@ -12,6 +12,8 @@ import {CashRefundComponent} from "../private/operations/cash-refund/cash-refund
 import {LoanDisbursementComponent} from "../private/operations/loan-disbursement/loan-disbursement.component";
 import {LoanInstallmentComponent} from "../private/operations/loan-installment/loan-installment.component";
 import { RemittanceDisbursementComponent } from "../private/operations/remittance-disbursement/remittance-disbursement.component";
+import { InsurancePremiumCollectionComponent } from "../private/operations/bill-pay/insurance-premium-collection/insurance-premium-collection.component";
+import { CreditCardComponent } from "../private/operations/bill-pay/credit-card/credit-card.component";
 export class OperationsConstant {
 
   public static readonly OPERATIONS_COMPONENT_MAP: Map<string, any> = new Map([
@@ -57,5 +59,11 @@ export class OperationsConstant {
     ['remittanceDisbursement', {
       obj: RemittanceDisbursementComponent
     }],
+    ['insurancePremiumCollection', {
+      obj: InsurancePremiumCollectionComponent
+    }],
+    ['creditCard', {
+      obj: CreditCardComponent
+    }]
   ])
 }
