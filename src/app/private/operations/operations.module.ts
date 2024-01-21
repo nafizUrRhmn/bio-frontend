@@ -32,6 +32,10 @@ import { RemittanceDisbursementComponent } from './remittance-disbursement/remit
 import {MigrateOfferComponent} from "./customer-summary/migrate-offer/migrate-offer.component";
 import { InsurancePremiumCollectionComponent } from './bill-pay/insurance-premium-collection/insurance-premium-collection.component';
 import { CreditCardComponent } from './bill-pay/credit-card/credit-card.component';
+import { InstitutionFeePaymentComponent } from './institution-fee-payment/institution-fee-payment.component';
+import { MatRadioModule } from '@angular/material/radio';
+import { DistributorBillCollectionsComponent } from './distributor-bill-collections/distributor-bill-collections.component';
+
 
 const routes: Routes = [
   {
@@ -63,7 +67,12 @@ const routes: Routes = [
     MigrateOfferComponent,
     RemittanceDisbursementComponent,
     InsurancePremiumCollectionComponent,
-    CreditCardComponent
+    CreditCardComponent,
+    RemittanceDisbursementComponent,
+    InstitutionFeePaymentComponent,
+    DistributorBillCollectionsComponent,
+    
+
   ],
   imports: [
     RouterModule.forChild(routes),
@@ -80,7 +89,8 @@ const routes: Routes = [
     MatDatepickerModule,
     AgGridModule,
     MatDialogModule,
-    MatInputModule
+    MatInputModule,
+    MatRadioModule
   ],
 })
 export class OperationsModule {

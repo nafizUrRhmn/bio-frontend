@@ -14,6 +14,9 @@ import {LoanInstallmentComponent} from "../private/operations/loan-installment/l
 import { RemittanceDisbursementComponent } from "../private/operations/remittance-disbursement/remittance-disbursement.component";
 import { InsurancePremiumCollectionComponent } from "../private/operations/bill-pay/insurance-premium-collection/insurance-premium-collection.component";
 import { CreditCardComponent } from "../private/operations/bill-pay/credit-card/credit-card.component";
+import {InstitutionFeePaymentComponent} from "../private/operations/institution-fee-payment/institution-fee-payment.component";
+import { DistributorBillCollectionsComponent } from "../private/operations/distributor-bill-collections/distributor-bill-collections.component";
+
 export class OperationsConstant {
 
   public static readonly OPERATIONS_COMPONENT_MAP: Map<string, any> = new Map([
@@ -64,6 +67,12 @@ export class OperationsConstant {
     }],
     ['creditCard', {
       obj: CreditCardComponent
-    }]
+    }],
+    ['institutionFeePayment', {
+      obj: InstitutionFeePaymentComponent
+    }],
+    ['distributorBillCollections', {
+      obj: DistributorBillCollectionsComponent
+    }],
   ])
 }

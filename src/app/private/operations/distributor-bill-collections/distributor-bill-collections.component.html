@@ -1,0 +1,236 @@
+<div class="container mx-auto mt-3">
+
+    <div class="d-flex justify-content-between align-items-center ">
+        <div class="card-header fw-bold text-muted fs-4">Transaction Details</div>
+        <div><mat-icon>keyboard_backspace</mat-icon></div>
+    </div>
+
+    <div class="card-body border-top border-primary-subtle">
+        <form [formGroup]="transactionForm">
+            <div>
+                
+                <!-- RADIO BUTTON CONTROL SECTION -->
+                <div class="d-flex justify-content-center align-items-center my-3">
+                    <div class="fs-5 fw-bold text-muted">Payment Mode </div>
+                    <div>
+                       <mat-radio-group [(ngModel)]="selectedOption">
+                        <mat-radio-button value="cash" (change)="onRadioChange('cash')" >Cash</mat-radio-button>
+                        <mat-radio-button value="accountPay" (change)="onRadioChange('accountPay')">Account Pay</mat-radio-button>
+                       </mat-radio-group>
+                   </div>
+                </div>
+
+                <!-- ACCOUNT PAY SECTION STARTS -->
+
+                <div class="row" *ngIf="accountPaySelection">
+                    <div class="col-md-6 px-5">
+                        <div class="row mb-3" >
+                            
+                            <label for="accountNumber" class="form-label"></label>
+                                <input type="text" class="form-control" id="accountNumber"
+                                    formControlName="accountNumber"
+                                    placeholder="Account Number"
+                                    [class.is-invalid]="transactionForm.get('accountNumber').invalid
+                                    && transactionForm.get('accountNumber').touched" />
+                                <div class="invalid-feedback"
+                                    *ngIf="transactionForm.get('accountNumber').hasError('required')
+                                    &&  transactionForm.get('accountNumber').touched ">
+                                    Please enter Account Number
+                                </div>
+                            
+                        </div>
+    
+                        <div class="row mb-3" >
+                            
+                            <label for="accountTitle" class="form-label"></label>
+                                <input type="text" class="form-control" id="accountTitle"
+                                    formControlName="accountTitle"
+                                    placeholder="Account Title"
+                                    [class.is-invalid]="transactionForm.get('accountTitle').invalid
+                                    && transactionForm.get('accountTitle').touched" />
+                                <div class="invalid-feedback"
+                                    *ngIf="transactionForm.get('accountTitle').hasError('required')
+                                    &&  transactionForm.get('accountTitle').touched ">
+                                    Please enter Account Title
+                                </div>
+                            
+                        </div>
+                    </div>
+    
+                    <!-- CUSTOMER DETAILS CARD -->
+                    <div class="col-md-6 px-5">
+                            <div class="card shadow-none border border-1">
+                                <div class="card-header fs-4 fw-bold text-muted">
+                                    Customer Details
+                                </div>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-md-6 fw-bold text-muted">
+                                            <div>Customer Id</div>
+                                            <div>Mobile</div>
+                                            <div>Name</div>
+                                            <div>Email</div>
+                                            <div>Account Type</div>
+                                            <div>Status</div>
+                                            <div>Product</div>
+                                            <div>Sol Id</div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div>NULL</div>
+                                            <div>015********</div>
+                                            <div>NULL</div>
+                                            <div>something247@gmail.com</div>
+                                            <div>NULL</div>
+                                            <div>NULL</div>
+                                            <div>OFFERNOKYC</div>
+                                            <div>NULL</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                    </div>
+    
+                </div>
+
+                <!-- ACCOUNT PAY SECTION ENDS -->
+
+
+
+                <!-- CASH SECTION STARTS -->
+                <div class="row">
+                    <div class="col-md-6 px-5">
+                        <div class="row mb-3 mt-2">
+                            <select class="form-select" aria-label="companyName"
+                            formControlName="companyName"  
+                            [class.is-invalid]="transactionForm.get('companyName').invalid
+                            && transactionForm.get('companyName').touched" >
+                
+                                <option value="" disabled selected>Company Name</option>
+                                <option value="brac">BRAC</option>
+                                <option value="ucb">UCB</option>
+                                <option value="mtb">MTB</option>
+                            </select>
+    
+                            <div class="invalid-feedback"
+                                        *ngIf="transactionForm.get('companyName').hasError('required')
+                                        &&  transactionForm.get('companyName').touched ">
+                                        Please Select Company Name
+                            </div>
+                        </div>
+
+                        <div class="row mb-3" >
+                        
+                            <label for="distributorsName" class="form-label"></label>
+                                <input type="text" class="form-control" id="distributorsName"
+                                    formControlName="distributorsName"
+                                    placeholder="Distributor's Name"
+                                    [class.is-invalid]="transactionForm.get('distributorsName').invalid
+                                    && transactionForm.get('distributorsName').touched" />
+                                <div class="invalid-feedback"
+                                    *ngIf="transactionForm.get('distributorsName').hasError('required')
+                                    &&  transactionForm.get('distributorsName').touched ">
+                                    Please enter Distributor's Name
+                                </div>
+                            
+                        </div>
+                        <div class="row mb-3" >
+                        
+                            <label for="mobileNumber" class="form-label"></label>
+                                <input type="text" class="form-control" id="mobileNumber"
+                                    formControlName="mobileNumber"
+                                    placeholder="Mobile Number"
+                                    [class.is-invalid]="transactionForm.get('mobileNumber').invalid
+                                    && transactionForm.get('mobileNumber').touched" />
+                                <div class="invalid-feedback"
+                                    *ngIf="transactionForm.get('mobileNumber').hasError('required')
+                                    &&  transactionForm.get('mobileNumber').touched ">
+                                    Please enter Mobile Number
+                                </div>
+                            
+                        </div>
+                        <div class="row mb-3" >
+                        
+                            <label for="transactionParticulars" class="form-label"></label>
+                                <input type="text" class="form-control" id="transactionParticulars"
+                                    formControlName="transactionParticulars"
+                                    placeholder="Transaction Particulars"
+                                    [class.is-invalid]="transactionForm.get('transactionParticulars').invalid
+                                    && transactionForm.get('transactionParticulars').touched" />
+                                <div class="invalid-feedback"
+                                    *ngIf="transactionForm.get('transactionParticulars').hasError('required')
+                                    &&  transactionForm.get('transactionParticulars').touched ">
+                                    Please enter Transaction Particulars
+                                </div>
+                            
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 px-5">
+                        <div class="row mb-3" >
+                        
+                        <label for="distributorId" class="form-label"></label>
+                            <input type="text" class="form-control" id="distributorId"
+                                formControlName="distributorId"
+                                placeholder="Distributor Id"
+                                [class.is-invalid]="transactionForm.get('distributorId').invalid
+                                && transactionForm.get('distributorId').touched" />
+                            <div class="invalid-feedback"
+                                *ngIf="transactionForm.get('distributorId').hasError('required')
+                                &&  transactionForm.get('distributorId').touched ">
+                                Please enter Distributor Id
+                            </div>
+                        
+                        </div>
+
+                        
+                    <div class="row mb-3" >
+                        
+                        <label for="paymentAmount" class="form-label"></label>
+                            <input type="text" class="form-control" id="paymentAmount"
+                                formControlName="paymentAmount"
+                                placeholder="Payment Amount"
+                                [class.is-invalid]="transactionForm.get('paymentAmount').invalid
+                                && transactionForm.get('paymentAmount').touched" />
+                            <div class="invalid-feedback"
+                                *ngIf="transactionForm.get('paymentAmount').hasError('required')
+                                &&  transactionForm.get('paymentAmount').touched ">
+                                Please enter Payment Amount
+                            </div>
+                        
+                    </div>
+                    <div class="row mb-3" >
+                        
+                        <label for="transactionRemarks" class="form-label"></label>
+                            <input type="text" class="form-control" id="transactionRemarks"
+                                formControlName="transactionRemarks"
+                                placeholder="Transaction Remarks"
+                                [class.is-invalid]="transactionForm.get('transactionRemarks').invalid
+                                && transactionForm.get('transactionRemarks').touched" />
+                            <div class="invalid-feedback"
+                                *ngIf="transactionForm.get('transactionRemarks').hasError('required')
+                                &&  transactionForm.get('transactionRemarks').touched ">
+                                Please enter Transaction Remarks
+                            </div>
+                        
+                    </div>
+
+                </div>
+
+
+            </div>
+             <!-- CASH SECTION ENDS -->
+
+
+             <!-- BOTTOM BUTTONS -->
+            <div class="d-flex justify-content-end mt-5 mx-4">
+                <button class="bg-transparent  border-secondary-subtle border-1 mx-2 rounded">Refresh</button>
+                <button class="bg-transparent  border-secondary-subtle border-1 rounded">Proceed</button>
+            </div>
+
+
+            </div>
+        </form>
+       
+    </div>
+
+</div>
