@@ -82,7 +82,6 @@ export class NavigationComponent implements OnInit {
       }
       navigation.push(objectLayerZero);
     }
-    console.log(navigation);
     this.superAdminNavigationItems = navigation;
     this.hasInitialized = true;
   }
