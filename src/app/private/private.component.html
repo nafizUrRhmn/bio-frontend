@@ -1,25 +1,81 @@
+<div class="container-fluid min-vh-100" style="background: #EAEAF3">
+  <nav class="navbar navbar-light" style="background-color: #FFFFFF;">
+    <div class="ms-2 ms-2">
+      <a class="navbar-brand" href="#">
+        <a [routerLink]="['/']" class="b-brand">
+          <!-- ========   change your logo hear   ============ -->
+          <img src="assets/images/logo-dark.svg" alt="" class="logo logo-lg"/>
+        </a>
 
-
-<section>
-  <div class="container py-5 h-50">
-    <div class="col-12 d-flex align-items-center justify-content-center h-50">
-     <h1>Module List</h1>
+      </a>
     </div>
+  </nav>
+  <div class="d-flex m-2 card h-100 border border-dark border-bottom-1">
+    <div class="col-12">
+      <div class="col-12">
+        <div class="card shadow-none border-end h-100 rounded-0 m-0">
+          <div class="card-header">
+            <h5 class="card-title"> Module</h5>
+          </div>
+          <div class="card-body">
+            <div class="row justify-content-start">
+              <div class="col-1">
+                <a class="button" routerLink="/private/access-control">
+            <span class="justify-content-center">
+                    <img src="../../assets/images/access-control.svg" height="100" width="100" alt="Access Control" id="access-control" class="img-thumbnail"/>
+             <figcaption><span class="justify-content-center text-muted">Access Control</span></figcaption>
+            </span>
+                </a>
+              </div>
+              <div class="col-11">
+                <a class="button" routerLink="/private/operations">
+            <span class="justify-content-center">
+                    <img src="../../assets/images/operations.svg" height="100" width="100" alt="Access Control" id="operations" class="img-thumbnail"/>
+             <figcaption><span class="justify-content-center text-muted">Operations</span></figcaption>
+            </span>
+                </a>
+              </div>
 
-    <nav>
-      <a class="button" routerLink="/private/access-control">Access Control</a> |
-      <a class="button" routerLink="/private/operations">Operations</a>
-    </nav>  </div>
+            </div>
 
-</section>
-<footer class="pc-footer">
-  <div class="footer-wrapper container-fluid">
-    <div class="row">
-      <div class="col my-1">
-        <p class="m-0"> Copyright &copy; <a href="https://bracbank.com" target="_blank">BRAC BANK PLC </a></p>
-        <p class="m-0"> Powered By &copy; <a href="https://bracbank.com" target="_blank">CORE BANKING APPLICATION | TEAM
-          R & D </a></p>
+
+          </div>
+          <div class="card-footer"></div>
+        </div>
+      </div>
+      <div class="col-12">
+        <div class="col-12">
+          <div class="card shadow-none border-end h-100 rounded-0 m-0">
+            <div class="card-header">
+              <h5 class="card-title"> Notice</h5>
+            </div>
+            <div class="card-body">
+
+              <div>
+                What is Lorem Ipsum?
+                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
+                industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and
+                scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap
+                into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the
+                release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing
+                software like Aldus PageMaker including versions of Lorem Ipsum.
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card-footer">
+      <div class="row">
+        <div class="col my-1">
+          <p class="m-0"> Copyright &copy; <a href="https://bracbank.com" target="_blank">BRAC BANK PLC </a></p>
+        </div>
+        <div class="col my-1">
+          <p class="m-0"> Powered By &copy; <a href="https://bracbank.com" target="_blank">CORE BANKING APPLICATION |
+            TEAM R & D </a></p>
+        </div>
       </div>
     </div>
   </div>
-</footer>
+</div>

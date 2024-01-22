@@ -1,7 +1,12 @@
-.divider:after,
-.divider:before {
-  content: "";
-  flex: 1;
-  height: 1px;
-  background: #eee;
+
+.container-fluid, .container-xxl, .container-xl, .container-lg, .container-md, .container-sm {
+  --bs-gutter-x: 0;
+}
+#operations{
+  background: #a27ee5;
+}
+
+
+#access-control{
+  background: #ef7784;
 }
