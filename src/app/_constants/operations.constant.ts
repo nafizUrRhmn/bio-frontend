@@ -16,6 +16,8 @@ import { InsurancePremiumCollectionComponent } from "../private/operations/bill-
 import { CreditCardComponent } from "../private/operations/bill-pay/credit-card/credit-card.component";
 import {InstitutionFeePaymentComponent} from "../private/operations/institution-fee-payment/institution-fee-payment.component";
 import { DistributorBillCollectionsComponent } from "../private/operations/distributor-bill-collections/distributor-bill-collections.component";
+import { RetailComponent } from "../private/operations/retail/retail.component";
+import { CorporateComponent } from "../private/operations/corporate/corporate.component";
 
 export class OperationsConstant {
 
@@ -73,6 +75,12 @@ export class OperationsConstant {
     }],
     ['distributorBillCollections', {
       obj: DistributorBillCollectionsComponent
+    }],
+    ['retail', {
+      obj: RetailComponent
+    }],
+    ['corporate', {
+      obj: CorporateComponent
     }],
   ])
 }
