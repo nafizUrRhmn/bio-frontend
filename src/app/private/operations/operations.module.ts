@@ -35,6 +35,8 @@ import { CreditCardComponent } from './bill-pay/credit-card/credit-card.componen
 import { InstitutionFeePaymentComponent } from './institution-fee-payment/institution-fee-payment.component';
 import { MatRadioModule } from '@angular/material/radio';
 import { DistributorBillCollectionsComponent } from './distributor-bill-collections/distributor-bill-collections.component';
+import { RetailComponent } from './retail/retail.component';
+import { CorporateComponent } from './corporate/corporate.component';
 
 
 const routes: Routes = [
@@ -71,6 +73,8 @@ const routes: Routes = [
     RemittanceDisbursementComponent,
     InstitutionFeePaymentComponent,
     DistributorBillCollectionsComponent,
+    RetailComponent,
+    CorporateComponent,
     
 
   ],
