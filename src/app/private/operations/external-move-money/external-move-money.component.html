@@ -1,14 +1,14 @@
 <div class="container">
   <div class="border-bottom d-flex align-items-center justify-content-between">
-    <h4>External Move Money</h4>
+    <h4>{{ 'BBL00001' | translate }}</h4>
   </div>
   <div class="px-2" style="background-color: aliceblue">
-    <h4>Transaction Details</h4>
+    <h4>{{ 'BBL00002' | translate }}</h4>
   </div>
 
   <form [formGroup]="extmoveMoneyForm" class="d-flex">
     <div class="form-group col-6 p-3">
-      <label for="sourceaccnum" class="form-label">Source Account Number</label>
+      <label for="sourceaccnum" class="form-label">{{ 'BBL00003' | translate }}</label>
       <input
         type="text"
         class="form-control"
@@ -81,7 +81,7 @@
     </div>
 
     <div class="col-6 p-3">
-      <label for="sourceacctitle" class="form-label">Source Account Title</label>
+      <label for="sourceacctitle" class="form-label">{{ 'BBL00004' | translate }}</label>
       <input
         type="text"
         class="form-control"

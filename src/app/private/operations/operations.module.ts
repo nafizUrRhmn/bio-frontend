@@ -37,6 +37,7 @@ import { MatRadioModule } from '@angular/material/radio';
 import { DistributorBillCollectionsComponent } from './distributor-bill-collections/distributor-bill-collections.component';
 import { RetailComponent } from './retail/retail.component';
 import { CorporateComponent } from './corporate/corporate.component';
+import {TranslateModule} from "@ngx-translate/core";
 
 
 const routes: Routes = [
@@ -75,7 +76,7 @@ const routes: Routes = [
     DistributorBillCollectionsComponent,
     RetailComponent,
     CorporateComponent,
-    
+
 
   ],
   imports: [
@@ -94,7 +95,8 @@ const routes: Routes = [
     AgGridModule,
     MatDialogModule,
     MatInputModule,
-    MatRadioModule
+    MatRadioModule,
+    TranslateModule
   ],
 })
 export class OperationsModule {

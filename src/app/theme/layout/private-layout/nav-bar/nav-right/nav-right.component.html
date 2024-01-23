@@ -2,9 +2,9 @@
   <ul class="list-unstyled">
     <li>
       <div class="pt-4">
-        <select class="form-select form-select-sm">
-          <option selected>English</option>
-          <option>Bangla</option>
+        <select class="form-select form-select-sm" #selLang (change)="translateLanguageTo(selLang.value)">
+          <option value="en"  selected>English</option>
+          <option value ="bn" >Bangla</option>
         </select>
       </div>
     </li>
