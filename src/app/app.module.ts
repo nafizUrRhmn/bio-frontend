@@ -1,7 +1,6 @@
 import {APP_INITIALIZER, NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {PrivateLayoutComponent} from './theme/layout/private-layout/private-layout.component';
@@ -16,11 +15,17 @@ import {NavCollapseComponent} from './theme/layout/private-layout/navigation/nav
 import {NavItemComponent} from './theme/layout/private-layout/navigation/nav-content/nav-item/nav-item.component';
 import {SharedModule} from './theme/shared/shared.module';
 import {PublicLayoutComponent} from './theme/layout/public-layout/public-layout.component';
-import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
+import {HTTP_INTERCEPTORS, HttpClient, HttpClientModule} from "@angular/common/http";
 import {appInitializer, ErrorInterceptor, JwtInterceptor} from "./_helpers";
 import {AuthenticationService} from "./_services";
 import {PagenotfoundComponent} from "./pagenotfound/pagenotfound.component";
+import {TranslateHttpLoader} from "@ngx-translate/http-loader";
+import {TranslateLoader, TranslateModule} from "@ngx-translate/core";
 
+
+export function httpTranslateLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(http);
+}
 @NgModule({
   declarations: [
     AppComponent,
@@ -37,7 +42,14 @@ import {PagenotfoundComponent} from "./pagenotfound/pagenotfound.component";
     NavCollapseComponent,
     PublicLayoutComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, SharedModule, BrowserAnimationsModule, HttpClientModule],
+  imports: [BrowserModule, AppRoutingModule, SharedModule, BrowserAnimationsModule, HttpClientModule,
+    TranslateModule.forRoot({
+    loader: {
+      provide: TranslateLoader,
+      useFactory: httpTranslateLoaderFactory,
+      deps: [HttpClient]
+    }
+  })],
   providers: [{ provide: APP_INITIALIZER, useFactory: appInitializer, multi: true, deps: [AuthenticationService] },
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }],
