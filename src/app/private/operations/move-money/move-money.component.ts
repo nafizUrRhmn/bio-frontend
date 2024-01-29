@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
 import { of } from 'rxjs';
-import * as accountData from '../../../../../account-data.json'
+import * as accountData from '../../../../../account-data.json';
+import { ValidationService } from './Validators';
 
 @Component({
   selector: 'app-move-money',
@@ -17,7 +18,7 @@ export class MoveMoneyComponent implements OnInit {
 
   ngOnInit(): void {
     this.moveMoneyForm = this.fb.group({
-      sourceaccnum: ['', [Validators.required, this.accountNumberValidator]],
+      sourceaccnum: ['', [Validators.required, ValidationService.accountNumberValidator,ValidationService.noSpecialCharacterValidator]],
       sourceaccoutlet: ['', [Validators.required]],
       destaccounttitle: ['', [Validators.required]],
       amount: ['', [Validators.required]],
@@ -43,6 +44,11 @@ export class MoveMoneyComponent implements OnInit {
       });
   }
 
+  getValidationErrorMsg(controlName: string): string | null {
+    const control = this.moveMoneyForm.get(controlName);
+    return ValidationService.getValidationErrorMsg(control, controlName);
+  }
+
   getAccountData(accountNumber: string) {
     if (accountData[accountNumber]) {
       return of(accountData[accountNumber]);
@@ -51,16 +57,29 @@ export class MoveMoneyComponent implements OnInit {
     }
   }
 
-  accountNumberValidator(control) {
-    const value = control.value;
+  // accountNumberValidator(control) {
+  //   const value = control.value;
 
-    // Check if the account number is 13 or 16 digits long
-    if (value && !/^\d{13}$|^\d{16}$/.test(value)) {
-      return { invalidAccountNumber: true };
-    }
+  //   // Check if the account number is 13 or 16 digits long
+  //   if (value && !/^\d{13}$|^\d{16}$/.test(value)) {
+  //     return { invalidAccountNumber: true };
+  //   }
 
-    return null;
-  }
+  //   return null;
+  // }
+
+  // noSpecialCharacterValidator(control) {
+
+  //     const value = control.value;
+
+  //     // Check if the value contains any special characters
+  //     if (value && /[!=@#$%^&*(),.?":{}|<>-]/.test(value)) {
+  //       return { containsSpecialCharacter: true };
+  //     }
+
+  //     return null;
+
+  // }
 
   submitForm() {
     if (this.moveMoneyForm.valid) {

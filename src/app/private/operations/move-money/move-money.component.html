@@ -15,14 +15,25 @@
         id="sourceaccnum"
         formControlName="sourceaccnum"
         required
-        [class.is-invalid]="sourceaccnum.touched && (sourceaccnum.invalid || sourceaccnum.hasError('invalidAccountNumber'))"
+        [class.is-invalid]="
+          sourceaccnum.touched &&
+          (sourceaccnum.invalid || sourceaccnum.hasError('invalidAccountNumber') || sourceaccnum.hasError('containsSpecialCharacter'))
+        "
       />
-      <div *ngIf="sourceaccnum.touched && sourceaccnum.hasError('required')" class="invalid-feedback"
+
+      <div *ngIf="getValidationErrorMsg('sourceaccnum')" class="invalid-feedback">
+        {{ getValidationErrorMsg('sourceaccnum') }}
+      </div>
+
+      <!-- <div *ngIf="sourceaccnum.touched && sourceaccnum.hasError('required')" class="invalid-feedback"
         >Source Account Number is required.</div
       >
       <div *ngIf="sourceaccnum.touched && sourceaccnum.hasError('invalidAccountNumber')" class="invalid-feedback">
         Account should be 13 or 16 digits.
       </div>
+      <div *ngIf="sourceaccnum.touched && sourceaccnum.hasError('containsSpecialCharacter')" class="invalid-feedback">
+        Special characters are not allowed.
+      </div> -->
 
       <label for="sourceaccoutlet" class="form-label pt-1">Source Account Outlet Name</label>
       <input
