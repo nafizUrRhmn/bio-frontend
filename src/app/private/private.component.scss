@@ -10,3 +10,40 @@
 #access-control{
   background: #ef7784;
 }
+
+
+.me-0 {
+  margin: 4px 0 0 4px !important;
+}
+.profilepic{
+  height: 45px;
+  width: 45px;
+  border-radius: 50px;
+  padding: 5px;
+}
+.user-settings{
+ 
+  background-color: rgb(204, 227, 244);
+  border-radius: 25px;
+  height: 45px;
+   
+}
+.user-settings:hover{
+  background-color: rgb(33 150 243);
+  .ti-settings{
+    color: white;
+  }
+}
+
+.ti-settings{
+  font-size: 21px;
+  padding-right: 6px;
+
+}
+
+.button:hover{
+  cursor: pointer;
+  background-color: rgb(33 150 243);
+  color: white;
+  border-radius: 10px;
+}

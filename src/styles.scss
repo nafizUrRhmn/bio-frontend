@@ -20,6 +20,9 @@ $pc-secondary: map-get($preset-colors, 'preset-1', 'secondary');
 
 // Componants
 @import 'scss/themes/components/components';
+// styles.scss
+@import '~bootstrap/dist/css/bootstrap.min.css';
+
 
 // pages
 @import 'scss/themes/pages/page';

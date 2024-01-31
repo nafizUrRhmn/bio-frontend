@@ -2,7 +2,7 @@ import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from "@angular/router";
 import {PrivateLayoutComponent} from "../theme/layout/private-layout/private-layout.component";
 import {PrivateComponent} from "./private.component";
-
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 const routes: Routes = [
   {
@@ -20,7 +20,8 @@ const routes: Routes = [
 @NgModule({
   declarations: [PrivateComponent],
   imports: [
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
+    NgbModule
   ]
 })
 export class PrivateModule {
