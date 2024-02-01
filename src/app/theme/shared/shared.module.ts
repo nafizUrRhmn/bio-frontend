@@ -11,6 +11,7 @@ import {NgScrollbarModule} from 'ngx-scrollbar';
 
 // bootstrap import
 import {NgbCollapseModule, NgbDropdownModule, NgbModule, NgbNavModule} from '@ng-bootstrap/ng-bootstrap';
+import { WelcomeMessageModule } from './components/welcome-message/welcome-message.module';
 
 @NgModule({
   imports: [
@@ -18,6 +19,7 @@ import {NgbCollapseModule, NgbDropdownModule, NgbModule, NgbNavModule} from '@ng
     FormsModule,
     ReactiveFormsModule,
     CardModule,
+    WelcomeMessageModule,
     NgbDropdownModule,
     NgbNavModule,
     NgbModule,
@@ -29,6 +31,7 @@ import {NgbCollapseModule, NgbDropdownModule, NgbModule, NgbNavModule} from '@ng
     FormsModule,
     ReactiveFormsModule,
     CardModule,
+    WelcomeMessageModule,
     SpinnerComponent,
     NgbModule,
     NgbDropdownModule,
