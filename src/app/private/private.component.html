@@ -1,7 +1,8 @@
 <div class="container-fluid min-vh-100 ms-auto" style="background: #EAEAF3">
   <nav class="px-2" style="background-color: #FFFFFF;">
     <div class="ms-2 d-flex justify-content-between pt-3">
-      <div>
+      
+      <div class="d-flex justify-content-center">
         <a class="navbar-brand " href="#">
         
           <a [routerLink]="['/']" class="b-brand">
@@ -10,10 +11,21 @@
           </a>
         
       </a>
+      
       </div>
 
+      
+      <div class="mx-5 mt-3">
+        <app-welcome-message></app-welcome-message>
+      </div>
+      
+
+      
+
       <div>
+        
         <ul class="list-unstyled d-flex justify-content-end align-items-center">
+          
           <li>
             <div class=" mx-2">
               <select class="form-select form-select-sm"#selLang (change)="translateLanguageTo(selLang.value)" >
@@ -32,7 +44,14 @@
                 href="javascript:"
                 ngbDropdownToggle
               >
-                <img src="https://avatars.githubusercontent.com/u/96797545?s=400&u=3e80e06f4e8313055481feab9bb1507a458c813c&v=4" alt="user-image" class="profilepic user-avtar"/>
+                <img 
+                src="" 
+                alt="user-image" 
+                class="profilepic user-avtar"
+                onerror="this.src='../../../../../../assets/images/defaultUserProfilePicture.svg'; 
+                        this.alt='Default Profile' ;
+                        id='defaultProfilePic'"
+                />
                 <span class="mx-2">
                   <i class="ti ti-settings"></i>
                 </span>
@@ -42,7 +61,7 @@
 
               <div class="dropdown-menu  dropdown-menu-end pc-h-dropdown" ngbDropdownMenu>
                 <div class="dropdown-header">
-                  <h4> E H E S A N </h4>
+                  <h4> {{username}} </h4>
                   <p class="text-muted">Admin</p>
                   <a (click)="onLogout()" class="dropdown-item button">
                     <i class="ti ti-logout"></i>
