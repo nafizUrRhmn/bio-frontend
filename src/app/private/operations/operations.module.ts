@@ -38,6 +38,7 @@ import { DistributorBillCollectionsComponent } from './distributor-bill-collecti
 import { RetailComponent } from './retail/retail.component';
 import { CorporateComponent } from './corporate/corporate.component';
 import {TranslateModule} from "@ngx-translate/core";
+import { ReportComponent } from './report/report.component';
 
 
 const routes: Routes = [
@@ -76,6 +77,7 @@ const routes: Routes = [
     DistributorBillCollectionsComponent,
     RetailComponent,
     CorporateComponent,
+    ReportComponent,
 
 
   ],
