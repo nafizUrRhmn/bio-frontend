@@ -18,6 +18,7 @@ import {InstitutionFeePaymentComponent} from "../private/operations/institution-
 import { DistributorBillCollectionsComponent } from "../private/operations/distributor-bill-collections/distributor-bill-collections.component";
 import { RetailComponent } from "../private/operations/retail/retail.component";
 import { CorporateComponent } from "../private/operations/corporate/corporate.component";
+import { ReportComponent } from "../private/operations/report/report.component";
 
 export class OperationsConstant {
 
@@ -81,6 +82,9 @@ export class OperationsConstant {
     }],
     ['corporate', {
       obj: CorporateComponent
+    }],
+    ['generateReport', {
+      obj: ReportComponent
     }],
   ])
 }
