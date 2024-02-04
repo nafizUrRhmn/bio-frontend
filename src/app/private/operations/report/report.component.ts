@@ -33,7 +33,7 @@ export class ReportComponent {
 
       console.log("endDateString" + endDateString);
 
-      const apiUrl = `${environment.apiUrl}/v1/public/pdfReport`;
+      const apiUrl = `${environment.apiUrl}/v1/public/pdf-report`;
 
       const params = {
         startDateStr: startDateString,
@@ -77,7 +77,7 @@ export class ReportComponent {
 
       console.log("endDateString" + endDateString);
 
-      const apiUrl = `${environment.apiUrl}/v1/public/excelReport`;
+      const apiUrl = `${environment.apiUrl}/v1/public/excel-report`;
 
       const params = {
         startDateStr: startDateString,
