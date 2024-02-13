@@ -3,6 +3,8 @@ import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {ActivatedRoute, Router} from "@angular/router";
 import {AuthenticationService} from "../../_services";
 import {first} from "rxjs";
+import {JSEncrypt} from "jsencrypt";
+import {environment} from "../../../environments/environment.prod";
 
 @Component({
   selector: 'app-login',
@@ -28,6 +30,11 @@ export class LoginComponent implements OnInit {
   }
   get f() { return this.loginForm.controls; }
   onSubmit(){
+    const encrypt = new JSEncrypt();
+    encrypt.setPublicKey(environment.publicKey);
+    const encrypted = encrypt.encrypt(this.loginForm.get("password").value);
+    this.loginForm.get("password").setValue(encrypted);
+
     console.log(this.loginForm.value);
     this.submitted = true;
 
