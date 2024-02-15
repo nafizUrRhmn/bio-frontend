@@ -18,12 +18,9 @@ export class PrivateComponent {
   
   constructor(private authService: AuthenticationService,
     private translate: TranslateService) {
-      
-   
 }
 
 translateLanguageTo(lang: string) {
-console.log(lang);
 this.translate.use(lang);
 }
 

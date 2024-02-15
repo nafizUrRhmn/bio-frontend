@@ -63,12 +63,12 @@ export class NavigationComponent implements OnInit {
     let navigation = [];
     for (let i = 0; i < layerZero.length; i++) {
       let objectLayerZero = layerZero[i];
-      let objectsLayerOne: [] = layerOne.filter(u => u.parentId === objectLayerZero.id).filter(k=> this.roles.find(w=> w === `ROLE_${k.role}`))
+      let objectsLayerOne: [] = layerOne.filter(u => u.parentId === objectLayerZero.id);
       let newObjectsLayerOne = [];
       for (let j = 0; j < objectsLayerOne.length; j++) {
         let objectLayerOne: any = objectsLayerOne[j];
-        let objectsLayerTwo = layerTwo.filter(v => v.parentId === objectLayerOne.id).filter(k=> this.roles.find(w=> w === `ROLE_${k.role}`)).map(k => {
-          return {...k, component: componentHasMap.get(k.id).obj}
+        let objectsLayerTwo = layerTwo.filter(v => v.parentId === objectLayerOne.id).map(k => {
+          return {...k, component: componentHasMap.get(k.component).obj}
         })
         objectLayerOne = {
           ...objectLayerOne,
@@ -82,6 +82,7 @@ export class NavigationComponent implements OnInit {
       }
       navigation.push(objectLayerZero);
     }
+    console.log(navigation);
     this.superAdminNavigationItems = navigation;
     this.hasInitialized = true;
   }
