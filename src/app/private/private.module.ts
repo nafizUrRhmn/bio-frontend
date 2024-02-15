@@ -4,6 +4,8 @@ import {PrivateLayoutComponent} from "../theme/layout/private-layout/private-lay
 import {PrivateComponent} from "./private.component";
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { WelcomeMessageModule } from "../theme/shared/components/welcome-message/welcome-message.module";
+import { CommonModule } from '@angular/common';
+
 
 const routes: Routes = [
   {
@@ -23,7 +25,8 @@ const routes: Routes = [
     imports: [
         RouterModule.forChild(routes),
         NgbModule,
-        WelcomeMessageModule
+        WelcomeMessageModule,
+        CommonModule
     ]
 })
 export class PrivateModule {
