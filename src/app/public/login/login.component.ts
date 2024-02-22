@@ -5,6 +5,8 @@ import {AuthenticationService} from "../../_services";
 import {first} from "rxjs";
 import {JSEncrypt} from "jsencrypt";
 import {environment} from "../../../environments/environment.prod";
+import { MatDialog } from '@angular/material/dialog';
+import { SessionRequestModalComponent } from '../session-request-modal/session-request-modal.component';
 
 @Component({
   selector: 'app-login',
@@ -19,7 +21,8 @@ export class LoginComponent implements OnInit {
   constructor( private formBuilder: FormBuilder,
                private route: ActivatedRoute,
                private router: Router,
-               private authenticationService: AuthenticationService) {
+               private authenticationService: AuthenticationService,
+               public dialog: MatDialog) {
   }
 
   ngOnInit(): void {
@@ -59,5 +62,19 @@ export class LoginComponent implements OnInit {
           this.loading = false;
         }
       });
+  }
+
+  openDialog(): void {
+    const dialogRef = this.dialog.open(SessionRequestModalComponent, {
+      width: '350px',
+      
+     
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+  
+    });
+
+    
   }
 }
