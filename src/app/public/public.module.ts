@@ -1,5 +1,9 @@
 import {NgModule} from '@angular/core';
+import { MatDialogModule } from '@angular/material/dialog';
 import {RouterModule, Routes} from "@angular/router";
+import { SessionRequestModalComponent } from './session-request-modal/session-request-modal.component';
+import { MatIconModule } from '@angular/material/icon';
+
 
 
 const routes: Routes = [
@@ -11,12 +15,23 @@ const routes: Routes = [
     path: 'tab-prevention',
     loadChildren: () => import('./tab-prevention/tab-prevention.module').then((m) => m.TabPreventionModule)
   },
+  {
+    path: 'reset-password',
+    loadChildren: () => import('./reset-password/reset-password.module').then((m) => m.ResetPasswordModule)
+  },
   
 ];
 
 @NgModule({
   imports: [
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
+    MatDialogModule,
+    MatIconModule
+  ],
+  declarations: [
+    
+  
+    SessionRequestModalComponent
   ],
 })
 export class PublicModule {
