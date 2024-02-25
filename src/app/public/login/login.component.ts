@@ -57,8 +57,12 @@ export class LoginComponent implements OnInit {
           console.log(returnUrl);
           this.router.navigate([returnUrl]);
         },
-        error: error => {
-          this.error = error;
+        error: err => {
+          const errorCode = err && err.error && err.error.statusCode;
+          const errorMsg = err && err.error && err.error.message;
+          if(errorCode == "-1"){
+            this.openDialog();
+          }
           this.loading = false;
         }
       });
@@ -67,14 +71,10 @@ export class LoginComponent implements OnInit {
   openDialog(): void {
     const dialogRef = this.dialog.open(SessionRequestModalComponent, {
       width: '350px',
-      
-     
     });
 
     dialogRef.afterClosed().subscribe(result => {
-  
     });
 
-    
   }
 }
