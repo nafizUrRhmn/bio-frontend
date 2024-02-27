@@ -45,6 +45,7 @@ export class NavigationComponent implements OnInit {
         this.roles = token.roles.split(',');
         console.log(this.roles);
         this.menuService.getMenusByModule(this.path).subscribe(v => {
+
           if (this.path === 'access-control' &&  u.modules.find(k => k === 'ACCESS_CONTROL')) {
             this.menuGenerator(v, AccessControlConstant.ACCESS_CONTROL_COMPONENT_MAP)
           } else if (this.path === 'operations' && u.modules.find(k => k === 'OPERATIONS')) {
