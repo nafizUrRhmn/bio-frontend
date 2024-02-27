@@ -7,13 +7,22 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
   styleUrls: ['./session-request-modal.component.scss']
 })
 export class SessionRequestModalComponent {
+  isChecked: boolean=false;
   constructor(
     public dialogRef: MatDialogRef<SessionRequestModalComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) { }
 
-  closeModal(): void {
-    this.dialogRef.close();
+  onChange(){
+    this.isChecked = this.isChecked;
   }
-  
+
+  buttonClickEvent(){
+    this.dialogRef.close(this.isChecked);
+  }
+
+  closeModal(): void {
+    //this.dialogRef.close(this.isChecked);
+  }
+
 }

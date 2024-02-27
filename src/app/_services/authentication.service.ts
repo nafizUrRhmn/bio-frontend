@@ -24,8 +24,8 @@ export class AuthenticationService {
     return this.userSubject.value;
   }
 
-  login(username: string, password: string) {
-    return this.http.post<any>(`${environment.apiUrl}/v1/public/login`, {username, password}, {withCredentials: true})
+  login(username: string, password: string,isForced:boolean) {
+    return this.http.post<any>(`${environment.apiUrl}/v1/public/login`, {username, password,isForced}, {withCredentials: true})
       .pipe(map(user => {
         sessionStorage.setItem("refreshToken", user.refreshToken);
         sessionStorage.setItem("jwtToken", user.jwtToken);

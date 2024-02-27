@@ -18,6 +18,7 @@ export class LoginComponent implements OnInit {
   loading = false;
   submitted = false;
   error = '';
+  forceLoginFlg:boolean = false;
   constructor( private formBuilder: FormBuilder,
                private route: ActivatedRoute,
                private router: Router,
@@ -28,8 +29,9 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
     this.loginForm = this.formBuilder.group({
       username: ['', Validators.required],
-      password: ['', Validators.required]
+      password: ['', Validators.required],
     });
+    this.forceLoginFlg = false;
   }
   get f() { return this.loginForm.controls; }
   onSubmit(){
@@ -47,7 +49,10 @@ export class LoginComponent implements OnInit {
     }
 
     this.loading = true;
-    this.authenticationService.login(this.loginForm.get('username').value, this.loginForm.get('password').value)
+    console.log("force login flg set "+this.forceLoginFlg)
+    this.authenticationService.login(this.loginForm.get('username').value,
+                                     this.loginForm.get('password').value,
+                                     this.forceLoginFlg)
       .pipe(first())
       .subscribe({
         next: (user) => {
@@ -73,7 +78,9 @@ export class LoginComponent implements OnInit {
       width: '350px',
     });
 
-    dialogRef.afterClosed().subscribe(result => {
+    dialogRef.afterClosed().subscribe((isChecked: boolean) => {
+       this.forceLoginFlg = isChecked;
+      this.loginForm.controls['password'].reset()
     });
 
   }

@@ -3,6 +3,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import {RouterModule, Routes} from "@angular/router";
 import { SessionRequestModalComponent } from './session-request-modal/session-request-modal.component';
 import { MatIconModule } from '@angular/material/icon';
+import {FormsModule} from "@angular/forms";
 
 
 
@@ -19,18 +20,19 @@ const routes: Routes = [
     path: 'reset-password',
     loadChildren: () => import('./reset-password/reset-password.module').then((m) => m.ResetPasswordModule)
   },
-  
+
 ];
 
 @NgModule({
-  imports: [
-    RouterModule.forChild(routes),
-    MatDialogModule,
-    MatIconModule
-  ],
+    imports: [
+        RouterModule.forChild(routes),
+        MatDialogModule,
+        MatIconModule,
+        FormsModule
+    ],
   declarations: [
-    
-  
+
+
     SessionRequestModalComponent
   ],
 })
