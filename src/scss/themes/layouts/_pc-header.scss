@@ -42,7 +42,7 @@
       width: 434px;
       max-width: 100%;
 
-      @media (max-width: 1024px) {
+      @media (max-width: 400px) {
         width: 100%;
       }
     }
@@ -353,7 +353,9 @@
   }
 }
 
-@media (min-width: 1025px) {
+
+///UNWANTED HAMBURGER BUTTON
+@media (min-width: 100px) {
   .pc-header {
     z-index: 1027;
     .header-mobile-collapse {
@@ -361,8 +363,8 @@
     }
   }
 }
-
-@media (max-width: 1024px) {
+ //MAIN HAMBURGER BUTTON
+@media (max-width: 400px) {
   .pc-header {
     top: 0;
     left: 0;

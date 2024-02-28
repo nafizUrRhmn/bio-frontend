@@ -8,5 +8,5 @@ import { Component, Output, EventEmitter } from '@angular/core';
 })
 export class NavLeftComponent {
   // public props
-  @Output() NavCollapsedMob = new EventEmitter();
+  
 }

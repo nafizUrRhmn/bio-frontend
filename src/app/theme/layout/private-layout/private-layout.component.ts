@@ -14,7 +14,6 @@ export class PrivateLayoutComponent {
   // public props
   baseConfig;
   navCollapsed: boolean;
-  navCollapsedMob = false;
   windowWidth: number;
 
   // Constructor
@@ -36,18 +35,9 @@ export class PrivateLayoutComponent {
     }
 
     this.windowWidth = window.innerWidth;
-    this.navCollapsed = this.windowWidth >= 1025 ? BaseConfig.isCollapse_menu : false;
+    this.navCollapsed = this.windowWidth >= 400 ? BaseConfig.isCollapse_menu : true;
   }
 
   // public method
-  navMobClick() {
-    if (this.navCollapsedMob && !document.querySelector('app-navigation.coded-navbar')?.classList.contains('mob-open')) {
-      this.navCollapsedMob = !this.navCollapsedMob;
-      setTimeout(() => {
-        this.navCollapsedMob = !this.navCollapsedMob;
-      }, 100);
-    } else {
-      this.navCollapsedMob = !this.navCollapsedMob;
-    }
-  }
+ 
 }

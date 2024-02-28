@@ -2,13 +2,13 @@
   <!-- [ Header Topbar ] start -->
   <a [routerLink]="['/']" class="b-brand" (click)="reload()">
     <!-- ========   change your logo hear   ============ -->
-    <img src="assets/images/logo-dark.svg" alt="" class="logo logo-lg" />
+    <img src="assets/images/logo-dark.svg" alt="" class="logo logo-lg bbl-logo" />
   </a>
   <!-- ======= Menu collapse Icon ===== -->
-  <div class="pc-h-item">
+  <div class="pc-h-item  ">
     <a
       href="javascript:"
-      class="pc-head-link head-link-primary m-0 mobile-menu"
+      class="pc-head-link head-link-primary m-0 mobile-menu hamburger-icon"
       [ngClass]="{ on: navCollapsed }"
       id="sidebar-hide mobile-collapse"
       (click)="navCollapse()"

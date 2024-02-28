@@ -22,7 +22,7 @@
 
 <ng-scrollbar style="height: calc(100vh - 80px)" visibility="hover">
   <div class="navbar-content">
-    <ul class="nav coded-inner-navbar" (clickOutside)="fireOutClick()" (mouseleave)="navMob()">
+    <ul class="nav coded-inner-navbar" (clickOutside)="fireOutClick()">
       <ng-container *ngFor="let item of nav">
         <app-nav-group *ngIf="item.type == 'parent'" [item]="item"></app-nav-group>
         <app-nav-collapse *ngIf="item.type == 'group'" [item]="item"></app-nav-collapse>
