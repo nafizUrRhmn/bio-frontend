@@ -39,6 +39,8 @@ export class AuthenticationService {
     this.http.post<any>(`${environment.apiUrl}/v1/user/revoke-token`, {refreshToken: sessionStorage.getItem('refreshToken')}, {withCredentials: true}).subscribe();
     this.stopRefreshTokenTimer();
     this.userSubject.next(null);
+    sessionStorage.removeItem("refreshToken");
+    sessionStorage.removeItem("jwtToken");
     this.router.navigate(['/public/login']);
   }
 
