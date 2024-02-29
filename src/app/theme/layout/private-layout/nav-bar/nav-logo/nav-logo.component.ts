@@ -20,7 +20,7 @@ export class NavLogoComponent {
 
   // public import
   navCollapse() {
-    if (this.windowWidth >= 1025) {
+    if (this.windowWidth >= 400) {
       this.navCollapsed = !this.navCollapsed;
       this.NavCollapse.emit();
     }

@@ -2,11 +2,10 @@
   class="coded-navbar pc-sidebar"
   [ngClass]="{
     'navbar-collapsed': navCollapsed,
-    'mob-open': navCollapsedMob
   }"
-  (NavCollapsedMob)="navMobClick()"
+
 ></app-navigation>
-<app-nav-bar (NavCollapse)="this.navCollapsed = !this.navCollapsed" (NavCollapsedMob)="navMobClick()"></app-nav-bar>
+<app-nav-bar (NavCollapse)="this.navCollapsed = !this.navCollapsed" ></app-nav-bar>
 <div class="pc-container">
   <div class="coded-wrapper">
     <div class="coded-content">

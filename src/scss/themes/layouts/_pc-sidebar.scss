@@ -68,7 +68,7 @@
   display: flex;
 }
 
-@media (max-width: 1024px) {
+@media (max-width: 400px) {
   .pc-sidebar {
     left: -#{$sidebar-width};
     box-shadow: none;

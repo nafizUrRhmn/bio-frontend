@@ -15,10 +15,8 @@ import {OperationsConstant} from "../../../../_constants/operations.constant";
 export class NavigationComponent implements OnInit {
   // public props
   hasInitialized = false;
-  @Output() NavCollapsedMob = new EventEmitter();
   @Input() accessType;
   roles = [];
-  navCollapsedMob = window.innerWidth;
   windowWidth: number;
   hashmap = new Map<string, Component>();
   path;
@@ -29,12 +27,7 @@ export class NavigationComponent implements OnInit {
   }
 
   // public method
-  navCollapseMob() {
-    if (this.windowWidth < 1025) {
-      this.NavCollapsedMob.emit();
-    }
-  }
-
+  
   ngOnInit(): void {
 
     this.route.url.subscribe(u => {

@@ -10,29 +10,24 @@ import { BaseConfig } from '../../../../app-config';
 export class NavBarComponent {
   // public props
   @Output() NavCollapse = new EventEmitter();
-  @Output() NavCollapsedMob = new EventEmitter();
+ 
   navCollapsed;
   windowWidth: number;
-  navCollapsedMob;
+
 
   // Constructor
   constructor() {
     this.windowWidth = window.innerWidth;
-    this.navCollapsed = this.windowWidth >= 1025 ? BaseConfig.isCollapse_menu : false;
-    this.navCollapsedMob = false;
+    this.navCollapsed = this.windowWidth >= 400 ? BaseConfig.isCollapse_menu : false;
   }
 
   // public method
   navCollapse() {
-    if (this.windowWidth >= 1025) {
+    if (this.windowWidth >= 400) {
       this.navCollapsed = !this.navCollapsed;
       this.NavCollapse.emit();
     }
   }
 
-  navCollapseMob() {
-    if (this.windowWidth < 1025) {
-      this.NavCollapsedMob.emit();
-    }
-  }
+ 
 }

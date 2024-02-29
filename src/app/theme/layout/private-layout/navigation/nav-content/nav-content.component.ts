@@ -14,7 +14,6 @@ import {Tab} from "./tab.model";
 })
 export class NavContentComponent implements OnInit {
   // public props
-  @Output() NavCollapsedMob: EventEmitter<any> = new EventEmitter();
   @Input() accessType;
   @Input() nav: NavigationItem[];
   // version
@@ -32,7 +31,7 @@ export class NavContentComponent implements OnInit {
 
   // Life cycle events
   ngOnInit() {
-    if (this.windowWidth < 1025) {
+    if (this.windowWidth < 400) {
       (document.querySelector('.coded-navbar') as HTMLDivElement).classList.add('menupos-static');
     }
   }
@@ -60,12 +59,6 @@ export class NavContentComponent implements OnInit {
         last_parent.classList.add('coded-trigger');
         last_parent.classList.add('active');
       }
-    }
-  }
-
-  navMob() {
-    if (this.windowWidth < 1025 && document.querySelector('app-navigation.coded-navbar').classList.contains('mob-open')) {
-      this.NavCollapsedMob.emit();
     }
   }
 
