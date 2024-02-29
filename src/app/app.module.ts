@@ -46,7 +46,7 @@ export function httpTranslateLoaderFactory(http: HttpClient) {
   imports: [BrowserModule, AppRoutingModule, SharedModule, BrowserAnimationsModule, HttpClientModule,
     TranslateModule.forRoot({
     loader: {
-      provide: TranslateLoader, LocationStrategy,HashLocationStrategy,
+      provide: TranslateLoader,
       useFactory: httpTranslateLoaderFactory,
       deps: [HttpClient]
     }
