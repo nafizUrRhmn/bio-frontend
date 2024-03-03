@@ -12,6 +12,7 @@ import {NgScrollbarModule} from 'ngx-scrollbar';
 // bootstrap import
 import {NgbCollapseModule, NgbDropdownModule, NgbModule, NgbNavModule} from '@ng-bootstrap/ng-bootstrap';
 import { WelcomeMessageModule } from './components/welcome-message/welcome-message.module';
+import { HeaderModule } from './components/header/header.module';
 
 @NgModule({
   imports: [
@@ -24,7 +25,8 @@ import { WelcomeMessageModule } from './components/welcome-message/welcome-messa
     NgbNavModule,
     NgbModule,
     NgbCollapseModule,
-    NgScrollbarModule
+    NgScrollbarModule,
+    HeaderModule
   ],
   exports: [
     CommonModule,
@@ -37,7 +39,8 @@ import { WelcomeMessageModule } from './components/welcome-message/welcome-messa
     NgbDropdownModule,
     NgbNavModule,
     NgbCollapseModule,
-    NgScrollbarModule
+    NgScrollbarModule,
+    HeaderModule
   ],
   declarations: [SpinnerComponent]
 })
