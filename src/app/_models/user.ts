@@ -7,4 +7,6 @@
     jwtToken?: string;
     route?: string;
     modules?: string[];
+    prefLangCode?: string;
+    newUserFlg?: string;
 }

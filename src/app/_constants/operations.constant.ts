@@ -60,7 +60,7 @@ export class OperationsConstant {
       obj: LoanInstallmentComponent
     }],
     ['loanDisbursement', {
-      obj: LoanInstallmentComponent
+      obj: LoanDisbursementComponent
     }],
     ['remittanceDisbursement', {
       obj: RemittanceDisbursementComponent

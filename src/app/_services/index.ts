@@ -1,3 +1,3 @@
 ﻿export * from './authentication.service';
 export * from './user.service';
-export * from './BanglaConverter.service';
+export * from './encode-util';

@@ -2,5 +2,35 @@
   "BBL00001": "External Move Money",
   "BBL00002" : "Transaction Details",
   "BBL00003" : "Source Account Number",
-  "BBL00004" : "Source Account Title"
+  "BBL00004" : "Source Account Title",
+
+  "BBL000001" : "Transaction Details",
+  "BBL000002" : "Account No",
+  "BBL000003" : "Deposit Amount",
+  "BBL000004" : "Source Of Fund",
+  "BBL000005" : "Transaction Particular",
+  "BBL000006" : "Customer Details",
+  "BBL000007" : "Please enter the Account No.",
+  "BBL000008" : "Account No. is required",
+  "BBL000009" : "Please Enter Amount",
+  "BBL000010" : "Please Enter Source Of Fund",
+  "BBL000011" : "Transaction Particular is required",
+
+  "BBL000012" : "Amount of withdrawal",
+  "BBL000013" : "Purpose of Withdrawal",
+  "BBL000014" : "Purpose of Withdrawal is required",
+
+  "BBL000015" : "Operating Account No",
+  "BBL000016" : "Operating Account No. required",
+
+  "BBL000017" : "Link Account No.",
+  "BBL000018" : "Link Account No. is required",
+
+
+  "BBL000100" : "Back",
+  "BBL000101" : "Reset",
+  "BBL000102" : "Proceed",
+  "BBL000103" : "Log Out",
+  "BBL000104" : "Access Control",
+  "BBL000105" : "Operations"
 }
