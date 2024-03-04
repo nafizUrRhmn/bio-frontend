@@ -4,6 +4,7 @@ import {RouterModule, Routes} from "@angular/router";
 import { SessionRequestModalComponent } from './session-request-modal/session-request-modal.component';
 import { MatIconModule } from '@angular/material/icon';
 import {FormsModule} from "@angular/forms";
+import {PrivateComponent} from "../private/private.component";
 
 
 
@@ -31,10 +32,11 @@ const routes: Routes = [
         FormsModule
     ],
   declarations: [
-
-
     SessionRequestModalComponent
   ],
+  providers: [
+    PrivateComponent
+  ]
 })
 export class PublicModule {
 }

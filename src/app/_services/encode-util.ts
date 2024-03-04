@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable({ providedIn: 'root' })
-export class BanglaConverterService {
+export class EncodeUtil {
 
   stringFromCharCode = String.fromCharCode;
   byteCount : any;

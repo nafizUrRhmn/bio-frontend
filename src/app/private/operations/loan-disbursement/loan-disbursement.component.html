@@ -1,12 +1,12 @@
 <div class="container">
   <div class="" style="background-color: aliceblue">
-    <h4>Transaction Details</h4>
+    <h4>{{ 'BBL000001' | translate }}</h4>
   </div>
 
   <div class="col-8">
     <form [formGroup]="loanDisb">
       <div class="form-group">
-        <label for="linkAccNo" class="form-label">Link Account No.</label>
+        <label for="linkAccNo" class="form-label">{{ 'BBL000017' | translate }}</label>
         <input
           type="text"
           class="form-control"
@@ -15,23 +15,22 @@
           required
           [class.is-invalid]="linkAccNo.touched && linkAccNo.invalid"
         />
-        <div *ngIf="linkAccNo.touched && linkAccNo.hasError('required')" class="invalid-feedback">Link Account No. is required</div>
+        <div *ngIf="linkAccNo.touched && linkAccNo.hasError('required')" class="invalid-feedback">{{ 'BBL000018' | translate }}</div>
       </div>
     </form>
   </div>
 
   <div class="d-flex flex-row-reverse pt-3">
-    <button type="button" class="btn btn-primary d-flex align-items-end border">
-      Proceed
-      <mat-icon>arrow_forward</mat-icon>
+    <button  type="button" class="btn btn-primary border">
+      {{ 'BBL000100' | translate }}
+      <!--<mat-icon>arrow_forward</mat-icon>-->
     </button>
-    <button type="button" class="btn d-flex align-items-center">
-      <mat-icon>rotate_left</mat-icon>
-      Reset</button
-    >
-    <button type="button" class="btn d-flex align-items-center">
-      <mat-icon>clear</mat-icon>
-      Back</button
+    <button type="button" class="btn btn-primary border">
+      <!--<mat-icon>rotate_left</mat-icon> -->
+      {{ 'BBL000101' | translate }}</button>
+    <button type="button" class="btn btn-primary border">
+      <!--<mat-icon>clear</mat-icon> -->
+      {{ 'BBL000102' | translate }}</button
     >
   </div>
 </div>

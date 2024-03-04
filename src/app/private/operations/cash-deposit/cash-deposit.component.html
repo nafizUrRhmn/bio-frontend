@@ -2,12 +2,12 @@
   <div class="d-flex">
     <div class="col-8 p-1">
       <div class="" style="background-color: aliceblue">
-        <h4>Transaction Details</h4>
+        <h4>{{ 'BBL000001' | translate }}</h4>
       </div>
 
       <form [formGroup]="cashDeposit">
         <div class="form-group">
-          <label for="accountNo" class="form-label">Account No</label>
+          <label for="accountNo" class="form-label">{{ 'BBL000002' | translate }}</label>
           <input
             type="text"
             class="form-control"
@@ -16,9 +16,9 @@
             required
             [class.is-invalid]="accountNo.touched && accountNo.invalid"
           />
-          <div *ngIf="accountNo.touched && accountNo.hasError('required')" class="invalid-feedback">Account No. is required</div>
+          <div *ngIf="accountNo.touched && accountNo.hasError('required')" class="invalid-feedback">{{ 'BBL000008' | translate }}</div>
 
-          <label for="depositAmount" class="form-label">Deposit Ammount</label>
+          <label for="depositAmount" class="form-label">{{ 'BBL000003' | translate }}</label>
           <input
             type="text"
             class="form-control"
@@ -27,10 +27,10 @@
             required
             [class.is-invalid]="depositAmount.touched && depositAmount.invalid"
           />
-          <div *ngIf="depositAmount.touched && depositAmount.hasError('required')" class="invalid-feedback"> Please Enter Amount.</div>
+          <div *ngIf="depositAmount.touched && depositAmount.hasError('required')" class="invalid-feedback"> {{ 'BBL000009' | translate }}</div>
           <div class="d-flex pt-2">
             <div class="col-6 p-2">
-              <label for="sourceOfFund" class="form-label">Source Of Fund</label>
+              <label for="sourceOfFund" class="form-label">{{ 'BBL000004' | translate }}</label>
               <input
                 type="text"
                 class="form-control"
@@ -39,10 +39,10 @@
                 required
                 [class.is-invalid]="sourceOfFund.touched && sourceOfFund.invalid"
               />
-              <div *ngIf="sourceOfFund.touched && sourceOfFund.hasError('required')" class="invalid-feedback"> Please Enter Source Of Fund.</div>
+              <div *ngIf="sourceOfFund.touched && sourceOfFund.hasError('required')" class="invalid-feedback"> {{ 'BBL000010' | translate }}</div>
             </div>
             <div class="col-6 p-2">
-              <label for="tranPart" class="form-label">Transaction Particular</label>
+              <label for="tranPart" class="form-label">{{ 'BBL000005' | translate }}</label>
               <input
                 type="text"
                 class="form-control"
@@ -51,7 +51,7 @@
                 required
                 [class.is-invalid]="tranPart.touched && tranPart.invalid"
               />
-              <div *ngIf="tranPart.touched && tranPart.hasError('required')" class="invalid-feedback"> Transaction Particular is required.</div>
+              <div *ngIf="tranPart.touched && tranPart.hasError('required')" class="invalid-feedback">{{ 'BBL000011' | translate }}</div>
             </div>
           </div>
         </div>
@@ -61,26 +61,25 @@
     <div class="col-4 p-1">
       <div class="card">
         <div class="card-body">
-          <h4 class="card-title" style="background-color: aliceblue">Customer Details</h4>
+          <h4 class="card-title" style="background-color: aliceblue">{{ 'BBL000006' | translate }}</h4>
 
-          <p class="card-text">Please enter the Account No.</p>
+          <p class="card-text">{{ 'BBL000007' | translate }}</p>
         </div>
       </div>
     </div>
   </div>
 
    <div class="d-flex flex-row-reverse">
-    <button type="button" class="btn btn-primary d-flex align-items-end border">
-      Proceed
-      <mat-icon>arrow_forward</mat-icon>
+    <button  type="button" class="btn btn-primary border">
+      {{ 'BBL000100' | translate }}
+      <!--<mat-icon>arrow_forward</mat-icon>-->
     </button>
-    <button type="button" class="btn d-flex align-items-center">
-      <mat-icon>rotate_left</mat-icon>
-      Reset</button
-    >
-    <button type="button" class="btn d-flex align-items-center">
-      <mat-icon>clear</mat-icon>
-      Back</button
+    <button type="button" class="btn btn-primary border">
+      <!--<mat-icon>rotate_left</mat-icon> -->
+      {{ 'BBL000101' | translate }}</button>
+    <button type="button" class="btn btn-primary border">
+      <!--<mat-icon>clear</mat-icon> -->
+      {{ 'BBL000102' | translate }}</button
     >
   </div>
 </div>

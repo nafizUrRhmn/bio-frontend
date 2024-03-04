@@ -7,6 +7,8 @@ import {JSEncrypt} from "jsencrypt";
 import {environment} from "../../../environments/environment.prod";
 import { MatDialog } from '@angular/material/dialog';
 import { SessionRequestModalComponent } from '../session-request-modal/session-request-modal.component';
+import {PrivateComponent} from "../../private/private.component";
+import {LanguageService} from "../../_services/language.service";
 
 @Component({
   selector: 'app-login',
@@ -23,7 +25,8 @@ export class LoginComponent implements OnInit {
                private route: ActivatedRoute,
                private router: Router,
                private authenticationService: AuthenticationService,
-               public dialog: MatDialog) {
+               public dialog: MatDialog,
+               private privateComponent : PrivateComponent, private languageService: LanguageService) {
   }
 
   ngOnInit(): void {
@@ -56,7 +59,14 @@ export class LoginComponent implements OnInit {
       .pipe(first())
       .subscribe({
         next: (user) => {
-          console.log(user);
+          alert(user.newUserFlg);
+          if (user.prefLangCode == "BAN") {
+            this.languageService.languageSub.next(user.prefLangCode)
+            //his.privateComponent.setLanguageDD("bn");
+          } else {
+            //this.privateComponent.translateLanguageTo("en");
+
+          }
           // get return url from route parameters or default to '/'
           const returnUrl = this.route.snapshot.queryParams['returnUrl'] || `/private/super-admin`;
           console.log(returnUrl);
