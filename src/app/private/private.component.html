@@ -28,16 +28,10 @@
 
           <li>
             <div class=" mx-2">
-              <!--<select class="form-select form-select-sm"#selLang (change)="translateLanguageTo(selLang.value)"
-                      [(ngModel)]="selectedLevel" >
-                <option value="en" >English</option>
+              <select class="form-select form-select-sm"#selLang (change)="translateLanguageTo(selLang.value)" >
+                <option value="en"  selected>English</option>
                 <option value ="bn" >Bangla</option>
-              </select> -->
-
-              <select class="form-select form-select-sm" (change)=translateLanguageTo(selectedOpt) [(ngModel)]="selectedOpt">
-                <option *ngFor=" let opt of languageArr" [ngValue] ="opt">{{opt.name}}</option>
               </select>
-
             </div>
           </li>
           <li>
@@ -69,9 +63,14 @@
                 <div class="dropdown-header">
                   <h4> {{username}} </h4>
                   <a (click)="onLogout()" class="dropdown-item button">
-                    <i class="ti ti-logout"></i>
-                    <span>{{ 'BBL000103' | translate }}</span>
+                    <!--<i class="ti ti-logout"></i> -->
+                    <span>Logout</span>
                   </a>
+<div >
+  <a class="dropdown-item button" routerLink="/public/change-password">
+  <!--<i class="ti ti-"></i> -->
+  <span>Change Password</span>
+</a></div>
                 </div>
               </div>
             </div>
@@ -102,7 +101,7 @@
                         <img src="assets/images/access-control.svg" alt="Access Control"
                           id="access-control" class="img-thumbnail"/>
 
-                        <span class="text-muted ">{{ 'BBL000104' | translate }}</span>
+                        <span class="text-muted ">Access <br> Control</span>
                       </div>
                     </a>
                   </div>
@@ -114,7 +113,7 @@
                         <img src="assets/images/operations.svg" alt="Access Control"
                          id="operations" class="img-thumbnail"/>
 
-                        <span class="justify-content-center text-muted">{{ 'BBL000105' | translate }}</span>
+                        <span class="justify-content-center text-muted">Operations</span>
                       </div>
                     </a>
                   </div>

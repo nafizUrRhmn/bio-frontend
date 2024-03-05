@@ -18,8 +18,8 @@ const routes: Routes = [
     loadChildren: () => import('./tab-prevention/tab-prevention.module').then((m) => m.TabPreventionModule)
   },
   {
-    path: 'reset-password',
-    loadChildren: () => import('./reset-password/reset-password.module').then((m) => m.ResetPasswordModule)
+    path: 'change-password',
+    loadChildren: () => import('./change-password/change-password.module').then((m) => m.ChangePasswordModule)
   },
 
 ];

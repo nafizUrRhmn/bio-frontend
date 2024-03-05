@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ResetPasswordComponent } from './reset-password.component';
+import { ChangePasswordComponent } from './change-password.component';
 import { RouterModule,Routes } from '@angular/router';
 import { WelcomeMessageModule } from "../../theme/shared/components/welcome-message/welcome-message.module";
 import { FooterModule } from "../../theme/shared/components/footer/footer.module";
@@ -8,18 +8,19 @@ import { FooterModule } from "../../theme/shared/components/footer/footer.module
 const routes: Routes = [
   {
     path: '',
-    component: ResetPasswordComponent
+    component: ChangePasswordComponent
   },
 ];
 
 
 @NgModule({
-    declarations: [ResetPasswordComponent],
-    imports: [
-        CommonModule,
-        RouterModule.forChild(routes),
-        WelcomeMessageModule,
-        FooterModule
-    ]
+    declarations: [],
+  imports: [
+    CommonModule,
+    RouterModule.forChild(routes),
+    WelcomeMessageModule,
+    FooterModule,
+    ChangePasswordComponent
+  ]
 })
-export class ResetPasswordModule { }
+export class ChangePasswordModule { }
