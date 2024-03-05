@@ -16,11 +16,7 @@ const routes: Routes = [
   {
     path: 'tab-prevention',
     loadChildren: () => import('./tab-prevention/tab-prevention.module').then((m) => m.TabPreventionModule)
-  },
-  {
-    path: 'reset-password',
-    loadChildren: () => import('./reset-password/reset-password.module').then((m) => m.ResetPasswordModule)
-  },
+  }
 
 ];
 
