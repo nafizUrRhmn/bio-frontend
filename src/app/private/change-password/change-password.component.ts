@@ -1,24 +1,12 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {ChangePasswordService} from "../../_services/change-password.service";
-import {WelcomeMessageModule} from "../../theme/shared/components/welcome-message/welcome-message.module";
-import {RouterLink} from "@angular/router";
-import {FooterModule} from "../../theme/shared/components/footer/footer.module";
-import {environment} from "../../../environments/environment";
 import {HttpClient} from "@angular/common/http";
 import {AuthenticationService} from "../../_services";
-import {SharedModule} from "../../theme/shared/shared.module";
 
 @Component({
   selector: 'app-change-password',
   templateUrl: './change-password.component.html',
-  standalone: true,
-  imports: [
-    WelcomeMessageModule,
-    RouterLink,
-    FooterModule,
-    SharedModule
-  ],
   styleUrls: ['./change-password.component.scss']
 })
 

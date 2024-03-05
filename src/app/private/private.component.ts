@@ -1,7 +1,8 @@
-import {Component,Input, ElementRef} from '@angular/core';
-import { AuthenticationService } from '../_services';
+import {Component} from '@angular/core';
+import {AuthenticationService} from '../_services';
 import {TranslateService} from "@ngx-translate/core";
 import noticeboardData from '../../../noticeboard-data.json';
+
 @Component({
   selector: 'app-private',
   templateUrl: './private.component.html',
@@ -27,7 +28,6 @@ this.translate.use(lang);
 
 ngOnInit() {
   this.isExpanded = new Array(this.notices.length).fill(false);
-
   this.authService.user.subscribe(u => {
   this.username = u?.fullName;
   });
