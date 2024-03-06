@@ -25,10 +25,12 @@ export class AuthenticationService {
   }
 
   login(username: string, password: string,isForced:boolean) {
-    return this.http.post<any>(`${environment.apiUrl}/v1/public/login`, {username, password,isForced}, {withCredentials: true})
+    return this.http.post<any>(`${environment.apiUrl}/v1/public/login`,
+      {username, password,isForced}, {withCredentials: true})
       .pipe(map(user => {
         sessionStorage.setItem("refreshToken", user.refreshToken);
         sessionStorage.setItem("jwtToken", user.jwtToken);
+        console.log(user);
         this.userSubject.next(user);
         this.startRefreshTokenTimer(user.jwtToken);
         return user;
