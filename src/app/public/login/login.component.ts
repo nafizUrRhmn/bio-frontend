@@ -59,14 +59,6 @@ export class LoginComponent implements OnInit {
       .pipe(first())
       .subscribe({
         next: (user) => {
-          alert(user.newUserFlg);
-          if (user.prefLangCode == "BAN") {
-            this.languageService.languageSub.next(user.prefLangCode)
-            //his.privateComponent.setLanguageDD("bn");
-          } else {
-            //this.privateComponent.translateLanguageTo("en");
-
-          }
           // get return url from route parameters or default to '/'
           const returnUrl = this.route.snapshot.queryParams['returnUrl'] || `/private/super-admin`;
           console.log(returnUrl);
