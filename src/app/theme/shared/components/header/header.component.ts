@@ -1,7 +1,9 @@
-import {Component,Input, ElementRef} from '@angular/core';
-import { AuthenticationService } from 'src/app/_services';
+import {Component, Input, ElementRef} from '@angular/core';
+import {AuthenticationService} from 'src/app/_services';
 import {TranslateService} from "@ngx-translate/core";
 import noticeboardData from '../../../../../../noticeboard-data.json';
+import {AccessControlConstant} from "../../../../_constants/access-control.constant";
+import {OperationsConstant} from "../../../../_constants/operations.constant";
 
 
 //noticeboardData
@@ -13,40 +15,52 @@ import noticeboardData from '../../../../../../noticeboard-data.json';
 })
 export class HeaderComponent {
   username: any;
-
-  notices:any[]=noticeboardData;
-  truncatedText: string = '';
+  notices: any[] = noticeboardData;
   isExpanded: boolean[] = [];
-  maxLength: number = 120;
+
+  languageArr = [
+    {val: "en", name: "English"},
+    {val: "bn", name: "Bangla"},
+  ];
+
+  selectedOpt: any = "";
+  userLanguageCode :string = "ENG";
 
 
   constructor(private authService: AuthenticationService,
-    private translate: TranslateService) {
-}
+              private translate: TranslateService) {
+  }
 
-translateLanguageTo(lang: string) {
-this.translate.use(lang);
-}
+  ngOnInit() {
+    this.isExpanded = new Array(this.notices.length).fill(false);
+    this.authService.user.subscribe(u => {
+      console.log(u);
+      const jwtBase64 = u.jwtToken.split('.')[1];
+      const token = JSON.parse(atob(jwtBase64));
+      this.userLanguageCode = token.prefLanguageCode;
+    });
+    // get logged in user data
+    if (this.userLanguageCode === 'BAN') {
+      this.selectedOpt = this.languageArr[1];
+    } else {
+      this.selectedOpt = this.languageArr[0];
+    }
+    this.translateLanguageTo(this.selectedOpt);
+  }
+
+  translateLanguageTo(selectedOpt: any) {
+    this.translate.use(selectedOpt.val);
+  }
 
 
-ngOnInit() {
-  this.isExpanded = new Array(this.notices.length).fill(false);
-
-  this.authService.user.subscribe(u => {
-  this.username = u?.fullName;
-  });
-}
+  onLogout() {
+    this.authService.logout();
+  }
 
 
-
-onLogout(){
-this.authService.logout();
-}
-
-
-toggleText(index: number): void {
-  this.isExpanded[index] = !this.isExpanded[index];
-}
+  toggleText(index: number): void {
+    this.isExpanded[index] = !this.isExpanded[index];
+  }
 
 
 }

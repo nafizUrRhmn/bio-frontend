@@ -1,5 +1,81 @@
-<app-header></app-header>
 
+<!--<header>
+  <nav class="px-2" style="background-color: #FFFFFF;">
+    <div class="ms-2 d-flex justify-content-between pt-3">
+
+      <div class="d-flex justify-content-center">
+        <a class="navbar-brand " href="#">
+
+          <a [routerLink]="['/']" class="b-brand">
+            <img src="assets/images/logo-dark.svg" alt="" class="logo logo-lg pt-1"/>
+          </a>
+
+      </a>
+
+      </div>
+
+
+      <div class="mx-5 mt-3">
+        <app-welcome-message></app-welcome-message>
+      </div>
+
+
+
+
+      <div>
+
+        <ul class="list-unstyled d-flex justify-content-end align-items-center">
+
+          <li>
+            <div class=" mx-2">
+              <select class="form-select form-select-sm" (change)=translateLanguageTo(selectedOpt) [(ngModel)]="selectedOpt">
+                <option *ngFor=" let opt of languageArr" [ngValue] ="opt">{{opt.name}}</option>
+              </select>
+            </div>
+          </li>
+          <li>
+            <div class="dropdown pc-h-item header-user-profile user-settings mx-2" ngbDropdown>
+
+              <div>
+                <a
+                class="pc-head-link head-link-primary dropdown-toggle arrow-none me-0 d-flex justify-content-center align-items-center"
+                data-bs-toggle="dropdown"
+                href="javascript:"
+                ngbDropdownToggle
+              >
+                <img
+                src=""
+                alt="user-image"
+                class="profilepic user-avtar"
+                onerror="this.src='../../../../../../assets/images/defaultUserProfilePicture.svg';
+                        this.alt='Default Profile' ;
+                        id='defaultProfilePic'"
+                />
+                <span class="mx-2">
+                  <i class="ti ti-settings"></i>
+                </span>
+              </a>
+
+              </div>
+
+              <div class="dropdown-menu  dropdown-menu-end pc-h-dropdown" ngbDropdownMenu>
+                <div class="dropdown-header">
+                  <h4> {{username}} </h4>
+                  <a (click)="onLogout()" class="dropdown-item button">
+                    <i class="ti ti-logout"></i>
+                    <span>{{ 'BBL000103' | translate }}</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+  </nav>
+</header> -->
+<app-header class="app-header"></app-header>
 <!-- CONTENT STARTS -->
 <div class="container-fluid  ms-auto content" style="background: #EAEAF3">
 
@@ -8,7 +84,7 @@
       <div class="col-12">
         <div class="card shadow-none border-end  rounded-0 m-0">
           <div class="card-header">
-            <h5 class="card-title"> Module</h5>
+            <h5 class="card-title">{{ 'BBL000106' | translate }}</h5>
           </div>
           <div class="card-body">
             <div class="justify-content-start d-flex">
@@ -19,7 +95,7 @@
                         <img src="assets/images/access-control.svg" alt="Access Control"
                           id="access-control" class="img-thumbnail"/>
 
-                        <span class="text-muted ">Access <br> Control</span>
+                        <span class="text-muted ">{{ 'BBL000104' | translate }}</span>
                       </div>
                     </a>
                   </div>
@@ -31,7 +107,7 @@
                         <img src="assets/images/operations.svg" alt="Access Control"
                          id="operations" class="img-thumbnail"/>
 
-                        <span class="justify-content-center text-muted">Operations</span>
+                        <span class="justify-content-center text-muted">{{ 'BBL000105' | translate }}</span>
                       </div>
                     </a>
                   </div>

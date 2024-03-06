@@ -32,5 +32,6 @@
   "BBL000102" : "Proceed",
   "BBL000103" : "Log Out",
   "BBL000104" : "Access Control",
-  "BBL000105" : "Operations"
+  "BBL000105" : "Operations",
+  "BBL000106" : "Module"
 }

@@ -4,6 +4,7 @@ import { HeaderComponent } from './header.component';
 import { WelcomeMessageModule } from "../welcome-message/welcome-message.module";
 import { RouterModule } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import {FormsModule} from "@angular/forms";
 
 
 
@@ -13,7 +14,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
         CommonModule,
         NgbModule,
         WelcomeMessageModule,
-        RouterModule
+        RouterModule,
+        FormsModule
     ],
     exports:[HeaderComponent]
 })
