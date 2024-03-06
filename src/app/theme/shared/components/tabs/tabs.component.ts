@@ -26,7 +26,7 @@ export class TabsComponent {
           return;
         }
         if (this.tabs.length >= 3) {
-          alert("You cannot add more than two tabs ");
+          alert("You cannot add more than three tabs ");
           return;
         }
         if (u !== null && u.title) {
