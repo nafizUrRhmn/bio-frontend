@@ -6,6 +6,7 @@ import {AuthenticationService} from "../../../../_services";
 import {MenuService} from "../../../../_services/menu.service";
 import {AccessControlConstant} from "../../../../_constants/access-control.constant";
 import {OperationsConstant} from "../../../../_constants/operations.constant";
+import {take} from "rxjs";
 
 @Component({
   selector: 'app-navigation',
@@ -29,22 +30,20 @@ export class NavigationComponent implements OnInit {
   // public method
 
   ngOnInit(): void {
-
-    this.route.url.subscribe(u => {
-      this.path = u[0].path
-      this.authService.user.subscribe(u => {
-        console.log(u);
-        const jwtBase64 = u.jwtToken.split('.')[1];
+    this.route.url.subscribe(route => {
+      this.path = route[0].path
+      if(this.path === 'access-control')
+      this.authService.user.subscribe(auth => {
+        const jwtBase64 = auth.jwtToken.split('.')[1];
         const token = JSON.parse(atob(jwtBase64));
         this.roles = token.roles.split(',');
-        console.log(this.roles);
-        this.menuService.getMenusByModule(this.path).subscribe(v => {
-
-          if (this.path === 'access-control' &&  u.modules.find(k => k === 'ACCESS_CONTROL')) {
-            this.menuGenerator(v, AccessControlConstant.ACCESS_CONTROL_COMPONENT_MAP)
-          } else if (this.path === 'operations' && u.modules.find(k => k === 'OPERATIONS')) {
-            this.menuGenerator(v, OperationsConstant.OPERATIONS_COMPONENT_MAP)
-          }
+        auth.modules = auth.modules.length===1 ? JSON.parse(auth.modules[0]): auth.modules;
+        if(this.path === 'access-control' && auth.modules.find(k => k === 'ACCESS_CONTROL')){
+          this.menuService.getMenusByModule(this.path).pipe(take(1)).subscribe(menu => {
+            this.menuGenerator(menu, AccessControlConstant.ACCESS_CONTROL_COMPONENT_MAP)});
+        } else if(this.path === 'operations' && auth.modules.find(k => k === 'OPERATIONS'))
+        this.menuService.getMenusByModule(this.path).pipe(take(1)).subscribe(menu => {
+          this.menuGenerator(menu, OperationsConstant.OPERATIONS_COMPONENT_MAP);
         });
       });
     });

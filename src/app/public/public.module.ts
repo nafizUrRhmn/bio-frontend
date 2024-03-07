@@ -1,8 +1,8 @@
 import {NgModule} from '@angular/core';
-import { MatDialogModule } from '@angular/material/dialog';
+import {MatDialogModule} from '@angular/material/dialog';
 import {RouterModule, Routes} from "@angular/router";
-import { SessionRequestModalComponent } from './session-request-modal/session-request-modal.component';
-import { MatIconModule } from '@angular/material/icon';
+import {SessionRequestModalComponent} from './session-request-modal/session-request-modal.component';
+import {MatIconModule} from '@angular/material/icon';
 import {FormsModule} from "@angular/forms";
 import {PrivateComponent} from "../private/private.component";
 
@@ -25,7 +25,7 @@ const routes: Routes = [
         RouterModule.forChild(routes),
         MatDialogModule,
         MatIconModule,
-        FormsModule
+        FormsModule,
     ],
   declarations: [
     SessionRequestModalComponent
