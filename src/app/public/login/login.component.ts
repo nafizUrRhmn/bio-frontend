@@ -65,7 +65,6 @@ export class LoginComponent implements OnInit {
             //this.privateComponent.translateLanguageTo("en");
 
           }
-          // get return url from route parameters or default to '/'
           const returnUrl = this.route.snapshot.queryParams['returnUrl'] || `/private/super-admin`;
           console.log(returnUrl);
           this.router.navigate([returnUrl]);

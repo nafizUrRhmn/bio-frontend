@@ -28,6 +28,7 @@ export class NavigationComponent implements OnInit {
   }
 
   // public method
+
   ngOnInit(): void {
     this.route.url.subscribe(route => {
       this.path = route[0].path
