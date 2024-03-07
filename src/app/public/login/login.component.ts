@@ -66,12 +66,11 @@ export class LoginComponent implements OnInit {
 
           }
           const returnUrl = this.route.snapshot.queryParams['returnUrl'] || `/private/super-admin`;
-          console.log(returnUrl);
           this.router.navigate([returnUrl]);
         },
         error: err => {
-          const errorCode = err && err.error && err.error.statusCode;
-          if(errorCode === ErrorCodeConstant.ALREADY_LOGGED_IN){
+          // const errorCode = err && err.error && err.error.statusCode;
+          if(err.error.errorCode === ErrorCodeConstant.ALREADY_LOGGED_IN){
             this.alertService.confirmationAlert("Want to quit current session and logged in again?",
               "User Already Logged in", "Yes").then(v => {
                 if(v.isConfirmed){
@@ -80,6 +79,7 @@ export class LoginComponent implements OnInit {
                 }
             });
           }else{
+            // this.alertService.errorAlert(err.error.message);
             this.forceLoginFlg = false;
 
           }          this.loading = false;
