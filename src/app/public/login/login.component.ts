@@ -51,7 +51,6 @@ export class LoginComponent implements OnInit {
     if (this.loginForm.invalid) {
       return;
     }
-
     this.loading = true;
     this.authenticationService.login(this.loginForm.get('username').value,
                                      this.loginForm.get('password').value,
@@ -81,8 +80,10 @@ export class LoginComponent implements OnInit {
                   this.loginForm.controls['password'].reset()
                 }
             });
-          }
-          this.loading = false;
+          }else{
+            this.forceLoginFlg = false;
+
+          }          this.loading = false;
         }
       });
   }
