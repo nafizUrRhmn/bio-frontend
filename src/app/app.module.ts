@@ -22,6 +22,7 @@ import {PagenotfoundComponent} from "./pagenotfound/pagenotfound.component";
 import {TranslateHttpLoader} from "@ngx-translate/http-loader";
 import {TranslateLoader, TranslateModule} from "@ngx-translate/core";
 import {HashLocationStrategy, LocationStrategy} from "@angular/common";
+import {SweetAlert2Module} from "@sweetalert2/ngx-sweetalert2";
 
 
 export function httpTranslateLoaderFactory(http: HttpClient) {
@@ -43,7 +44,7 @@ export function httpTranslateLoaderFactory(http: HttpClient) {
     NavCollapseComponent,
     PublicLayoutComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, SharedModule, BrowserAnimationsModule, HttpClientModule,
+  imports: [BrowserModule, AppRoutingModule, SharedModule, BrowserAnimationsModule, HttpClientModule,SweetAlert2Module.forRoot(),
     TranslateModule.forRoot({
     loader: {
       provide: TranslateLoader,
