@@ -16,10 +16,10 @@ export class ErrorInterceptor implements HttpInterceptor {
                 // auto logout if 401 or 403 response returned from api
                 this.authenticationService.logout();
             }
-
-            if([401, 403].includes(err.status)){
-              this.alertService.errorAlert(err.error, err.statusText);
-            }
+            //
+            // if([401, 403].includes(err.status)){
+            //   this.alertService.errorAlert(err.error, err.statusText);
+            // }
             else if([500,504].includes(err.status)){
               this.alertService.errorAlert(err.error, err.statusText);
             }
