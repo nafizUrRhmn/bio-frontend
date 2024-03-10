@@ -26,6 +26,19 @@
   "BBL000017" : "Link Account No.",
   "BBL000018" : "Link Account No. is required",
 
+  "BBL000019" : "Select Transfer Type",
+  "BBL000020" : "Please enter the amount.",
+  "BBL000021" : "Purpose Of Payment",
+  "BBL000022" : "Please enter the Remarks.",
+  "BBL000023" : "Particulars",
+
+  "BBL000024" : "Beneficiary Mobile No",
+  "BBL000025" : "Please enter the beneficiary mobile number.",
+
+  "BBL000026" : "Customer Account Number",
+  "BBL000027" : "Please enter the Account No.",
+  "BBL000028" : "Beneficiary Mobile No",
+  "BBL000029" : "Please enter the beneficiary mobile number.",
 
   "BBL000100" : "Back",
   "BBL000101" : "Reset",

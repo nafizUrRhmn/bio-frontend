@@ -1,12 +1,13 @@
 // Angular import
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {NavigationItem} from "./navigation-item";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {AuthenticationService} from "../../../../_services";
 import {MenuService} from "../../../../_services/menu.service";
 import {AccessControlConstant} from "../../../../_constants/access-control.constant";
 import {OperationsConstant} from "../../../../_constants/operations.constant";
 import {take} from "rxjs";
+import {ErrorCodeConstant} from "../../../../_constants/error-code.constant";
 
 @Component({
   selector: 'app-navigation',
@@ -24,7 +25,8 @@ export class NavigationComponent implements OnInit {
   navigationItems;
   superAdminNavigationItems: NavigationItem[];
 
-  constructor(private route: ActivatedRoute, private authService: AuthenticationService, private menuService: MenuService) {
+  constructor(private route: ActivatedRoute, private authService: AuthenticationService, private menuService: MenuService,
+              private router: Router) {
   }
 
   // public method
@@ -41,8 +43,16 @@ export class NavigationComponent implements OnInit {
           this.menuService.getMenusByModule(this.path).pipe(take(1)).subscribe(menu => {
             this.menuGenerator(menu, AccessControlConstant.ACCESS_CONTROL_COMPONENT_MAP)});
         } else if(this.path === 'operations' && auth.modules.find(k => k === 'OPERATIONS'))
-        this.menuService.getMenusByModule(this.path).pipe(take(1)).subscribe(menu => {
-          this.menuGenerator(menu, OperationsConstant.OPERATIONS_COMPONENT_MAP);
+        this.menuService.getMenusByModule(this.path).pipe(take(1)).subscribe(  {
+          //this.menuGenerator(menu, OperationsConstant.OPERATIONS_COMPONENT_MAP);
+            next: (menu) => {
+              this.menuGenerator(menu, OperationsConstant.OPERATIONS_COMPONENT_MAP);
+            },
+            error: (err) => {
+              if(err.error.errorCode === ErrorCodeConstant.PASSWORD_CHANGE_SCREEN_ERROR_CODE){
+                this.router.navigate(['/private/change-password']);
+              }
+            }
         });
       });
     });
