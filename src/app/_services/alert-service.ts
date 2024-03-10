@@ -7,7 +7,7 @@ export class AlertService {
     return Swal.fire({
       position: "top-end",
       icon: "success",
-      title: title,
+      title: `<strong>${title}</strong>`,
       showConfirmButton: false,
       timer: 1500
     });
@@ -15,7 +15,7 @@ export class AlertService {
 
   public warningAlert(message){
     return Swal.fire({
-      title: "Warning!!!",
+      title: '<strong>Warning!!!</strong>',
       text: message,
       icon: "warning"
     });
@@ -24,14 +24,14 @@ export class AlertService {
   public errorAlert(message, title= "Oops"){
     return Swal.fire({
       icon: "error",
-      title: title,
+      title: `<strong>${title}</strong>`,
       text: message,
     });
   }
 
   public confirmationAlert( text, title= "Are you sure?",confirmationButtonText= "Confirm"){
     return Swal.fire({
-    title: title,
+    title: `<strong>${title}</strong>`,
     text: text,
     icon: "warning",
     showCancelButton: true,
