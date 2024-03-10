@@ -45,7 +45,7 @@
                     src=""
                     alt="user-image"
                     class="profilepic user-avtar"
-                    onerror="this.src='../../../../../../assets/images/defaultUserProfilePicture.svg';
+                    onerror="this.src='assets/images/defaultUserProfilePicture.svg';
                           this.alt='Default Profile' ;
                           id='defaultProfilePic'"
                   />
@@ -58,9 +58,12 @@
 
               <div class="dropdown-menu  dropdown-menu-end pc-h-dropdown" ngbDropdownMenu>
                 <div class="dropdown-header">
-                  <h4> {{ username }} </h4>
+                  <h4> {{username}} </h4>
+                  <a class="dropdown-item button" routerLink="/private/change-password">
+                    <span>Change Password</span>
+                  </a>
                   <a (click)="onLogout()" class="dropdown-item button">
-                    <i class="ti ti-logout"></i>
+                    <!--<i class="ti ti-logout"></i> -->
                     <span>Logout</span>
                   </a>
                 </div>
