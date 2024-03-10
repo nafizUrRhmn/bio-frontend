@@ -32,7 +32,6 @@ export class NavigationComponent implements OnInit {
   ngOnInit(): void {
     this.route.url.subscribe(route => {
       this.path = route[0].path
-      if(this.path === 'access-control')
       this.authService.user.subscribe(auth => {
         const jwtBase64 = auth.jwtToken.split('.')[1];
         const token = JSON.parse(atob(jwtBase64));
