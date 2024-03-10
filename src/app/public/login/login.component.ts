@@ -41,7 +41,7 @@ export class LoginComponent implements OnInit {
   onSubmit(){
     const encrypt = new JSEncrypt();
     encrypt.setPublicKey(environment.publicKey);
-    const encrypted = this.loginForm.get("password").value.length===1024? this.loginForm.get("password").value :
+    const encrypted = this.loginForm.get("password").value.length===172? this.loginForm.get("password").value :
       encrypt.encrypt(this.loginForm.get("password").value);
     this.loginForm.get("password").setValue(encrypted);
 
