@@ -25,8 +25,7 @@ import {HashLocationStrategy, LocationStrategy} from "@angular/common";
 import {SweetAlert2Module} from "@sweetalert2/ngx-sweetalert2";
 
 
-export function httpTranslateLoaderFactory(http: HttpClient) {
-  return new TranslateHttpLoader(http);
+export function httpTranslateLoaderFactory(http: HttpClient) {return new TranslateHttpLoader(http,'./assets/i18n/','.json');
 }
 @NgModule({
   declarations: [
