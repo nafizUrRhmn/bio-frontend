@@ -4,6 +4,7 @@ import {ChangePasswordService} from "../../_services/change-password.service";
 import {HttpClient} from "@angular/common/http";
 import {AuthenticationService} from "../../_services";
 import {AlertService} from "../../_services/alert-service";
+import {Route, Router} from "@angular/router";
 
 @Component({
   selector: 'app-change-password',
@@ -16,7 +17,7 @@ export class ChangePasswordComponent {
   username: any;
 
   constructor(private changePasswordService: ChangePasswordService, private fb: FormBuilder,
-              private alertService: AlertService,
+              private alertService: AlertService, private router: Router,
               private http: HttpClient, private authService: AuthenticationService) {
     this.changePasswordForm = this.fb.group({
       loginKeyOld: ['', Validators.required],
@@ -42,7 +43,8 @@ export class ChangePasswordComponent {
         'loginKeyRe': formData.loginKeyRe
       }
       this.changePasswordService.changePassword(changePasswordObj).subscribe({
-        next: (v) => this.alertService.successAlert("Password Change Successful"),
+        next: (v) => this.alertService.successAlert("Password Change Successful")
+          .then(() => this.router.navigate(['/'])),
         error: (e) => this.alertService.errorAlert("Password Change Failed")
       }
 

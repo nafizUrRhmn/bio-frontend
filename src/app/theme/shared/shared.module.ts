@@ -11,10 +11,12 @@ import {NgScrollbarModule} from 'ngx-scrollbar';
 
 // bootstrap import
 import {NgbCollapseModule, NgbDropdownModule, NgbModule, NgbNavModule} from '@ng-bootstrap/ng-bootstrap';
-import { WelcomeMessageModule } from './components/welcome-message/welcome-message.module';
-import { HeaderModule } from './components/header/header.module';
+import {WelcomeMessageModule} from './components/welcome-message/welcome-message.module';
+import {HeaderModule} from './components/header/header.module';
+import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 
 @NgModule({
+   declarations: [SpinnerComponent],
   imports: [
     CommonModule,
     FormsModule,
@@ -26,7 +28,8 @@ import { HeaderModule } from './components/header/header.module';
     NgbModule,
     NgbCollapseModule,
     NgScrollbarModule,
-    HeaderModule
+    HeaderModule,
+    MatProgressSpinnerModule
   ],
   exports: [
     CommonModule,
@@ -34,15 +37,13 @@ import { HeaderModule } from './components/header/header.module';
     ReactiveFormsModule,
     CardModule,
     WelcomeMessageModule,
-    SpinnerComponent,
     NgbModule,
     NgbDropdownModule,
     NgbNavModule,
     NgbCollapseModule,
     NgScrollbarModule,
-    HeaderModule
-  ],
-  declarations: [SpinnerComponent]
-})
+    HeaderModule,
+    SpinnerComponent
+  ]})
 export class SharedModule {
 }
