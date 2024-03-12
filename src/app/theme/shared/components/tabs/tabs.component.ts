@@ -1,3 +1,4 @@
+import { AlertService } from './../../../../_services/alert-service';
 import { Component, ElementRef, Input, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { MatTab, MatTabGroup } from "@angular/material/tabs";
 import { NavigationItem } from "../../../layout/private-layout/navigation/navigation-item";
@@ -15,7 +16,10 @@ export class TabsComponent {
   closedTabs: number[] = [];
   tabs: NavigationItem[] = [];
   @Input() initialized;
-  constructor(private navigationService: NavigationService) {
+  constructor(
+    private navigationService: NavigationService,
+    private alertService: AlertService
+    ) {
     console.log(this.tabs.splice(0, 1));
     this.closedTabs = [];
     this.navigationService.getMenuEvent$.asObservable().subscribe(u => {
@@ -26,7 +30,7 @@ export class TabsComponent {
           return;
         }
         if (this.tabs.length >= 3) {
-          alert("You cannot add more than three tabs ");
+          this.alertService.warningAlert("You can not add more than three tabs");
           return;
         }
         if (u !== null && u.title) {

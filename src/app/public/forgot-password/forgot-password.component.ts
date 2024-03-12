@@ -10,19 +10,24 @@ import { FormBuilder,FormGroup,Validators } from '@angular/forms';
 })
 export class ForgotPasswordComponent {
   forgotPasswordForm: FormGroup;
+
+  //INPUT FIELD VARIABLES
   userIdValue: string ='';
+  newPasswordValue: string ='';
+  confirmPasswordValue: string ='';
 
   // OTP VARIABLES
-  otpFieldValue1 : string = '';
-  otpFieldValue2 : string = '';
-  otpFieldValue3 : string = '';
-  otpFieldValue4 : string = '';
-  otpFieldValue5 : string = '';
-  otpFieldValue6 : string = '';
+  otpFieldValue1 : number;
+  otpFieldValue2 : number;
+  otpFieldValue3 : number;
+  otpFieldValue4 : number;
+  otpFieldValue5 : number;
+  otpFieldValue6 : number;
 
+  //OTP PORTION
   showTimer: boolean = false;
   showOtpPortion: boolean = false; 
-  @Input() timer:number=30;
+  @Input() timer:number=60;
   remainingTime: number;
   timerInterval: any;
   showResendButton:boolean=false;
@@ -34,12 +39,16 @@ export class ForgotPasswordComponent {
   ngOnInit():void{
     this.forgotPasswordForm = this.fb.group({
       userId : ['',[Validators.required]],
+
       otpField1 : ['',[Validators.required]],
       otpField2 : ['',[Validators.required]],
       otpField3 : ['',[Validators.required]],
       otpField4 : ['',[Validators.required]],
       otpField5 : ['',[Validators.required]],
       otpField6 : ['',[Validators.required]],
+
+      newPassword : ['',[Validators.required]],
+      confirmPassword : ['',[Validators.required]],
     });
     
   }
@@ -82,17 +91,28 @@ export class ForgotPasswordComponent {
     }, 1000);
   }
  
-  onSubmit(){
-    this.userIdValue = this.forgotPasswordForm.get('userId').value;
-    console.log(this.userIdValue);
-  }
+ 
   onResend(){
     this.showTimer = false;
     clearInterval(this.timerInterval);
     this.remainingTime = this.timer;
     this.timerFunction();
+
+    this.forgotPasswordForm.get('otpField1')?.setValue(null);
+    this.forgotPasswordForm.get('otpField2')?.setValue(null);
+    this.forgotPasswordForm.get('otpField3')?.setValue(null);
+    this.forgotPasswordForm.get('otpField4')?.setValue(null);
+    this.forgotPasswordForm.get('otpField5')?.setValue(null);
+    this.forgotPasswordForm.get('otpField6')?.setValue(null);
+
+    this.otpFieldValue1 = this.forgotPasswordForm.get('otpField1')?.value;
+    this.otpFieldValue2 = this.forgotPasswordForm.get('otpField2')?.value;
+    this.otpFieldValue3 = this.forgotPasswordForm.get('otpField3')?.value;
+    this.otpFieldValue4 = this.forgotPasswordForm.get('otpField4')?.value;
+    this.otpFieldValue5 = this.forgotPasswordForm.get('otpField5')?.value;
+    this.otpFieldValue6 = this.forgotPasswordForm.get('otpField6')?.value;
   }
-  onVerify(){
+  onSend(){
     this.otpFieldValue1 = this.forgotPasswordForm.get('otpField1').value;
     this.otpFieldValue2 = this.forgotPasswordForm.get('otpField2').value;
     this.otpFieldValue3 = this.forgotPasswordForm.get('otpField3').value;
@@ -100,13 +120,21 @@ export class ForgotPasswordComponent {
     this.otpFieldValue5 = this.forgotPasswordForm.get('otpField5').value;
     this.otpFieldValue6 = this.forgotPasswordForm.get('otpField6').value;
 
+
+    this.newPasswordValue = this.forgotPasswordForm.get('newPassword').value;
+    this.confirmPasswordValue = this.forgotPasswordForm.get('confirmPassword').value;
+
     console.log(
       this.otpFieldValue1,
       this.otpFieldValue2,
       this.otpFieldValue3,
       this.otpFieldValue4,
       this.otpFieldValue5,
-      this.otpFieldValue6)
+      this.otpFieldValue6,
+      
+      this.newPasswordValue,
+      this.confirmPasswordValue
+      )
   }
 
  

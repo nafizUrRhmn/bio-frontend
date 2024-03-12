@@ -1,7 +1,6 @@
 import {Component, Input, ElementRef} from '@angular/core';
 import {AuthenticationService} from 'src/app/_services';
 import {TranslateService} from "@ngx-translate/core";
-import noticeboardData from '../../../../../../noticeboard-data.json';
 import {AccessControlConstant} from "../../../../_constants/access-control.constant";
 import {OperationsConstant} from "../../../../_constants/operations.constant";
 
@@ -15,7 +14,6 @@ import {OperationsConstant} from "../../../../_constants/operations.constant";
 })
 export class HeaderComponent {
   username: any;
-  notices: any[] = noticeboardData;
   isExpanded: boolean[] = [];
 
   languageArr = [
@@ -32,7 +30,6 @@ export class HeaderComponent {
   }
 
   ngOnInit() {
-    this.isExpanded = new Array(this.notices.length).fill(false);
     this.authService.user.subscribe(u => {
       console.log(u);
       const jwtBase64 = u.jwtToken.split('.')[1];
@@ -56,11 +53,5 @@ export class HeaderComponent {
   onLogout() {
     this.authService.logout();
   }
-
-
-  toggleText(index: number): void {
-    this.isExpanded[index] = !this.isExpanded[index];
-  }
-
 
 }
