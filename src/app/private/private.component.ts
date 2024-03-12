@@ -1,6 +1,7 @@
-import {Component} from '@angular/core';
-import {AuthenticationService} from '../_services';
+import { Component, HostListener } from '@angular/core';
+import { AuthenticationService } from '../_services';
 import noticeboardData from '../../../noticeboard-data.json';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-private',
@@ -13,7 +14,7 @@ export class PrivateComponent {
   isExpanded: boolean[] = [];
   maxLength: number = 120;
 
-  constructor(private authService: AuthenticationService) {
+  constructor(private authService: AuthenticationService, private router: Router) {
   }
 
   ngOnInit() {
@@ -25,6 +26,15 @@ export class PrivateComponent {
 
   toggleText(index: number): void {
     this.isExpanded[index] = !this.isExpanded[index];
+  }
+
+  @HostListener('window:popstate', ['$event'])
+  onPopState(event: PopStateEvent) {
+    window.location.reload();
+  }
+
+  routing(path) {
+    this.router.navigate([path]).then(v => location.reload());
   }
 
 }
