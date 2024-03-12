@@ -1,6 +1,6 @@
-import { Component, HostListener } from '@angular/core';
-import { AuthenticationService } from '../_services';
-import noticeboardData from '../../../noticeboard-data.json';
+import {Component, HostListener} from '@angular/core';
+import {AuthenticationService} from '../_services';
+import noticeboardData from 'src/assets/data/noticeboard-data.json';
 import { Router } from '@angular/router';
 
 @Component({
