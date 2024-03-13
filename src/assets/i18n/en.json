@@ -46,5 +46,6 @@
   "BBL000103" : "Log Out",
   "BBL000104" : "Access Control",
   "BBL000105" : "Operations",
-  "BBL000106" : "Module"
+  "BBL000106" : "Module",
+  "BBL000107" : "Core Config"
 }
