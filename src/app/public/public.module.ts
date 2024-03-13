@@ -24,8 +24,11 @@ const routes: Routes = [
   {
     path: 'refcodetype-maint',
     loadChildren: () => import('./refcodetype-maint/refcodetype-maint.module').then((m) => m.RefcodetypeMaintModule)
-  }
-
+  },
+  {
+    path: 'menu-creation',
+    loadChildren: () => import('./menu-creation/menu-creation.module').then((m) => m.MenuCreationModule)
+  },
 
 ];
 
