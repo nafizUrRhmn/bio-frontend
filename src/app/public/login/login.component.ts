@@ -6,8 +6,6 @@ import {first} from "rxjs";
 import {JSEncrypt} from "jsencrypt";
 import {environment} from "../../../environments/environment.prod";
 import {MatDialog} from '@angular/material/dialog';
-import {PrivateComponent} from "../../private/private.component";
-import {LanguageService} from "../../_services/language.service";
 import {AlertService} from "../../_services/alert-service";
 import {ErrorCodeConstant} from "../../_constants/error-code.constant";
 
@@ -27,7 +25,7 @@ export class LoginComponent implements OnInit {
                private router: Router,
                private authenticationService: AuthenticationService,
                public dialog: MatDialog,
-               private privateComponent : PrivateComponent, private languageService: LanguageService, private alertService: AlertService) {
+               private alertService: AlertService) {
   }
 
   ngOnInit(): void {
@@ -59,19 +57,12 @@ export class LoginComponent implements OnInit {
       .pipe(first())
       .subscribe({
         next: (user) => {
-          if (user.prefLangCode == "BAN") {
-            this.languageService.languageSub.next(user.prefLangCode)
-            //his.privateComponent.setLanguageDD("bn");
-          } else {
-            //this.privateComponent.translateLanguageTo("en");
-
-          }
           const returnUrl = this.route.snapshot.queryParams['returnUrl'] || `/private/super-admin`;
           this.router.navigate([returnUrl]);
         },
         error: err => {
           // const errorCode = err && err.error && err.error.statusCode;
-          if(err.error.errorCode === ErrorCodeConstant.ALREADY_LOGGED_IN){
+          if(err.error.errorCode  && err.error.errorCode === ErrorCodeConstant.ALREADY_LOGGED_IN){
             this.alertService.confirmationAlert("Want to quit current session and logged in again?",
               "User Already Logged in", "Yes").then(v => {
                 if(v.isConfirmed){
@@ -79,11 +70,11 @@ export class LoginComponent implements OnInit {
                   this.loginForm.controls['password'].reset()
                 }
             });
-          }else{
-            // this.alertService.errorAlert(err.error.message);
+          }else if(err.error.errorCode){
+            this.alertService.errorAlert(err.error.message);
             this.forceLoginFlg = false;
-
-          }          this.loading = false;
+          }
+          this.loading = false;
         }
       });
   }

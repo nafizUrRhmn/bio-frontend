@@ -1,6 +1,6 @@
 ﻿import {Injectable} from '@angular/core';
 import {Router} from '@angular/router';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpParams} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {environment} from "../../environments/environment";
 
@@ -11,10 +11,19 @@ export class MenuService {
   baseUrl = `${environment.apiUrl}/v1/super-admin/menu`
   constructor(
     private router: Router,
-    private http: HttpClient
-  ) {
+    private http: HttpClient) {
   }
-  getMenusByModule(modulePath) {
-    return this.http.get<any>(`${this.baseUrl}/${modulePath}`);
+  getMenusByModule(modulePath,langCode) {
+    let params = new HttpParams();
+    params = params.append('modulePath', modulePath);
+    params = params.append('langCode', langCode);
+    return this.http.get<any>(`${this.baseUrl}`,{params: params});
+  }
+
+  getMenusByLangCode(modulePath,langCode) {
+    let params = new HttpParams();
+    params = params.append('modulePath', modulePath);
+    params = params.append('langCode', langCode);
+    return this.http.get<any>(`${this.baseUrl}/get-by-langCode`,{params: params});
   }
 }
