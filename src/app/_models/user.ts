@@ -9,4 +9,5 @@
     modules?: string[];
     prefLangCode?: string;
     newUserFlg?: string;
+    loginTimeSuc?: string;
 }

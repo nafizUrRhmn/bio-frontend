@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
+import { AuthenticationService } from 'src/app/_services';
 
 @Component({
   selector: 'app-welcome-message',
@@ -7,7 +9,17 @@ import { Component } from '@angular/core';
 })
 export class WelcomeMessageComponent {
   username: any;
-  constructor(){
-      this.username = "agentbank";
+  loginTime: any;
+  constructor(private authService : AuthenticationService,
+    public traslate : TranslateService){
+
+  }
+
+  ngOnInit(){
+    this.authService.user.subscribe(u=>{
+      this.username = u.fullName;
+      // console.log(u.loginTimeSuc);
+      this.loginTime = u.loginTimeSuc;
+    })
   }
 }
