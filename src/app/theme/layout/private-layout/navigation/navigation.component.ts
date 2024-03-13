@@ -8,11 +8,13 @@ import {AccessControlConstant} from "../../../../_constants/access-control.const
 import {OperationsConstant} from "../../../../_constants/operations.constant";
 import {take} from "rxjs";
 import {ErrorCodeConstant} from "../../../../_constants/error-code.constant";
+import {EventBusService} from "../../../../_services/event-bus.service";
+import {EventNamesConstant} from "../../../../_constants/event-names.constant";
 
 @Component({
   selector: 'app-navigation',
   templateUrl: './navigation.component.html',
-  styleUrls: ['./navigation.component.scss']
+  styleUrls: ['./navigation.component.scss'],
 })
 export class NavigationComponent implements OnInit {
   // public props
@@ -22,11 +24,14 @@ export class NavigationComponent implements OnInit {
   windowWidth: number;
   hashmap = new Map<string, Component>();
   path;
-  navigationItems;
   superAdminNavigationItems: NavigationItem[];
+  private languageCode: String;
 
-  constructor(private route: ActivatedRoute, private authService: AuthenticationService, private menuService: MenuService,
-              private router: Router) {
+  constructor(private route: ActivatedRoute,
+              private authService: AuthenticationService,
+              private menuService: MenuService,
+              private router: Router,
+              private eventBus: EventBusService) {
   }
 
   // public method
@@ -35,25 +40,34 @@ export class NavigationComponent implements OnInit {
     this.route.url.subscribe(route => {
       this.path = route[0].path
       this.authService.user.subscribe(auth => {
+
         const jwtBase64 = auth.jwtToken.split('.')[1];
         const token = JSON.parse(atob(jwtBase64));
-        this.roles = token.roles.split(',');
-        auth.modules = auth.modules.length===1 ? JSON.parse(auth.modules[0]): auth.modules;
-        if(this.path === 'access-control' && auth.modules.find(k => k === 'ACCESS_CONTROL')){
-          this.menuService.getMenusByModule(this.path).pipe(take(1)).subscribe(menu => {
-            this.menuGenerator(menu, AccessControlConstant.ACCESS_CONTROL_COMPONENT_MAP)});
-        } else if(this.path === 'operations' && auth.modules.find(k => k === 'OPERATIONS'))
-        this.menuService.getMenusByModule(this.path).pipe(take(1)).subscribe(  {
-          //this.menuGenerator(menu, OperationsConstant.OPERATIONS_COMPONENT_MAP);
-            next: (menu) => {
-              this.menuGenerator(menu, OperationsConstant.OPERATIONS_COMPONENT_MAP);
-            },
-            error: (err) => {
-              if(err.error.errorCode === ErrorCodeConstant.PASSWORD_CHANGE_SCREEN_ERROR_CODE){
-                this.router.navigate(['/private/change-password']);
+        auth.modules = auth.modules.length === 1 ? JSON.parse(auth.modules[0]) : auth.modules;
+        const langObj$ = this.eventBus.subscribe(EventNamesConstant.LANGUAGE);
+
+        if (this.path === 'access-control' && auth.modules.find(k => k === 'ACCESS_CONTROL')) {
+          langObj$.subscribe(lang => {
+            this.menuService.getMenusByModule(this.path, lang.langValue.code).pipe(take(1)).subscribe(menu => {
+              this.menuGenerator(menu, AccessControlConstant.ACCESS_CONTROL_COMPONENT_MAP)
+            });
+          });
+
+        } else if (this.path === 'operations' && auth.modules.find(k => k === 'OPERATIONS'))
+          langObj$.subscribe(lang => {
+            this.menuService.getMenusByModule(this.path, lang.langValue.code).pipe(take(1)).subscribe({
+              next: (menu) => {
+                this.menuGenerator(menu, OperationsConstant.OPERATIONS_COMPONENT_MAP);
+              },
+              error: (err) => {
+                if (err.error.errorCode === ErrorCodeConstant.PASSWORD_CHANGE_SCREEN_ERROR_CODE) {
+                  this.router.navigate(['/private/change-password']);
+                }
               }
-            }
-        });
+            });
+          });
+        // }
+        // });
       });
     });
   }
