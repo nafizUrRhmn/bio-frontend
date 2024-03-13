@@ -19,7 +19,6 @@ import { DistributorBillCollectionsComponent } from "../private/operations/distr
 import { RetailComponent } from "../private/operations/retail/retail.component";
 import { CorporateComponent } from "../private/operations/corporate/corporate.component";
 import { ReportComponent } from "../private/operations/report/report.component";
-import {RefCodeTypeMaintComponent} from "../private/operations/refcodetype-maint/refcodetype-maint.component";
 
 export class OperationsConstant {
 
@@ -86,9 +85,6 @@ export class OperationsConstant {
     }],
     ['generateReport', {
       obj: ReportComponent
-    }],
-    ['refCodeTypeMaint', {
-      obj: RefCodeTypeMaintComponent
     }],
   ])
 }

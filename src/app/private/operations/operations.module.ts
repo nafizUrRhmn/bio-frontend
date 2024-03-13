@@ -39,7 +39,6 @@ import { RetailComponent } from './retail/retail.component';
 import { CorporateComponent } from './corporate/corporate.component';
 import {TranslateModule} from "@ngx-translate/core";
 import { ReportComponent } from './report/report.component';
-import {RefCodeTypeMaintComponent} from "./refcodetype-maint/refcodetype-maint.component";
 
 
 const routes: Routes = [
@@ -79,9 +78,6 @@ const routes: Routes = [
     RetailComponent,
     CorporateComponent,
     ReportComponent,
-    RefCodeTypeMaintComponent
-
-
   ],
   imports: [
     RouterModule.forChild(routes),
