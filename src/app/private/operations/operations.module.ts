@@ -78,8 +78,6 @@ const routes: Routes = [
     RetailComponent,
     CorporateComponent,
     ReportComponent,
-
-
   ],
   imports: [
     RouterModule.forChild(routes),

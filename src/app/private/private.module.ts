@@ -22,6 +22,11 @@ const routes: Routes = [
     loadChildren: () => import('./operations/operations.module').then((m) => m.OperationsModule)
   },
   {
+    path: 'core-config',
+    component: PrivateLayoutComponent,
+    loadChildren: () => import('./core-config/core-config.module').then((m) => m.CoreConfigModule)
+  },
+  {
     path: 'change-password',
     component: PrivateLayoutComponent,
     loadChildren: () => import('./change-password/change-password.module').then((m) => m.ChangePasswordModule)
