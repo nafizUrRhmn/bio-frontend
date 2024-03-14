@@ -9,6 +9,5 @@ import {LoaderService} from "../../../../_services/loader.service";
 })
 export class SpinnerComponent {
   constructor(public loader: LoaderService) {
-    this.loader.isLoading$.subscribe(u => console.log(u));
   }
 }
