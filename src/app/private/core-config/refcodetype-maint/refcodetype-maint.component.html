@@ -1,24 +1,55 @@
-<div class="container">
-  <div class="row">
-    <div class="col-sm">
-      <label for="funcCode" class="form-label">Function Code</label>
-      <select id="funcCode" class="form-select form-select-sm" aria-label=".form-select-lg example">
-        <option selected></option>
-        <option value="I">I-Inquiry</option>
-        <option value="A">A-Add</option>
-        <option value="D">D-Delete</option>
-        <option value="U">U-Undelete</option>
-        <option value="M">M-Modification</option>
-        <option value="V">V-Verification</option>
-        <option value="X">C-Cancel</option>
-        <option value="C">C-Copy</option>
-      </select>
+<div class="container card w-50 mt-5">
+  <div class="col-12">
+    <div>
+      <h2 class="card-header text-primary fw-bold">Reference Code Type Maintained</h2>
+    </div>
+
+    <div class="card-body">
+      <form [formGroup]="refCodeTypeForm">
+        <div class="d-flex flex-column">
+          <div class="pt-1 w-50">
+            <label for="funcCode" class="form-label text-muted">Function Code</label>
+            <select id="funcCode" class="form-select form-select-sm"
+                    aria-label=".form-select-lg example"
+                    formControlName="funcCode">
+              <option selected></option>
+              <option value="I">I-Inquiry</option>
+              <option value="A">A-Add</option>
+              <option value="D">D-Delete</option>
+              <option value="U">U-Undelete</option>
+              <option value="M">M-Modification</option>
+              <option value="V">V-Verification</option>
+              <option value="X">C-Cancel</option>
+              <option value="C">C-Copy</option>
+            </select>
+          </div>
+          <div class="pt-4 w-50">
+            <label for="refCodeType" class="form-label text-muted">Ref. Code Type</label>
+            <div class="d-flex flex-row">
+              <input
+                type="text"
+                class="form-control"
+                id="refCodeType"
+                formControlName="refCodeType"
+                placeholder="Enter Reference Type"
+                (focusout)="onFocusOutEvent($event)"
+              />
+              <button type="button" class="btn btn-primary mx-1"
+                      (click)="onSearch()">Search
+              </button>
+            </div>
+          </div>
+        </div>
+      </form>
     </div>
   </div>
-  <div class="d-flex flex-row-reverse">
-    <div>
-      <button type="button" class="btn btn-warning">Go</button>
-      <button type="button" class="btn btn-light ml-2">Cancel</button>
+
+  <div class="d-flex flex-row justify-content-end card-body">
+    <div class="">
+      <button type="button" class="btn btn-primary">Go</button>
+    </div>
+    <div class="mx-2">
+      <button type="button" class="btn btn-primary ml-2">Cancel</button>
     </div>
   </div>
 </div>
