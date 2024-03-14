@@ -42,14 +42,14 @@ export class NavigationComponent implements OnInit {
       this.authService.user.subscribe(auth => {
         const langObj$ = this.eventBus.getObservable(EventNamesConstant.LANGUAGE);
         if (this.path === 'access-control' && auth.modules.find(k => k === 'ACCESS_CONTROL')) {
-          langObj$.pipe(take(1)).subscribe(lang => {
+          langObj$.subscribe(lang => {
             this.menuService.getMenusByModule(this.path, lang.langValue.code).pipe(take(1)).subscribe(menu => {
               this.menuGenerator(menu, AccessControlConstant.ACCESS_CONTROL_COMPONENT_MAP)
             });
           });
 
         } else if (this.path === 'operations' && auth.modules.find(k => k === 'OPERATIONS'))
-          langObj$.pipe(take(1)).subscribe(lang => {
+          langObj$.subscribe(lang => {
             this.menuService.getMenusByModule(this.path, lang.langValue?.code).pipe(take(1)).subscribe({
               next: (menu) => {
                 this.menuGenerator(menu, OperationsConstant.OPERATIONS_COMPONENT_MAP);
