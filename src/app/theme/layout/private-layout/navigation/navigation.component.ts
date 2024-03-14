@@ -10,6 +10,7 @@ import {take} from "rxjs";
 import {ErrorCodeConstant} from "../../../../_constants/error-code.constant";
 import {EventBusService} from "../../../../_services/event-bus.service";
 import {EventNamesConstant} from "../../../../_constants/event-names.constant";
+import {CoreConfigConstant} from "../../../../_constants/core-config.constant";
 
 @Component({
   selector: 'app-navigation',
@@ -48,7 +49,7 @@ export class NavigationComponent implements OnInit {
             });
           });
 
-        } else if (this.path === 'operations' && auth.modules.find(k => k === 'OPERATIONS'))
+        } else if (this.path === 'operations' && auth.modules.find(k => k === 'OPERATIONS')){
           langObj$.subscribe(lang => {
             this.menuService.getMenusByModule(this.path, lang.langValue?.code).pipe(take(1)).subscribe({
               next: (menu) => {
@@ -61,8 +62,14 @@ export class NavigationComponent implements OnInit {
               }
             });
           });
-        // }
-        // });
+        }else if (this.path === 'core-config'){
+          console.log(this.path);
+          langObj$.subscribe(lang => {
+            this.menuService.getMenusByModule(this.path, lang.langValue.code).pipe(take(1)).subscribe(menu => {
+              this.menuGenerator(menu, CoreConfigConstant.CORE_CONFIG_COMPONENT_MAP)
+            });
+          });
+        }
       });
     });
   }
