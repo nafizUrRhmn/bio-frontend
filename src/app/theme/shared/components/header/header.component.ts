@@ -29,9 +29,7 @@ export class HeaderComponent {
 
   ngOnInit() {
     this.authService.user.subscribe(u => {
-      const jwtBase64 = u.jwtToken.split('.')[1];
-      const token = JSON.parse(atob(jwtBase64));
-      this.prefLanguageCode = token.prefLanguageCode;
+      this.prefLanguageCode = u.prefLanguageCode;
       this.username = u.fullName;
     });
     // get logged in user data
@@ -40,6 +38,7 @@ export class HeaderComponent {
     } else {
       this.selectedOpt = this.languageArr[0];
     }
+    // console.log(this.selectedOpt);
     this.eventBus.publish({'name': EventNamesConstant.LANGUAGE, 'langValue': this.selectedOpt});
     this.translate.use(this.selectedOpt.val);
   }

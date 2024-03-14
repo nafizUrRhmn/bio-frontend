@@ -27,13 +27,12 @@ export class AuthenticationService {
   login(username: string, password: string,isForced:boolean) {
     return this.http.post<any>(`${environment.apiUrl}/v1/public/login`,
       {username, password,isForced}, {withCredentials: true})
-      .pipe(map(user => {
-        sessionStorage.setItem("refreshToken", user.refreshToken);
-        sessionStorage.setItem("jwtToken", user.jwtToken);
-        console.log(user);
-        this.userSubject.next(user);
-        this.startRefreshTokenTimer(user.jwtToken);
-        return user;
+      .pipe(map(v => {
+        sessionStorage.setItem("refreshToken", v.refreshToken);
+        sessionStorage.setItem("jwtToken", v.jwtToken);
+        this.userSubject.next(this.extractUserFromToken(v.jwtToken));
+        this.startRefreshTokenTimer(v.jwtToken);
+       // return user;
       }));
   }
 
@@ -48,11 +47,11 @@ export class AuthenticationService {
 
   refreshToken() {
     return this.http.post<any>(`${environment.apiUrl}/v1/user/refresh-token`, {refreshToken: sessionStorage.getItem('refreshToken')}, {withCredentials: true})
-      .pipe(map((user) => {
-        sessionStorage.setItem("jwtToken", user.jwtToken);
-        this.userSubject.next(user);
-        this.startRefreshTokenTimer(user.jwtToken);
-        return user;
+      .pipe(map((v) => {
+        sessionStorage.setItem("jwtToken", v.jwtToken);
+        this.userSubject.next(this.extractUserFromToken(v.jwtToken));
+        this.startRefreshTokenTimer(v.jwtToken);
+        // return user;
       }));
   }
 
@@ -77,5 +76,18 @@ export class AuthenticationService {
 
   private stopRefreshTokenTimer() {
     clearTimeout(this.refreshTokenTimeout);
+  }
+
+  private extractUserFromToken(jwtToken: string): User{
+    const jwtBase64 = jwtToken.split('.')[1];
+    const token = JSON.parse(atob(jwtBase64));
+    let user1: User = new User();
+    user1.username = token.username;
+    user1.fullName = token.fullName;
+    user1.modules = JSON.parse(token.modules);
+    user1.prefLanguageCode = token.prefLanguageCode;
+    user1.loginTimeSuc = token.loginTimeSuc;
+    user1.userApplId = token.userApplId;
+  return user1;
   }
 }

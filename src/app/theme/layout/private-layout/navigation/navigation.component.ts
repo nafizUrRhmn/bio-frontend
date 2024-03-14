@@ -40,12 +40,9 @@ export class NavigationComponent implements OnInit {
     this.route.url.subscribe(route => {
       this.path = route[0].path
       this.authService.user.subscribe(auth => {
-
-        const jwtBase64 = auth.jwtToken.split('.')[1];
-        const token = JSON.parse(atob(jwtBase64));
-        auth.modules = auth.modules.length === 1 ? JSON.parse(auth.modules[0]) : auth.modules;
-        const langObj$ = this.eventBus.subscribe(EventNamesConstant.LANGUAGE);
-
+        console.log(auth)
+        // auth.modules = auth.modules.length === 1 ? JSON.parse(auth.modules[0]) : auth.modules;
+        const langObj$ = this.eventBus.getObservable(EventNamesConstant.LANGUAGE);
         if (this.path === 'access-control' && auth.modules.find(k => k === 'ACCESS_CONTROL')) {
           langObj$.subscribe(lang => {
             this.menuService.getMenusByModule(this.path, lang.langValue.code).pipe(take(1)).subscribe(menu => {
@@ -55,12 +52,16 @@ export class NavigationComponent implements OnInit {
 
         } else if (this.path === 'operations' && auth.modules.find(k => k === 'OPERATIONS'))
           langObj$.subscribe(lang => {
-            this.menuService.getMenusByModule(this.path, lang.langValue.code).pipe(take(1)).subscribe({
+            console.log(lang);
+            console.log(this.path);
+            this.menuService.getMenusByModule(this.path, lang.langValue?.code).pipe(take(1)).subscribe({
               next: (menu) => {
+                console.log(menu);
                 this.menuGenerator(menu, OperationsConstant.OPERATIONS_COMPONENT_MAP);
               },
               error: (err) => {
-                if (err.error.errorCode === ErrorCodeConstant.PASSWORD_CHANGE_SCREEN_ERROR_CODE) {
+                console.log(err);
+                if (err.error.errorCode && err.error.errorCode === ErrorCodeConstant.PASSWORD_CHANGE_SCREEN_ERROR_CODE) {
                   this.router.navigate(['/private/change-password']);
                 }
               }
