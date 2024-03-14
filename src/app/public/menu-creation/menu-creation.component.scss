@@ -1,0 +1,14 @@
+.glass-back{
+    background-color: #fafafa;
+    background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.1));
+    padding: 0px 40px;
+    margin: 30px;
+    width: auto 100%;
+    border-radius:20px;
+  
+  }  
+
+  ::placeholder{
+    color: rgba(128, 128, 128, 0.642);
+    font-size: 16px;
+  }
