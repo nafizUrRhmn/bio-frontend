@@ -11,7 +11,7 @@ export class EventBusService {
     this.eventBus.next(event);
   }
 
-  subscribe(eventName: string): Observable<any> {
+  getObservable(eventName: string): Observable<any> {
     return this.eventBus.asObservable().pipe(
       filter((event: any) => event.name === eventName)
     );

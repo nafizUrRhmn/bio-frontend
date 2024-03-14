@@ -17,6 +17,7 @@ export class MenuService {
     let params = new HttpParams();
     params = params.append('modulePath', modulePath);
     params = params.append('langCode', langCode);
+    console.log(params);
     return this.http.get<any>(`${this.baseUrl}`,{params: params});
   }
 
