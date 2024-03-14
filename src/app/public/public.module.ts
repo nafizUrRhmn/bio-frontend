@@ -20,7 +20,12 @@ const routes: Routes = [
   {
     path: 'forgot-password',
     loadChildren: () => import('./forgot-password/forgot-password.module').then((m) => m.ForgotPasswordModule)
+  },
+  {
+    path: 'refcodetype-maint',
+    loadChildren: () => import('./refcodetype-maint/refcodetype-maint.module').then((m) => m.RefcodetypeMaintModule)
   }
+
 
 ];
 
