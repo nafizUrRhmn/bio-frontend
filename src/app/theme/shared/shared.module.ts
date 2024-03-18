@@ -14,6 +14,7 @@ import {NgbCollapseModule, NgbDropdownModule, NgbModule, NgbNavModule} from '@ng
 import {WelcomeMessageModule} from './components/welcome-message/welcome-message.module';
 import {HeaderModule} from './components/header/header.module';
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
+import { AgbListModule } from './components/agb-list/agb-list.module';
 
 @NgModule({
    declarations: [SpinnerComponent],
@@ -29,7 +30,8 @@ import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
     NgbCollapseModule,
     NgScrollbarModule,
     HeaderModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    AgbListModule
   ],
   exports: [
     CommonModule,
@@ -43,7 +45,8 @@ import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
     NgbCollapseModule,
     NgScrollbarModule,
     HeaderModule,
-    SpinnerComponent
+    SpinnerComponent,
+    AgbListModule
   ]})
 export class SharedModule {
 }

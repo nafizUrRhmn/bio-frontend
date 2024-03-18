@@ -10,6 +10,7 @@ import {take} from "rxjs";
 import {ErrorCodeConstant} from "../../../../_constants/error-code.constant";
 import {EventBusService} from "../../../../_services/event-bus.service";
 import {EventNamesConstant} from "../../../../_constants/event-names.constant";
+import {CoreConfigConstant} from "../../../../_constants/core-config.constant";
 
 @Component({
   selector: 'app-navigation',
@@ -25,7 +26,6 @@ export class NavigationComponent implements OnInit {
   hashmap = new Map<string, Component>();
   path;
   superAdminNavigationItems: NavigationItem[];
-  private languageCode: String;
 
   constructor(private route: ActivatedRoute,
               private authService: AuthenticationService,
@@ -40,6 +40,7 @@ export class NavigationComponent implements OnInit {
     this.route.url.subscribe(route => {
       this.path = route[0].path
       this.authService.user.subscribe(auth => {
+        console.log(auth.modules);
         const langObj$ = this.eventBus.getObservable(EventNamesConstant.LANGUAGE);
         if (this.path === 'access-control' && auth.modules.find(k => k === 'ACCESS_CONTROL')) {
           langObj$.subscribe(lang => {
@@ -48,7 +49,7 @@ export class NavigationComponent implements OnInit {
             });
           });
 
-        } else if (this.path === 'operations' && auth.modules.find(k => k === 'OPERATIONS'))
+        } else if (this.path === 'operations' && auth.modules.find(k => k === 'OPERATIONS')){
           langObj$.subscribe(lang => {
             this.menuService.getMenusByModule(this.path, lang.langValue?.code).pipe(take(1)).subscribe({
               next: (menu) => {
@@ -61,8 +62,14 @@ export class NavigationComponent implements OnInit {
               }
             });
           });
-        // }
-        // });
+        }else if (this.path === 'core-config' && auth.modules.find(k => k === 'CCONF')){
+          langObj$.subscribe(lang => {
+            console.log(this.path);
+            this.menuService.getMenusByModule(this.path, lang.langValue.code).pipe(take(1)).subscribe(menu => {
+              this.menuGenerator(menu, CoreConfigConstant.CORE_CONFIG_COMPONENT_MAP)
+            });
+          });
+        }
       });
     });
   }
