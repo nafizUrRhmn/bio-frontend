@@ -5,8 +5,6 @@ import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {PrivateLayoutComponent} from './theme/layout/private-layout/private-layout.component';
 import {NavBarComponent} from './theme/layout/private-layout/nav-bar/nav-bar.component';
-import {NavLeftComponent} from './theme/layout/private-layout/nav-bar/nav-left/nav-left.component';
-import {NavRightComponent} from './theme/layout/private-layout/nav-bar/nav-right/nav-right.component';
 import {NavigationComponent} from './theme/layout/private-layout/navigation/navigation.component';
 import {NavLogoComponent} from './theme/layout/private-layout/nav-bar/nav-logo/nav-logo.component';
 import {NavContentComponent} from './theme/layout/private-layout/navigation/nav-content/nav-content.component';
@@ -35,8 +33,6 @@ export function httpTranslateLoaderFactory(http: HttpClient) {return new Transla
     PagenotfoundComponent,
     PrivateLayoutComponent,
     NavBarComponent,
-    NavLeftComponent,
-    NavRightComponent,
     NavigationComponent,
     NavLogoComponent,
     NavContentComponent,

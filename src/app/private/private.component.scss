@@ -15,22 +15,17 @@
   background: #1576bcb2;
 }
 
-.me-0 {
-  margin: 4px 0 0 4px !important;
-}
 
 .button:hover{
   cursor: pointer;
 }
 
-.footer {
-  flex-shrink: 1;
-  padding: 10px;
-  text-align: center;
-  width: 100%;
-  position: relative;
-  bottom: 0;
+.img-thumbnail{
+  height: 60px;
+  width: 60px;
 }
+
+
 body{
   overflow: auto;
 }
@@ -38,21 +33,8 @@ body{
   overflow-y: auto;
   padding: 20px;
   padding-top: 100px;
-  padding-bottom: 200px;
   position: fixed;
 
-}
-header{
-  width: 100%;
-  position: fixed;
-  z-index: 100;
-}
-footer{
-      background-color: white;
-      padding: 10px;
-      position: fixed;
-      bottom: 0;
-      width: 100%;
 }
 
 .notice-section{
@@ -71,9 +53,4 @@ footer{
   cursor: pointer;
   margin-left: 5px;
   color: #a27ee5
-}
-
-.img-thumbnail{
-  height: 60px;
-  width: 60px;
 }
