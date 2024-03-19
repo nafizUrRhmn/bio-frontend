@@ -9,6 +9,6 @@ export class RefcodetypeMaintService {
     private http: HttpClient) {
   }
   getRefTypeList(funCode:string, refTypeOrDsc:string) {
-    return this.http.post<any>(`${this.baseUrl}/public/get-refType-list`, {funCode, refTypeOrDsc})
+    return this.http.post<any>(`${this.baseUrl}/get-refType-list`, {funCode, refTypeOrDsc})
   }
 }

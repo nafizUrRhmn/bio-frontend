@@ -87,7 +87,7 @@ export class NavigationComponent implements OnInit {
       for (let j = 0; j < objectsLayerOne.length; j++) {
         let objectLayerOne: any = objectsLayerOne[j];
         let objectsLayerTwo = layerTwo.filter(v => v.parentId === objectLayerOne.id).map(k => {
-          return {...k, component: componentHasMap.get(k.component).obj}
+          return {...k, component: componentHasMap.get(k.component)?.obj}
         })
         objectLayerOne = {
           ...objectLayerOne,
