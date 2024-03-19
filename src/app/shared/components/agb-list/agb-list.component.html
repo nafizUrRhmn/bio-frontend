@@ -1,6 +1,6 @@
 <div class="card ">
     <div class="card-header text-primary fs-3 fw-bold">
-      <h3>{{name}}</h3>
+      <h3>{{title}}</h3>
       <p>{{messageDetails}}</p>
     </div>
 <div mat-dialog-content style="height: 400px;" class="px-4">
@@ -10,7 +10,10 @@
           class="ag-theme-quartz"
           [pagination]="true"
           [rowData]="rowData"
-          [columnDefs]="columnDefs">
+          [columnDefs]="columnDefs"
+          (gridReady)="onGridReady($event)"
+          (selectionChanged)="onSelectionChanged($event)"
+          [rowSelection]="selectionMode">
         </ag-grid-angular>
     </div>
 </div>

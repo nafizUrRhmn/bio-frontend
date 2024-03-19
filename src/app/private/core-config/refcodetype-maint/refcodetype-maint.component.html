@@ -34,9 +34,8 @@
                 placeholder="Enter Reference Type"
                 (focusout)="onFocusOutEvent($event)"
               />
-              <button type="button" class="btn btn-primary mx-1"
-                      (click)="onSearch()">Search
-              </button>
+              <button type="button" class="btn btn-primary mx-1" (click)="onSearch()">Search</button>
+              <label class="form-label text-muted">{{refCodeDesc}}</label>
             </div>
           </div>
         </div>

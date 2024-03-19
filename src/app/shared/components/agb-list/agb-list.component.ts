@@ -1,35 +1,33 @@
-import {Component, OnInit} from '@angular/core';
-import {MatDialogRef} from '@angular/material/dialog';
-import {AgGridEvent, ColDef} from 'ag-grid-community';
-import {EventNamesConstant} from "../../../../_constants/event-names.constant";
-import {EventBusService} from "../../../../_services/event-bus.service";
+import {Component, Inject, OnInit} from '@angular/core';
+import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
+import {AgGridEvent, ColDef, GridApi, SelectionChangedEvent} from 'ag-grid-community';
+import {AgGridAngular} from "ag-grid-angular";
 
 @Component({
   selector: 'app-agb-list',
   templateUrl: './agb-list.component.html',
-  styleUrls: ['./agb-list.component.scss']
+  standalone: true,
+  styleUrls: ['./agb-list.component.scss'],
+  imports: [AgGridAngular]
 })
 export class AgbListComponent implements OnInit {
+  private gridApi: GridApi;
   constructor(public dialogRef: MatDialogRef<AgbListComponent>,
-              private eventBus: EventBusService) {
+              @Inject(MAT_DIALOG_DATA) public data: any) {
   }
 
   rowData: any;
   columnDefs: ColDef[];
-  name: string;
+  title: string;
   messageDetails: string;
+  selectionMode: any = 'single';
 
   ngOnInit(): void {
-    this.name = "Reference Type List";
-    const listObj$ = this.eventBus.getObservable(EventNamesConstant.MODAL_LIST);
-    listObj$.subscribe(list => {
-      this.messageDetails = list.listObj.message + ' Current Page No.' + list.listObj.curPageNum + ' Max Page No.' + list.listObj.maxPageNum;
-      //this.message = list.listObj.message;
-      //this.curPageNo = 'Current Page No.'+list.listObj.curPageNum;
-      //this.maxPageNo = 'Max Page No. '+list.listObj.maxPageNum;
-      this.setHeaderNames(list.listObj.headerInfo);
-      this.setGridData(list.listObj.headerInfo, list.listObj.dataBlock);
-    });
+    this.title = this.data.title;
+    let listObj = this.data.content;
+    this.messageDetails = listObj.message + ' Current Page No.' + listObj.curPageNum + ' Max Page No.' + listObj.maxPageNum;
+    this.setHeaderNames(listObj.headerInfo);
+    this.setGridData(listObj.headerInfo,listObj.dataBlock);
   }
 
   setHeaderNames(headerInfo: string[]) {
@@ -51,7 +49,6 @@ export class AgbListComponent implements OnInit {
       for (let i = 0; i < row.length; i++) {
         jsonObj[headerInfo[i]] = row[i];
       }
-      console.log(jsonObj);
       this.rowData.push(jsonObj);
     }
   }
@@ -66,5 +63,14 @@ export class AgbListComponent implements OnInit {
 
   onCloseClick(): void {
     this.dialogRef.close();
+  }
+
+  onSelectionChanged(event: SelectionChangedEvent) {
+    const selectedData = this.gridApi.getSelectedRows()[0];
+    this.dialogRef.close(selectedData);
+  }
+
+  onGridReady(params) {
+    this.gridApi = params.api;
   }
 }
