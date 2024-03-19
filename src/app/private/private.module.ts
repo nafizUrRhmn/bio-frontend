@@ -9,6 +9,7 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {TranslateModule} from "@ngx-translate/core";
 import {MatSelectModule} from "@angular/material/select";
 import { HeaderModule } from "../theme/shared/components/header/header.module";
+import { FooterModule } from "../theme/shared/components/footer/footer.module";
 
 const routes: Routes = [
   {
@@ -34,18 +35,19 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [PrivateComponent],
-  imports: [
-    RouterModule.forChild(routes),
-    NgbModule,
-    WelcomeMessageModule,
-    CommonModule,
-    FormsModule,
-    ReactiveFormsModule,
-    TranslateModule,
-    MatSelectModule,
-    HeaderModule
-  ]
+    declarations: [PrivateComponent],
+    imports: [
+        RouterModule.forChild(routes),
+        NgbModule,
+        WelcomeMessageModule,
+        CommonModule,
+        FormsModule,
+        ReactiveFormsModule,
+        TranslateModule,
+        MatSelectModule,
+        HeaderModule,
+        FooterModule
+    ]
 })
 export class PrivateModule {
 }
