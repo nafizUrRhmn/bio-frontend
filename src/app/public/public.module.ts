@@ -20,12 +20,7 @@ const routes: Routes = [
   {
     path: 'forgot-password',
     loadChildren: () => import('./forgot-password/forgot-password.module').then((m) => m.ForgotPasswordModule)
-  },
-  {
-    path: 'menu-creation',
-    loadChildren: () => import('./menu-creation/menu-creation.module').then((m) => m.MenuCreationModule)
-  },
-
+  }
 ];
 
 @NgModule({

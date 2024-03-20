@@ -1,5 +1,6 @@
 import {RefCodeTypeMaintComponent} from "../private/core-config/refcodetype-maint/refcodetype-maint.component";
 import {RefCodeMaintComponent} from "../private/core-config/refcode-maint/refcode-maint.component";
+import {MenuComponent} from "../private/core-config/menu/menu.component";
 
 export class CoreConfigConstant {
 
@@ -10,5 +11,8 @@ export class CoreConfigConstant {
     ['refCodeMaint', {
       obj: RefCodeMaintComponent
     }],
+    ['menu', {
+      obj: MenuComponent
+    }]
   ])
 }
