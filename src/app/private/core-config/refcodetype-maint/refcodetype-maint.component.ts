@@ -12,6 +12,7 @@ import {AgbListComponent} from "../../../shared/components/agb-list/agb-list.com
 })
 export class RefCodeTypeMaintComponent {
   private selectedData: any;
+  isLinear = false;
 
   constructor(private fb: FormBuilder,
               private alertService: AlertService,
@@ -65,4 +66,9 @@ export class RefCodeTypeMaintComponent {
 
   onFocusOutEvent($event: any) {
   }
+
+  onNext(){
+
+  }
+
 }
