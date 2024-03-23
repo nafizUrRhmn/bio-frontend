@@ -1,161 +1,166 @@
-
 <mat-stepper [linear]="isLinear" #stepper>
-  <mat-step [stepControl]="refCodeTypeForm"  label="STEP 1">
+  <mat-step [stepControl]="refCodeTypeForm" label="RCT Maintainance">
     <form [formGroup]="refCodeTypeForm">
-      
-        <div class="d-flex flex-column m-2 me-5">
-          <div class="pt-1 w-50 row mt-5">
-            <label for="funcCode" class="form-label text-muted fw-bold col-sm-6 col-md-6 col-lg-4">Function Code</label>
-            <div class="col-sm-6 col-md-6 col-lg-8">
-              <select id="funcCode" class="form-select form-select-sm"
-                      aria-label=".form-select-lg example"
-                      formControlName="funcCode">
-                      <option selected></option>
-                      <option value="I">I-Inquiry</option>
-                      <option value="A">A-Add</option>
-                      <option value="D">D-Delete</option>
-                      <option value="U">U-Undelete</option>
-                      <option value="M">M-Modification</option>
-                      <option value="V">V-Verification</option>
-                      <option value="X">X-Cancel</option>
-                      <option value="C">C-Copy</option>
-               </select>
-            </div>
-          </div>
-          <div class="pt-4 w-50 row">
-              <label for="refCodeType" class="form-label text-muted fw-bold col-sm-6 col-md-6 col-lg-4">Reference Code Type</label>
-      
-              <div class="col-sm-6 col-md-6 col-lg-8">
-                <div class="d-flex flex-row">
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="refCodeType"
-                    formControlName="refCodeType"
-                    (focusout)="onFocusOutEvent($event)"
-                  />
-                  <button type="button" class="btn btn-outline-primary ms-5" (click)="onSearch()">Search</button>
-                  <label class="form-label text-muted">{{refCodeDesc}}</label>
-                </div>
-      
-      
-              </div>
+      <div class="d-flex flex-column m-2 me-5">
+        <div class="pt-1 w-50 row mt-5">
+          <label for="funcCode" class="form-label text-muted fw-bold col-sm-6 col-md-6 col-lg-4">Function Code</label>
+          <div class="col-sm-6 col-md-6 col-lg-8">
+            <select id="funcCode" class="form-select form-select-sm"
+                    aria-label=".form-select-lg example"
+                    formControlName="funcCode">
+              <option selected></option>
+              <option value="I">I-Inquiry</option>
+              <option value="A">A-Add</option>
+              <option value="D">D-Delete</option>
+              <option value="U">U-Undelete</option>
+              <option value="M">M-Modification</option>
+              <option value="V">V-Verification</option>
+              <option value="X">X-Cancel</option>
+              <option value="C">C-Copy</option>
+            </select>
           </div>
         </div>
-        
-        
-        <!-- NEXT BUTTON -->
-        <div class="mt-4 d-flex justify-content-end">
-          <button type="button"  mat-button matStepperNext class="btn btn-secondary mt-5" (click)="onNext()">
+        <div class="pt-4 w-50 row">
+          <label for="refCodeType" class="form-label text-muted fw-bold col-sm-6 col-md-6 col-lg-4">
+            Reference Code Type
+          </label>
 
-            <div class="d-flex align-items-center justify-content-center gap-1">
-              Next <i class="ti ti-arrow-right fs-3"></i>
+          <div class="col-sm-6 col-md-6 col-lg-8">
+            <div class="d-flex flex-row">
+              <input
+                type="text"
+                class="form-control"
+                id="refCodeType"
+                formControlName="refCodeType"
+                (focusout)="onFocusOutEvent($event)"
+              />
+              <button type="button" class="btn btn-outline-primary ms-5" (click)="onSearch(funcCode.value,refCodeType.value)">Search</button>
+              <label class="form-label text-muted">{{ refCodeDesc }}</label>
             </div>
-            
-          </button>
-        </div> 
+          </div>
+        </div>
+      </div>
 
+      <!-- NEXT BUTTON -->
+      <div class="mt-4 d-flex justify-content-end">
+        <button type="button" mat-button class="btn btn-secondary mt-5" (click)="onNext()">
+          <div class="d-flex align-items-center justify-content-center gap-1">
+            Next <i class="ti ti-arrow-right fs-3"></i>
+          </div>
 
+        </button>
+      </div>
     </form>
   </mat-step>
-
 
 
   <!-- SECOND STEP -->
-  <mat-step [stepControl]="refCodeTypeForm" label="STEP 2" class="prevent-scroll">
-    <form [formGroup]="refCodeTypeForm">
-      
-        <div class="m-2 w-50">
-          <div class="row">
-            <div class="col-sm-6 col-md-4 col-lg-4">
-              <label class="text-muted fw-bold mt-2">Reference Type Desc</label>
-            </div>
-            <div class="col-sm-6 col-md-8 col-lg-8">
-              <input type="text" class="form-control">
-            </div>
+  <mat-step [stepControl]="refDetailForm" label="RCT Details" class="prevent-scroll">
+    <div class="row text-center pb-5">
+      <div class="col-sm-6 col-md-4 col-lg-4">
+        <span class="text-muted fw-bold mt-2">Function Code - {{funcCode.value}}</span>
+      </div>
+      <div class="col-sm-6 col-md-4 col-lg-4">
+        <span class="text-muted fw-bold mt-2">Reference Type - {{refCodeType.value}}</span>
+      </div>
+    </div>
+    <form [formGroup]="refDetailForm">
+      <div class="m-2 w-50">
+        <div class="row">
+          <div class="col-sm-6 col-md-4 col-lg-4">
+            <label class="text-muted fw-bold mt-2">Reference Type Desc</label>
           </div>
-      
-          <div class="row mt-3">
-            <div class="col-sm-6 col-md-4 col-lg-4">
-              <label class="text-muted fw-bold">Length</label>
-            </div>
-            <div class="col-sm-6 col-md-8 col-lg-8">
-              <input type="text" class="form-control">
-            </div>
+          <div class="col-sm-6 col-md-8 col-lg-8">
+            <input type="text" class="form-control" formControlName="refDescription">
           </div>
-      
-          <div class="row mt-3">
-            <div class="col-sm-6 col-md-4 col-lg-4">
-              <label class="text-muted fw-bold">Dependent Flg</label>
-            </div>
-            <div class="col-sm-6 col-md-8 col-lg-8 d-flex justify-content-around">
-              <div class="form-check">
-                <input class="form-check-input" type="radio" id="dependentFlgYes" value="Y" name="dependentFlg" formControlName="dependentFlg">
-                <label class="form-check-label" for="dependentFlgYes">
-                  YES
-                </label>
-              </div>
-              <div class="form-check">
-                <input class="form-check-input" type="radio" id="dependentFlgNo" value="N" name="dependentFlg" formControlName="dependentFlg">
-                <label class="form-check-label" for="dependentFlgNo">
-                  NO
-                </label>
-              </div>
-            </div>
-            
-          </div>
-      
-          <div class="row mt-3">
-            <div class="col-sm-6 col-md-4 col-lg-4">
-              <label class="text-muted fw-bold">Dep Ref Type Type</label>
-            </div>
-            <div class="col-sm-6 col-md-8 col-lg-8">
-              <input type="text" class="form-control" disabled>
-            </div>
-          </div>
-      
-          <div class="row mt-3">
-            <div class="col-sm-6 col-md-4 col-lg-4">
-              <label class="text-muted fw-bold">Del Flg</label>
-            </div>
-            <div class="col-sm-6 col-md-8 col-lg-8 d-flex justify-content-around">
-              <div class="form-check">
-                <input class="form-check-input" type="radio" id="delFlgYes" value="Y" name="delFlg" formControlName="delFlg">
-                <label class="form-check-label" for="delFlgYes">
-                  YES
-                </label>
-              </div>
-              <div class="form-check">
-                <input class="form-check-input" type="radio" id="delFlgNo" value="N" name="delFlg" formControlName="delFlg">
-                <label class="form-check-label" for="delFlgNo">
-                  NO
-                </label>
-              </div>
-            </div>
-            
-            
-          </div>
-      
         </div>
 
-         
-      
-        <!-- BUTTONS -->
-      
+        <div class="row mt-3">
+          <div class="col-sm-6 col-md-4 col-lg-4">
+            <label class="text-muted fw-bold">Length</label>
+          </div>
+          <div class="col-sm-6 col-md-8 col-lg-8">
+            <input type="text" class="form-control" formControlName="refLength">
+          </div>
+        </div>
 
-          <!-- BOTTOM BUTTONS -->
-            <div class="d-flex flex-row justify-content-end">
-                <div>
-                  <button type="button" mat-button matStepperPrevious class="btn btn-danger">Cancel</button>
-                </div>
-      
-                <div class="ms-2">
-                  <button type="button" class="btn btn-primary">Submit</button>
-                </div>
+
+        <div class="row mt-3">
+          <div class="col-sm-6 col-md-4 col-lg-4">
+            <label class="text-muted fw-bold">Dependent Flg</label>
+          </div>
+          <div class="col-sm-6 col-md-8 col-lg-8 d-flex justify-content-around">
+            <div class="form-check">
+              <input class="form-check-input" type="radio" id="dependentFlgYes" value="Y"
+                     formControlName="dependentFlg">
+              <label class="form-check-label" for="dependentFlgYes">
+                YES
+              </label>
             </div>
-      
-      
+            <div class="form-check">
+              <input class="form-check-input" type="radio" id="dependentFlgNo" value="N"
+                     formControlName="dependentFlg">
+              <label class="form-check-label" for="dependentFlgNo">
+                NO
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <div class="row mt-3">
+          <div class="col-sm-6 col-md-4 col-lg-4">
+            <label class="text-muted fw-bold">Dep Ref Type</label>
+          </div>
+          <div class="col-sm-6 col-md-8 col-lg-8">
+            <input type="text" class="form-control" formControlName="depRefType">
+          </div>
+          <div class="col-sm-6 col-md-8 col-lg-8">
+            <button type="button" class="btn btn-outline-primary ms-5" (click)="onSearch(funcCode.value,depRefType.value)">
+              Search
+            </button>
+          </div>
+          <div class="col-sm-6 col-md-8 col-lg-8">
+            <label class="form-label text-muted">{{depRefCodeDesc}}</label>
+          </div>
+        </div>
+
+        <div class="row mt-3">
+          <div class="col-sm-6 col-md-4 col-lg-4">
+            <label class="text-muted fw-bold">Del Flg</label>
+          </div>
+          <div class="col-sm-6 col-md-8 col-lg-8 d-flex justify-content-around">
+            <div class="form-check">
+              <input class="form-check-input" type="radio" id="delFlgYes" value="Y"
+                     formControlName="deleteFlg">
+              <label class="form-check-label" for="delFlgYes">
+                YES
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" id="delFlgNo" value="N"
+                     formControlName="deleteFlg">
+              <label class="form-check-label" for="delFlgNo">
+                NO
+              </label>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- BOTTOM BUTTONS -->
+      <div class="d-flex flex-row justify-content-end">
+        <div>
+          <button type="button" mat-button matStepperPrevious class="btn btn-danger" (click)="onCancel()">Cancel
+          </button>
+        </div>
+
+        <div class="ms-2">
+          <button type="button" class="btn btn-primary" *ngIf="funcCode.value !== 'I'" (click)="onSubmit()">
+            Submit
+          </button>
+        </div>
+      </div>
     </form>
   </mat-step>
-
 </mat-stepper>
