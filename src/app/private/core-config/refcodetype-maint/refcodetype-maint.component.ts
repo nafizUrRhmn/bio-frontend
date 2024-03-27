@@ -55,22 +55,46 @@ export class RefCodeTypeMaintComponent implements OnInit {
   }
 
   onSearch(funcCode:string, refTypeOrDsc:string,fromControlName:string) {
-    this.refCodeService.getRefTypeList(funcCode, refTypeOrDsc)
+    const dialogRef = this.dialog.open(AgbListComponent, {
+      width: '50%',
+      data: {
+        title:'Reference Type Data',
+        callingParams:{
+          "functionCode" : funcCode,
+          "refType" : refTypeOrDsc
+        }
+      },
+      disableClose: true
+    });
+    /*const payLoad = {
+      "functionCode": funcCode,
+      "refCodeType":refTypeOrDsc,
+      "numOfRecsPerPage" : 10,
+      "pageNum" : 1
+    };
+    this.refCodeService.getRefTypeList(payLoad)
       .pipe(take(1))
       .subscribe({
         next: (response) => {
-          this.openDialogue(response,fromControlName);
+          this.openDialogue(funcCode,refTypeOrDsc,response,fromControlName);
         },
         error: err => {
           this.alertService.errorAlert(err.error.message);
         }
-      });
+      });*/
   }
 
-  openDialogue(response: any,fromControlName:string) {
+  openDialogue(funcCode:string,refTypeOrDsc:string,response: any,fromControlName:string) {
     const dialogRef = this.dialog.open(AgbListComponent, {
       width: '50%',
-      data: {title: 'Reference Type List', content: response},
+      data: {
+             title:'Reference Type Data',
+             content:response,
+             callingParams:{
+               "functionCode" : funcCode,
+               "refType" : refTypeOrDsc
+             }
+      },
       disableClose: true
     });
     dialogRef.afterClosed().pipe(take(1)).subscribe(selectedRow => {
@@ -192,14 +216,7 @@ export class RefCodeTypeMaintComponent implements OnInit {
         this.isVisibleDepSrchBtn = true;
       }
         break;
-      case 'D':{
-        this.disableDetailFormFields();
-        this.isVisibleNewRefType = false;
-        this.newRefCodeType.setValue('');
-        this.isVisibleSubmitBtn = true;
-        this.isVisibleDepSrchBtn = false;
-      }
-      break;
+      case 'D':
       case 'V':{
         this.disableDetailFormFields();
         this.isVisibleNewRefType = false;
@@ -207,14 +224,19 @@ export class RefCodeTypeMaintComponent implements OnInit {
         this.isVisibleSubmitBtn = true;
         this.isVisibleDepSrchBtn = false;
       }
-        break;
-      default: {
+      break;
+      case 'A':
+      case 'U':
+      case 'M':
+      case 'X':{
         this.enableDetailFormFields();
         this.isVisibleNewRefType = false;
         this.newRefCodeType.setValue('');
         this.isVisibleSubmitBtn = true;
         this.isVisibleDepSrchBtn = true;
       }
+        break;
+      default:
         break;
     }
   }

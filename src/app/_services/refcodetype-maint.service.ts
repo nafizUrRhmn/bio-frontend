@@ -13,6 +13,7 @@ class Refcodetype {
   depRefCodeTypeDesc?:string;
   refCodeLength?:string;
   menuId?:string;
+  paginationDto?:any;
 }
 @Injectable({providedIn: 'root'})
 export class RefCodeTypeMaintService {
@@ -20,8 +21,8 @@ export class RefCodeTypeMaintService {
   constructor(
     private http: HttpClient) {
   }
-  getRefTypeList(functionCode:string, refCodeType:string) {
-    return this.http.post<any>(`${this.baseUrl}/get-refType-list`, {functionCode, refCodeType})
+  getRefTypeList(payLoad:Refcodetype) {
+    return this.http.post<any>(`${this.baseUrl}/get-refType-list`, payLoad)
   }
 
   getRefTypeDetail(functionCode:string, refCodeType:string) {
