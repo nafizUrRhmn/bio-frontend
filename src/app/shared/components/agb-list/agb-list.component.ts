@@ -21,19 +21,26 @@ export class AgbListComponent implements OnInit {
   title: string;
   messageDetails: string;
   selectionMode: any = 'single';
+  paginationPageSize: number | undefined;
 
   ngOnInit(): void {
     this.title = this.data.title;
     let listObj = this.data.content;
+    //this.paginationPageSize = 10;
     this.messageDetails = listObj.message + ' Current Page No.' + listObj.curPageNum + ' Max Page No.' + listObj.maxPageNum;
-    this.setHeaderNames(listObj.headerInfo);
-    this.setGridData(listObj.headerInfo,listObj.dataBlock);
+    this.setHeaderNames(listObj.numberOfRecs,listObj.headerInfo);
+    this.setGridData(listObj.numberOfRecs,listObj.headerInfo, listObj.dataBlock);
   }
 
-  setHeaderNames(headerInfo: string[]) {
+  setHeaderNames(numberOfRecs:number,headerInfo: string[]) {
     this.columnDefs = [];
+    let definition: ColDef;
     // for serial number
-    let definition: ColDef = {headerName: "SL", valueGetter: "node.rowIndex + 1",flex:1};
+    if(numberOfRecs > 0){
+      definition = {headerName: "SL",field:'sl', valueGetter: "node.rowIndex + 1", flex: 1};
+    }else {
+      definition = {headerName: "SL",field:'sl',flex: 1};
+    }
     this.columnDefs.push(definition);
 
     headerInfo.forEach((header: string) => {
@@ -42,14 +49,16 @@ export class AgbListComponent implements OnInit {
     });
   }
 
-  setGridData(headerInfo: string[], dataBlock: String[]) {
+  setGridData(numberOfRecs:number,headerInfo: string[], dataBlock: String[]) {
     this.rowData = [];
-    for (let row of dataBlock) {
-      let jsonObj = {}
-      for (let i = 0; i < row.length; i++) {
-        jsonObj[headerInfo[i]] = row[i];
+    if(numberOfRecs >0){
+      for (let row of dataBlock) {
+        let jsonObj = {}
+        for (let i = 0; i < row.length; i++) {
+          jsonObj[headerInfo[i]] = row[i];
+        }
+        this.rowData.push(jsonObj);
       }
-      this.rowData.push(jsonObj);
     }
   }
 
