@@ -1,5 +1,6 @@
 import { Component ,OnInit,Input} from '@angular/core';
 import { FormBuilder,FormGroup,Validators } from '@angular/forms';
+import { ViewChild, ElementRef } from '@angular/core';
 
 
 
@@ -31,6 +32,18 @@ export class ForgotPasswordComponent {
   remainingTime: number;
   timerInterval: any;
   showResendButton:boolean=false;
+
+  
+  //PASSWORD VISIBILITY VARIABLES
+  password: string = '';
+  confirmPassword: string = '';
+
+  hideEyeIcon: boolean = false;
+  hideConfirmEyeIcon: boolean = false;
+
+
+  
+
 
   constructor(private fb : FormBuilder){
     this.forgotPasswordForm = this.fb.group({});
@@ -135,6 +148,35 @@ export class ForgotPasswordComponent {
       this.newPasswordValue,
       this.confirmPasswordValue
       )
+  }
+
+  ////////////// PASSWORD VISIBILITY ////////////////
+
+  togglePasswordVisibility(event:MouseEvent):void { 
+    if(event.button===0){
+      this.hideEyeIcon = !this.hideEyeIcon;
+    } 
+  }
+  toggleConfirmPasswordVisibility(event:MouseEvent):void { 
+    if(event.button===0){
+      this.hideConfirmEyeIcon = !this.hideConfirmEyeIcon;
+    } 
+  }
+
+
+  hidePasswordEyeIcon():void{
+    this.hideEyeIcon = false;
+  }
+  hideConfirmPasswordEyeIcon():void{
+    this.hideConfirmEyeIcon = false;
+  }
+
+
+  showEyeIcon(): boolean {
+    return this.password !== '';
+  }
+  showConfirmEyeIcon(): boolean {
+    return this.confirmPassword !== '';
   }
 
  

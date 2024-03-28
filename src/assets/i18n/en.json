@@ -40,6 +40,9 @@
   "BBL000028" : "Beneficiary Mobile No",
   "BBL000029" : "Please enter the beneficiary mobile number.",
 
+  "BBL_RCTM_FUNC_CODE" : "Function Code",
+  "BBL_RCTM_REF_TYPE" : "Reference Code Type",
+
   "BBL000100" : "Back",
   "BBL000101" : "Reset",
   "BBL000102" : "Proceed",

@@ -16,6 +16,15 @@ export class ChangePasswordComponent {
   changePasswordForm: FormGroup;
   username: any;
 
+  //PASSWORD VISIBILITY VARIABLES
+  oldPassword: string = '';
+  newPassword: string = '';
+  confirmPassword: string = '';
+
+  hideOldEyeIcon: boolean = false;
+  hideNewEyeIcon: boolean = false;
+  hideConfirmEyeIcon: boolean = false;
+
   constructor(private changePasswordService: ChangePasswordService, private fb: FormBuilder,
               private alertService: AlertService, private router: Router,
               private http: HttpClient, private authService: AuthenticationService) {
@@ -74,4 +83,45 @@ export class ChangePasswordComponent {
 
 
   }
+
+  ////////////// PASSWORD VISIBILITY ////////////////
+
+  toggleOldPasswordVisibility(event:MouseEvent):void { 
+    if(event.button===0){
+      this.hideOldEyeIcon = !this.hideOldEyeIcon;
+    } 
+  }
+  toggleNewPasswordVisibility(event:MouseEvent):void { 
+    if(event.button===0){
+      this.hideNewEyeIcon = !this.hideNewEyeIcon;
+    } 
+  }
+  toggleConfirmPasswordVisibility(event:MouseEvent):void { 
+    if(event.button===0){
+      this.hideConfirmEyeIcon = !this.hideConfirmEyeIcon;
+    } 
+  }
+
+
+  hideOldPasswordEyeIcon():void{
+    this.hideOldEyeIcon = false;
+  }
+  hideNewPasswordEyeIcon():void{
+    this.hideNewEyeIcon = false;
+  }
+  hideConfirmPasswordEyeIcon():void{
+    this.hideConfirmEyeIcon = false;
+  }
+
+
+  showOldEyeIcon(): boolean {
+    return this.oldPassword !== '';
+  }
+  showNewEyeIcon(): boolean {
+    return this.newPassword !== '';
+  }
+  showConfirmEyeIcon(): boolean {
+    return this.confirmPassword !== '';
+  }
+
 }

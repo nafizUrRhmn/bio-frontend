@@ -6,5 +6,45 @@
     margin: 30px;
     width: auto 100%;
     border-radius:20px;
+
+  }
+.right-input{
+  direction: rtl;
+}
+.error-feedback{
+  color: red;
+}
+
+  ////////////PASSWORD VISIBILITY////////////
+::-ms-reveal {
+  display: none;
+}
+
+
+.password-visibility-container{
+  position: relative;
+}
+
+.password-toggle {
+  cursor: pointer;
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  width: 20px;
+  height: 20px;
+}
+
+.ti-eye{
+  color: grey;
+}
+
+.ti-eye:hover{
+  color: #2196f3;
   
-  }  
+}
+
+.ti-eye:active{
+  color: #a6c5de;
+}
+
+
