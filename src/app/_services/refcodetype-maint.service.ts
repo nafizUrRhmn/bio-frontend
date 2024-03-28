@@ -13,7 +13,6 @@ class Refcodetype {
   depRefCodeTypeDesc?:string;
   refCodeLength?:string;
   menuId?:string;
-  paginationDto?:any;
 }
 @Injectable({providedIn: 'root'})
 export class RefCodeTypeMaintService {
