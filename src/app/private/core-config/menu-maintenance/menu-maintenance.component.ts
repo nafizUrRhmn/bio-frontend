@@ -20,8 +20,9 @@ export class MenuMaintenanceComponent {
     menuId: ''
   });
 
-
-  menuObj = { 'menuId': '', 'menuTp': 'N/A', 'menuDesc': 'N/A'};
+  mopCodeDescList = [];
+  mopPermList = [];
+  menuObj = {'menuId': '', 'menuTp': 'N/A', 'menuDesc': 'N/A'};
   menuSaveForm = this._formBuilder.group({
     module: '',
     menuType: 'root',
@@ -41,13 +42,14 @@ export class MenuMaintenanceComponent {
     param3: '',
     param4: '',
     param5: ''
-  }, );
+  },);
 
+  getFormData: FormData;
+  menuType = '';
 
-  languages = ['BAN', 'ENG'];
+  // languages = ['BAN', 'ENG'];
   modules = [{key: 'ACCESS_CONTROL', moduleName: 'ACCESS CONTROL'}, {key: 'OPERATIONS', moduleName: 'OPERATIONS'},
     {key: 'CCONF', moduleName: 'CORE CONFIG'}]
-  menuType = '';
 
 
   constructor(private _formBuilder: FormBuilder,
@@ -57,18 +59,7 @@ export class MenuMaintenanceComponent {
   }
 
   ngOnInit(): void {
-    // this.menuCreationForm = this.fb.group({
 
-    // });
-
-    for (const lang of this.languages) {
-      let featureNameForm = new FormGroup({
-        language: new FormControl(lang, Validators.required),
-        name: new FormControl('', Validators.required),
-        remarks: new FormControl('', Validators.required)
-      });
-      (this.menuSaveForm.get('featureNames') as FormArray).push(featureNameForm);
-    }
 
   }
 
@@ -99,21 +90,36 @@ export class MenuMaintenanceComponent {
     this.menuSearchForm.get('menuId').setValue(menuObj.menuId);
   }
 
+  get funCode() {
+    return this.menuSearchForm.get('funcCode').value;
+  }
+
+  get menuId() {
+    return this.menuSearchForm.get('menuId').value;
+  }
+
   onNext() {
     this.menuMaintenanceService.menuVerification(this.menuSearchForm.value).subscribe({
       next: (response) => {
         console.log(response);
-        let mopCodeDescList = [];
-        let mopPermList = [];
-        const mrhBlocks:MrhBlock[] = response?.mrhBlock.mrhBlocks;
-        for(let mrhBlock of mrhBlocks){
-          if(mrhBlock.listName === 'mopCodeDescList' && mrhBlock.numberOfRecs>0){
-            mopCodeDescList = this.mrhBlockToGrid(mrhBlock);
-          }else if (mrhBlock.listName === 'mopPermList' && mrhBlock.numberOfRecs>0){
-            mopPermList = this.mrhBlockToGrid(mrhBlock);
+        this.getFormData = response?.genDataBlock?.formData;
+        const mrhBlocks: MrhBlock[] = response?.mrhBlock.mrhBlocks;
+        for (let mrhBlock of mrhBlocks) {
+          if (mrhBlock.listName === 'mopCodeDescList' && mrhBlock.numberOfRecs > 0) {
+            this.mopCodeDescList = this.mrhBlockToGrid(mrhBlock);
+            for (const mop of this.mopCodeDescList) {
+              let featureNameForm = new FormGroup({
+                langCode: new FormControl('', Validators.required),
+                langCodeDesc: new FormControl('', Validators.required),
+                menuCodeDesc: new FormControl('', Validators.required)
+              });
+              (this.menuSaveForm.get('featureNames') as FormArray).push(featureNameForm);
+            }
+
+            this.menuSaveForm.get('featureNames').patchValue(<any[]> this.mopCodeDescList);
+          } else if (mrhBlock.listName === 'mopPermList' && mrhBlock.numberOfRecs > 0) {
+            this.mopPermList = this.mrhBlockToGrid(mrhBlock);
           }
-          console.log(mopCodeDescList);
-          console.log(mopPermList);
         }
         this.stepper.next()
       },
@@ -130,56 +136,68 @@ export class MenuMaintenanceComponent {
   }
 
   onSave() {
-  console.log(this.menuSaveForm.getRawValue())
+    console.log(this.menuSaveForm.getRawValue())
   }
 
   onMenuTypeChange($event) {
-    console.log($event.target.value);
     this.menuType = $event.target.value;
-    console.log(this.menuSaveForm.value);
   }
 
   checkBoxValues() {
-    if(this.menuSaveForm.get('hasAdd').value){
+    if (this.menuSaveForm.get('hasAdd').value) {
       this.menuSaveForm.get('addAutoVerify').enable({onlySelf: true});
-    }else{
+    } else {
       this.menuSaveForm.get('addAutoVerify').setValue(false);
       this.menuSaveForm.get('addAutoVerify').disable({onlySelf: true});
     }
-    if(this.menuSaveForm.get('hasDelete').value){
+    if (this.menuSaveForm.get('hasDelete').value) {
       this.menuSaveForm.get('deleteAutoVerify').enable({onlySelf: true});
-    } else{
+    } else {
       this.menuSaveForm.get('deleteAutoVerify').disable({onlySelf: true});
       this.menuSaveForm.get('deleteAutoVerify').setValue(false);
     }
 
-    if(this.menuSaveForm.get('hasUndelete').value){
+    if (this.menuSaveForm.get('hasUndelete').value) {
       this.menuSaveForm.get('undeleteAutoVerify').enable({onlySelf: true});
-    }else {
+    } else {
       this.menuSaveForm.get('undeleteAutoVerify').setValue(false);
       this.menuSaveForm.get('undeleteAutoVerify').disable({onlySelf: true});
     }
-    if(this.menuSaveForm.get('hasModification').value){
+    if (this.menuSaveForm.get('hasModification').value) {
       this.menuSaveForm.get('modificationAutoVerify').enable({onlySelf: true});
-    }else{
+    } else {
       this.menuSaveForm.get('modificationAutoVerify').setValue(false);
       this.menuSaveForm.get('modificationAutoVerify').disable({onlySelf: true});
     }
   }
 
-  mrhBlockToGrid(mrhBlock: MrhBlock){
-    let list= [];
+  mrhBlockToGrid(mrhBlock: MrhBlock) {
+    let list = [];
     for (let i = 0; i < mrhBlock.dataBlock.length; i++) {
       let obj = {}
       for (let j = 0; j < mrhBlock.headerInfo.length; j++) {
         let key = mrhBlock.headerInfo[j];
-        console.log('keh'+ key);
-        let value =  mrhBlock.dataBlock[i][j];
-        console.log('value'+ value);
+        let value = mrhBlock.dataBlock[i][j];
         obj = {...obj, [key]: value};
       }
       list.push(obj);
     }
     return list;
   }
+}
+
+interface FormData {
+  delFlg: string;
+  lchgTime: string,
+  lchgUserId: string,
+  secuInd: string,
+  entityCreFlg: string,
+  menuTp: string,
+  rcreUserId: string,
+  param1: string,
+  param2: string,
+  param3: string,
+  param4: string,
+  param5: string,
+  rcreTime: string
 }

@@ -38,11 +38,6 @@
             <div class="col-2 text-muted fw-bold pt-1 ">Menu Details</div>
             <div class="col-10 pt-2 justify-content-start">{{menuObj.menuDesc}}</div>
           </div>
-          <div class="pt-4 row">
-            <div class="text-muted fw-bold pt-1 col-2">Menu Type</div>
-            <div class="col-10 pt-2 justify-content-start">{{menuObj.menuTp}}</div>
-          </div>
-
         </div>
         <div class="text-end">
           <button type="button" class="btn btn-secondary" (click)="onNext()">
@@ -54,8 +49,8 @@
       <form [formGroup]="menuSaveForm">
         <div class="mt-5">
           <div class=" d-flex flex-row">
-            <div class="text-muted fw-bold pe-5 pt-1">App ID</div>
-            <div class="fw-bold pe-5 pt-1">ABCD</div>
+            <div class="text-muted fw-bold pe-5 pt-1">Menu ID</div>
+            <div class="fw-bold pe-5 pt-1">{{menuId}}</div>
           </div>
           <div class=" mt-5 d-flex flex-row">
             <div class="text-muted fw-bold pe-5 pt-1">Module</div>
@@ -69,27 +64,27 @@
                 <span class="fw-bold p-5">Language</span>
               </div>
               <div class="col-4">
-                <span class="fw-bold">Name</span>
+                <span class="fw-bold">Lang Code Description</span>
               </div>
               <div class="col-4">
-                <span class="fw-bold" [className]="'primary'">Remarks</span>
+                <span class="fw-bold">Menu Code Description</span>
               </div>
             </div>
             <div formArrayName="featureNames">
-              <div *ngFor="let lang of languages; let i= index">
+              <div *ngFor="let mop of mopCodeDescList; let i= index">
                 <div class="row m-1 pb-2 pt-2" [formGroupName]="i">
                   <div class="col-4">
-                    <input type="hidden" formControlName="language"
+                    <input type="hidden" formControlName="langCode"
                            class="form-control">
-                    <span class="fw-bold p-5">{{lang}}</span>
+                    <span class="fw-bold p-5">{{mop.langCode}}</span>
                   </div>
                   <div class="col-4">
                     <input type="text"
-                           class="form-control" formControlName="name">
+                           class="form-control" formControlName="langCodeDesc" [readOnly]="funCode === 'I'">
                   </div>
                   <div class="col-4">
                     <input type="text"
-                           class="form-control" formControlName="remarks">
+                           class="form-control" formControlName="menuCodeDesc" [readOnly]="funCode === 'I'">
                   </div>
                 </div>
               </div>
@@ -129,7 +124,7 @@
               </div>
               <div class="col-4 text-start">
                 <input type="text"
-                       class="form-control">
+                       class="form-control" >
               </div>
               <div class="col-6 text-start">
                 <button class="btn btn-outline-primary">Search</button>
@@ -296,7 +291,7 @@
 
         <div class="text-end">
           <button class="btn btn-danger me-2" (click)="onCancel()">Cancel</button>
-          <button class="btn btn-primary" (click)="onSave()">Save</button>
+          <button class="btn btn-primary" (click)="onSave()" [disabled]="funCode === 'I'">Save</button>
 
         </div>
       </form>
