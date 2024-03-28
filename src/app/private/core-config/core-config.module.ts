@@ -16,10 +16,10 @@ import {AgGridModule} from 'ag-grid-angular';
 import {MatRadioModule} from '@angular/material/radio';
 import {TranslateModule} from "@ngx-translate/core";
 import {RefCodeTypeMaintComponent} from "./refcodetype-maint/refcodetype-maint.component";
-import {MenuComponent} from "./menu/menu.component";
 import {MatStepperModule} from "@angular/material/stepper";
 import { MatStepperModule } from '@angular/material/stepper';
 import {RefCodeMaintComponent} from "./refcode-maint/refcode-maint.component";
+import {MenuMaintenanceComponent} from "./menu-maintenance/menu-maintenance.component";
 
 
 const routes: Routes = [
@@ -34,7 +34,7 @@ const routes: Routes = [
     CoreConfigComponent,
     RefCodeTypeMaintComponent,
     RefCodeMaintComponent,
-    MenuComponent
+    MenuMaintenanceComponent
   ],
   imports: [
     RouterModule.forChild(routes),
