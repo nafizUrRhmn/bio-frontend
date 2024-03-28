@@ -26,8 +26,12 @@
   </div>
 
   <div class="d-flex flex-row-reverse">
-    <button (click)="onNextPage()" class="btn btn-outline-danger">NEXT</button>
-    <button (click)="onPrevPage()" class="btn btn-outline-danger">PREV</button>
+    <button (click)="onNextPage()"
+            class="btn btn-outline-danger"
+            [disabled]="maxPageNumber === 0 || (currentPageNumber === maxPageNumber)">
+      NEXT
+    </button>
+    <button (click)="onPrevPage()" class="btn btn-outline-danger" [disabled]="currentPageNumber===1">PREV</button>
   </div>
 
 </div>

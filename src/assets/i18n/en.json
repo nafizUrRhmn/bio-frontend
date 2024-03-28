@@ -40,8 +40,26 @@
   "BBL000028" : "Beneficiary Mobile No",
   "BBL000029" : "Please enter the beneficiary mobile number.",
 
-  "BBL_RCTM_FUNC_CODE" : "Function Code",
-  "BBL_RCTM_REF_TYPE" : "Reference Code Type",
+  "BBL_RCTM_MAIN_HEADER" : "RCT Maintainance",
+  "BBL_RCTM_DETAIL_HEADER" : "RCT Details",
+  "BBL_RCTM_FUNC_CODE" : "Function Code *",
+  "BBL_RCTM_REF_TYPE" : "Reference Type *",
+  "BBL_RCTM_FUNC_CODE_REQ" : "function code must be selected",
+  "BBL_RCTM_REF_TYPE_REQ" : "Reference Type must be entered",
+  "BBL_RCTM_NEW_REF_TYPE" : "New Reference Type",
+  "BBL_RCTM_REF_TYPE_DESC" : "Reference Type Desc *",
+  "BBL_RCTM_REF_TYPE_LEN" : "Length *",
+  "BBL_RCTM_DEP_FLG" : "Dependent Flag *",
+  "BBL_RCTM_DEP_TYPE" : "Dependent Ref Type *",
+  "BBL_RCTM_DEP_DESC" : "Dep Ref Type Description *",
+
+  "BBL_PRIMARY_BTN_SEARCH" : "Search",
+  "BBL_PRIMARY_BTN_NEXT" : "Next",
+  "BBL_PRIMARY_BTN_CANCEL" : "Cancel",
+  "BBL_PRIMARY_BTN_SUBMIT" : "Submit",
+  "BBL_RADIO_BTN_YES" : "Yes",
+  "BBL_RADIO_BTN_NO" : "No",
+
 
   "BBL000100" : "Back",
   "BBL000101" : "Reset",
