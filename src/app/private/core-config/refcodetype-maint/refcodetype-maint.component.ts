@@ -31,14 +31,13 @@ export class RefCodeTypeMaintComponent implements OnInit {
   isVisibleNewRefType:boolean;
   isVisibleDepSrchBtn: boolean;
   isVisibleSubmitBtn: boolean;
-  isOnNextClick:boolean
 
   ngOnInit() {
     this.refCodeTypeForm = this.fb.group({
       funcCode: ['', [Validators.required]],
       refCodeType: ['', [Validators.required]],
     });
-    this.refCodeTypeDesc = '';
+    this.refCodeTypeDesc = 'N/A';
     this.refDetailForm = this.fb.group({
         newRefCodeType : ['',[Validators.required]],
         refDescription: ['', [Validators.required]],
@@ -51,42 +50,35 @@ export class RefCodeTypeMaintComponent implements OnInit {
     this.isVisibleDepSrchBtn = true;
     this.isVisibleNewRefType = false;
     this.isVisibleSubmitBtn = true;
-    this.isOnNextClick = false;
   }
 
   onSearch(funcCode:string, refTypeOrDsc:string,fromControlName:string) {
-    this.refCodeService.getRefTypeList(funcCode, refTypeOrDsc)
-      .pipe(take(1))
-      .subscribe({
-        next: (response) => {
-          this.openDialogue(response,fromControlName);
-        },
-        error: err => {
-          this.alertService.errorAlert(err.error.message);
-        }
-      });
-  }
-
-  openDialogue(response: any,fromControlName:string) {
+    const payLoad = {
+      "functionCode": funcCode,
+      "refCodeType" : refTypeOrDsc
+    };
     const dialogRef = this.dialog.open(AgbListComponent, {
       width: '50%',
-      data: {title: 'Reference Type List', content: response},
+      data: {
+         title:'Reference Type Data',
+         serviceName : 'getRefTypeList',
+         srchPayLoad : payLoad,
+      },
       disableClose: true
     });
     dialogRef.afterClosed().pipe(take(1)).subscribe(selectedRow => {
       if(fromControlName === 'refCodeType') {
-        this.refCodeType.setValue(selectedRow.refCodeType);
-        this.refCodeTypeDesc = selectedRow.refCodeTypeDesc;
+        this.refCodeType.setValue(selectedRow?.refCodeType);
+        this.refCodeTypeDesc = selectedRow?.refCodeTypeDesc;
       }
       else if(fromControlName === 'depRefType') {
-        this.depRefType.setValue(selectedRow.refCodeType);
-        this.depRefCodeTypeDesc.setValue(selectedRow.refCodeTypeDesc);
+        this.depRefType.setValue(selectedRow?.refCodeType);
+        this.depRefCodeTypeDesc.setValue(selectedRow?.refCodeTypeDesc);
       }
     });
   }
 
   onNext() {
-    this.isOnNextClick = true;
     if (this.refCodeTypeForm.invalid) {
       return;
     }
@@ -96,13 +88,11 @@ export class RefCodeTypeMaintComponent implements OnInit {
         next: (response) => {
           if(response.formData){
             this.setDetailFormFields(response.formData);
-            this.isOnNextClick = false;
             this.stepper.next();
           }
         },
         error: err => {
           this.alertService.errorAlert(err.error.message);
-          this.isOnNextClick = false;
         }
       });
   }
@@ -124,7 +114,6 @@ export class RefCodeTypeMaintComponent implements OnInit {
   }
   onCancel() {
     this.refDetailForm.reset();
-    this.isOnNextClick = false;
   }
 
   onSubmit() {
@@ -175,7 +164,6 @@ export class RefCodeTypeMaintComponent implements OnInit {
   }
 
   onChangeFuncCode(event: any) {
-    console.log(this.funcCode.value);
     switch (this.funcCode.value) {
       case 'I':{
         this.disableDetailFormFields();
@@ -192,14 +180,7 @@ export class RefCodeTypeMaintComponent implements OnInit {
         this.isVisibleDepSrchBtn = true;
       }
         break;
-      case 'D':{
-        this.disableDetailFormFields();
-        this.isVisibleNewRefType = false;
-        this.newRefCodeType.setValue('');
-        this.isVisibleSubmitBtn = true;
-        this.isVisibleDepSrchBtn = false;
-      }
-      break;
+      case 'D':
       case 'V':{
         this.disableDetailFormFields();
         this.isVisibleNewRefType = false;
@@ -207,14 +188,19 @@ export class RefCodeTypeMaintComponent implements OnInit {
         this.isVisibleSubmitBtn = true;
         this.isVisibleDepSrchBtn = false;
       }
-        break;
-      default: {
+      break;
+      case 'A':
+      case 'U':
+      case 'M':
+      case 'X':{
         this.enableDetailFormFields();
         this.isVisibleNewRefType = false;
         this.newRefCodeType.setValue('');
         this.isVisibleSubmitBtn = true;
         this.isVisibleDepSrchBtn = true;
       }
+        break;
+      default:
         break;
     }
   }

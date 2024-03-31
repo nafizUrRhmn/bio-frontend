@@ -20,10 +20,6 @@ export class RefCodeTypeMaintService {
   constructor(
     private http: HttpClient) {
   }
-  getRefTypeList(functionCode:string, refCodeType:string) {
-    return this.http.post<any>(`${this.baseUrl}/get-refType-list`, {functionCode, refCodeType})
-  }
-
   getRefTypeDetail(functionCode:string, refCodeType:string) {
     return this.http.post<any>(`${this.baseUrl}/get-refType-detail`, {functionCode, refCodeType})
   }

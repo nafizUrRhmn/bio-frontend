@@ -1,16 +1,18 @@
 <mat-stepper [linear]="isLinear" #stepper>
-  <mat-step [stepControl]="refCodeTypeForm" label="RCT Maintainance">
+  <mat-step [stepControl]="refCodeTypeForm" label="{{'BBL_RCTM_MAIN_HEADER'| translate}}">
     <form [formGroup]="refCodeTypeForm">
       <div class="d-flex flex-column m-2 me-5">
         <div class="pt-1 w-50 row mt-5">
-          <label for="funcCode" class="form-label text-muted fw-bold col-sm-6 col-md-6 col-lg-4">Function Code *</label>
+          <label for="funcCode" class="form-label text-muted fw-bold col-sm-6 col-md-6 col-lg-4">
+            {{ 'BBL_RCTM_FUNC_CODE' | translate }}
+          </label>
           <div class="col-sm-6 col-md-6 col-lg-8">
             <select id="funcCode"
                     class="form-select form-select-sm"
                     aria-label=".form-select-lg example"
                     formControlName="funcCode"
                     (change)="onChangeFuncCode($event)"
-                    [ngClass]="{ 'is-invalid': isOnNextClick && funcCode.errors }" >
+                    [class.is-invalid]="( funcCode.touched) && funcCode.invalid" >
               <option selected > </option>
               <option value="I">I-Inquiry</option>
               <option value="A">A-Add</option>
@@ -22,15 +24,16 @@
               <option value="C">C-Copy</option>
             </select>
             <div class="d-flex flex-row">
-              <div *ngIf="isOnNextClick && funcCode.invalid" class="error-feedback">
-                <div *ngIf="funcCode.errors?.['required']">function code must be selected</div>
+              <div  *ngIf="( funcCode.touched) && funcCode.hasError('required')"
+                    class="error-feedback">
+                {{ 'BBL_RCTM_FUNC_CODE_REQ' | translate }}
               </div>
             </div>
           </div>
         </div>
         <div class="pt-4 w-50 row">
           <label for="refCodeType" class="form-label text-muted fw-bold col-sm-6 col-md-6 col-lg-4">
-            Reference Type *
+            {{'BBL_RCTM_REF_TYPE'|translate}}
           </label>
           <div class="col-sm-6 col-md-6 col-lg-8">
             <div class="d-flex flex-row">
@@ -40,20 +43,28 @@
                 id="refCodeType"
                 formControlName="refCodeType"
                 maxlength="2"
-                [ngClass]="{ 'is-invalid': isOnNextClick && refCodeType.errors }"
+                [class.is-invalid]="(refCodeType.touched) && funcCode.invalid"
               />
                 <button type="button" class="btn btn-outline-primary ms-5"
                       (click)="onSearch(funcCode.value,refCodeType.value,'refCodeType')">
-                Search
+                {{ 'BBL_PRIMARY_BTN_SEARCH' | translate }}
               </button>
-              <label class="form-label text-muted">{{refCodeTypeDesc}}</label>
             </div>
             <div class="d-flex flex-row">
-              <div *ngIf="isOnNextClick && refCodeType.invalid" class="error-feedback">
-                <div *ngIf="refCodeType.errors?.['required']">Reference Type must be entered</div>
+              <div  *ngIf="( refCodeType.touched) && refCodeType.hasError('required')"
+                    class="error-feedback">
+                {{ 'BBL_RCTM_REF_TYPE_REQ' | translate }}
               </div>
             </div>
           </div>
+        </div>
+        <div class="pt-4 w-50 row">
+          <label for="refCodeType" class="text-muted fw-bold col-sm-6 col-md-6 col-lg-4">
+            {{'BBL_RCTM_REF_TYPE_DESC' | translate }}
+          </label>
+            <div class="col-sm-6 col-md-6 col-lg-8">
+              {{refCodeTypeDesc}}
+            </div>
         </div>
       </div>
 
@@ -61,7 +72,7 @@
       <div class="mt-4 d-flex justify-content-end">
         <button type="button" mat-button class="btn btn-secondary mt-5" (click)="onNext()">
           <div class="d-flex align-items-center justify-content-center gap-1">
-            Next
+            {{ 'BBL_PRIMARY_BTN_NEXT' | translate}}
             <i class="ti ti-arrow-right fs-3"></i>
           </div>
 
@@ -72,41 +83,40 @@
 
 
   <!-- SECOND STEP -->
-  <mat-step [stepControl]="refDetailForm" label="RCT Details" class="prevent-scroll">
+  <mat-step [stepControl]="refDetailForm" label="{{'BBL_RCTM_DETAIL_HEADER'| translate}}" class="prevent-scroll">
     <div class="row text-center pb-5">
       <div class="col-sm-6 col-md-4 col-lg-4">
-        <span class="text-muted fw-bold mt-2">Function Code - {{ funcCode.value }}</span>
+        <span class="text-muted fw-bold mt-2">{{ 'BBL_RCTM_FUNC_CODE' | translate }} - {{ funcCode.value }}</span>
       </div>
       <div class="col-sm-6 col-md-4 col-lg-4">
-        <span class="text-muted fw-bold mt-2">Reference Type - {{ refCodeType.value }}</span>
+        <span class="text-muted fw-bold mt-2">{{'BBL_RCTM_REF_TYPE' | translate}} - {{ refCodeType.value }}</span>
       </div>
     </div>
     <form [formGroup]="refDetailForm">
       <div class="m-2 w-50">
         <div class="row" *ngIf="isVisibleNewRefType">
           <div class="col-sm-6 col-md-4 col-lg-4">
-            <label class="text-muted fw-bold mt-2">Reference Type New</label>
+            <label class="text-muted fw-bold mt-2">{{'BBL_RCTM_NEW_REF_TYPE' | translate }}</label>
           </div>
           <div class="col-sm-6 col-md-8 col-lg-8">
             <input type="text" class="form-control" maxlength="2" formControlName="newRefCodeType">
           </div>
         </div>
         <div class="row mt-3">
-          <div class="col-sm-6 col-md-4 col-lg-4">
-            <label class="text-muted fw-bold mt-2">Reference Type Desc *</label>
+          <div class="col-sm-6 col-md-4 col-lg-4 ">
+            <label class="fw-bold mt-2">{{'BBL_RCTM_REF_TYPE_DESC' | translate }}</label>
           </div>
           <div class="col-sm-6 col-md-8 col-lg-8">
             <input type="text"
                    class="form-control"
                    maxlength="100"
-                   formControlName="refDescription"
-                   [ngClass]="{ 'is-invalid': isOnNextClick && funcCode.errors }" />
+                   formControlName="refDescription" />
           </div>
         </div>
 
         <div class="row mt-3">
           <div class="col-sm-6 col-md-4 col-lg-4">
-            <label class="text-muted fw-bold">Length *</label>
+            <label class="text-muted fw-bold">{{ 'BBL_RCTM_REF_TYPE_LEN' | translate}}</label>
           </div>
           <div class="col-sm-6 col-md-8 col-lg-8">
             <input type="number"
@@ -119,7 +129,7 @@
 
         <div class="row mt-3">
           <div class="col-sm-6 col-md-4 col-lg-4">
-            <label class="text-muted fw-bold">Dependent Flg*</label>
+            <label class="text-muted fw-bold">{{ 'BBL_RCTM_DEP_FLG' | translate }}</label>
           </div>
           <div class="col-sm-6 col-md-8 col-lg-8 d-flex justify-content-around">
             <div class="form-check">
@@ -130,7 +140,7 @@
                      formControlName="dependentFlg"
                      (change)="onChangeDepFlg($event)">
               <label class="form-check-label" for="dependentFlgYes">
-                YES
+                {{'BBL_RADIO_BTN_YES' | translate}}
               </label>
             </div>
             <div class="form-check">
@@ -141,7 +151,7 @@
                      formControlName="dependentFlg"
                      (change)="onChangeDepFlg($event)">
               <label class="form-check-label" for="dependentFlgNo">
-                NO
+                {{'BBL_RADIO_BTN_NO' | translate}}
               </label>
             </div>
           </div>
@@ -149,7 +159,7 @@
 
         <div class="row mt-3" *ngIf="isVisibleDepFlds">
           <div class="col-sm-6 col-md-4 col-lg-4">
-            <label class="text-muted fw-bold">Dep Ref Type</label>
+            <label class="text-muted fw-bold">{{ 'BBL_RCTM_DEP_TYPE' | translate}}</label>
           </div>
           <div class="col-sm-6 col-md-4 col-lg-4">
             <input type="text" class="form-control"
@@ -159,7 +169,7 @@
           <div class="col-sm-6 col-md-4 col-lg-4 " *ngIf="isVisibleDepSrchBtn">
             <button type="button" class="btn btn-outline-primary"
                     (click)="onSearch('I',depRefType.value,'depRefType')">
-              Search
+              {{ 'BBL_PRIMARY_BTN_SEARCH' | translate }}
             </button>
           </div>
 
@@ -168,7 +178,7 @@
         </div>
         <div class="row mt-3 d-flex justify-content-center align-items-center" *ngIf="isVisibleDepFlds">
           <div class="col-sm-6 col-md-4 col-lg-4">
-            <label class="text-muted fw-bold">Dep Ref Type Description *</label>
+            <label class="text-muted fw-bold">{{'BBL_RCTM_DEP_DESC' | translate}}</label>
           </div>
           <div class="col-sm-6 col-md-8 col-lg-8">
             <input type="text"
@@ -183,7 +193,7 @@
         <div>
           <button type="button" mat-button matStepperPrevious class="btn btn-danger"
                   (click)="onCancel()">
-            Cancel
+            {{'BBL_PRIMARY_BTN_CANCEL' | translate}}
           </button>
         </div>
 
@@ -191,7 +201,7 @@
           <button type="button" class="btn btn-primary"
                   *ngIf="isVisibleSubmitBtn"
                   (click)="onSubmit()">
-            Submit
+            {{'BBL_PRIMARY_BTN_SUBMIT' | translate}}
           </button>
         </div>
       </div>

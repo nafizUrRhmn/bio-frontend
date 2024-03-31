@@ -1,7 +1,9 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
-import {AgGridEvent, ColDef, GridApi, SelectionChangedEvent} from 'ag-grid-community';
+import {ColDef, GridApi, SelectionChangedEvent} from 'ag-grid-community';
 import {AgGridAngular} from "ag-grid-angular";
+import {take} from "rxjs";
+import {SearchListService} from "../../../_services/search.list.service";
 
 @Component({
   selector: 'app-agb-list',
@@ -13,7 +15,8 @@ import {AgGridAngular} from "ag-grid-angular";
 export class AgbListComponent implements OnInit {
   private gridApi: GridApi;
   constructor(public dialogRef: MatDialogRef<AgbListComponent>,
-              @Inject(MAT_DIALOG_DATA) public data: any) {
+              @Inject(MAT_DIALOG_DATA) public data: any,
+              private srchListService : SearchListService) {
   }
 
   rowData: any;
@@ -21,17 +24,27 @@ export class AgbListComponent implements OnInit {
   title: string;
   messageDetails: string;
   selectionMode: any = 'single';
-  paginationPageSize: number | undefined;
+  maxPageNumber:number=99;
+  currentPageNumber:number=1;
 
   ngOnInit(): void {
-    this.title = this.data.title;
-    let listObj = this.data.content;
-    //this.paginationPageSize = 10;
-    this.messageDetails = listObj.message + ' Current Page No.' + listObj.curPageNum + ' Max Page No.' + listObj.maxPageNum;
-    this.setHeaderNames(listObj.numberOfRecs,listObj.headerInfo);
-    this.setGridData(listObj.numberOfRecs,listObj.headerInfo, listObj.dataBlock);
+    this.callApi();
   }
 
+  callApi() {
+    this.data.srchPayLoad.numOfRecsPerPage = 10;
+    this.data.srchPayLoad.pageNum = this.currentPageNumber;
+    this.srchListService[`${this.data.serviceName}`](this.data.srchPayLoad)
+      .pipe(take(1))
+      .subscribe({
+        next: (listBlock) => {
+          this.maxPageNumber = listBlock.maxPageNum;
+          this.messageDetails = listBlock.message + ' Current Page No.' + listBlock.curPageNum + ' Max Page No.' + listBlock.maxPageNum;
+          this.setHeaderNames(listBlock.numberOfRecs,listBlock.headerInfo);
+          this.setGridData(listBlock.numberOfRecs,listBlock.headerInfo, listBlock.dataBlock);
+        }
+      });
+  }
   setHeaderNames(numberOfRecs:number,headerInfo: string[]) {
     this.columnDefs = [];
     let definition: ColDef;
@@ -62,14 +75,6 @@ export class AgbListComponent implements OnInit {
     }
   }
 
-  onSortChanged(e: AgGridEvent) {
-    e.api.refreshCells();
-  }
-
-  onFilterChanged(e: AgGridEvent) {
-    e.api.refreshCells();
-  }
-
   onCloseClick(): void {
     this.dialogRef.close();
   }
@@ -81,5 +86,15 @@ export class AgbListComponent implements OnInit {
 
   onGridReady(params) {
     this.gridApi = params.api;
+  }
+
+  onNextPage() {
+    this.currentPageNumber++;
+    this.callApi();
+  }
+
+  onPrevPage() {
+    this.currentPageNumber--;
+    this.callApi();
   }
 }
