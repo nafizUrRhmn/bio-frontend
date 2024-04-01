@@ -46,6 +46,11 @@ export class HeaderComponent {
   translateLanguageTo(selectedOpt: any) {
     this.eventBus.publish({'name': EventNamesConstant.LANGUAGE, 'langValue': this.selectedOpt});
     this.translate.use(selectedOpt.val);
+    this.closeAllTabs();
+  }
+
+  closeAllTabs() {
+    this.eventBus.publish({'name': 'closeAllTabs'});
   }
 
   onLogout() {

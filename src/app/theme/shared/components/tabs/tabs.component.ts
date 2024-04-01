@@ -3,6 +3,7 @@ import { Component, ElementRef, Input, QueryList, ViewChild, ViewChildren } from
 import { MatTab, MatTabGroup } from "@angular/material/tabs";
 import { NavigationItem } from "../../../layout/private-layout/navigation/navigation-item";
 import { NavigationService } from "../../../layout/private-layout/navigation/nav-content/navigation.service";
+import { EventBusService } from 'src/app/_services/event-bus.service';
 
 @Component({
   selector: 'app-tabs',
@@ -18,7 +19,8 @@ export class TabsComponent {
   @Input() initialized;
   constructor(
     private navigationService: NavigationService,
-    private alertService: AlertService
+    private alertService: AlertService,
+    private eventBus: EventBusService
     ) {
     console.log(this.tabs.splice(0, 1));
     this.closedTabs = [];
@@ -40,6 +42,9 @@ export class TabsComponent {
       }
 
     });
+    this.eventBus.getObservable('closeAllTabs').subscribe(() => {
+      this.closeAllTabs();
+    });
   }
 
   closeTab(event: any, index: number) {
@@ -47,5 +52,11 @@ export class TabsComponent {
     this.closedTabs.push(index);
     this.tabGroup.selectedIndex = this.tabNodes.length - 1;
     this.tabs.splice(index, 1);
+  }
+
+  closeAllTabs() {
+    this.tabs = [];
+    this.closedTabs = [];
+    this.tabGroup.selectedIndex = -1;
   }
 }
