@@ -39,6 +39,28 @@
   "BBL000027" : "Please enter the Account No.",
   "BBL000028" : "Beneficiary Mobile No",
   "BBL000029" : "Please enter the beneficiary mobile number.",
+  "BBL000030" : "Beneficiary Name",
+  "BBL000031" : "Amount",
+  "BBL000032" : "Transaction Remarks",
+  "BBL000033" : "Transfer Type",
+  "BBL000034" : "Transfer Amount",
+  "BBL000035" : "Sender Account No",
+
+  "BBL000036" : "Customer Id",
+  "BBL000037" : "Mobile No",
+  "BBL000038" : "Name",
+  "BBL000039" : "Email",
+  "BBL000040" : "Account Type",
+  "BBL000041" : "Status",
+  "BBL000042" : "Product",
+  "BBL000043" : "Sol Id",
+
+
+  "BBL000044" : "Change Password",
+  "BBL000045" : "Old Password",
+  "BBL000046" : "New Password",
+  "BBL000047" : "Confirm Password",
+  
 
   "BBL_RCTM_MAIN_HEADER" : "RCT Maintainance",
   "BBL_RCTM_DETAIL_HEADER" : "RCT Details",
@@ -68,5 +90,6 @@
   "BBL000104" : "Access Control",
   "BBL000105" : "Operations",
   "BBL000106" : "Module",
-  "BBL000107" : "Core Config"
+  "BBL000107" : "Core Config",
+  "BBL000108" : "Apply"
 }

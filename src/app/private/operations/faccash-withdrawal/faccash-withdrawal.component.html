@@ -1,27 +1,57 @@
-<div class="row">
-    <div class="col-12">
-        <div class="container mt-3">
-            <div class="card">
-                <div class="card-header">{{'BBL000001' | translate}}</div>
-                <div class="card-body">
-                    <form [formGroup]="facCashWithdrawal">
-                        <div class="mb-1">
-                            <label for="beneficiaryMobileNo" class="form-label">{{'BBL000024' | translate}}</label>
-                            <div class="row">
-                                <div class="col-12">
-                                    <input type="text" class="form-control" id="beneficiaryMobileNo"
-                                        formControlName="beneficiaryMobileNo" placeholder="{{'BBL000024' | translate}}"
-                                        [class.is-invalid]="facCashWithdrawal.get('beneficiaryMobileNo').invalid && facCashWithdrawal.get('beneficiaryMobileNo').touched" />
-                                    <div class="invalid-feedback"
-                                        *ngIf="facCashWithdrawal.get('beneficiaryMobileNo').hasError('required') &&  facCashWithdrawal.get('beneficiaryMobileNo').touched ">
-                                      {{'BBL000025' | translate}}
-                                    </div>
-                                </div>
-                            </div>
+<div class="container">
+    <!-- HEADER TEXT -->
+    <div class="border-bottom">
+        <h2 class="text-primary fw-bold my-4">{{ 'BBL000001' | translate | uppercase }}</h2>
+    </div>
+
+    <!-- FORM DETAILS -->
+    <div class="mt-4">
+        <form [formGroup]="facCashWithdrawal">
+            <div class="mb-1">
+                <label for="beneficiaryMobileNo" class="form-label text-muted fw-bold fs-5 mb-0">{{'BBL000024' |
+                    translate}}</label>
+                <div class="row">
+                    <div class="col-12">
+                        <input type="text" class="form-control border-2" id="beneficiaryMobileNo"
+                            formControlName="beneficiaryMobileNo"
+                            [class.is-invalid]="facCashWithdrawal.get('beneficiaryMobileNo').invalid && facCashWithdrawal.get('beneficiaryMobileNo').touched" />
+                        <div class="invalid-feedback"
+                            *ngIf="facCashWithdrawal.get('beneficiaryMobileNo').hasError('required') &&  facCashWithdrawal.get('beneficiaryMobileNo').touched ">
+                            {{'BBL000025' | translate}}
                         </div>
-                    </form>
+                    </div>
                 </div>
             </div>
-        </div>
+
+            <!-- BUTTONS -->
+            <div class="d-flex flex-row-reverse mt-5">
+
+                <!-- PROCEED BUTTON -->
+                <button type="button" class="btn btn-primary">
+                    <div class="d-flex align-items-center justify-content-center gap-1">
+                        {{ 'BBL000102' | translate }}
+                        <i class="ti ti-check fs-3"></i>
+                    </div>
+                </button>
+                <!-- RESET BUTTON -->
+                <button type="button" class="btn btn-warning mx-2">
+                    <div class="d-flex align-items-center justify-content-center gap-1">
+                        {{ 'BBL000101' | translate }}
+                        <i class="ti ti-refresh fs-3"></i>
+                    </div>
+                </button>
+                <!-- BACK BUTTON -->
+                <button type="button" class="btn btn-secondary">
+                    <div class="d-flex align-items-center justify-content-center gap-1">
+                        <i class="ti ti-arrow-left fs-3"></i>
+                        {{ 'BBL000100' | translate }}
+                    </div>
+                </button>
+
+
+            </div>
+
+        </form>
     </div>
+
 </div>
