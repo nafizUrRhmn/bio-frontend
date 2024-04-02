@@ -15,13 +15,9 @@
                     [class.is-invalid]="( funcCode.touched) && funcCode.invalid" >
               <option selected > </option>
               <option value="I">I-Inquiry</option>
-              <option value="A">A-Add</option>
-              <option value="D">D-Delete</option>
-              <option value="U">U-Undelete</option>
-              <option value="M">M-Modification</option>
-              <option value="V">V-Verification</option>
-              <option value="X">X-Cancel</option>
-              <option value="C">C-Copy</option>
+              <option *ngFor="let item of funcCodeOptions" [value]="item.optionValue">
+                {{item.optionText}}
+              </option>
             </select>
             <div class="d-flex flex-row">
               <div  *ngIf="( funcCode.touched) && funcCode.hasError('required')"

@@ -6,6 +6,7 @@ import {AgbListComponent} from "../../../shared/components/agb-list/agb-list.com
 import {MatStepper} from "@angular/material/stepper";
 import {RefCodeTypeMaintService} from "../../../_services/refcodetype-maint.service";
 import {take} from "rxjs";
+import {NavigationService} from "../../../theme/layout/private-layout/navigation/nav-content/navigation.service";
 
 @Component({
   selector: 'app-refcodetype-inquiry',
@@ -19,9 +20,9 @@ export class RefCodeTypeMaintComponent implements OnInit {
   constructor(private fb: FormBuilder,
               private alertService: AlertService,
               private refCodeService: RefCodeTypeMaintService,
-              public dialog: MatDialog) {
+              public dialog: MatDialog,
+              private navService: NavigationService) {
   }
-
   refCodeTypeForm: FormGroup;
   refDetailForm: FormGroup;
   isLinear = false;
@@ -31,8 +32,10 @@ export class RefCodeTypeMaintComponent implements OnInit {
   isVisibleNewRefType:boolean;
   isVisibleDepSrchBtn: boolean;
   isVisibleSubmitBtn: boolean;
+  funcCodeOptions = [];
 
   ngOnInit() {
+    this.funcCodeOptions = this.navService.getPermittedOptions();
     this.refCodeTypeForm = this.fb.group({
       funcCode: ['', [Validators.required]],
       refCodeType: ['', [Validators.required]],
