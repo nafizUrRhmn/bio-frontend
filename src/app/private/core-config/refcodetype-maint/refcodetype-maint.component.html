@@ -41,7 +41,7 @@
                 maxlength="2"
                 [class.is-invalid]="(refCodeType.touched) && funcCode.invalid"
               />
-                <button type="button" class="btn btn-outline-primary ms-5"
+                <button type="button" class="btn btn-outline-primary ms-5" [hidden]="isHiddenRefSrchBtn"
                       (click)="onSearch(funcCode.value,refCodeType.value,'refCodeType')">
                 {{ 'BBL_PRIMARY_BTN_SEARCH' | translate }}
               </button>
@@ -90,7 +90,7 @@
     </div>
     <form [formGroup]="refDetailForm">
       <div class="m-2 w-50">
-        <div class="row" *ngIf="isVisibleNewRefType">
+        <div class="row" [hidden]="isHiddenNewRefType">
           <div class="col-sm-6 col-md-4 col-lg-4">
             <label class="text-muted fw-bold mt-2">{{'BBL_RCTM_NEW_REF_TYPE' | translate }}</label>
           </div>
@@ -153,7 +153,7 @@
           </div>
         </div>
 
-        <div class="row mt-3" *ngIf="isVisibleDepFlds">
+        <div class="row mt-3" [hidden]="isHiddenDepFlds">
           <div class="col-sm-6 col-md-4 col-lg-4">
             <label class="text-muted fw-bold">{{ 'BBL_RCTM_DEP_TYPE' | translate}}</label>
           </div>
@@ -162,7 +162,7 @@
                    maxlength="2"
                    formControlName="depRefType">
           </div>
-          <div class="col-sm-6 col-md-4 col-lg-4 " *ngIf="isVisibleDepSrchBtn">
+          <div class="col-sm-6 col-md-4 col-lg-4 " [hidden]="isHiddenDepSrchBtn">
             <button type="button" class="btn btn-outline-primary"
                     (click)="onSearch('I',depRefType.value,'depRefType')">
               {{ 'BBL_PRIMARY_BTN_SEARCH' | translate }}
@@ -172,7 +172,7 @@
 
 
         </div>
-        <div class="row mt-3 d-flex justify-content-center align-items-center" *ngIf="isVisibleDepFlds">
+        <div class="row mt-3 d-flex justify-content-center align-items-center" [hidden]="isHiddenDepFlds">
           <div class="col-sm-6 col-md-4 col-lg-4">
             <label class="text-muted fw-bold">{{'BBL_RCTM_DEP_DESC' | translate}}</label>
           </div>
@@ -195,7 +195,7 @@
 
         <div class="ms-2">
           <button type="button" class="btn btn-primary"
-                  *ngIf="isVisibleSubmitBtn"
+                  [hidden] ="isHiddenSubmitBtn"
                   (click)="onSubmit()">
             {{'BBL_PRIMARY_BTN_SUBMIT' | translate}}
           </button>

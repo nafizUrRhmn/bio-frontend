@@ -5,8 +5,8 @@ import {AlertService} from "../../../_services/alert-service";
 import {AgbListComponent} from "../../../shared/components/agb-list/agb-list.component";
 import {MatStepper} from "@angular/material/stepper";
 import {RefCodeTypeMaintService} from "../../../_services/refcodetype-maint.service";
-import {take} from "rxjs";
 import {NavigationService} from "../../../theme/layout/private-layout/navigation/nav-content/navigation.service";
+import {take} from "rxjs";
 
 @Component({
   selector: 'app-refcodetype-inquiry',
@@ -28,10 +28,11 @@ export class RefCodeTypeMaintComponent implements OnInit {
   isLinear = false;
   refCodeTypeDesc: string;
   private lastChangeTime : string;
-  isVisibleDepFlds:boolean;
-  isVisibleNewRefType:boolean;
-  isVisibleDepSrchBtn: boolean;
-  isVisibleSubmitBtn: boolean;
+  isHiddenDepFlds:boolean;
+  isHiddenNewRefType:boolean;
+  isHiddenDepSrchBtn: boolean;
+  isHiddenSubmitBtn: boolean;
+  isHiddenRefSrchBtn: boolean;
   funcCodeOptions = [];
 
   ngOnInit() {
@@ -49,10 +50,11 @@ export class RefCodeTypeMaintComponent implements OnInit {
         depRefType: ['', [Validators.required]],
         depRefCodeTypeDesc : [{value: '', disabled: true},[Validators.required]]
     });
-    this.isVisibleDepFlds = true;
-    this.isVisibleDepSrchBtn = true;
-    this.isVisibleNewRefType = false;
-    this.isVisibleSubmitBtn = true;
+    this.isHiddenDepFlds = false;
+    this.isHiddenDepSrchBtn = false;
+    this.isHiddenNewRefType = false;
+    this.isHiddenSubmitBtn = false;
+    this.isHiddenRefSrchBtn = false;
   }
 
   onSearch(funcCode:string, refTypeOrDsc:string,fromControlName:string) {
@@ -104,11 +106,11 @@ export class RefCodeTypeMaintComponent implements OnInit {
     this.refLength.setValue(refCodeTypeDetail.refCodeLen);
     this.dependentFlg.setValue(refCodeTypeDetail.depFlg);
     if(refCodeTypeDetail.depFlg === 'Y'){
-      this.isVisibleDepFlds = true;
+      this.isHiddenDepFlds = false;
       this.depRefType.setValue(refCodeTypeDetail.depRefCodeType);
       this.depRefCodeTypeDesc.setValue(refCodeTypeDetail.depRefCodeTypeDesc);
     } else{
-      this.isVisibleDepFlds = false;
+      this.isHiddenDepFlds = true;
       this.depRefType.setValue('');
       this.depRefCodeTypeDesc.setValue('');
     }
@@ -130,7 +132,7 @@ export class RefCodeTypeMaintComponent implements OnInit {
       "dependentRefCodeType": this.depRefType.value,
       "depRefCodeTypeDesc": this.depRefCodeTypeDesc.value,
       "refCodeLength": this.refLength.value,
-      "menuId": 'RCTMM'
+      "menuId": this.navService.getMenuId()
     };
 
     this.refCodeService.submit(payLoad).pipe(take(1)).subscribe({
@@ -145,9 +147,9 @@ export class RefCodeTypeMaintComponent implements OnInit {
 
   onChangeDepFlg(event: any) {
     if (this.dependentFlg.value === 'Y') {
-      this.isVisibleDepFlds = true;
+      this.isHiddenDepFlds = false;
     }else {
-      this.isVisibleDepFlds = false;
+      this.isHiddenDepFlds = true;
     }
     this.depRefType.setValue('');
     this.depRefCodeTypeDesc.setValue('')
@@ -170,26 +172,29 @@ export class RefCodeTypeMaintComponent implements OnInit {
     switch (this.funcCode.value) {
       case 'I':{
         this.disableDetailFormFields();
-        this.isVisibleNewRefType = false;
+        this.isHiddenNewRefType = true;
         this.newRefCodeType.setValue('');
-        this.isVisibleSubmitBtn = false;
-        this.isVisibleDepSrchBtn = false;
+        this.isHiddenSubmitBtn = true;
+        this.isHiddenDepSrchBtn = true;
+        this.isHiddenRefSrchBtn = false;
       }
         break;
       case 'C':{
         this.enableDetailFormFields();
-        this.isVisibleNewRefType = true;
-        this.isVisibleSubmitBtn = true;
-        this.isVisibleDepSrchBtn = true;
+        this.isHiddenNewRefType = false;
+        this.isHiddenSubmitBtn = false;
+        this.isHiddenDepSrchBtn = false;
+        this.isHiddenRefSrchBtn = false;
       }
         break;
       case 'D':
       case 'V':{
         this.disableDetailFormFields();
-        this.isVisibleNewRefType = false;
+        this.isHiddenNewRefType = true;
         this.newRefCodeType.setValue('');
-        this.isVisibleSubmitBtn = true;
-        this.isVisibleDepSrchBtn = false;
+        this.isHiddenSubmitBtn = false;
+        this.isHiddenDepSrchBtn = true;
+        this.isHiddenRefSrchBtn = false;
       }
       break;
       case 'A':
@@ -197,10 +202,11 @@ export class RefCodeTypeMaintComponent implements OnInit {
       case 'M':
       case 'X':{
         this.enableDetailFormFields();
-        this.isVisibleNewRefType = false;
+        this.isHiddenNewRefType = true;
         this.newRefCodeType.setValue('');
-        this.isVisibleSubmitBtn = true;
-        this.isVisibleDepSrchBtn = true;
+        this.isHiddenSubmitBtn = false;
+        this.isHiddenDepSrchBtn = false;
+        this.isHiddenRefSrchBtn = true;
       }
         break;
       default:
