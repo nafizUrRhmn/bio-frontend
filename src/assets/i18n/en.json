@@ -10,13 +10,13 @@
   "BBL000004" : "Source Of Fund",
   "BBL000005" : "Transaction Particular",
   "BBL000006" : "Customer Details",
-  "BBL000007" : "Please enter the Account No.",
-  "BBL000008" : "Account No. is required",
-  "BBL000009" : "Please Enter Amount",
-  "BBL000010" : "Please Enter Source Of Fund",
+  "BBL000007" : "Account No is required",
+  "BBL000008" : "Account No is required",
+  "BBL000009" : "Withdrawal Amount is required",
+  "BBL000010" : "Source Of Fund is required",
   "BBL000011" : "Transaction Particular is required",
 
-  "BBL000012" : "Amount of withdrawal",
+  "BBL000012" : "Withdrawal Amount",
   "BBL000013" : "Purpose of Withdrawal",
   "BBL000014" : "Purpose of Withdrawal is required",
 
@@ -47,12 +47,12 @@
   "BBL000035" : "Sender Account No",
 
   "BBL000036" : "Customer Id",
-  "BBL000037" : "Mobile No",
-  "BBL000038" : "Name",
+  "BBL000037" : "Mobile",
+  "BBL000038" : "Account Title",
   "BBL000039" : "Email",
   "BBL000040" : "Account Type",
-  "BBL000041" : "Status",
-  "BBL000042" : "Product",
+  "BBL000041" : "Account Status",
+  "BBL000042" : "Offer",
   "BBL000043" : "Sol Id",
 
 
@@ -60,6 +60,7 @@
   "BBL000045" : "Old Password",
   "BBL000046" : "New Password",
   "BBL000047" : "Confirm Password",
+  "BBL000048" : "Account Number must be of 13 or 16 digits",
   
 
   "BBL_RCTM_MAIN_HEADER" : "RCT Maintainance",
