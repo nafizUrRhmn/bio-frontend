@@ -3,7 +3,7 @@ import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 import {ColDef, GridApi, SelectionChangedEvent} from 'ag-grid-community';
 import {AgGridAngular} from "ag-grid-angular";
 import {take} from "rxjs";
-import {SearchListService} from "../../../_services/search.list.service";
+import {SearchListService} from "../../../_services/search-list.service";
 
 @Component({
   selector: 'app-agb-list',
