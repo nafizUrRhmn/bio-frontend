@@ -5,44 +5,42 @@
     <h2 class="text-primary fw-bold my-4">{{ 'BBL000001' | translate | uppercase }}</h2>
   </div>
 
-  <div class="col-8">
-    <form [formGroup]="loanInsMnt">
-      <div class="form-group mt-4">
-        <label for="optAcctNo" class="form-label text-muted fw-bold fs-5 mb-0">{{ 'BBL000015' | translate }}</label>
-        <input type="text" class="form-control border-2" id="optAcctNo" formControlName="optAcctNo" required
-          [class.is-invalid]="optAcctNo.touched && optAcctNo.invalid" />
-        <div *ngIf="optAcctNo.touched && optAcctNo.hasError('required')" class="invalid-feedback">{{ 'BBL000016' |
-          translate }}</div>
-      </div>
-    </form>
+  <!-- FORM DETAILS -->
+  <div class="row">
+    <div class="col-12">
+      <form [formGroup]="loanInsMnt">
+        <div class="form-group mt-4">
+          <label for="optAcctNo" class="form-label fw-bold fs-5 mb-0">{{ 'BBL000015' | translate }}</label>
+          <input type="text" class="form-control border-2" id="optAcctNo" formControlName="optAcctNo" required
+            [class.is-invalid]="optAcctNo.touched && optAcctNo.invalid" />
+          <div *ngIf="optAcctNo.touched && optAcctNo.hasError('required')" class="invalid-feedback">{{ 'BBL000016' |
+            translate }}</div>
+        </div>
+  
+        <!-- BUTTONS -->
+        <div class="d-flex flex-row-reverse mt-5">
+  
+          <!-- PROCEED BUTTON -->
+          <button type="button" class="btn btn-primary">
+            <div class="d-flex align-items-center justify-content-center gap-1">
+              {{ 'BBL000102' | translate }}
+              <i class="ti ti-check fs-3"></i>
+            </div>
+          </button>
+          <!-- RESET BUTTON -->
+          <button type="button" class="btn btn-warning mx-2">
+            <div class="d-flex align-items-center justify-content-center gap-1">
+              {{ 'BBL000101' | translate }}
+              <i class="ti ti-refresh fs-3"></i>
+            </div>
+          </button>
+  
+        </div>
+  
+      </form>
+    </div>
+  
   </div>
 
-  <!-- BUTTONS -->
-  <div class="d-flex flex-row-reverse mt-5">
-
-    <!-- PROCEED BUTTON -->
-    <button type="button" class="btn btn-primary">
-      <div class="d-flex align-items-center justify-content-center gap-1">
-        {{ 'BBL000102' | translate }}
-        <i class="ti ti-check fs-3"></i>
-      </div>
-    </button>
-    <!-- RESET BUTTON -->
-    <button type="button" class="btn btn-warning mx-2">
-      <div class="d-flex align-items-center justify-content-center gap-1">
-        {{ 'BBL000101' | translate }}
-        <i class="ti ti-refresh fs-3"></i>
-      </div>
-    </button>
-    <!-- BACK BUTTON -->
-    <button type="button" class="btn btn-secondary">
-      <div class="d-flex align-items-center justify-content-center gap-1">
-        <i class="ti ti-arrow-left fs-3"></i>
-        {{ 'BBL000100' | translate }}
-      </div>
-    </button>
-
-
-  </div>
 
 </div>

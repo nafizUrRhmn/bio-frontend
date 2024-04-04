@@ -22,7 +22,7 @@
 }
 .ti {
   font-family: tabler-icons !important;
-  speak: none;
+  /* speak: none; */
   font-style: normal;
   font-weight: 400;
   font-variant: normal;
