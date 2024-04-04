@@ -11,4 +11,8 @@ export class SearchListService {
   getRefTypeList(payLoad:any) {
     return this.http.post<any>(`${this.baseUrl}/get-refType-list`, payLoad)
   }
+
+  getRefCodeList(payLoad:any) {
+    return this.http.post<any>(`${this.baseUrl}/refcode/get-refCode-list`, payLoad)
+  }
 }

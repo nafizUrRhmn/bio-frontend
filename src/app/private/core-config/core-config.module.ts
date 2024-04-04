@@ -17,6 +17,7 @@ import {MatRadioModule} from '@angular/material/radio';
 import {TranslateModule} from "@ngx-translate/core";
 import {RefCodeTypeMaintComponent} from "./refcodetype-maint/refcodetype-maint.component";
 import { MatStepperModule } from '@angular/material/stepper';
+import {RefCodeMaintComponent} from "./refcode-maint/refcode-maint.component";
 
 
 const routes: Routes = [
@@ -29,7 +30,8 @@ const routes: Routes = [
 @NgModule({
   declarations: [
     CoreConfigComponent,
-    RefCodeTypeMaintComponent
+    RefCodeTypeMaintComponent,
+    RefCodeMaintComponent
   ],
   imports: [
     RouterModule.forChild(routes),
