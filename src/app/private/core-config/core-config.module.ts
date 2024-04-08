@@ -17,7 +17,6 @@ import {MatRadioModule} from '@angular/material/radio';
 import {TranslateModule} from "@ngx-translate/core";
 import {RefCodeTypeMaintComponent} from "./refcodetype-maint/refcodetype-maint.component";
 import {MatStepperModule} from "@angular/material/stepper";
-import { MatStepperModule } from '@angular/material/stepper';
 import {RefCodeMaintComponent} from "./refcode-maint/refcode-maint.component";
 import {MenuMaintenanceComponent} from "./menu-maintenance/menu-maintenance.component";
 import {NrxGridModule} from "../../shared/components/nrx-grid/nrx-grid.module";
