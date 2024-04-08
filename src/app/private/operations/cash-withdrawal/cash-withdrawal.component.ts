@@ -1,7 +1,13 @@
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators,FormControl } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
+import { Observable, catchError, map, tap, throwError } from 'rxjs';
 import { EventBusService } from 'src/app/_services/event-bus.service';
 import { FormFormatService } from 'src/app/_services/form-format.service';
+import { environment } from 'src/environments/environment';
+import { CashWithdrawalService } from './cash-withdrawal.service';
+import { AlertService } from 'src/app/_services/alert-service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cash-withdrawal',
@@ -18,9 +24,13 @@ export class CashWithdrawalComponent {
 
   constructor(
     private fb: FormBuilder,
-    private eventBus:EventBusService,
-    private formFormat: FormFormatService
-    ) {
+    private eventBus: EventBusService,
+    private formFormat: FormFormatService,
+    private http: HttpClient,
+    private cashWithdrawService: CashWithdrawalService,
+    private alertService: AlertService,
+    private router: Router
+  ) {
     this.cashWithdrawal = this.fb.group({
       accountNo: ['', [Validators.required, this.maxLengthValidator]],
       accountTitle: [{ value: null, disabled: true }, [Validators.required]],
@@ -28,7 +38,7 @@ export class CashWithdrawalComponent {
       purposeofWD: ['', [Validators.required]],
       tranPart: ['', [Validators.required]]
     });
-  } 
+  }
 
   get accountNo() {
     return this.cashWithdrawal.get('accountNo');
@@ -45,11 +55,11 @@ export class CashWithdrawalComponent {
 
   maxLengthValidator(control: FormControl) {
     const value = control.value;
-    const maxLengths = [13, 16]; 
+    const maxLengths = [13, 16];
     if (value && value.length && !maxLengths.includes(value.length)) {
       return { maxLength: true };
     }
-  
+
     return null;
   }
 
@@ -60,21 +70,38 @@ export class CashWithdrawalComponent {
   onBlur(event: any) {
     this.formFormat.onCurrency(event);
   }
-  
-  
+
+
 
   onProceed() {
-    this.accountNumber = this.cashWithdrawal.get('accountNo').value;
-    this.purposeOfWithdrawal = this.cashWithdrawal.get('purposeofWD').value;
-    this.withdrawalAmnt = this.cashWithdrawal.get('withdrawalAmount').value;
-    this.transactionParticular = this.cashWithdrawal.get('tranPart').value;
 
     if (this.cashWithdrawal.invalid) {
       this.cashWithdrawal.markAllAsTouched();
       return;
     }
 
-    console.log(this.accountNumber, this.purposeOfWithdrawal, this.withdrawalAmnt, this.transactionParticular)
+    this.accountNumber = this.cashWithdrawal.get('accountNo').value;
+    this.purposeOfWithdrawal = this.cashWithdrawal.get('purposeofWD').value;
+    this.withdrawalAmnt = this.cashWithdrawal.get('withdrawalAmount').value;
+    this.transactionParticular = this.cashWithdrawal.get('tranPart').value;
+
+    const formData = {
+      'accountNumber': this.accountNumber,
+      'purposeOfWithdrawal': this.purposeOfWithdrawal,
+      'withdrawalAmount': this.withdrawalAmnt,
+      'transactionParticular': this.transactionParticular
+    };
+
+
+    console.log(this.accountNumber, this.purposeOfWithdrawal, this.withdrawalAmnt, this.transactionParticular);
+
+
+    this.cashWithdrawService.saveCashWithdraw(formData).subscribe({
+      next: (v) => this.alertService.successAlert("Cash Withdrawal Form Submission Successful")
+        .then(() => this.cashWithdrawal.reset()),
+      error: (e) => this.alertService.errorAlert("Cash Withdrawal Form Submission Failed")
+    });
+
   }
 
   onReset() {
@@ -82,7 +109,7 @@ export class CashWithdrawalComponent {
   }
 
   onBack() {
-    this.eventBus.publish({'name': 'closeCurrentTab'});
-  
+    this.eventBus.publish({ 'name': 'closeCurrentTab' });
+
   }
 }
