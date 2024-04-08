@@ -8,7 +8,7 @@ import {environment} from "../../environments/environment";
 export class MenuService {
   public menu: Observable<any[]>;
 
-  baseUrl = `${environment.apiUrl}/v1/super-admin/menu`
+  baseUrl = `${environment.apiUrl}/v1/menu`
   constructor(
     private router: Router,
     private http: HttpClient) {
