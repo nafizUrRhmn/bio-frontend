@@ -30,13 +30,14 @@
                   type="text"
                   class="form-control" formControlName="menuId" minlength="1" maxlength="10"
                   id="menuId"/>
-                <button type="button" class="btn btn-outline-primary ms-5" (click)="onSearchMenuId()">Search</button>
+                <button type="button" class="btn btn-outline-primary ms-5" (click)="onSearchMenuId()" [disabled]="funCode==='A'">Search</button>
               </div>
             </div>
           </div>
           <div class="pt-4 row">
             <div class="col-2 text-muted fw-bold pt-1 ">Menu Details</div>
-            <div class="col-10 pt-2 justify-content-start">{{menuObj.menuDesc}}</div>
+            <div
+              class="col-10 pt-2 justify-content-start">{{menuFormData?.menuDesc ? menuFormData?.menuDesc : 'N/A'}}</div>
           </div>
         </div>
         <div class="text-end">
@@ -70,86 +71,127 @@
                 <span class="fw-bold">Menu Code Description</span>
               </div>
             </div>
-            <div formArrayName="featureNames">
+            <div formArrayName="languageDetails">
               <div *ngFor="let mop of mopCodeDescList; let i= index">
                 <div class="row m-1 pb-2 pt-2" [formGroupName]="i">
                   <div class="col-4">
                     <input type="hidden" formControlName="langCode"
                            class="form-control">
+                    <input type="hidden" formControlName="delFlg"
+                           class="form-control">
+                    <input type="hidden" formControlName="lchgTime"
+                           class="form-control">
                     <span class="fw-bold p-5">{{mop.langCode}}</span>
                   </div>
                   <div class="col-4">
                     <input type="text"
-                           class="form-control" formControlName="langCodeDesc" [readOnly]="funCode === 'I'">
+                           class="form-control" formControlName="langCodeDesc" [readOnly]="true">
                   </div>
                   <div class="col-4">
                     <input type="text"
-                           class="form-control" formControlName="menuCodeDesc" [readOnly]="funCode === 'I'">
+                           class="form-control" formControlName="menuDesc" [readOnly]="funCode !== 'A' && funCode !== 'M' && funCode !== 'C'">
                   </div>
                 </div>
               </div>
             </div>
-
           </div>
           <div class="mt-5 col-12">
             <span class="form-label text-muted fw-bold pe-5">
                 Menu Type
             </span>
             <div class="form-check form-check-inline">
-              <input class="form-check-input" type="radio" name="flexRadioDefault" id="root" value="root" checked
+              <input class="form-check-input" type="radio" name="menuTp" id="root" value="R" checked
+                     formControlName="menuTp"
                      (change)="onMenuTypeChange($event)">
               <label class="form-check-label" for="root">
                 Root
               </label>
             </div>
             <div class="form-check form-check-inline">
-              <input class="form-check-input" type="radio" name="flexRadioDefault" id="group" value="group"
+              <input class="form-check-input" type="radio" name="menuTp" id="group" value="G"
+                     formControlName="menuTp"
                      (change)="onMenuTypeChange($event)">
               <label class="form-check-label" for="group">
                 Group
               </label>
             </div>
             <div class="form-check form-check-inline">
-              <input class="form-check-input" type="radio" name="flexRadioDefault" id="menu" value="menu"
+              <input class="form-check-input" type="radio" name="menuTp" id="menu" value="M"
+                     formControlName="menuTp"
                      (change)="onMenuTypeChange($event)">
               <label class="form-check-label" for="menu">
                 Menu
               </label>
             </div>
           </div>
-          <div class="mt-5" *ngIf="menuType==='group' || menuType==='menu'; else root">
-            <div class="row">
-              <div class="col-2 text-start">
-                <div class="text-muted fw-bold pe-5 pt-1">Parent ID</div>
+          <div class="mt-5" *ngIf="menuFormData?.menuTp==='G' || menuFormData?.menuTp==='M';">
+            <div class="row mb-2">
+              <div class="col-2">
+                <div class="text-muted fw-bold pe-5 pt-1">Menu Permissions</div>
               </div>
-              <div class="col-4 text-start">
-                <input type="text"
-                       class="form-control" >
-              </div>
-              <div class="col-6 text-start">
-                <button class="btn btn-outline-primary">Search</button>
+              <div class="col-10">
+                <app-nrx-grid [columnDefs]="mopParemListcolumnDefs" [rowData]="mopPermList"
+                              [suppressRowSelection]="false" (onRowClickEvent)="onRowClick($event)">
+                </app-nrx-grid>
               </div>
             </div>
-          </div>
-
-          <ng-template #root>
-            <div class="mt-5">
-              <div class="row">
+            <form [formGroup]="parentMenuForm" *ngIf="funCode == 'A' || funCode == 'M' || funCode == 'C'">
+              <div class="row pb-3">
                 <div class="col-2 text-start">
-                  <div class="text-muted fw-bold pe-5 pt-1">APP ID</div>
-                </div>
-                <div class="col-4">
-                  <input type="text"
-                         class="form-control">
+                  <div class="text-muted fw-bold pe-5 pt-1">Parent Menu</div>
                 </div>
                 <div class="col-6 text-start">
-                  <button class="btn btn-outline-primary">Search</button>
+                  <input
+                    type="text"
+                    class="form-control" formControlName="parMenuCode" readonly = "true"
+                    id="parMenuCode"/>
+                  <input
+                    type="hidden"
+                    class="form-control" formControlName="parMenuCodeDesc"
+                    id="parMenuCodeDesc"/>
+                </div>
+                <div class="col-4 text-start">
+                  <button class="btn btn-outline-primary" (click)="onSearchParentMenuId()" [disabled]=isDisabled>Search</button>
                 </div>
               </div>
-            </div>
-          </ng-template>
+              <div class="row pb-3">
+                <div class="col-2 text-start">
+                  <div class="text-muted fw-bold pe-5 pt-1">Level</div>
+                </div>
+                <div class="col-4 text-start">
+                  <input
+                    type="text"
+                    class="form-control" formControlName="levelCode"
+                    id="level"/>
+                  <input
+                    type="hidden"
+                    class="form-control" formControlName="entityCreFlg"
+                    id="entityCreFlg"/>
+                  <input
+                    type="hidden"
+                    class="form-control" formControlName="lchgTime" id="lchgTime"/>
+                </div>
+              </div>
+              <div class="row pb-3">
+                <div class="col-2 text-start">
+                  <div class="text-muted fw-bold pe-5 pt-1">Delete?</div>
+                </div>
+                <div class="col-6 text-start">
+                  <input class="form-check-input" type="checkbox" value="Y"
+                         id="delFlag" formControlName="delFlg">
 
-          <div class="mt-5 row" *ngIf="menuType==='menu'">
+                </div>
+                <div class="col-4 text-start">
+
+                  <button class="btn btn-outline-success text-start" (click)="addOnParentGrid('update')" *ngIf="isUpdate; else add">Update</button>
+                  <ng-template #add>
+                    <button class="btn btn-outline-success text-start" (click)="addOnParentGrid('add')">Add</button>
+                  </ng-template>
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="mt-5 row" *ngIf="menuFormData?.menuTp==='M'">
             <div class="d-flex col-2">
              <span class="form-label text-muted fw-bold pe-5">
                 Menu Security
@@ -167,21 +209,23 @@
                   </div>
                   <div class="form-check form-check-inline">
                     <input class="form-check-input" type="checkbox" value=""
-                           id="add-auto-verify" formControlName="addAutoVerify" >
-                    <label class="form-check-label" for="add-auto-verify" >
+                           id="add-auto-verify" formControlName="addAutoVerify">
+                    <label class="form-check-label" for="add-auto-verify">
                       Auto Verify
                     </label>
                   </div>
                 </div>
                 <div class="form-check">
                   <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" value="" id="delete" formControlName="hasDelete" (change)="checkBoxValues()">
+                    <input class="form-check-input" type="checkbox" value="" id="delete" formControlName="hasDelete"
+                           (change)="checkBoxValues()">
                     <label class="form-check-label" for="delete">
                       Delete
                     </label>
                   </div>
                   <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" value="" id="delete-auto-verify" formControlName="deleteAutoVerify">
+                    <input class="form-check-input" type="checkbox" value="" id="delete-auto-verify"
+                           formControlName="deleteAutoVerify">
                     <label class="form-check-label" for="delete-auto-verify">
                       Auto Verify
                     </label>
@@ -189,13 +233,15 @@
                 </div>
                 <div class="form-check">
                   <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" id="undelete" formControlName="hasUndelete" (change)="checkBoxValues()">
+                    <input class="form-check-input" type="checkbox" id="undelete" formControlName="hasUndelete"
+                           (change)="checkBoxValues()">
                     <label class="form-check-label" for="undelete">
                       Undelete
                     </label>
                   </div>
                   <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" id="undelete-auto-verify" formControlName="undeleteAutoVerify">
+                    <input class="form-check-input" type="checkbox" id="undelete-auto-verify"
+                           formControlName="undeleteAutoVerify">
                     <label class="form-check-label" for="undelete-auto-verify">
                       Auto Verify
                     </label>
@@ -204,7 +250,8 @@
 
                 <div class="form-check">
                   <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" value="" id="modification" formControlName="hasModification" (change)="checkBoxValues()">
+                    <input class="form-check-input" type="checkbox" value="" id="modification"
+                           formControlName="hasModification" (change)="checkBoxValues()">
                     <label class="form-check-label" for="modification">
                       Modification
                     </label>
@@ -231,9 +278,17 @@
                 </div>
               </div>
             </div>
-
           </div>
-          <div class="mt-5" *ngIf="menuType==='menu'">
+          <div class="mt-5" *ngIf="menuFormData?.menuTp==='M'">
+            <div class="pt-1 w-50 row mt-5">
+              <label for="funcCode" class="form-label text-muted col-4 fw-bold">Security Indication</label>
+              <div class="col-8">
+                <select id="secuInd" class="form-select" formControlName="secuInd">
+                  <option value="I">I-Inquiry</option>
+                  <option value="M">M-Modification</option>
+                </select>
+              </div>
+            </div>
             <div class="row pt-5">
               <div class="col-2 text-start">
                 <div class="text-muted fw-bold pe-5 pt-1">Param 1</div>
@@ -280,19 +335,10 @@
               </div>
             </div>
           </div>
-
-
         </div>
-
-        <!-- MID 2 -->
-
-        <!-- BOTTOM 2 -->
-
-
         <div class="text-end">
           <button class="btn btn-danger me-2" (click)="onCancel()">Cancel</button>
           <button class="btn btn-primary" (click)="onSave()" [disabled]="funCode === 'I'">Save</button>
-
         </div>
       </form>
     </mat-step>

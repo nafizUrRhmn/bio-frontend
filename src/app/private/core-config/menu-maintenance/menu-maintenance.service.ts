@@ -17,6 +17,9 @@ export class MenuMaintenanceService {
   }
   menuVerification(menuSearchObj: any){
     return this.httpClient.post<any>(`${this.baseUrl}/menu-verifications`,menuSearchObj);
+  }
 
+  menuSave(payload: any){
+    return this.httpClient.post<any>(`${this.baseUrl}/save`,payload);
   }
 }

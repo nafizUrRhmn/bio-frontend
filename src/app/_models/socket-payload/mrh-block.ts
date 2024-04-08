@@ -5,5 +5,6 @@ export class MrhBlock {
   message: string;
   curPageNum: number;
   maxPageNum: number;
-  dataBlock: [string[]];
+  dataBlock: any[];
+  // list: any[]
 }

@@ -20,6 +20,8 @@ import {MatStepperModule} from "@angular/material/stepper";
 import { MatStepperModule } from '@angular/material/stepper';
 import {RefCodeMaintComponent} from "./refcode-maint/refcode-maint.component";
 import {MenuMaintenanceComponent} from "./menu-maintenance/menu-maintenance.component";
+import {NrxGridModule} from "../../shared/components/nrx-grid/nrx-grid.module";
+import {BtnCellRendererModule} from "../../shared/components/btn-grid/btn-cell-renderer.module";
 
 
 const routes: Routes = [
@@ -54,7 +56,10 @@ const routes: Routes = [
     MatInputModule,
     MatRadioModule,
     TranslateModule,
-    MatStepperModule
+    MatStepperModule,
+    NrxGridModule,
+    BtnCellRendererModule
+
   ],
 })
 export class CoreConfigModule {
