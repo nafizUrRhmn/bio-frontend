@@ -10,6 +10,7 @@ import {ColDef} from "ag-grid-community";
 import {NrxGridComponent} from "../../../shared/components/nrx-grid/nrx-grid.component";
 import {MenuFormData} from "./menu-form-data";
 import {EventBusService} from "../../../_services/event-bus.service";
+import {take} from "rxjs";
 
 @Component({
   selector: 'app-menu1',
@@ -102,20 +103,13 @@ export class MenuMaintenanceComponent {
   }
 
   onSearchMenuId() {
-    this.menuMaintenanceService.getMenuByMenuId(this.menuSearchForm.value).subscribe({
-      next: (response) => {
-        this.openDialogue(response);
-      },
-      error: err => {
-        this.alertService.errorAlert(err.error.message);
-      }
-    });
-  }
-
-  openDialogue(response: any) {
     const dialogRef = this.dialog.open(AgbListComponent, {
       width: '50%',
-      data: {title: 'Reference Type List', content: response},
+      data: {
+        title:'Menu List',
+        serviceName : 'getMenuByMenuId',
+        srchPayLoad : this.menuSearchForm.value,
+      },
       disableClose: true
     });
     dialogRef.afterClosed().subscribe(res => {
@@ -123,7 +117,6 @@ export class MenuMaintenanceComponent {
       this.menuSearchForm.get('menuId').setValue(this.menuFormData.menuId);
     });
   }
-
 
   get funCode() {
     return this.menuSearchForm.get('funcCode').value;

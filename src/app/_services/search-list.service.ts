@@ -15,4 +15,9 @@ export class SearchListService {
   getRefCodeList(payLoad:any) {
     return this.http.post<any>(`${this.baseUrl}/refcode/get-refCode-list`, payLoad)
   }
+
+  getMenuByMenuId(menuSearchObj: any){
+    return this.http.post<any>(`${this.baseUrl}/menu/search-by-menu-id`,menuSearchObj);
+  }
+
 }

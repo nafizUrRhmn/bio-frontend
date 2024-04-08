@@ -13,7 +13,6 @@ export class MenuMaintenanceService {
 
   getMenuByMenuId(menuSearchObj: any){
     return this.httpClient.post<any>(`${this.baseUrl}/search-by-menu-id`,menuSearchObj);
-
   }
   menuVerification(menuSearchObj: any){
     return this.httpClient.post<any>(`${this.baseUrl}/menu-verifications`,menuSearchObj);
