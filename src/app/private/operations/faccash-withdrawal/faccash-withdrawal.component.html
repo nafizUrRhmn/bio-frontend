@@ -27,14 +27,14 @@
             <div class="d-flex flex-row-reverse mt-5">
 
                 <!-- PROCEED BUTTON -->
-                <button type="button" class="btn btn-primary">
+                <button type="button" class="btn btn-primary" (click)="onProceed()">
                     <div class="d-flex align-items-center justify-content-center gap-1">
                         {{ 'BBL000102' | translate }}
                         <i class="ti ti-check fs-3"></i>
                     </div>
                 </button>
                 <!-- RESET BUTTON -->
-                <button type="button" class="btn btn-warning mx-2">
+                <button type="button" class="btn btn-warning mx-2" (click)="onReset()">
                     <div class="d-flex align-items-center justify-content-center gap-1">
                         {{ 'BBL000101' | translate }}
                         <i class="ti ti-refresh fs-3"></i>

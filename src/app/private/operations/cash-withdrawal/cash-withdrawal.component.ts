@@ -2,7 +2,6 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { Observable, catchError, map, tap, throwError } from 'rxjs';
-import { EventBusService } from 'src/app/_services/event-bus.service';
 import { FormFormatService } from 'src/app/_services/form-format.service';
 import { environment } from 'src/environments/environment';
 import { CashWithdrawalService } from './cash-withdrawal.service';
@@ -24,13 +23,13 @@ export class CashWithdrawalComponent {
 
   constructor(
     private fb: FormBuilder,
-    private eventBus: EventBusService,
     private formFormat: FormFormatService,
     private http: HttpClient,
     private cashWithdrawService: CashWithdrawalService,
     private alertService: AlertService,
     private router: Router
-  ) {
+    ) 
+   {
     this.cashWithdrawal = this.fb.group({
       accountNo: ['', [Validators.required, this.maxLengthValidator]],
       accountTitle: [{ value: null, disabled: true }, [Validators.required]],
@@ -74,7 +73,6 @@ export class CashWithdrawalComponent {
 
 
   onProceed() {
-
     if (this.cashWithdrawal.invalid) {
       this.cashWithdrawal.markAllAsTouched();
       return;
@@ -108,8 +106,5 @@ export class CashWithdrawalComponent {
     this.cashWithdrawal.reset();
   }
 
-  onBack() {
-    this.eventBus.publish({ 'name': 'closeCurrentTab' });
 
-  }
 }

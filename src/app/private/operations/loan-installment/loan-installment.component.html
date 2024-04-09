@@ -10,25 +10,35 @@
     <div class="col-12">
       <form [formGroup]="loanInsMnt">
         <div class="form-group mt-4">
-          <label for="optAcctNo" class="form-label fw-bold fs-5 mb-0">{{ 'BBL000015' | translate }}</label>
-          <input type="text" class="form-control border-2" id="optAcctNo" formControlName="optAcctNo" required
+          <label for="optAcctNo" class="form-label fw-bold fs-5 mb-0">
+            {{ 'BBL000015' | translate }}
+          </label>
+          <input 
+            type="text" 
+            class="form-control border-2" 
+            id="optAcctNo" 
+            formControlName="optAcctNo" 
             [class.is-invalid]="optAcctNo.touched && optAcctNo.invalid" />
-          <div *ngIf="optAcctNo.touched && optAcctNo.hasError('required')" class="invalid-feedback">{{ 'BBL000016' |
-            translate }}</div>
+          <div *ngIf="optAcctNo.touched && optAcctNo.hasError('required')" class="invalid-feedback">
+          {{ 'BBL000016' | translate }}</div>
+            <!-- ACCOUNT NUMBER OF 13/16 DIGITS ERROR -->
+          <div *ngIf="optAcctNo.errors?.['maxLength']" class="invalid-feedback">
+            {{'BBL000048' | translate }}
+          </div>
         </div>
   
         <!-- BUTTONS -->
         <div class="d-flex flex-row-reverse mt-5">
   
           <!-- PROCEED BUTTON -->
-          <button type="button" class="btn btn-primary">
+          <button type="button" class="btn btn-primary" (click)="onProceed()">
             <div class="d-flex align-items-center justify-content-center gap-1">
               {{ 'BBL000102' | translate }}
               <i class="ti ti-check fs-3"></i>
             </div>
           </button>
           <!-- RESET BUTTON -->
-          <button type="button" class="btn btn-warning mx-2">
+          <button type="button" class="btn btn-warning mx-2" (click)="onReset()">
             <div class="d-flex align-items-center justify-content-center gap-1">
               {{ 'BBL000101' | translate }}
               <i class="ti ti-refresh fs-3"></i>

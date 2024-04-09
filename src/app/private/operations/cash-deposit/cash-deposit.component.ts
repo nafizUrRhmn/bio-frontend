@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormFormatService } from 'src/app/_services/form-format.service';
 
 @Component({
   selector: 'app-cash-deposit',
@@ -8,10 +9,21 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class CashDepositComponent implements OnInit {
   cashDeposit: FormGroup;
-  constructor(private fb: FormBuilder) {}
+
+  accountNumber: string;
+  sourceofFund: string;
+  depositAmnt: string;
+  transactionParticular: string;
+
+
+  constructor(
+    private fb: FormBuilder,
+    private formFormat: FormFormatService
+    ) {}
   ngOnInit(): void {
     this.cashDeposit = this.fb.group({
-      accountNo: ['', [Validators.required]],
+      accountNo: ['', [Validators.required, this.maxLengthValidator]],
+      accountTitle: [{ value: null, disabled: true }, [Validators.required]],
       depositAmount: ['', [Validators.required]],
       sourceOfFund: ['', [Validators.required]],
       tranPart:['', [Validators.required]]
@@ -28,5 +40,42 @@ export class CashDepositComponent implements OnInit {
   }
   get tranPart() {
   return this.cashDeposit.get('tranPart');
+  }
+
+  maxLengthValidator(control: FormControl) {
+    const value = control.value;
+    const maxLengths = [13, 16]; 
+    if (value && value.length && !maxLengths.includes(value.length)) {
+      return { maxLength: true };
+    }
+  
+    return null;
+  }
+
+  onInput(event: any) {
+    this.formFormat.onAmountInput(event);
+  }
+
+  onBlur(event: any) {
+    this.formFormat.onCurrency(event);
+  }
+
+  onProceed() {
+    this.accountNumber = this.cashDeposit.get('accountNo').value;
+    this.sourceofFund = this.cashDeposit.get('sourceOfFund').value;
+    this.depositAmnt = this.cashDeposit.get('depositAmount').value;
+    this.transactionParticular = this.cashDeposit.get('tranPart').value;
+
+    //CHECKS IF ALL THE REQUIRED FORM FIELDS ARE FILLED OR NOT
+    if (this.cashDeposit.invalid) {
+      this.cashDeposit.markAllAsTouched();
+      return;
+    }
+
+    console.log(this.accountNumber, this.sourceofFund, this.depositAmnt, this.transactionParticular)
+  }
+
+  onReset() {
+    this.cashDeposit.reset();
   }
 }
