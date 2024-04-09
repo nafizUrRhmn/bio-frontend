@@ -30,7 +30,7 @@
                   type="text"
                   class="form-control" formControlName="menuId" minlength="1" maxlength="10"
                   id="menuId"/>
-                <button type="button" class="btn btn-outline-primary ms-5" (click)="onSearchMenuId()" [disabled]="funCode==='A'">Search</button>
+                <button type="button" class="btn btn-outline-primary ms-5" (click)="onSearchMenuId()" [disabled]="!funCode || funCode==='A'">Search</button>
               </div>
             </div>
           </div>
