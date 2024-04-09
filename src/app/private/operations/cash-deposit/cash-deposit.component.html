@@ -101,20 +101,50 @@
     <div class="col-8 ms-3">
       <form [formGroup]="cashDeposit">
         <div class="form-group mt-1">
-          <!-- ACCOUNT NUMBER -->
-          <div>
-            <label for="accountNo" class="form-label fw-bold fs-5 mb-0">{{ 'BBL000002' | translate }}</label>
-            <input type="text" class="form-control border-2" id="accountNo" formControlName="accountNo" required
-              [class.is-invalid]="accountNo.touched && accountNo.invalid" />
-            <div *ngIf="accountNo.touched && accountNo.hasError('required')" class="invalid-feedback">{{ 'BBL000008' |
-              translate }}</div>
+          <div class="row">
+            <div class="col-6">
+                    <!-- ACCOUNT NUMBER -->
+                <div>
+                  <label for="accountNo" class="form-label fw-bold fs-5 mb-0">{{ 'BBL000002' | translate }}</label>
+                  <input type="text" class="form-control border-2" id="accountNo" formControlName="accountNo" required
+                    [class.is-invalid]="accountNo.touched && accountNo.invalid" />
+                  <div *ngIf="accountNo.touched && accountNo.hasError('required')" class="invalid-feedback">
+                  {{ 'BBL000008' | translate }}
+                </div>
+                <!-- ACCOUNT NUMBER OF 13/16 DIGITS ERROR -->
+                <div *ngIf="accountNo.errors?.['maxLength']" class="invalid-feedback">
+                  {{'BBL000048' | translate }}
+                </div>
+            </div>
+          </div>
+            <div class="col-6">
+
+              <!-- ACCOUNT TITLE -->
+              <label for="accountTitle" class="form-label fw-bold fs-5 mb-0">
+                {{ 'BBL000038' | translate }}
+              </label>
+              <input 
+                type="text" 
+                class="form-control border-2" 
+                id="accountTitle" 
+                formControlName="accountTitle">
+
+            </div>
+          
           </div>
 
           <!-- DEPOSIT AMOUNT -->
           <div class="mt-4">
-            <label for="depositAmount" class="form-label fw-bold fs-5 mb-0">{{ 'BBL000003' | translate
-              }}</label>
-            <input type="text" class="form-control border-2" id="depositAmount" formControlName="depositAmount" required
+            <label for="depositAmount" class="form-label fw-bold fs-5 mb-0">
+              {{ 'BBL000003' | translate }}
+            </label>
+            <input 
+                type="text" 
+                class="form-control border-2 right-input" 
+                id="depositAmount" 
+                formControlName="depositAmount" 
+                (input)="onInput($event)"
+                (blur)="onBlur($event)"  
               [class.is-invalid]="depositAmount.touched && depositAmount.invalid" />
             <div *ngIf="depositAmount.touched && depositAmount.hasError('required')" class="invalid-feedback"> {{
               'BBL000009' | translate }}</div>
@@ -122,18 +152,26 @@
           <div class="d-flex mt-4">
             <!-- SOURCE OF FUND -->
             <div class="col-6 pe-1">
-              <label for="sourceOfFund" class="form-label fw-bold fs-5 mb-0">{{ 'BBL000004' | translate
-                }}</label>
-              <input type="text" class="form-control border-2" id="sourceOfFund" formControlName="sourceOfFund" required
+              <label for="sourceOfFund" class="form-label fw-bold fs-5 mb-0">
+                {{ 'BBL000004' | translate }}</label>
+              <input 
+                type="text" 
+                class="form-control border-2" 
+                id="sourceOfFund" 
+                formControlName="sourceOfFund"
                 [class.is-invalid]="sourceOfFund.touched && sourceOfFund.invalid" />
-              <div *ngIf="sourceOfFund.touched && sourceOfFund.hasError('required')" class="invalid-feedback"> {{
-                'BBL000010' | translate }}</div>
+              <div *ngIf="sourceOfFund.touched && sourceOfFund.hasError('required')" class="invalid-feedback"> 
+              {{ 'BBL000010' | translate }}</div>
             </div>
             <!-- TRANSACTION PARTICULAR -->
             <div class="col-6 ps-1">
-              <label for="tranPart" class="form-label fw-bold fs-5 mb-0">{{ 'BBL000005' | translate
-                }}</label>
-              <input type="text" class="form-control border-2" id="tranPart" formControlName="tranPart" required
+              <label for="tranPart" class="form-label fw-bold fs-5 mb-0">
+                {{ 'BBL000005' | translate }}</label>
+              <input 
+                type="text" 
+                class="form-control border-2" 
+                id="tranPart" 
+                formControlName="tranPart"
                 [class.is-invalid]="tranPart.touched && tranPart.invalid" />
               <div *ngIf="tranPart.touched && tranPart.hasError('required')" class="invalid-feedback">{{ 'BBL000011' |
                 translate }}</div>
@@ -146,14 +184,14 @@
         <div class="d-flex flex-row-reverse mt-5">
 
           <!-- PROCEED BUTTON -->
-          <button type="button" class="btn btn-primary">
+          <button type="button" class="btn btn-primary" (click)="onProceed()">
             <div class="d-flex align-items-center justify-content-center gap-1">
               {{ 'BBL000102' | translate }}
               <i class="ti ti-check fs-3"></i>
             </div>
           </button>
           <!-- RESET BUTTON -->
-          <button type="button" class="btn btn-warning mx-2">
+          <button type="button" class="btn btn-warning mx-2" (click)="onReset()">
             <div class="d-flex align-items-center justify-content-center gap-1">
               {{ 'BBL000101' | translate }}
               <i class="ti ti-refresh fs-3"></i>

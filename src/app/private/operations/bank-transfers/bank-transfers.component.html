@@ -111,6 +111,11 @@
             *ngIf="transactionForm.get('accNum').hasError('required') &&  transactionForm.get('accNum').touched ">
             {{'BBL000007' | translate}}
           </div>
+          <!-- ACCOUNT NUMBER OF 13/16 DIGITS ERROR  -->
+          <div *ngIf="transactionForm.get('accNum').hasError('maxLength')" class="invalid-feedback">
+            {{'BBL000048' | translate }}
+          </div>
+
           <div class="mt-4">
             <!-- TRANSFER TYPE -->
             <label for="transferType" class="form-label fw-bold fs-5 mb-0">
@@ -130,7 +135,13 @@
               <label for="transferAmount" class="form-label fw-bold fs-5 mb-0">
                 {{'BBL000034'|translate}}
               </label>
-              <input type="text" class="form-control border-2" id="transferAmount" formControlName="transferAmount"
+              <input 
+                type="text" 
+                class="form-control border-2 right-input" 
+                id="transferAmount" 
+                formControlName="transferAmount"
+                (input)="onInput($event)"
+                (blur)="onBlur($event)"
                 [class.is-invalid]="transactionForm.get('transferAmount').invalid && transactionForm.get('transferAmount').touched" />
               <div class="invalid-feedback"
                 *ngIf="transactionForm.get('transferAmount').hasError('required') &&  transactionForm.get('transferAmount').touched ">
@@ -186,14 +197,14 @@
         <div class="d-flex flex-row-reverse mt-5">
 
           <!-- PROCEED BUTTON -->
-          <button type="button" class="btn btn-primary">
+          <button type="button" class="btn btn-primary" (click)="onProceed()">
             <div class="d-flex align-items-center justify-content-center gap-1">
               {{ 'BBL000102' | translate }}
               <i class="ti ti-check fs-3"></i>
             </div>
           </button>
           <!-- RESET BUTTON -->
-          <button type="button" class="btn btn-warning mx-2">
+          <button type="button" class="btn btn-warning mx-2" (click)="onReset()">
             <div class="d-flex align-items-center justify-content-center gap-1">
               {{ 'BBL000101' | translate }}
               <i class="ti ti-refresh fs-3"></i>
