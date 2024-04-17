@@ -61,7 +61,7 @@
   "BBL000046" : "New Password",
   "BBL000047" : "Confirm Password",
   "BBL000048" : "Account Number must be of 13 or 16 digits",
-  
+
 
   "BBL_RCTM_MAIN_HEADER" : "RCT Maintainance",
   "BBL_RCTM_DETAIL_HEADER" : "RCT Details",
@@ -90,7 +90,28 @@
   "BBL000103" : "Log Out",
   "BBL000104" : "Access Control",
   "BBL000105" : "Operations",
-  "BBL000106" : "Module",
+  "MODULE" : "Module",
   "BBL000107" : "Core Config",
-  "BBL000108" : "Apply"
+  "BBL000108" : "Apply",
+
+
+  "MENU_MAINTENANCE": "Menu Maintenance",
+  "MENU_SECURITY": "Menu Security",
+  "MENU_FUNCTION_CODE": "Function Code",
+  "MENU_ID":"Menu ID",
+  "MENU_DETAILS": "Menu Description",
+  "MENU_LANGUAGE": "Language",
+  "MENU_LANG_CODE_DESC": "Language Code Desc",
+  "MENU_CODE_DESC": "Menu Code Desc",
+  "MENU_PERMISSION": "Menu Permission",
+  "MENU_PARENT": "Menu Parent",
+  "MENU_LEVEL": "Menu Level",
+  "MENU_DELETE": "Delete?",
+  "MENU_PARAM_1": "Param 1",
+  "MENU_PARAM_2": "Param 2",
+  "MENU_PARAM_3": "Param 3",
+  "MENU_PARAM_4": "Param 4",
+  "MENU_PARAM_5": "Param 5",
+  "MENU_SECURITY_INDICATION": "Security Indication"
+
 }

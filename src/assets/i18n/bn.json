@@ -89,8 +89,29 @@
   "BBL000103" : "লগ আউট",
   "BBL000104" : "অ্যাক্সেস নিয়ন্ত্রণ",
   "BBL000105" : "অপারেশন",
-  "BBL000106" : "মডিউল",
+  "MODULE" : "মডিউল",
   "BBL000107" : "মূল কনফিগারেশন",
-  "BBL000108" : "আবেদন করুন"
+  "BBL000108" : "আবেদন করুন",
+
+  "MENU_MAINTENANCE": "মেনু রক্ষণাবেক্ষণ",
+  "MENU_SECURITY": "মেনু নিরাপত্তা",
+  "MENU_FUNCTION_CODE": "ফাংশন কোড",
+  "MENU_ID":"মেনু আইডি",
+  "MENU_DETAILS": "মেনু বিবরণ",
+  "MENU_LANGUAGE": "ভাষা",
+  "MENU_LANG_CODE_DESC": "ভাষা কোড বর্ণনা",
+  "MENU_CODE_DESC": "মেনু কোড বিবরণ",
+  "MENU_PERMISSION": "মেনু অনুমতি",
+  "MENU_PARENT": "মেনু অভিভাবক",
+  "MENU_LEVEL": "মেনু স্তর",
+  "MENU_DELETE": "মুছে ফেলা",
+  "MENU_PARAM_1": "পেরাম ১",
+  "MENU_PARAM_2": "পেরাম ২",
+  "MENU_PARAM_3": "পেরাম ৩",
+  "MENU_PARAM_4": "পেরাম ৪",
+  "MENU_PARAM_5": "পেরাম ৫",
+  "MENU_SECURITY_INDICATION": "নিরাপত্তা ইঙ্গিত"
+
+
 
 }

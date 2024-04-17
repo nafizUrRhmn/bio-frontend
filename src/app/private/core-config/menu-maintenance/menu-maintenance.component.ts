@@ -85,7 +85,8 @@ export class MenuMaintenanceComponent {
 
   constructor(private _formBuilder: FormBuilder, private navService: NavigationService,
               private menuMaintenanceService: MenuMaintenanceService,
-              private dialog: MatDialog, private alertService: AlertService, private eventBus: EventBusService) {
+              private dialog: MatDialog, private alertService: AlertService,
+              private eventBus: EventBusService) {
 
   }
 
@@ -178,7 +179,7 @@ export class MenuMaintenanceComponent {
     let rows = []
     this.nrxGrid.gridApi.getRenderedNodes().forEach(u => rows.push(u.data));
     let formData = this.menuSaveForm.getRawValue();
-    formData = {...formData, 'menuId': this.menuId, 'menuIdSource': this.menuIdSource};
+    formData = {...formData, 'menuId': this.menuId, 'menuIdSource': this.menuIdSource, 'param5': this.param5Gen(formData)};
     let languageDetails = this.menuSaveForm.get('languageDetails').value;
     delete formData.languageDetails;
     this.mopPermMrh.dataBlock = this.gridToMrhBlock(rows, this.mopPermMrh.headerInfo);
@@ -196,6 +197,24 @@ export class MenuMaintenanceComponent {
         }),
       error: (e) => this.alertService.errorAlert("Password Change Failed")
     });
+    console.log(payload);
+
+  }
+
+  param5Gen(formData){
+    debugger;
+    let value = '';
+    value = formData.hasAdd === true ? value.concat('A-', formData.addAutoVerify ===true ? 'Y,': 'N,'): value;
+    value = formData.hasDelete === true ? value.concat('D-', formData.deleteAutoVerify ===true ? 'Y,': 'N,'): value;
+    value = formData.hasUndelete === true ? value.concat('U-', formData.undeleteAutoVerify ===true ? 'Y,': 'N,'): value;
+    value = formData.hasModification === true ? value.concat('M-', formData.modificationAutoVerify ===true ? 'Y,': 'N,'): value;
+    value = formData.hasVerify === true ? 'V-N,': value;
+    value = formData.hasCancel === true ? 'X-N,': value;
+
+    if(value.length>1 && value[value.length-1] === ','){
+      value = value.slice(0,-1);
+    }
+    return value;
   }
 
   onMenuTypeChange($event) {
