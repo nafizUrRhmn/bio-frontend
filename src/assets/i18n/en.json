@@ -107,11 +107,13 @@
   "MENU_PARENT": "Menu Parent",
   "MENU_LEVEL": "Menu Level",
   "MENU_DELETE": "Delete?",
-  "MENU_PARAM_1": "Param 1",
-  "MENU_PARAM_2": "Param 2",
-  "MENU_PARAM_3": "Param 3",
-  "MENU_PARAM_4": "Param 4",
-  "MENU_PARAM_5": "Param 5",
-  "MENU_SECURITY_INDICATION": "Security Indication"
+  "MENU_PARAM_1": "Param 1(Angular Component)",
+  "MENU_PARAM_2": "Param 2(Application ID)",
+  "MENU_PARAM_3": "Param 3(Module ID)",
+  "MENU_PARAM_4": "Param 4(Backend Module)",
+  "MENU_PARAM_5": "Param 5(Option Permission)",
+  "MENU_SECURITY_INDICATION": "Security Indication",
+  "MENU_TYPE": "Menu Type",
+  "MENU_FUNC_CODE": "Function Code"
 
 }

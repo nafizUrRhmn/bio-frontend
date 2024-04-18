@@ -105,13 +105,14 @@
   "MENU_PARENT": "মেনু অভিভাবক",
   "MENU_LEVEL": "মেনু স্তর",
   "MENU_DELETE": "মুছে ফেলা",
-  "MENU_PARAM_1": "পেরাম ১",
-  "MENU_PARAM_2": "পেরাম ২",
-  "MENU_PARAM_3": "পেরাম ৩",
-  "MENU_PARAM_4": "পেরাম ৪",
-  "MENU_PARAM_5": "পেরাম ৫",
-  "MENU_SECURITY_INDICATION": "নিরাপত্তা ইঙ্গিত"
-
+  "MENU_PARAM_1": "পেরাম ১(Angular Component)",
+  "MENU_PARAM_2": "পেরাম ২(Application ID)",
+  "MENU_PARAM_3": "পেরাম ৩(Module ID)",
+  "MENU_PARAM_4": "পেরাম ৪(Backend Module)",
+  "MENU_PARAM_5": "পেরাম ৫(Menu Permission)",
+  "MENU_SECURITY_INDICATION": "নিরাপত্তা ইঙ্গিত",
+  "MENU_TYPE": "মেনু প্রকার"
+  "MENU_FUNC_CODE": "Function Code"
 
 
 }
