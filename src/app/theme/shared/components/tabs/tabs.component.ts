@@ -9,7 +9,7 @@ import { EventBusService } from 'src/app/_services/event-bus.service';
   selector: 'app-tabs',
   templateUrl: './tabs.component.html',
 })
-export class TabsComponent {
+export class TabsComponent  {
   @ViewChild(MatTabGroup, { read: MatTabGroup })
   tabGroup!: MatTabGroup;
   @ViewChildren(MatTab, { read: MatTab })
@@ -28,7 +28,9 @@ export class TabsComponent {
       if (this.tabs) {
         const existingTabIndex = this.tabs.findIndex(v => v.title === u.title);
         if (existingTabIndex !== -1) {
-          this.tabGroup.selectedIndex = existingTabIndex;
+          if (this.tabGroup) {
+            this.tabGroup.selectedIndex = existingTabIndex;
+        }
           return;
         }
         if (this.tabs.length >= 3) {
@@ -37,10 +39,11 @@ export class TabsComponent {
         }
         if (u !== null && u.title) {
           this.tabs.push(u);
-          this.tabGroup.selectedIndex = this.tabs.length - 1;
+          if (this.tabGroup) {
+            this.tabGroup.selectedIndex = this.tabs.length - 1;
+        }     
         }
       }
-
     });
     this.eventBus.getObservable('closeAllTabs').subscribe(() => {
       this.closeAllTabs();
@@ -50,13 +53,17 @@ export class TabsComponent {
   closeTab(event: any, index: number) {
     event.stopPropagation();
     this.closedTabs.push(index);
+    if (this.tabGroup) {
     this.tabGroup.selectedIndex = this.tabNodes.length - 1;
+    }
     this.tabs.splice(index, 1);
   }
 
   closeAllTabs() {
     this.tabs = [];
     this.closedTabs = [];
+    if (this.tabGroup) {
     this.tabGroup.selectedIndex = -1;
+    }
   }
 }

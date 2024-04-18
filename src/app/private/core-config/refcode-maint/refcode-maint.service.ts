@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {environment} from "../../environments/environment";
+import {environment} from "../../../../environments/environment";
+
 
 @Injectable({providedIn: 'root'})
 export class RefCodeMaintService {
@@ -9,5 +10,11 @@ export class RefCodeMaintService {
   getRefCodeDetail(payLoad:any) {
     return this.http.post<any>(`${this.baseUrl}/refcode/get-refCode-detail`, payLoad)
   }
+
+  
+  submit(payLoad:any) {
+    return this.http.post<any>(`${this.baseUrl}/refcode/submit`, payLoad)
+  }
+
 
 }
