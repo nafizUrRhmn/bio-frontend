@@ -1,96 +1,113 @@
 {
+  "BUTTON_SEARCH" : "অনুসন্ধান",
+  "BUTTON_NEXT" : "পরবর্তী",
+  "BUTTON_CANCEL" : "বাতিল",
+  "BUTTON_SUBMIT" : "দাখিল",
+  "BUTTON_YES" : "হ্যাঁ",
+  "BUTTON_NO" : "না",
+  "BUTTON_BACK" : "পেছনে",
+  "BUTTON_RESET" : "পুন:স্থাপন",
+  "BUTTON_PROCEED" : "অগ্রসর",
+
+  "CUSTOMER_DETAILS" : "গ্রাহক বিস্তারিত",
+  "CUSTOMER_ID" : "গ্রাহক আইডি",
+  "MOBILE" : "মোবাইল",
+  "ACCOUNT_TITLE" : "অ্যাকাউন্ট নাম",
+  "EMAIL" : "ইমেইল",
+  "ACCOUNT_TYPE" : "অ্যাকাউন্ট ধরন",
+  "ACCOUNT_STATUS" : "অ্যাকাউন্ট স্ট্যাটাস",
+  "OFFER" : "অফার",
+  "SOL_ID" : "সল আইডি",
+
+  "TRANS_DETAILS" : "লেনদেন বিবরণী",
+
+  "ACCOUNT_NO" : "হিসাব নং",
+  "ACCOUNT_NO_REQ_ERR" : "অ্যাকাউন্ট নম্বর আবশ্যক",
+  "ACCOUNT_NO_LENGTH_ERR" : "অ্যাকাউন্ট নম্বর ১৩ বা ১৬ সংখ্যার হতে হবে",
+
+  "TRANS_PARTICULAR" : "লেনদেন বিশেষ",
+  "TRANS_PARTICULAR_ERR" : "লেনদেন বিশেষ আবশ্যক",
+
+  "TRANS_REMARKS" : "লেনদেন মন্তব্য",
+  "TRANS_REMARKS_ERR" : "লেনদেন মন্তব্য আবশ্যক",
+
+  "BENEFICIARY_MOBILE_NO" : "বেনিফিশিয়ারি মোবাইল নং",
+  "BENEFICIARY_MOBILE_NO_REQ_ERR" : "বেনিফিশিয়ারি মোবাইল নং আবশ্যক",
+
+  "AMOUNT" : "পরিমাণ",
+  "AMOUNT_REQ_ERR" : "পরিমাণ আবশ্যক",
+
+
+
+  "MODULE" : "মডিউল",
+  "ACCESS_CONTROL" : "অ্যাক্সেস নিয়ন্ত্রণ",
+  "OPERATIONS" : "অপারেশন",
+  "CORE_CONFIGURATION" : "মূল কনফিগারেশন",
+
+  "NOTICE" : "বিজ্ঞপ্তি",
+
+  "CHANGE_PASSWORD" : "পাসওয়ার্ড পরিবর্তন",
+  "OLD_PASSWORD" : "পুরানো পাসওয়ার্ড",
+  "NEW_PASSWORD" : "নতুন পাসওয়ার্ড",
+  "CONFIRM_PASSWORD" : "পাসওয়ার্ড নিশ্চিত করুন",
+
+  "LOG_OUT" : "লগ আউট",
+
+  
+  
+  "CASHDEP_AMOUNT" : "আমানতের পরিমাণ",
+  "CASHDEP_AMOUNT_ERR" : "আমানতের পরিমাণ আবশ্যক",
+  "CASHDEP_SOURCE_OF_FUND" : "তহবিলের উৎস",
+  "CASHDEP_SOURCE_OF_FUND_ERR" : "তহবিলের উৎস আবশ্যক",
+  
+
+  "CASHWDR_AMOUNT" : "উত্তোলনের পরিমাণ",
+  "CASHWDR_AMOUNT_REQ_ERR" : "উত্তোলনের পরিমাণ আবশ্যক",
+  "CASHWDR_PURPOSE_OF_WITHDRAWAL" : "উত্তোলনের উদ্দেশ্য",
+  "CASHWDR_PURPOSE_OF_WITHDRAWAL_REQ_ERR" : "উত্তোলনের উদ্দেশ্য আবশ্যক",
+
+  "LOAN_INSTALLMENT_OPERATING_ACCOUNT_NO" : "অপারেটিং অ্যাকাউন্ট নং",
+  "LOAN_INSTALLMENT_OPERATING_ACCOUNT_NO_REQ_ERR" : "অপারেটিং অ্যাকাউন্ট নং আবশ্যক",
+  "LOAN_INSTALLMENT_OPERATING_ACCOUNT_NO_LENGTH_ERR" : "অপারেটিং অ্যাকাউন্ট নম্বর ১৩ বা ১৬ সংখ্যার হতে হবে",
+  
+  "LOAN_DISBURSEMENT_LINK_ACCOUNT_NO" : "লিঙ্ক অ্যাকাউন্ট নং.",
+  "LOAN_DISBURSEMENT_LINK_ACCOUNT_NO_REQ_ERR" : "লিঙ্ক অ্যাকাউন্ট নং আবশ্যক",
+  "LOAN_DISBURSEMENT_LINK_ACCOUNT_NO_REQ_LENGTH_ERR" : "লিঙ্ক অ্যাকাউন্ট নম্বর ১৩ বা ১৬ সংখ্যার হতে হবে",
+ 
+  "BANK_TRANSFERS_TRANSFER_TYPE" : "স্থানান্তর প্রকার",
+  "BANK_TRANSFERS_TRANSFER_TYPE_REQ_ERR" : "স্থানান্তর প্রকার আবশ্যক",
+  "BANK_TRANSFERS_TRANSFER_AMOUNT" : "স্থানান্তর পরিমাণ",
+  "BANK_TRANSFERS_TRANSFER_AMOUNT_REQ_ERR" : "স্থানান্তর পরিমাণ আবশ্যক",
+  "BANK_TRANSFERS_PURPOSE_OF_PAYMENT" : "পরিশোধ করার উদ্যেশ্য",
+  "BANK_TRANSFERS_PURPOSE_OF_PAYMENT_REQ_ERR" : "পরিশোধ করার উদ্যেশ্য আবশ্যক",
+  "BANK_TRANSFERS_TRANS_REMARKS" : "লেনদেন মন্তব্য",
+  "BANK_TRANSFERS_TRANS_REMARKS_REQ_ERR" : "লেনদেন মন্তব্য আবশ্যক",
+
+
+  "GENERATE_FAC_BENEFICIARY_NAME" : "বেনিফিশিয়ারি নাম",
+  "GENERATE_FAC_BENEFICIARY_NAME_REQ_ERR" : "বেনিফিশিয়ারি নাম আবশ্যক",
+
+
+
+  "RCTM_MAIN_HEADER" : "আরসিটি  রক্ষণাবেক্ষণ",
+  "RCTM_DETAIL_HEADER" : "আরসিটি বিস্তারিত",
+  "RCTM_FUNCTION_CODE" : "ফাংশন কোড",
+  "RCTM_FUNCTION_CODE_REQ_ERR" : "ফাংশন কোড নির্বাচন করা আবশ্যক",
+  "RCTM_REF_TYPE" : "রেফারেন্স কোড টাইপ",
+  "RCTM_REF_TYPE_REQ_ERR" : "রেফারেন্স টাইপ আবশ্যক",
+  "RCTM_REF_TYPE_DESC" : "রেফারেন্স টাইপ বিবরণ",
+  "RCTM_NEW_REF_TYPE" : "নতুন রেফারেন্স টাইপ",
+  "RCTM_REF_TYPE_LENGTH" : "সংখ্যা",
+  "RCTM_DEP_FLAG" : "ডিপেন্ডেন্ট ফ্ল্যাগ",
+  "RCTM_DEP_TYPE" : "ডিপেন্ডেন্ট রেফারেন্স টাইপ",
+  "RCTM_DEP_DESC" : "ডিপেন্ডেন্ট রেফারেন্স টাইপ বিবরণ *",
+
+  
   "BBL00001": "বাহ্যিক সরানো অর্থ",
   "BBL00002" : "লেনদেন বিবরণী",
   "BBL00003" : "উৎস অ্যাকাউন্ট নম্বর",
-  "BBL00004" : "উৎস অ্যাকাউন্ট শিরোনাম",
+  "BBL00004" : "উৎস অ্যাকাউন্ট শিরোনাম"
 
-  "BBL000001" : "লেনদেন বিবরণী",
-  "BBL000002" : "হিসাব নং",
-  "BBL000003" : "আমানত পরিমাণ",
-  "BBL000004" : "তহবিলের উৎস",
-  "BBL000005" : "লেনদেন বিশেষ",
-  "BBL000006" : "গ্রাহক বিস্তারিত",
-  "BBL000007" : "অ্যাকাউন্ট নং প্রয়োজন",
-  "BBL000008" : "অ্যাকাউন্ট নম্বর প্রয়োজন",
-  "BBL000009" : "উত্তোলনের পরিমাণ প্রয়োজন",
-  "BBL000010" : "ফান্ডের উৎস প্রয়োজন",
-  "BBL000011" : "লেনদেন বিশেষ প্রয়োজন",
 
-  "BBL000012" : "উত্তোলনের পরিমাণ",
-  "BBL000013" : "উত্তোলনের উদ্দেশ্য",
-  "BBL000014" : "উত্তোলনের উদ্দেশ্য প্রয়োজন",
-
-  "BBL000015" : "অপারেটিং অ্যাকাউন্ট নং",
-  "BBL000016" : "অপারেটিং অ্যাকাউন্ট নং প্রয়োজন",
-
-  "BBL000017" : "লিঙ্ক অ্যাকাউন্ট নং.",
-  "BBL000018" : "লিঙ্ক অ্যাকাউন্ট নং প্রয়োজন",
-
-  "BBL000019" : "ট্রান্সফার টাইপ নির্বাচন করুন",
-  "BBL000020" : "পরিমাণ লিখুন",
-  "BBL000021" : "পরিশোধ করার উদ্যেশ্য",
-  "BBL000022" : "মন্তব্য লিখুন",
-  "BBL000023" : "বিশেষ",
-
-  "BBL000024" : "বেনিফিশিয়ারি মোবাইল নং",
-  "BBL000025" : "বেনিফিশিয়ারি মোবাইল নং প্রয়োজন",
-
-  "BBL000026" : "গ্রাহক অ্যাকাউন্ট নম্বর",
-  "BBL000027" : "অনুগ্রহ করে অ্যাকাউন্ট নম্বর লিখুন",
-  "BBL000028" : "বেনিফিশিয়ারি মোবাইল নং",
-  "BBL000029" : "বেনিফিশিয়ারি মোবাইল নং প্রয়োজন",
-  "BBL000030" : "বেনিফিশিয়ারি নাম",
-  "BBL000031" : "পরিমাণ",
-  "BBL000032" : "লেনদেন মন্তব্য",
-  "BBL000033" : "স্থানান্তর প্রকার",
-  "BBL000034" : "স্থানান্তর পরিমাণ",
-
-  "BBL000035" : "প্রেরকের অ্যাকাউন্ট নম্বর",
-  "BBL000036" : "গ্রাহক আইডি",
-  "BBL000037" : "মোবাইল",
-  "BBL000038" : "অ্যাকাউন্ট নাম",
-  "BBL000039" : "ইমেইল",
-  "BBL000040" : "অ্যাকাউন্ট ধরন",
-  "BBL000041" : "অ্যাকাউন্ট স্ট্যাটাস",
-  "BBL000042" : "অফার",
-  "BBL000043" : "সল আইডি",
-
-  "BBL000044" : "পাসওয়ার্ড পরিবর্তন করুন",
-  "BBL000045" : "পুরানো পাসওয়ার্ড",
-  "BBL000046" : "নতুন পাসওয়ার্ড",
-  "BBL000047" : "পাসওয়ার্ড নিশ্চিত করুন",
-  "BBL000048" : "অ্যাকাউন্ট নম্বর ১৩ বা ১৬ সংখ্যার হতে হবে",
-
-  "BBL_RCTM_FUNC_CODE" : "ফাংশন কোড *",
-  "BBL_RCTM_REF_TYPE" : "রেফারেন্স কোড টাইপ *",
-  "BBL_RCTM_MAIN_HEADER" : "আরসিটি  রক্ষণাবেক্ষণ",
-  "BBL_RCTM_DETAIL_HEADER" : "আরসিটি বিস্তারিত",
-  "BBL_RCTM_FUNC_CODE_REQ" : "ফাংশন কোড নির্বাচন করা আবশ্যক",
-  "BBL_RCTM_REF_TYPE_REQ" : "রেফারেন্স টাইপ লিখতে হবে",
-  "BBL_RCTM_NEW_REF_TYPE" : "নতুন রেফারেন্স টাইপ",
-  "BBL_RCTM_REF_TYPE_DESC" : "রেফারেন্স টাইপ বিবরণ *",
-  "BBL_RCTM_REF_TYPE_LEN" : "সংখ্যা *",
-  "BBL_RCTM_DEP_FLG" : "ডিপেন্ডেন্ট ফ্ল্যাগ *",
-  "BBL_RCTM_DEP_TYPE" : "ডিপেন্ডেন্ট রেফারেন্স টাইপ *",
-  "BBL_RCTM_DEP_DESC" : "ডিপেন্ডেন্ট রেফারেন্স টাইপ বিবরণ *",
-
-  "BBL_RCTM_SEARCH" : "অনুসন্ধান",
-  "BBL_RCTM_NEXT" : "পরবর্তী",
-  "BBL_PRIMARY_BTN_SEARCH" : "অনুসন্ধান",
-  "BBL_PRIMARY_BTN_NEXT" : "পরবর্তী",
-  "BBL_PRIMARY_BTN_CANCEL" : "বাতিল",
-  "BBL_PRIMARY_BTN_SUBMIT" : "দাখিল",
-  "BBL_RADIO_BTN_YES" : "হ্যাঁ",
-  "BBL_RADIO_BTN_NO" : "না",
-
-  "BBL000100" : "পেছনে",
-  "BBL000101" : "পুন:স্থাপন",
-  "BBL000102" : "অগ্রসর",
-  "BBL000103" : "লগ আউট",
-  "BBL000104" : "অ্যাক্সেস নিয়ন্ত্রণ",
-  "BBL000105" : "অপারেশন",
-  "BBL000106" : "মডিউল",
-  "BBL000107" : "মূল কনফিগারেশন",
-  "BBL000108" : "আবেদন করুন"
 
 }

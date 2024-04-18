@@ -5,6 +5,7 @@ import { WelcomeMessageModule } from "../welcome-message/welcome-message.module"
 import { RouterModule } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {FormsModule} from "@angular/forms";
+import { TranslateModule } from '@ngx-translate/core';
 
 
 
@@ -15,7 +16,8 @@ import {FormsModule} from "@angular/forms";
         NgbModule,
         WelcomeMessageModule,
         RouterModule,
-        FormsModule
+        FormsModule,
+        TranslateModule
     ],
     exports:[HeaderComponent]
 })

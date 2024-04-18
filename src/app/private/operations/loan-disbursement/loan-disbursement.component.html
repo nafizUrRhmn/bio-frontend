@@ -1,7 +1,7 @@
 <div class="container">
   <!-- HEADER TEXT -->
   <div class="border-bottom">
-    <h2 class="text-primary fw-bold my-4">{{ 'BBL000001' | translate | uppercase }}</h2>
+    <h2 class="text-primary fw-bold my-4">{{ 'TRANS_DETAILS' | translate | uppercase }}</h2>
   </div>
 
   <!-- FORM DETAILS -->
@@ -9,16 +9,16 @@
     <div class="col-12">
       <form [formGroup]="loanDisb">
         <div class="form-group mt-4">
-          <label for="linkAccNo" class="form-label fw-bold fs-5 mb-0">{{ 'BBL000017' | translate }}</label>
+          <label for="linkAccNo" class="form-label fw-bold fs-5 mb-0">{{ 'LOAN_DISBURSEMENT_LINK_ACCOUNT_NO' | translate }}</label>
           <input type="text" class="form-control border-2" id="linkAccNo" formControlName="linkAccNo" required
             [class.is-invalid]="linkAccNo.touched && linkAccNo.invalid" />
           <div *ngIf="linkAccNo.touched && linkAccNo.hasError('required')" class="invalid-feedback">
-            {{ 'BBL000018' | translate }}
+            {{ 'LOAN_DISBURSEMENT_LINK_ACCOUNT_NO_REQ_ERR' | translate }}
           </div>
 
           <!-- ACCOUNT NUMBER OF 13/16 DIGITS ERROR -->
           <div *ngIf="linkAccNo.errors?.['maxLength']" class="invalid-feedback">
-            {{'BBL000048' | translate }}
+            {{'LOAN_DISBURSEMENT_LINK_ACCOUNT_NO_REQ_LENGTH_ERR' | translate }}
           </div>
         </div>
   
@@ -28,14 +28,14 @@
       <!-- PROCEED BUTTON -->
       <button type="button" class="btn btn-primary" (click)="onProceed()">
         <div class="d-flex align-items-center justify-content-center gap-1">
-          {{ 'BBL000102' | translate }}
+          {{ 'BUTTON_PROCEED' | translate }}
           <i class="ti ti-check fs-3"></i>
         </div>
       </button>
       <!-- RESET BUTTON -->
       <button type="button" class="btn btn-warning mx-2" (click)="onReset()">
         <div class="d-flex align-items-center justify-content-center gap-1">
-          {{ 'BBL000101' | translate }}
+          {{ 'BUTTON_RESET' | translate }}
           <i class="ti ti-refresh fs-3"></i>
         </div>
       </button>
