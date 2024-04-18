@@ -1,14 +1,14 @@
 <div class="m-5">
   <div class="border-bottom">
-    <h1 class="text-primary fw-bold">Menu Maintenance</h1>
+    <h1 class="text-primary fw-bold">{{'MENU_MAINTENANCE' | translate}}</h1>
   </div>
 
   <mat-stepper [linear]="false" #stepper>
-    <mat-step [stepControl]="menuSearchForm" [completed]="false" label="Menu Maintenance">
+    <mat-step [stepControl]="menuSearchForm" [completed]="false" label="{{'MENU_MAINTENANCE' | translate}}">
       <form [formGroup]="menuSearchForm">
         <div class="d-flex flex-column m-2 me-5">
           <div class="pt-1 w-50 row mt-5">
-            <label for="funcCode" class="form-label text-muted col-4 fw-bold">Function Code</label>
+            <label for="funcCode" class="form-label text-muted col-4 fw-bold"> {{'MENU_FUNCTION_CODE' | translate }} </label>
             <div class="col-8">
               <select id="funcCode" class="form-select" formControlName="funcCode">
                 <option value="I">I-Inquiry</option>
@@ -23,19 +23,20 @@
             </div>
           </div>
           <div class="pt-4 w-50 row">
-            <label for="menuId" class="form-label text-muted fw-bold col-4">Menu ID</label>
+            <label for="menuId" class="form-label text-muted fw-bold col-4">{{'MENU_ID' | translate}}</label>
             <div class="col-8">
               <div class="d-flex flex-row">
                 <input
                   type="text"
                   class="form-control" formControlName="menuId" minlength="1" maxlength="10"
                   id="menuId"/>
-                <button type="button" class="btn btn-outline-primary ms-5" (click)="onSearchMenuId()" [disabled]="funCode==='A'">Search</button>
+                <button type="button" class="btn btn-outline-primary ms-5"
+                        (click)="onSearchMenuId()" [disabled]="funCode==='A'">{{'BUTTON_SEARCH' | translate}}</button>
               </div>
             </div>
           </div>
           <div class="pt-4 row">
-            <div class="col-2 text-muted fw-bold pt-1 ">Menu Details</div>
+            <div class="col-2 text-muted fw-bold pt-1 ">{{'MENU_DETAILS' | translate}}</div>
             <div
               class="col-10 pt-2 justify-content-start">{{menuFormData?.menuDesc ? menuFormData?.menuDesc : 'N/A'}}</div>
           </div>
@@ -46,29 +47,34 @@
         </div>
       </form>
     </mat-step>
-    <mat-step [stepControl]="menuSaveForm" label="Menu Details" [completed]="false">
+    <mat-step [stepControl]="menuSaveForm" label="{{'MENU_DETAILS' | translate}}" [completed]="false">
       <form [formGroup]="menuSaveForm">
         <div class="mt-5">
+
           <div class=" d-flex flex-row">
-            <div class="text-muted fw-bold pe-5 pt-1">Menu ID</div>
+            <div class="text-muted fw-bold pe-5 pt-1">{{'MENU_FUNC_CODE' | translate}}</div>
+            <div class="fw-bold pe-5 pt-1">{{funCodeDetails}}</div>
+          </div>
+          <div class=" d-flex flex-row">
+            <div class="text-muted fw-bold pe-5 pt-1">{{'MENU_ID' | translate}}</div>
             <div class="fw-bold pe-5 pt-1">{{menuId}}</div>
           </div>
-          <div class=" mt-5 d-flex flex-row">
-            <div class="text-muted fw-bold pe-5 pt-1">Module</div>
-            <select class="form-select w-50" formControlName="module">
-              <option [value]="module.key" *ngFor="let module of modules">{{module.moduleName}}</option>
-            </select>
-          </div>
+<!--          <div class=" mt-5 d-flex flex-row">-->
+<!--            <div class="text-muted fw-bold pe-5 pt-1">{{ 'MODULE' | translate}}</div>-->
+<!--            <select class="form-select w-50" formControlName="module">-->
+<!--              <option [value]="module.key" *ngFor="let module of modules">{{module.moduleName}}</option>-->
+<!--            </select>-->
+<!--          </div>-->
           <div class="mt-5">
             <div class="row border-bottom m-1 pb-3">
               <div class="col-4">
-                <span class="fw-bold p-5">Language</span>
+                <span class="fw-bold p-5">{{'MENU_LANGUAGE' | translate}}</span>
               </div>
               <div class="col-4">
-                <span class="fw-bold">Lang Code Description</span>
+                <span class="fw-bold">{{'MENU_LANG_CODE_DESC' | translate}}</span>
               </div>
               <div class="col-4">
-                <span class="fw-bold">Menu Code Description</span>
+                <span class="fw-bold">{{'MENU_CODE_DESC' | translate}}</span>
               </div>
             </div>
             <div formArrayName="languageDetails">
@@ -97,7 +103,7 @@
           </div>
           <div class="mt-5 col-12">
             <span class="form-label text-muted fw-bold pe-5">
-                Menu Type
+                {{'MENU_TYPE' | translate}}
             </span>
             <div class="form-check form-check-inline">
               <input class="form-check-input" type="radio" name="menuTp" id="root" value="R" checked
@@ -127,7 +133,7 @@
           <div class="mt-5" *ngIf="menuFormData?.menuTp==='G' || menuFormData?.menuTp==='M';">
             <div class="row mb-2">
               <div class="col-2">
-                <div class="text-muted fw-bold pe-5 pt-1">Menu Permissions</div>
+                <div class="text-muted fw-bold pe-5 pt-1">{{ 'MENU_PERMISSION' | translate }}</div>
               </div>
               <div class="col-10">
                 <app-nrx-grid [columnDefs]="mopParemListcolumnDefs" [rowData]="mopPermList"
@@ -144,7 +150,7 @@
                   <input
                     type="text"
                     class="form-control" formControlName="parMenuCode" readonly = "true"
-                    id="parMenuCode"/>
+                    id="parMenuCode" />
                   <input
                     type="hidden"
                     class="form-control" formControlName="parMenuCodeDesc"
@@ -178,7 +184,7 @@
                 </div>
                 <div class="col-6 text-start">
                   <input class="form-check-input" type="checkbox" value="Y"
-                         id="delFlag" formControlName="delFlg">
+                         id="delFlag" formControlName="delFlg" >
 
                 </div>
                 <div class="col-4 text-start">
@@ -194,7 +200,7 @@
           <div class="mt-5 row" *ngIf="menuFormData?.menuTp==='M'">
             <div class="d-flex col-2">
              <span class="form-label text-muted fw-bold pe-5">
-                Menu Security
+                 {{'menu.security' | translate }}
             </span>
             </div>
             <div class="col-8">
@@ -202,7 +208,7 @@
                 <div class="form-check">
                   <div class="form-check form-check-inline">
                     <input class="form-check-input" type="checkbox"
-                           id="add" formControlName="hasAdd" (change)="checkBoxValues()">
+                           id="add" formControlName="hasAdd" (change)="checkBoxValues()" >
                     <label class="form-check-label" for="add">
                       Add
                     </label>
@@ -279,9 +285,9 @@
               </div>
             </div>
           </div>
-          <div class="mt-5" *ngIf="menuFormData?.menuTp==='M'">
-            <div class="pt-1 w-50 row mt-5">
-              <label for="funcCode" class="form-label text-muted col-4 fw-bold">Security Indication</label>
+          <div class="mt-5">
+            <div class="pt-1 w-50 row mt-5" *ngIf="menuFormData?.menuTp==='M'">
+              <label for="funcCode" class="form-label text-muted col-4 fw-bold">{{'MENU_SECURITY_INDICATION' | translate}}</label>
               <div class="col-8">
                 <select id="secuInd" class="form-select" formControlName="secuInd">
                   <option value="I">I-Inquiry</option>
@@ -289,51 +295,60 @@
                 </select>
               </div>
             </div>
-            <div class="row pt-5">
+            <div class="row pt-5" *ngIf="menuFormData?.menuTp==='M'">
               <div class="col-2 text-start">
-                <div class="text-muted fw-bold pe-5 pt-1">Param 1</div>
+                <div class="text-muted fw-bold pe-5 pt-1">{{ 'MENU_PARAM_1' | translate}}</div>
               </div>
               <div class="col-10 text-start">
                 <input type="text"
                        class="form-control w-50" formControlName="param1">
               </div>
             </div>
-            <div class="row pt-5">
+
+            <div class="row pt-5" *ngIf="menuFormData?.menuTp==='R'">
               <div class="col-2 text-start">
-                <div class="text-muted fw-bold pe-5 pt-1">Param 2</div>
+                <div class="text-muted fw-bold pe-5 pt-1">{{ 'MENU_PARAM_2' | translate}}</div>
               </div>
-              <div class="col-10 text-start">
+              <div class="col-4">
                 <input type="text"
-                       class="form-control w-50" formControlName="param2">
+                       class="form-control" formControlName="param2">
+              </div>
+              <div class="col-4 text-start">
+                <button type="button" class="btn btn-outline-primary ms-5"
+                        (click)="onSearchAppId()" [disabled]="funCode!=='A' && funCode!=='M' && funCode!=='C'">{{'BUTTON_SEARCH' | translate}}</button>
               </div>
             </div>
-            <div class="row pt-5">
+            <div class="row pt-5" *ngIf="menuFormData?.menuTp==='M'">
               <div class="col-2 text-start">
-                <div class="text-muted fw-bold pe-5 pt-1">Param 3</div>
+                <div class="text-muted fw-bold pe-5 pt-1">{{ 'MENU_PARAM_3' | translate}}</div>
               </div>
-              <div class="col-10 text-start">
+              <div class="col-4">
                 <input type="text"
-                       class="form-control w-50" formControlName="param3">
+                       class="form-control" formControlName="param3">
+              </div>
+              <div class="col-4 text-start">
+                <button type="button" class="btn btn-outline-primary ms-5"
+                        (click)="onSearchModuleId()" [disabled]="funCode!=='A' && funCode!=='M' && funCode!=='C'">{{'BUTTON_SEARCH' | translate}}</button>
               </div>
             </div>
-            <div class="row pt-5">
+            <div class="row pt-5" *ngIf="menuFormData?.menuTp==='M'">
               <div class="col-2 text-start">
-                <div class="text-muted fw-bold pe-5 pt-1">Param 4</div>
+                <div class="text-muted fw-bold pe-5 pt-1">{{ 'MENU_PARAM_4' | translate}}</div>
               </div>
               <div class="col-10 text-start">
                 <input type="text"
                        class="form-control w-50" formControlName="param4">
               </div>
             </div>
-            <div class="row pt-5">
-              <div class="col-2 text-start">
-                <div class="text-muted fw-bold pe-5 pt-1">Param 5</div>
-              </div>
-              <div class="col-10 text-start">
-                <input type="text"
-                       class="form-control w-50" formControlName="param5">
-              </div>
-            </div>
+<!--            <div class="row pt-5">-->
+<!--              <div class="col-2 text-start">-->
+<!--                <div class="text-muted fw-bold pe-5 pt-1">{{ 'MENU_PARAM_5' | translate}}</div>-->
+<!--              </div>-->
+<!--              <div class="col-10 text-start">-->
+<!--                <input type="text"-->
+<!--                       class="form-control w-50" formControlName="param5">-->
+<!--              </div>-->
+<!--            </div>-->
           </div>
         </div>
         <div class="text-end">

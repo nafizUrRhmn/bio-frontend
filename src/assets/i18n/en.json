@@ -41,14 +41,14 @@
 
   "AMOUNT" : "Amount",
   "AMOUNT_REQ_ERR" : "Amount Required",
-  
+
 
 
   "MODULE" : "Module",
   "ACCESS_CONTROL" : "Access Control",
   "OPERATIONS" : "Operations",
   "CORE_CONFIGURATION" : "Core Config",
-  
+
   "NOTICE" : "Notice",
 
   "CHANGE_PASSWORD" : "Change Password",
@@ -58,13 +58,13 @@
 
   "LOG_OUT" : "Logout",
 
-  
+
 
   "CASHDEP_AMOUNT" : "Deposit Amount",
   "CASHDEP_AMOUNT_ERR" : "Deposit Amount is required",
   "CASHDEP_SOURCE_OF_FUND" : "Source Of Fund",
   "CASHDEP_SOURCE_OF_FUND_ERR" : "Source Of Fund is required",
-  
+
 
   "CASHWDR_AMOUNT" : "Withdrawal Amount",
   "CASHWDR_AMOUNT_REQ_ERR" : "Withdrawal Amount Required",
@@ -74,7 +74,7 @@
   "LOAN_INSTALLMENT_OPERATING_ACCOUNT_NO" : "Operating Account No.",
   "LOAN_INSTALLMENT_OPERATING_ACCOUNT_NO_REQ_ERR" : "Operating Account No. required",
   "LOAN_INSTALLMENT_OPERATING_ACCOUNT_NO_LENGTH_ERR" : "Operating Account Number must be of 13 or 16 digits",
-  
+
   "LOAN_DISBURSEMENT_LINK_ACCOUNT_NO" : "Link Account No.",
   "LOAN_DISBURSEMENT_LINK_ACCOUNT_NO_REQ_ERR" : "Link Account No. is required",
   "LOAN_DISBURSEMENT_LINK_ACCOUNT_NO_REQ_LENGTH_ERR" : "Link Account Number must be of 13 or 16 digits",
@@ -88,14 +88,14 @@
   "BANK_TRANSFERS_TRANS_REMARKS" : "Transaction Remarks",
   "BANK_TRANSFERS_TRANS_REMARKS_REQ_ERR" : "Transaction Remarks Required",
 
-  
+
   "GENERATE_FAC_BENEFICIARY_NAME" : "Beneficiary Name",
   "GENERATE_FAC_BENEFICIARY_NAME_REQ_ERR" : "Beneficiary Name Required",
- 
-  
 
-  
-  
+
+
+
+
 
   "RCTM_MAIN_HEADER" : "RCT Maintainance",
   "RCTM_DETAIL_HEADER" : "RCT Details",
@@ -110,12 +110,33 @@
   "RCTM_DEP_TYPE" : "Dependent Ref Type",
   "RCTM_DEP_DESC" : "Dep Ref Type Description",
 
- 
 
 
- 
+
+
   "BBL00001": "External Move Money",
   "BBL00002" : "Transaction Details",
   "BBL00003" : "Source Account Number",
-  "BBL00004" : "Source Account Title"
+  "BBL00004" : "Source Account Title",
+  "MENU_MAINTENANCE": "Menu Maintenance",
+  "MENU_SECURITY": "Menu Security",
+  "MENU_FUNCTION_CODE": "Function Code",
+  "MENU_ID":"Menu ID",
+  "MENU_DETAILS": "Menu Description",
+  "MENU_LANGUAGE": "Language",
+  "MENU_LANG_CODE_DESC": "Language Code Desc",
+  "MENU_CODE_DESC": "Menu Code Desc",
+  "MENU_PERMISSION": "Menu Permission",
+  "MENU_PARENT": "Menu Parent",
+  "MENU_LEVEL": "Menu Level",
+  "MENU_DELETE": "Delete?",
+  "MENU_PARAM_1": "Param 1(Angular Component)",
+  "MENU_PARAM_2": "Param 2(Application ID)",
+  "MENU_PARAM_3": "Param 3(Module ID)",
+  "MENU_PARAM_4": "Param 4(Backend Module)",
+  "MENU_PARAM_5": "Param 5(Option Permission)",
+  "MENU_SECURITY_INDICATION": "Security Indication",
+  "MENU_TYPE": "Menu Type",
+  "MENU_FUNC_CODE": "Function Code"
+
 }
