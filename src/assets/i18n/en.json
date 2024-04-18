@@ -1,100 +1,123 @@
 {
+  "BUTTON_SEARCH" : "Search",
+  "BUTTON_NEXT" : "Next",
+  "BUTTON_CANCEL" : "Cancel",
+  "BUTTON_SUBMIT" : "Submit",
+  "BUTTON_YES" : "Yes",
+  "BUTTON_NO" : "No",
+  "BUTTON_BACK" : "Back",
+  "BUTTON_RESET" : "Reset",
+  "BUTTON_PROCEED" : "Proceed",
+
+  "CUSTOMER_DETAILS" : "Customer Details",
+  "CUSTOMER_ID" : "Customer Id",
+  "MOBILE" : "Mobile",
+  "ACCOUNT_TITLE" : "Account Title",
+  "EMAIL" : "Email",
+  "ACCOUNT_TYPE" : "Account Type",
+  "ACCOUNT_STATUS" : "Account Status",
+  "OFFER" : "Offer",
+  "SOL_ID" : "Sol Id",
+
+  "TRANS_DETAILS" : "Transaction Details",
+
+  "ACCOUNT_NO" : "Account No",
+  "ACCOUNT_NO_REQ_ERR" : "Account No is required",
+  "ACCOUNT_NO_LENGTH_ERR" : "Account Number must be of 13 or 16 digits",
+
+  "TRANS_PARTICULAR" : "Transaction Particular",
+  "TRANS_PARTICULAR_ERR" : "Transaction Particular Required",
+
+  "TRANS_REMARKS" : "Transaction Remarks",
+  "TRANS_REMARKS_ERR" : "Transaction Remarks Required",
+
+  "TRANSFER_TYPE" : "Transfer Type",
+  "TRANSFER_TYPE_REQ_ERR" : "Transfer Type Required",
+  "TRANSFER_AMOUNT" : "Transfer Amount",
+  "TRANSFER_AMOUNT_REQ_ERR" : "Transfer Amount Required",
+
+  "BENEFICIARY_MOBILE_NO" : "Beneficiary Mobile No",
+  "BENEFICIARY_MOBILE_NO_REQ_ERR" : "Beneficiary Mobile Number Required",
+
+  "AMOUNT" : "Amount",
+  "AMOUNT_REQ_ERR" : "Amount Required",
+
+
+
+  "MODULE" : "Module",
+  "ACCESS_CONTROL" : "Access Control",
+  "OPERATIONS" : "Operations",
+  "CORE_CONFIGURATION" : "Core Config",
+
+  "NOTICE" : "Notice",
+
+  "CHANGE_PASSWORD" : "Change Password",
+  "OLD_PASSWORD" : "Old Password",
+  "NEW_PASSWORD" : "New Password",
+  "CONFIRM_PASSWORD" : "Confirm Password",
+
+  "LOG_OUT" : "Logout",
+
+
+
+  "CASHDEP_AMOUNT" : "Deposit Amount",
+  "CASHDEP_AMOUNT_ERR" : "Deposit Amount is required",
+  "CASHDEP_SOURCE_OF_FUND" : "Source Of Fund",
+  "CASHDEP_SOURCE_OF_FUND_ERR" : "Source Of Fund is required",
+
+
+  "CASHWDR_AMOUNT" : "Withdrawal Amount",
+  "CASHWDR_AMOUNT_REQ_ERR" : "Withdrawal Amount Required",
+  "CASHWDR_PURPOSE_OF_WITHDRAWAL" : "Purpose of Withdrawal",
+  "CASHWDR_PURPOSE_OF_WITHDRAWAL_REQ_ERR" : "Purpose of Withdrawal is required",
+
+  "LOAN_INSTALLMENT_OPERATING_ACCOUNT_NO" : "Operating Account No.",
+  "LOAN_INSTALLMENT_OPERATING_ACCOUNT_NO_REQ_ERR" : "Operating Account No. required",
+  "LOAN_INSTALLMENT_OPERATING_ACCOUNT_NO_LENGTH_ERR" : "Operating Account Number must be of 13 or 16 digits",
+
+  "LOAN_DISBURSEMENT_LINK_ACCOUNT_NO" : "Link Account No.",
+  "LOAN_DISBURSEMENT_LINK_ACCOUNT_NO_REQ_ERR" : "Link Account No. is required",
+  "LOAN_DISBURSEMENT_LINK_ACCOUNT_NO_REQ_LENGTH_ERR" : "Link Account Number must be of 13 or 16 digits",
+
+  "BANK_TRANSFERS_TRANSFER_TYPE" : "Transfer Type",
+  "BANK_TRANSFERS_TRANSFER_TYPE_REQ_ERR" : "Transfer Type Rquired",
+  "BANK_TRANSFERS_TRANSFER_AMOUNT" : "Transfer Amount",
+  "BANK_TRANSFERS_TRANSFER_AMOUNT_REQ_ERR" : "Transfer Amount Required",
+  "BANK_TRANSFERS_PURPOSE_OF_PAYMENT" : "Purpose Of Payment",
+  "BANK_TRANSFERS_PURPOSE_OF_PAYMENT_REQ_ERR" : "Purpose Of Payment Required",
+  "BANK_TRANSFERS_TRANS_REMARKS" : "Transaction Remarks",
+  "BANK_TRANSFERS_TRANS_REMARKS_REQ_ERR" : "Transaction Remarks Required",
+
+
+  "GENERATE_FAC_BENEFICIARY_NAME" : "Beneficiary Name",
+  "GENERATE_FAC_BENEFICIARY_NAME_REQ_ERR" : "Beneficiary Name Required",
+
+
+
+
+
+
+  "RCTM_MAIN_HEADER" : "RCT Maintainance",
+  "RCTM_DETAIL_HEADER" : "RCT Details",
+  "RCTM_FUNCTION_CODE" : "Function Code",
+  "RCTM_FUNCTION_CODE_REQ_ERR" : "Function Code Must be Selected",
+  "RCTM_REF_TYPE" : "Reference Type",
+  "RCTM_REF_TYPE_REQ_ERR" : "Reference Type Required",
+  "RCTM_REF_TYPE_DESC" : "Reference Type Desc",
+  "RCTM_NEW_REF_TYPE" : "New Reference Type",
+  "RCTM_REF_TYPE_LENGTH" : "Length",
+  "RCTM_DEP_FLAG" : "Dependent Flag",
+  "RCTM_DEP_TYPE" : "Dependent Ref Type",
+  "RCTM_DEP_DESC" : "Dep Ref Type Description",
+
+
+
+
+
   "BBL00001": "External Move Money",
   "BBL00002" : "Transaction Details",
   "BBL00003" : "Source Account Number",
   "BBL00004" : "Source Account Title",
-
-  "BBL000001" : "Transaction Details",
-  "BBL000002" : "Account No",
-  "BBL000003" : "Deposit Amount",
-  "BBL000004" : "Source Of Fund",
-  "BBL000005" : "Transaction Particular",
-  "BBL000006" : "Customer Details",
-  "BBL000007" : "Account No is required",
-  "BBL000008" : "Account No is required",
-  "BBL000009" : "Withdrawal Amount is required",
-  "BBL000010" : "Source Of Fund is required",
-  "BBL000011" : "Transaction Particular is required",
-
-  "BBL000012" : "Withdrawal Amount",
-  "BBL000013" : "Purpose of Withdrawal",
-  "BBL000014" : "Purpose of Withdrawal is required",
-
-  "BBL000015" : "Operating Account No",
-  "BBL000016" : "Operating Account No. required",
-
-  "BBL000017" : "Link Account No.",
-  "BBL000018" : "Link Account No. is required",
-
-  "BBL000019" : "Select Transfer Type",
-  "BBL000020" : "Please enter the amount.",
-  "BBL000021" : "Purpose Of Payment",
-  "BBL000022" : "Please enter the Remarks.",
-  "BBL000023" : "Particulars",
-
-  "BBL000024" : "Beneficiary Mobile No",
-  "BBL000025" : "Please enter the beneficiary mobile number.",
-
-  "BBL000026" : "Customer Account Number",
-  "BBL000027" : "Please enter the Account No.",
-  "BBL000028" : "Beneficiary Mobile No",
-  "BBL000029" : "Please enter the beneficiary mobile number.",
-  "BBL000030" : "Beneficiary Name",
-  "BBL000031" : "Amount",
-  "BBL000032" : "Transaction Remarks",
-  "BBL000033" : "Transfer Type",
-  "BBL000034" : "Transfer Amount",
-  "BBL000035" : "Sender Account No",
-
-  "BBL000036" : "Customer Id",
-  "BBL000037" : "Mobile",
-  "BBL000038" : "Account Title",
-  "BBL000039" : "Email",
-  "BBL000040" : "Account Type",
-  "BBL000041" : "Account Status",
-  "BBL000042" : "Offer",
-  "BBL000043" : "Sol Id",
-
-
-  "BBL000044" : "Change Password",
-  "BBL000045" : "Old Password",
-  "BBL000046" : "New Password",
-  "BBL000047" : "Confirm Password",
-  "BBL000048" : "Account Number must be of 13 or 16 digits",
-
-
-  "BBL_RCTM_MAIN_HEADER" : "RCT Maintainance",
-  "BBL_RCTM_DETAIL_HEADER" : "RCT Details",
-  "BBL_RCTM_FUNC_CODE" : "Function Code *",
-  "BBL_RCTM_REF_TYPE" : "Reference Type *",
-  "BBL_RCTM_FUNC_CODE_REQ" : "function code must be selected",
-  "BBL_RCTM_REF_TYPE_REQ" : "Reference Type must be entered",
-  "BBL_RCTM_NEW_REF_TYPE" : "New Reference Type",
-  "BBL_RCTM_REF_TYPE_DESC" : "Reference Type Desc *",
-  "BBL_RCTM_REF_TYPE_LEN" : "Length *",
-  "BBL_RCTM_DEP_FLG" : "Dependent Flag *",
-  "BBL_RCTM_DEP_TYPE" : "Dependent Ref Type *",
-  "BBL_RCTM_DEP_DESC" : "Dep Ref Type Description *",
-
-  "BBL_PRIMARY_BTN_SEARCH" : "Search",
-  "BBL_PRIMARY_BTN_NEXT" : "Next",
-  "BBL_PRIMARY_BTN_CANCEL" : "Cancel",
-  "BBL_PRIMARY_BTN_SUBMIT" : "Submit",
-  "BBL_RADIO_BTN_YES" : "Yes",
-  "BBL_RADIO_BTN_NO" : "No",
-
-
-  "BBL000100" : "Back",
-  "BBL000101" : "Reset",
-  "BBL000102" : "Proceed",
-  "BBL000103" : "Log Out",
-  "BBL000104" : "Access Control",
-  "BBL000105" : "Operations",
-  "MODULE" : "Module",
-  "BBL000107" : "Core Config",
-  "BBL000108" : "Apply",
-
-
   "MENU_MAINTENANCE": "Menu Maintenance",
   "MENU_SECURITY": "Menu Security",
   "MENU_FUNCTION_CODE": "Function Code",
