@@ -1,21 +1,21 @@
 <div class="container">
   <!-- HEADER TEXT -->
   <div class="border-bottom">
-    <h2 class="text-primary fw-bold my-4">{{ 'BBL000001' | translate | uppercase}}</h2>
+    <h2 class="text-primary fw-bold my-4">{{ 'TRANS_DETAILS' | translate | uppercase}}</h2>
   </div>
   <div class="row mt-4">
     <!-- CUSTOMER DETAILS -->
     <div class="col-3 mt-1 ">
       <div class="border-end pe-2">
         <div class="border-bottom">
-          <h4 class="card-title text-muted fw-bold mb-2">{{ 'BBL000006' | translate | uppercase }}</h4>
+          <h4 class="card-title text-muted fw-bold mb-2">{{ 'CUSTOMER_DETAILS' | translate | uppercase }}</h4>
         </div>
         <div>
           <div class="mt-2">
             <!-- Customer Id -->
             <div class="row mb-2">
               <div class="col-md-6 fw-bold text-muted">
-                <div>{{'BBL000036'|translate}}</div>
+                <div>{{'CUSTOMER_ID'|translate}}</div>
               </div>
               <div class="col-md-6">
                 <div>N/A</div>
@@ -25,7 +25,7 @@
             <!-- Mobile -->
             <div class="row mb-2">
               <div class="col-md-6 fw-bold text-muted">
-                <div>{{'BBL000037'|translate}}</div>
+                <div>{{'MOBILE'|translate}}</div>
               </div>
               <div class="col-md-6">
                 <div>015********</div>
@@ -35,7 +35,7 @@
             <!-- Account Title -->
             <div class="row mb-2">
               <div class="col-md-6 fw-bold text-muted">
-                <div>{{'BBL000038'|translate}}</div>
+                <div>{{'ACCOUNT_TITLE'|translate}}</div>
               </div>
               <div class="col-md-6">
                 <div>N/A</div>
@@ -45,7 +45,7 @@
             <!-- Email -->
             <div class="row mb-2">
               <div class="col-md-6 fw-bold text-muted">
-                <div>{{'BBL000039'|translate}}</div>
+                <div>{{'EMAIL'|translate}}</div>
               </div>
               <div class="col-md-6">
                 <div>something2247@gmail.com</div>
@@ -55,7 +55,7 @@
             <!-- Account Type -->
             <div class="row mb-2">
               <div class="col-md-6 fw-bold text-muted">
-                <div>{{'BBL000040'|translate}}</div>
+                <div>{{'ACCOUNT_TYPE'|translate}}</div>
               </div>
               <div class="col-md-6">
                 <div>N/A</div>
@@ -65,7 +65,7 @@
             <!-- Account Status -->
             <div class="row mb-2">
               <div class="col-md-6 fw-bold text-muted">
-                <div>{{'BBL000041'|translate}}</div>
+                <div>{{'ACCOUNT_STATUS'|translate}}</div>
               </div>
               <div class="col-md-6">
                 <div>N/A</div>
@@ -75,7 +75,7 @@
             <!-- Offer -->
             <div class="row mb-2">
               <div class="col-md-6 fw-bold text-muted">
-                <div>{{'BBL000042'|translate}}</div>
+                <div>{{'OFFER'|translate}}</div>
               </div>
               <div class="col-md-6">
                 <div>Subscriber</div>
@@ -85,7 +85,7 @@
             <!-- Sol Id -->
             <div class="row mb-2">
               <div class="col-md-6 fw-bold text-muted">
-                <div>{{'BBL000043'|translate}}</div>
+                <div>{{'SOL_ID'|translate}}</div>
               </div>
               <div class="col-md-6">
                 <div>N/A</div>
@@ -105,15 +105,15 @@
             <div class="col-6">
                     <!-- ACCOUNT NUMBER -->
                 <div>
-                  <label for="accountNo" class="form-label fw-bold fs-5 mb-0">{{ 'BBL000002' | translate }}</label>
+                  <label for="accountNo" class="form-label fw-bold fs-5 mb-0">{{ 'ACCOUNT_NO' | translate }}</label>
                   <input type="text" class="form-control border-2" id="accountNo" formControlName="accountNo" required
                     [class.is-invalid]="accountNo.touched && accountNo.invalid" />
                   <div *ngIf="accountNo.touched && accountNo.hasError('required')" class="invalid-feedback">
-                  {{ 'BBL000008' | translate }}
+                  {{ 'ACCOUNT_NO_REQ_ERR' | translate }}
                 </div>
                 <!-- ACCOUNT NUMBER OF 13/16 DIGITS ERROR -->
                 <div *ngIf="accountNo.errors?.['maxLength']" class="invalid-feedback">
-                  {{'BBL000048' | translate }}
+                  {{'ACCOUNT_NO_LENGTH_ERR' | translate }}
                 </div>
             </div>
           </div>
@@ -121,7 +121,7 @@
 
               <!-- ACCOUNT TITLE -->
               <label for="accountTitle" class="form-label fw-bold fs-5 mb-0">
-                {{ 'BBL000038' | translate }}
+                {{ 'ACCOUNT_TITLE' | translate }}
               </label>
               <input 
                 type="text" 
@@ -136,7 +136,7 @@
           <!-- DEPOSIT AMOUNT -->
           <div class="mt-4">
             <label for="depositAmount" class="form-label fw-bold fs-5 mb-0">
-              {{ 'BBL000003' | translate }}
+              {{ 'CASHDEP_AMOUNT' | translate }}
             </label>
             <input 
                 type="text" 
@@ -147,13 +147,13 @@
                 (blur)="onBlur($event)"  
               [class.is-invalid]="depositAmount.touched && depositAmount.invalid" />
             <div *ngIf="depositAmount.touched && depositAmount.hasError('required')" class="invalid-feedback"> {{
-              'BBL000009' | translate }}</div>
+              'CASHDEP_AMOUNT_ERR' | translate }}</div>
           </div>
           <div class="d-flex mt-4">
             <!-- SOURCE OF FUND -->
             <div class="col-6 pe-1">
               <label for="sourceOfFund" class="form-label fw-bold fs-5 mb-0">
-                {{ 'BBL000004' | translate }}</label>
+                {{ 'CASHDEP_SOURCE_OF_FUND' | translate }}</label>
               <input 
                 type="text" 
                 class="form-control border-2" 
@@ -161,20 +161,20 @@
                 formControlName="sourceOfFund"
                 [class.is-invalid]="sourceOfFund.touched && sourceOfFund.invalid" />
               <div *ngIf="sourceOfFund.touched && sourceOfFund.hasError('required')" class="invalid-feedback"> 
-              {{ 'BBL000010' | translate }}</div>
+              {{ 'CASHDEP_SOURCE_OF_FUND_ERR' | translate }}</div>
             </div>
             <!-- TRANSACTION PARTICULAR -->
             <div class="col-6 ps-1">
               <label for="tranPart" class="form-label fw-bold fs-5 mb-0">
-                {{ 'BBL000005' | translate }}</label>
+                {{ 'TRANS_PARTICULAR' | translate }}</label>
               <input 
                 type="text" 
                 class="form-control border-2" 
                 id="tranPart" 
                 formControlName="tranPart"
                 [class.is-invalid]="tranPart.touched && tranPart.invalid" />
-              <div *ngIf="tranPart.touched && tranPart.hasError('required')" class="invalid-feedback">{{ 'BBL000011' |
-                translate }}</div>
+              <div *ngIf="tranPart.touched && tranPart.hasError('required')" class="invalid-feedback">
+              {{ 'TRANS_PARTICULAR_ERR' | translate }}</div>
             </div>
           </div>
         </div>
@@ -186,14 +186,14 @@
           <!-- PROCEED BUTTON -->
           <button type="button" class="btn btn-primary" (click)="onProceed()">
             <div class="d-flex align-items-center justify-content-center gap-1">
-              {{ 'BBL000102' | translate }}
+              {{ 'BUTTON_PROCEED' | translate }}
               <i class="ti ti-check fs-3"></i>
             </div>
           </button>
           <!-- RESET BUTTON -->
           <button type="button" class="btn btn-warning mx-2" (click)="onReset()">
             <div class="d-flex align-items-center justify-content-center gap-1">
-              {{ 'BBL000101' | translate }}
+              {{ 'BUTTON_RESET' | translate }}
               <i class="ti ti-refresh fs-3"></i>
             </div>
           </button>
