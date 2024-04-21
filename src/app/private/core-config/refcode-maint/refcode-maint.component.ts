@@ -142,20 +142,21 @@ export class RefCodeMaintComponent implements OnInit {
       .pipe(take(1))
       .subscribe((response) => {
         if (response.genDataBlock.formData) {
-          this.depRefCodeType = response.genDataBlock.formData.depRefCodeType          
+          this.depRefCodeType = response.genDataBlock.formData.depRefCodeType
           this.depRefCodeDesc = response.genDataBlock.formData.depRefCodeDesc;
           this.depFlg = response.genDataBlock.formData.depFlg;
+          this.lchgTime = response.genDataBlock.formData.lchgTime;
           this.refCodeForm.patchValue({ depFlg: this.depFlg });
           this.refCodeForm.patchValue({delFlg:'N'});
           this.refCodeForm.patchValue({menuId:'RCMM'});
-          this.refCodeForm.patchValue({lchgTime:''});
+          this.refCodeForm.patchValue({lchgTime:this.lchgTime});
           this.refCodeDetailForm.patchValue(response.genDataBlock.formData);
           this.mopCodeDescList = this.mrhBlockToGrid(response.mrhBlock.mrhBlocks[0]);
 
           console.log(this.refCodeDetailForm);
 
           const mrh = this.gridToMrhBlock(this.mopCodeDescList);
-           console.log(response);     
+           console.log(response);
 
           for (const mop of this.mopCodeDescList) {
             let featureFrom = new FormGroup({
@@ -229,14 +230,14 @@ export class RefCodeMaintComponent implements OnInit {
       }
         break;
       case 'A': {
-       
+        this.isInquiry = false;
         this.isHiddenRefCodeSrchBtn = true;
       }
         break;
       case 'U':
       case 'M':
       case 'X': {
-        this.isHiddenRefCodeSrchBtn = true;
+        this.isHiddenRefCodeSrchBtn = false;
       }
         break;
       default:
@@ -273,7 +274,7 @@ export class RefCodeMaintComponent implements OnInit {
     this.refCodeDesc='';
     this.refTypeDesc='';
   }
-  
+
 
   get funcCode() {
     return this.refCodeForm.get('funcCode');
