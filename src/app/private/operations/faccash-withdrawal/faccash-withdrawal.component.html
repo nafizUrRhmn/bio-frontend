@@ -1,7 +1,7 @@
 <div class="container">
     <!-- HEADER TEXT -->
     <div class="border-bottom">
-        <h2 class="text-primary fw-bold my-4">{{ 'TRANS_DETAILS' | translate | uppercase }}</h2>
+        <h2 class="text-primary fw-bold my-4">{{ 'TRANS_DTLS' | translate | uppercase }}</h2>
     </div>
 
     <!-- FORM DETAILS -->
@@ -9,7 +9,7 @@
         <form [formGroup]="facCashWithdrawal">
             <div class="mb-1">
                 <label for="beneficiaryMobileNo" class="form-label fw-bold fs-5 mb-0">
-                    {{'BENEFICIARY_MOBILE_NO' | translate}}</label>
+                    {{'BENF_MOB' | translate}}</label>
                 <div class="row">
                     <div class="col-12">
                         <input type="text" class="form-control border-2" id="beneficiaryMobileNo"
@@ -17,7 +17,7 @@
                             [class.is-invalid]="facCashWithdrawal.get('beneficiaryMobileNo').invalid && facCashWithdrawal.get('beneficiaryMobileNo').touched" />
                         <div class="invalid-feedback"
                             *ngIf="facCashWithdrawal.get('beneficiaryMobileNo').hasError('required') &&  facCashWithdrawal.get('beneficiaryMobileNo').touched ">
-                            {{'BENEFICIARY_MOBILE_NO_REQ_ERR' | translate}}
+                            {{'ER_BENF_MOB' | translate}}
                         </div>
                     </div>
                 </div>
@@ -29,14 +29,14 @@
                 <!-- PROCEED BUTTON -->
                 <button type="button" class="btn btn-primary" (click)="onProceed()">
                     <div class="d-flex align-items-center justify-content-center gap-1">
-                        {{ 'BUTTON_PROCEED' | translate }}
+                        {{ 'BTN_PROCD' | translate }}
                         <i class="ti ti-check fs-3"></i>
                     </div>
                 </button>
                 <!-- RESET BUTTON -->
                 <button type="button" class="btn btn-warning mx-2" (click)="onReset()">
                     <div class="d-flex align-items-center justify-content-center gap-1">
-                        {{ 'BUTTON_RESET' | translate }}
+                        {{ 'BTN_RST' | translate }}
                         <i class="ti ti-refresh fs-3"></i>
                     </div>
                 </button>

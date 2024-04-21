@@ -1,7 +1,7 @@
 <div class="container">
   <!-- HEADER TEXT -->
   <div class="border-bottom">
-    <h2 class="text-primary fw-bold my-4">{{ 'TRANS_DETAILS' | translate | uppercase }}</h2>
+    <h2 class="text-primary fw-bold my-4">{{ 'TRANS_DTLS' | translate | uppercase }}</h2>
   </div>
 
   <div class="row mt-4">
@@ -9,14 +9,14 @@
     <div class="col-3 mt-1 ">
       <div class="border-end pe-2">
         <div class="border-bottom">
-          <h4 class="card-title text-muted fw-bold mb-2">{{ 'CUSTOMER_DETAILS' | translate | uppercase }}</h4>
+          <h4 class="card-title text-muted fw-bold mb-2">{{ 'CUST_DETAILS' | translate | uppercase }}</h4>
         </div>
         <div>
           <div class="mt-2">
             <!-- Customer Id -->
             <div class="row mb-2">
               <div class="col-md-6 fw-bold text-muted">
-                <div>{{'CUSTOMER_ID'|translate}}</div>
+                <div>{{'CUST_ID'|translate}}</div>
               </div>
               <div class="col-md-6">
                 <div>N/A</div>
@@ -26,7 +26,7 @@
             <!-- Mobile -->
             <div class="row mb-2">
               <div class="col-md-6 fw-bold text-muted">
-                <div>{{'MOBILE'|translate}}</div>
+                <div>{{'MOB'|translate}}</div>
               </div>
               <div class="col-md-6">
                 <div>015********</div>
@@ -36,7 +36,7 @@
             <!-- Account Title -->
             <div class="row mb-2">
               <div class="col-md-6 fw-bold text-muted">
-                <div>{{'ACCOUNT_TITLE'|translate}}</div>
+                <div>{{'ACNT_TITLE'|translate}}</div>
               </div>
               <div class="col-md-6">
                 <div>N/A</div>
@@ -46,7 +46,7 @@
             <!-- Email -->
             <div class="row mb-2">
               <div class="col-md-6 fw-bold text-muted">
-                <div>{{'EMAIL'|translate}}</div>
+                <div>{{'EMIL'|translate}}</div>
               </div>
               <div class="col-md-6">
                 <div>something2247@gmail.com</div>
@@ -56,7 +56,7 @@
             <!-- Account Type -->
             <div class="row mb-2">
               <div class="col-md-6 fw-bold text-muted">
-                <div>{{'ACCOUNT_TYPE'|translate}}</div>
+                <div>{{'ACNT_TYP'|translate}}</div>
               </div>
               <div class="col-md-6">
                 <div>N/A</div>
@@ -66,7 +66,7 @@
             <!-- Account Status -->
             <div class="row mb-2">
               <div class="col-md-6 fw-bold text-muted">
-                <div>{{'ACCOUNT_STATUS'|translate}}</div>
+                <div>{{'ACNT_STAT'|translate}}</div>
               </div>
               <div class="col-md-6">
                 <div>N/A</div>
@@ -76,7 +76,7 @@
             <!-- Offer -->
             <div class="row mb-2">
               <div class="col-md-6 fw-bold text-muted">
-                <div>{{'OFFER'|translate}}</div>
+                <div>{{'OFFR'|translate}}</div>
               </div>
               <div class="col-md-6">
                 <div>Subscriber</div>
@@ -97,6 +97,7 @@
       </div>
     </div>
 
+
     <!-- FORM DETAILS -->
 
     <div class="col-8 ms-3">
@@ -108,7 +109,7 @@
             <div class="col-6">
               <!-- ACCOUNT NUMBER -->
               <label for="accountNo" class="form-label fw-bold fs-5 mb-0">
-                {{ 'ACCOUNT_NO' | translate }}
+                {{ 'ACNT_NO' | translate }}
               </label>
               <input 
                 type="text" 
@@ -118,18 +119,18 @@
                 required
                 [class.is-invalid]="accountNo.touched && accountNo.invalid" />
               <div *ngIf="accountNo.touched && accountNo.hasError('required')" class="invalid-feedback">
-                {{ 'ACCOUNT_NO_REQ_ERR' | translate }}
+                {{ 'ER_ACNT_NO' | translate }}
               </div>
               <!-- ACCOUNT NUMBER OF 13/16 DIGITS ERROR -->
               <div *ngIf="accountNo.errors?.['maxLength']" class="invalid-feedback">
-                {{'ACCOUNT_NO_LENGTH_ERR' | translate }}
+                {{'ER_ACNT_NO_L' | translate }}
               </div>
             </div>
 
             <div class="col-6">
               <!-- ACCOUNT TITLE -->
               <label for="accountTitle" class="form-label fw-bold fs-5 mb-0">
-                {{ 'ACCOUNT_TITLE' | translate }}
+                {{ 'ACNT_TITLE' | translate }}
               </label>
               <input 
                 type="text" 
@@ -142,7 +143,7 @@
           <!-- WITHDRAWAL AMOUNT -->
           <div class="mt-4">
             <label for="withdrawalAmount" class="form-label fw-bold fs-5 mb-0">
-              {{ 'CASHWDR_AMOUNT' | translate }}
+              {{ 'CASHWDR_AMNT' | translate }}
             </label>
             <input 
                 type="text" 
@@ -154,7 +155,7 @@
                 (blur)="onBlur($event)"  
                 [class.is-invalid]="withdrawalAmount.touched && withdrawalAmount.invalid" />
             <div *ngIf="withdrawalAmount.touched && withdrawalAmount.hasError('required')" class="invalid-feedback">
-              {{ 'CASHWDR_AMOUNT_REQ_ERR' | translate }}
+              {{ 'ER_CASHWDR_AMNT' | translate }}
             </div>
           </div>
 
@@ -164,23 +165,23 @@
             <div class="col-6 ">
               <!-- Purpose of Withdrawal -->
               <label for="purposeofWD" class="form-label fw-bold fs-5 mb-0">
-                {{ 'CASHWDR_PURPOSE_OF_WITHDRAWAL' | translate }}</label>
+                {{ 'CASHWDR_PURP_WDR' | translate }}</label>
               <input type="text" class="form-control border-2" id="purposeofWD" formControlName="purposeofWD" required
                 [class.is-invalid]="purposeofWD.touched && purposeofWD.invalid" />
               <div *ngIf="purposeofWD.touched && purposeofWD.hasError('required')" class="invalid-feedback">
-                {{ 'CASHWDR_PURPOSE_OF_WITHDRAWAL_REQ_ERR' | translate }}
+                {{ 'ER_CASHWDR_PURP_WDR' | translate }}
               </div>
             </div>
 
             <div class="col-6">
               <!-- Transaction Particular -->
               <label for="tranPart" class="form-label fw-bold fs-5 mb-0">
-                {{ 'TRANS_PARTICULAR' | translate }}
+                {{ 'TRANS_PARTCLR' | translate }}
               </label>
               <input type="text" class="form-control border-2" id="tranPart" formControlName="tranPart" required
                 [class.is-invalid]="tranPart.touched && tranPart.invalid" />
               <div *ngIf="tranPart.touched && tranPart.hasError('required')" class="invalid-feedback">
-                {{ 'TRANS_PARTICULAR_ERR' | translate }}
+                {{ 'ER_TRANS_PARTCLR' | translate }}
               </div>
             </div>
 
@@ -193,14 +194,14 @@
               <!-- PROCEED BUTTON -->
               <button type="button" class="btn btn-primary" (click)="onProceed()">
                 <div class="d-flex align-items-center justify-content-center gap-1">
-                  {{ 'BUTTON_PROCEED' | translate }}
+                  {{ 'BTN_PROCD' | translate }}
                   <i class="ti ti-check fs-3"></i>
                 </div>
               </button>
               <!-- RESET BUTTON -->
               <button type="button" class="btn btn-warning mx-2" (click)=" onReset()">
                 <div class="d-flex align-items-center justify-content-center gap-1">
-                  {{ 'BUTTON_RESET' | translate }}
+                  {{ 'BTN_RST' | translate }}
                   <i class="ti ti-refresh fs-3"></i>
                 </div>
               </button>

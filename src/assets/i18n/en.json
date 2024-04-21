@@ -1,113 +1,108 @@
 {
-  "BUTTON_SEARCH" : "Search",
-  "BUTTON_NEXT" : "Next",
-  "BUTTON_CANCEL" : "Cancel",
-  "BUTTON_SUBMIT" : "Submit",
-  "BUTTON_YES" : "Yes",
-  "BUTTON_NO" : "No",
-  "BUTTON_BACK" : "Back",
-  "BUTTON_RESET" : "Reset",
-  "BUTTON_PROCEED" : "Proceed",
+  "BTN_SRCH" : "Search",
+  "BTN_NXT" : "Next",
+  "BTN_CNCL" : "Cancel",
+  "BTN_SBMT" : "Submit",
+  "BTN_YES" : "Yes",
+  "BTN_NO" : "No",
+  "BTN_BCK" : "Back",
+  "BTN_RST" : "Reset",
+  "BTN_PROCD" : "Proceed",
 
-  "CUSTOMER_DETAILS" : "Customer Details",
-  "CUSTOMER_ID" : "Customer Id",
-  "MOBILE" : "Mobile",
-  "ACCOUNT_TITLE" : "Account Title",
-  "EMAIL" : "Email",
-  "ACCOUNT_TYPE" : "Account Type",
-  "ACCOUNT_STATUS" : "Account Status",
-  "OFFER" : "Offer",
+  "CUST_DETAILS" : "Customer Details",
+  "CUST_ID" : "Customer Id",
+  "MOB" : "Mobile",
+  "ACNT_TITLE" : "Account Title",
+  "EMIL" : "Email",
+  "ACNT_TYP" : "Account Type",
+  "ACNT_STAT" : "Account Status",
+  "OFFR" : "Offer",
   "SOL_ID" : "Sol Id",
 
-  "TRANS_DETAILS" : "Transaction Details",
+  "TRANS_DTLS" : "Transaction Details",
 
-  "ACCOUNT_NO" : "Account No",
-  "ACCOUNT_NO_REQ_ERR" : "Account No is required",
-  "ACCOUNT_NO_LENGTH_ERR" : "Account Number must be of 13 or 16 digits",
+  "ACNT_NO" : "Account No",
+  "ER_ACNT_NO" : "Account No is required",
+  "ER_ACNT_NO_L" : "Account Number must be of 13 or 16 digits",
 
-  "TRANS_PARTICULAR" : "Transaction Particular",
-  "TRANS_PARTICULAR_ERR" : "Transaction Particular Required",
+  "TRANS_PARTCLR" : "Transaction Particular",
+  "ER_TRANS_PARTCLR" : "Transaction Particular Required",
 
-  "TRANS_REMARKS" : "Transaction Remarks",
-  "TRANS_REMARKS_ERR" : "Transaction Remarks Required",
+  "TRANS_REMRKS" : "Transaction Remarks",
+  "ER_TRANS_REMRKS" : "Transaction Remarks Required",
 
-  "TRANSFER_TYPE" : "Transfer Type",
-  "TRANSFER_TYPE_REQ_ERR" : "Transfer Type Required",
-  "TRANSFER_AMOUNT" : "Transfer Amount",
-  "TRANSFER_AMOUNT_REQ_ERR" : "Transfer Amount Required",
+  "BENF_MOB" : "Beneficiary Mobile No",
+  "ER_BENF_MOB" : "Beneficiary Mobile Number Required",
 
-  "BENEFICIARY_MOBILE_NO" : "Beneficiary Mobile No",
-  "BENEFICIARY_MOBILE_NO_REQ_ERR" : "Beneficiary Mobile Number Required",
-
-  "AMOUNT" : "Amount",
-  "AMOUNT_REQ_ERR" : "Amount Required",
+  "AMNT" : "Amount",
+  "ER_AMNT" : "Amount Required",
 
 
 
   "MODULE" : "Module",
-  "ACCESS_CONTROL" : "Access Control",
+  "ACCESS_CTRL" : "Access Control",
   "OPERATIONS" : "Operations",
-  "CORE_CONFIGURATION" : "Core Config",
+  "CORE_CONFIG" : "Core Config",
 
   "NOTICE" : "Notice",
 
-  "CHANGE_PASSWORD" : "Change Password",
-  "OLD_PASSWORD" : "Old Password",
-  "NEW_PASSWORD" : "New Password",
-  "CONFIRM_PASSWORD" : "Confirm Password",
+  "CHNG_PASS" : "Change Password",
+  "OLD_PASS" : "Old Password",
+  "NEW_PASS" : "New Password",
+  "CONFRM_PASS" : "Confirm Password",
 
   "LOG_OUT" : "Logout",
 
 
 
-  "CASHDEP_AMOUNT" : "Deposit Amount",
-  "CASHDEP_AMOUNT_ERR" : "Deposit Amount is required",
-  "CASHDEP_SOURCE_OF_FUND" : "Source Of Fund",
-  "CASHDEP_SOURCE_OF_FUND_ERR" : "Source Of Fund is required",
+  "CASHDEP_AMNT" : "Deposit Amount",
+  "ER_CASHDEP_AMNT" : "Deposit Amount is required",
+  "CASHDEP_SRC_FND" : "Source Of Fund",
+  "ER_CASHDEP_SRC_FND" : "Source Of Fund is required",
 
 
-  "CASHWDR_AMOUNT" : "Withdrawal Amount",
-  "CASHWDR_AMOUNT_REQ_ERR" : "Withdrawal Amount Required",
-  "CASHWDR_PURPOSE_OF_WITHDRAWAL" : "Purpose of Withdrawal",
-  "CASHWDR_PURPOSE_OF_WITHDRAWAL_REQ_ERR" : "Purpose of Withdrawal is required",
+  "CASHWDR_AMNT" : "Withdrawal Amount",
+  "ER_CASHWDR_AMNT" : "Withdrawal Amount Required",
+  "CASHWDR_PURP_WDR" : "Purpose of Withdrawal",
+  "ER_CASHWDR_PURP_WDR" : "Purpose of Withdrawal is required",
 
-  "LOAN_INSTALLMENT_OPERATING_ACCOUNT_NO" : "Operating Account No.",
-  "LOAN_INSTALLMENT_OPERATING_ACCOUNT_NO_REQ_ERR" : "Operating Account No. required",
-  "LOAN_INSTALLMENT_OPERATING_ACCOUNT_NO_LENGTH_ERR" : "Operating Account Number must be of 13 or 16 digits",
+  "LN_INST_OP_ACNT" : "Operating Account No.",
+  "ER_LN_INST_OP_ACNT" : "Operating Account No. required",
+  "ER_LN_INST_OP_ACNT_L" : "Operating Account Number must be of 13 or 16 digits",
 
-  "LOAN_DISBURSEMENT_LINK_ACCOUNT_NO" : "Link Account No.",
-  "LOAN_DISBURSEMENT_LINK_ACCOUNT_NO_REQ_ERR" : "Link Account No. is required",
-  "LOAN_DISBURSEMENT_LINK_ACCOUNT_NO_REQ_LENGTH_ERR" : "Link Account Number must be of 13 or 16 digits",
+  "LN_DIS_LNK_ACNT" : "Link Account No.",
+  "ER_LN_DIS_LNK_ACNT" : "Link Account No. is required",
+  "ER_LN_DIS_LNK_ACNT_L" : "Link Account Number must be of 13 or 16 digits",
 
-  "BANK_TRANSFERS_TRANSFER_TYPE" : "Transfer Type",
-  "BANK_TRANSFERS_TRANSFER_TYPE_REQ_ERR" : "Transfer Type Rquired",
-  "BANK_TRANSFERS_TRANSFER_AMOUNT" : "Transfer Amount",
-  "BANK_TRANSFERS_TRANSFER_AMOUNT_REQ_ERR" : "Transfer Amount Required",
-  "BANK_TRANSFERS_PURPOSE_OF_PAYMENT" : "Purpose Of Payment",
-  "BANK_TRANSFERS_PURPOSE_OF_PAYMENT_REQ_ERR" : "Purpose Of Payment Required",
-  "BANK_TRANSFERS_TRANS_REMARKS" : "Transaction Remarks",
-  "BANK_TRANSFERS_TRANS_REMARKS_REQ_ERR" : "Transaction Remarks Required",
-
-
-  "GENERATE_FAC_BENEFICIARY_NAME" : "Beneficiary Name",
-  "GENERATE_FAC_BENEFICIARY_NAME_REQ_ERR" : "Beneficiary Name Required",
+  "BNK_TRANS_TRANS_TYP" : "Transfer Type",
+  "ER_BNK_TRANS_TRANS_TYP" : "Transfer Type Rquired",
+  "BNK_TRANS_TRANS_AMNT" : "Transfer Amount",
+  "ER_BNK_TRANS_TRANS_AMNT" : "Transfer Amount Required",
+  "BNK_TRANS_PURP_PAYMNT" : "Purpose Of Payment",
+  "ER_BNK_TRANS_PURP_PAYMNT" : "Purpose Of Payment Required",
+  "BNK_TRANS_TRANS_RMRKS" : "Transaction Remarks",
+  "ER_BNK_TRANS_TRANS_RMRKS" : "Transaction Remarks Required",
 
 
-
+  "GEN_FAC_BENF_NM" : "Beneficiary Name",
+  "ER_GEN_FAC_BENF_NM" : "Beneficiary Name Required",
 
 
 
-  "RCTM_MAIN_HEADER" : "RCT Maintainance",
-  "RCTM_DETAIL_HEADER" : "RCT Details",
-  "RCTM_FUNCTION_CODE" : "Function Code",
-  "RCTM_FUNCTION_CODE_REQ_ERR" : "Function Code Must be Selected",
-  "RCTM_REF_TYPE" : "Reference Type",
-  "RCTM_REF_TYPE_REQ_ERR" : "Reference Type Required",
-  "RCTM_REF_TYPE_DESC" : "Reference Type Desc",
-  "RCTM_NEW_REF_TYPE" : "New Reference Type",
-  "RCTM_REF_TYPE_LENGTH" : "Length",
-  "RCTM_DEP_FLAG" : "Dependent Flag",
-  "RCTM_DEP_TYPE" : "Dependent Ref Type",
+
+
+
+  "RCTM_MAIN_HDER" : "RCT Maintainance",
+  "RCTM_DETAIL_HDER" : "RCT Details",
+  "RCTM_FUNC_CODE" : "Function Code",
+  "ER_RCTM_FUNC_CODE" : "Function Code Must be Selected",
+  "RCTM_REF_TYP" : "Reference Type",
+  "ER_RCTM_REF_TYP" : "Reference Type Required",
+  "RCTM_REF_TYP_DESC" : "Reference Type Desc",
+  "RCTM_NEW_REF_TYP" : "New Reference Type",
+  "RCTM_REF_TYP_LEN" : "Length",
+  "RCTM_DEP_FLG" : "Dependent Flag",
+  "RCTM_DEP_TYP" : "Dependent Ref Type",
   "RCTM_DEP_DESC" : "Dep Ref Type Description",
 
 
