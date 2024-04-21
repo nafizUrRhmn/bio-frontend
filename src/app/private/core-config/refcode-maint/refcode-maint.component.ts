@@ -6,6 +6,7 @@ import { NavigationService } from "../../../theme/layout/private-layout/navigati
 import { RefCodeMaintService } from "./refcode-maint.service";
 import { take } from "rxjs";
 import { MatStepper } from '@angular/material/stepper';
+import { AlertService } from 'src/app/_services/alert-service';
 
 @Component({
   selector: 'app-refcode-maint',
@@ -31,17 +32,14 @@ export class RefCodeMaintComponent implements OnInit {
   isInquiry: boolean = false;
   isDelete: boolean = false;
 
-
-
   @ViewChild('stepper', { read: MatStepper }) stepper: MatStepper
-  alertService: any;
-
-
 
   constructor(private fb: FormBuilder,
     public dialog: MatDialog,
     public refCodeMaintService: RefCodeMaintService,
-    private navService: NavigationService) {
+    private navService: NavigationService,
+    private alertService: AlertService,
+  ) {
   }
 
   ngOnInit() {
@@ -251,7 +249,6 @@ export class RefCodeMaintComponent implements OnInit {
   }
 
   onSubmit() {
-
     const payload = {
       ...this.refCodeForm.value,
       ...this.refCodeDetailForm.value
@@ -260,14 +257,15 @@ export class RefCodeMaintComponent implements OnInit {
 
     this.refCodeMaintService.submit(payload).pipe(take(1)).subscribe({
       next: (v) => {
-        this.alertService.successAlert(v.responseMessage);
+        this.alertService.successAlert(v.responseMessage)
+          .then(() => this.refCodeForm.reset(),
+          ).then(() => this.refTypeDesc = '').then(() => this.stepper.reset());
       },
       error: (err) => {
         this.alertService.errorAlert(err.error.message);
       }
     });
-
-   }
+  }
 
 
    clearRefCodeFormFields() {
