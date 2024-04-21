@@ -19,10 +19,8 @@ import {AuthenticationService} from "./_services";
 import {PagenotfoundComponent} from "./pagenotfound/pagenotfound.component";
 import {TranslateHttpLoader} from "@ngx-translate/http-loader";
 import {TranslateLoader, TranslateModule} from "@ngx-translate/core";
-import {HashLocationStrategy, LocationStrategy} from "@angular/common";
 import {SweetAlert2Module} from "@sweetalert2/ngx-sweetalert2";
 import {LoaderInterceptor} from "./_helpers/loader.interceptor";
-import {SpinnerComponent} from "./theme/shared/components/spinner/spinner.component";
 
 
 export function httpTranslateLoaderFactory(http: HttpClient) {return new TranslateHttpLoader(http,'./assets/i18n/','.json');

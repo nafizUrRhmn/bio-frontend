@@ -123,9 +123,9 @@ export class MenuMaintenanceComponent {
   onSearchAppId() {
 
     const payLoad = {
-      "functionCode": 'I',
-      "referenceType": '01',
-      "referenceCode": this.menuSaveForm.get('param2').value ? this.menuSaveForm.get('param2').value : ''
+      "funcCode": 'I',
+      "refCodeType": '01',
+      "refCode": this.menuSaveForm.get('param2').value ? this.menuSaveForm.get('param2').value : ''
     };
     const dialogRef = this.dialog.open(AgbListComponent, {
       width: '50%',
@@ -138,16 +138,15 @@ export class MenuMaintenanceComponent {
     });
     dialogRef.afterClosed().pipe(take(1)).subscribe(res => {
       console.log(res);
-      // this.menuFormData = {...this.menuFormData, ...res};
       this.menuSaveForm.get('param2').setValue(res.refCode);
     });
   }
 
   onSearchModuleId() {
     const payLoad = {
-      "functionCode": 'I',
-      "referenceType": '03',
-      "referenceCode": this.menuSaveForm.get('param3').value ? this.menuSaveForm.get('param3').value : ''
+      "funcCode": 'I',
+      "refCodeType": '03',
+      "refCode": this.menuSaveForm.get('param3').value ? this.menuSaveForm.get('param3').value : ''
     };
     const dialogRef = this.dialog.open(AgbListComponent, {
       width: '50%',
@@ -260,9 +259,11 @@ export class MenuMaintenanceComponent {
 
         const mrhBlocks: MrhBlock[] = response?.mrhBlock.mrhBlocks;
         for (let mrhBlock of mrhBlocks) {
-          if (mrhBlock.listName === 'mopCodeDescList' && mrhBlock.numberOfRecs > 0) {
+          if (mrhBlock.listName === 'mopCodeDescList') {
             this.mopCodeDescMrh = mrhBlock;
-            this.mopCodeDescList = this.mrhBlockToGrid(mrhBlock);
+            if(mrhBlock.numberOfRecs >0){
+              this.mopCodeDescList = this.mrhBlockToGrid(mrhBlock);
+            }
             for (const mop of this.mopCodeDescList) {
               let featureNameForm = new FormGroup({
                 langCode: new FormControl('', Validators.required),
@@ -275,8 +276,9 @@ export class MenuMaintenanceComponent {
             }
 
             this.menuSaveForm.get('languageDetails').patchValue(this.mopCodeDescList);
-          } else if (mrhBlock.listName === 'mopPermList' && mrhBlock.numberOfRecs > 0) {
+          } else if (mrhBlock.listName === 'mopPermList') {
             this.mopPermMrh = mrhBlock;
+            if(mrhBlock.numberOfRecs >0)
             this.mopPermList = this.mrhBlockToGrid(mrhBlock);
           }
         }
@@ -293,7 +295,7 @@ export class MenuMaintenanceComponent {
   onCancel() {
     this.menuSaveForm.reset();
     this.parentMenuForm.reset();
-    this.nrxGrid.gridApi.setRowData([]);
+    this.nrxGrid?.gridApi.setRowData([]);
     this.stepper.reset()
   }
 
@@ -303,9 +305,12 @@ export class MenuMaintenanceComponent {
     let formData = this.menuSaveForm.getRawValue();
     formData = {...formData, 'param5': this.param5Gen(formData)};
     let languageDetails = this.menuSaveForm.get('languageDetails').value;
+    console.log(rows);
+    console.log(languageDetails);
     delete formData.languageDetails;
     if(this.mopPermMrh?.headerInfo) {
       this.mopPermMrh.dataBlock = this.gridToMrhBlock(rows, this.mopPermMrh?.headerInfo);
+      console.log(this.mopPermMrh.dataBlock)
     }
     if(this.mopCodeDescMrh?.headerInfo){
       this.mopCodeDescMrh.dataBlock = this.gridToMrhBlock(languageDetails, this.mopCodeDescMrh?.headerInfo);
