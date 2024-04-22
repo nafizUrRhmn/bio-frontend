@@ -84,7 +84,7 @@ export class AuthenticationService {
     let user1: User = new User();
     user1.username = token.username;
     user1.fullName = token.fullName;
-    user1.modules = JSON.parse(token.modules);
+    user1.modules = token.modules;
     user1.prefLanguageCode = token.prefLanguageCode;
     user1.loginTimeSuc = token.loginTimeSuc;
     user1.userApplId = token.userApplId;

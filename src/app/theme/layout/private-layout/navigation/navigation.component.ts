@@ -40,18 +40,21 @@ export class NavigationComponent implements OnInit {
     this.route.url.subscribe(route => {
       this.path = route[0].path
       this.authService.user.subscribe(auth => {
-        console.log(auth.modules);
+        let moduleList = auth.modules.toString().split(',');
         const langObj$ = this.eventBus.getObservable(EventNamesConstant.LANGUAGE);
-        if (this.path === 'access-control' && auth.modules.find(k => k === 'ACCESS_CONTROL')) {
+        if (this.path === 'access-control' && moduleList.find(k => k.split('!')[0] === 'ACCESS_CONTROL')) {
+          let moduleValue = moduleList.find(k => k.split('!')[0] === 'ACCESS_CONTROL');
           langObj$.subscribe(lang => {
-            this.menuService.getMenusByModule(this.path, lang.langValue.code).pipe(take(1)).subscribe(menu => {
+            this.menuService.getMenusByModule(this.path, moduleValue.split('!')[1], lang.langValue.code).pipe(take(1)).subscribe(menu => {
               this.menuGenerator(menu, AccessControlConstant.ACCESS_CONTROL_COMPONENT_MAP)
             });
           });
 
-        } else if (this.path === 'operations' && auth.modules.find(k => k === 'OPERATIONS')){
+        } else if (this.path === 'operations' && moduleList.find(k => k === 'OPERATIONS')) {
           langObj$.subscribe(lang => {
-            this.menuService.getMenusByModule(this.path, lang.langValue?.code).pipe(take(1)).subscribe({
+            let moduleValue = auth.modules.find(k => k.split('!')[0] === 'OPERATIONS');
+            this.menuService.getMenusByModule(this.path, moduleValue.split('!')[1], lang.langValue?.code)
+              .pipe(take(1)).subscribe({
               next: (menu) => {
                 this.menuGenerator(menu, OperationsConstant.OPERATIONS_COMPONENT_MAP);
               },
@@ -62,14 +65,14 @@ export class NavigationComponent implements OnInit {
               }
             });
           });
-        }else if (this.path === 'core-config' && auth.modules.find(k => k === 'CCONF')){
+        } else if (this.path === 'core-config' && moduleList.find(k => k.split('!')[0] === 'CCONF')) {
           langObj$.subscribe(lang => {
-            console.log(this.path);
-            this.menuService.getMenusByModule(this.path, lang.langValue.code).pipe(take(1)).subscribe( {
+            let moduleValue = moduleList.find(k => k.split('!')[0] === 'CCONF');
+            this.menuService.getMenusByModule(this.path, moduleValue.split('!')[1], lang.langValue.code)
+              .pipe(take(1)).subscribe({
               next: (menu) => {
                 this.menuGenerator(menu, CoreConfigConstant.CORE_CONFIG_COMPONENT_MAP)
-              },
-              error: (err) => {
+              }, error: (err) => {
                 if (err.error.errorCode && err.error.errorCode === ErrorCodeConstant.PASSWORD_CHANGE_SCREEN_ERROR_CODE) {
                   this.router.navigate(['/private/change-password']);
                 }

@@ -13,13 +13,24 @@ export class PrivateComponent {
   notices: any[] = noticeboardData;
   isExpanded: boolean[] = [];
   maxLength: number = 120;
-
+  hasAccessControl = false;
+  hasOperation = false;
+  hasCoreConfig = false;
   constructor(private authService: AuthenticationService, private router: Router) {
   }
 
   ngOnInit() {
     this.isExpanded = new Array(this.notices.length).fill(false);
     this.authService.user.subscribe(u => {
+      u?.modules.toString().split(',').forEach(module => {
+        if(module.split('!')[0] === 'CCONF'){
+          this.hasCoreConfig = true;
+        }else if(module.split('!')[0] === 'OPERATION'){
+          this.hasOperation = true;
+        }else if(module.split('!')[0] === 'ACCESS_CTRL'){
+          this.hasAccessControl = true;
+        }
+      })
       this.username = u?.fullName;
     });
   }

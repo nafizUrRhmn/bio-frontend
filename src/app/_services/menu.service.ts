@@ -13,9 +13,10 @@ export class MenuService {
     private router: Router,
     private http: HttpClient) {
   }
-  getMenusByModule(modulePath,langCode) {
+  getMenusByModule(modulePath,applId,langCode) {
     let params = new HttpParams();
     params = params.append('modulePath', modulePath);
+    params = params.append('applId', applId);
     params = params.append('langCode', langCode);
     console.log(params);
     return this.http.get<any>(`${this.baseUrl}`,{params: params});

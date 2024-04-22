@@ -13,7 +13,7 @@
           <div class="card-body">
             <div class="justify-content-start gap-5 d-flex align-items-center">
 
-                  <div>
+                  <div *ngIf="hasAccessControl">
                     <a class="button" (click)="routing('/private/access-control')">
                       <div class="d-flex flex-column justify-content-center align-items-center">
                         <img src="assets/images/access-control.svg" alt="Access Control"
@@ -25,7 +25,7 @@
                   </div>
 
 
-                  <div>
+                  <div *ngIf="hasOperation">
                     <a class="button" (click)="routing('/private/operations')">
                       <div class="d-flex flex-column justify-content-center align-items-center">
                         <img src="assets/images/operations.svg" alt="Access Control"
@@ -36,7 +36,7 @@
                     </a>
                   </div>
 
-                  <div>
+                  <div *ngIf="hasCoreConfig">
                     <a class="button" (click)="routing('/private/core-config')">
                       <div class="d-flex flex-column justify-content-center align-items-center">
                         <img src="assets/images/core-configuration.svg" alt="core-config"
