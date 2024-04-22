@@ -1,5 +1,5 @@
 // Angular import
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {NavigationItem} from "./navigation-item";
 import {ActivatedRoute, Router} from "@angular/router";
 import {AuthenticationService} from "../../../../_services";
@@ -65,8 +65,15 @@ export class NavigationComponent implements OnInit {
         }else if (this.path === 'core-config' && auth.modules.find(k => k === 'CCONF')){
           langObj$.subscribe(lang => {
             console.log(this.path);
-            this.menuService.getMenusByModule(this.path, lang.langValue.code).pipe(take(1)).subscribe(menu => {
-              this.menuGenerator(menu, CoreConfigConstant.CORE_CONFIG_COMPONENT_MAP)
+            this.menuService.getMenusByModule(this.path, lang.langValue.code).pipe(take(1)).subscribe( {
+              next: (menu) => {
+                this.menuGenerator(menu, CoreConfigConstant.CORE_CONFIG_COMPONENT_MAP)
+              },
+              error: (err) => {
+                if (err.error.errorCode && err.error.errorCode === ErrorCodeConstant.PASSWORD_CHANGE_SCREEN_ERROR_CODE) {
+                  this.router.navigate(['/private/change-password']);
+                }
+              }
             });
           });
         }
