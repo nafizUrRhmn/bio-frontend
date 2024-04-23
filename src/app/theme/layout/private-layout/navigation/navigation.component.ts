@@ -36,7 +36,7 @@ export class NavigationComponent implements OnInit {
   ngOnInit(): void {
     this.route.url.subscribe(route => {
       this.path = route[0].path
-      this.authService.user.subscribe(auth => {
+      this.authService.user.pipe(take(1)).subscribe(auth => {
         let moduleList = auth.modules.toString().split(',');
         if (this.path === 'access-control' && moduleList.find(k => k.split('!')[0] === 'ACCESS_CONTROL')) {
           let moduleValue = moduleList.find(k => k.split('!')[0] === 'ACCESS_CONTROL');
@@ -45,8 +45,8 @@ export class NavigationComponent implements OnInit {
               .subscribe(menu => {
                 this.menuGenerator(menu, AccessControlConstant.ACCESS_CONTROL_COMPONENT_MAP)
             });
-        } else if (this.path === 'operations' && moduleList.find(k => k === 'OPERATIONS')) {
-            let moduleValue = auth.modules.find(k => k.split('!')[0] === 'OPERATIONS');
+        } else if (this.path === 'operations' && moduleList.find(k => k.split('!')[0] === 'OPERATION')) {
+            let moduleValue = moduleList.find(k => k.split('!')[0] === 'OPERATION');
             this.menuService.getMenusByModule(this.path, moduleValue.split('!')[1])
               .pipe(take(1)).subscribe({
               next: (menu) => {
