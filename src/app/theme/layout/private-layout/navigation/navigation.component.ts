@@ -8,8 +8,6 @@ import {AccessControlConstant} from "../../../../_constants/access-control.const
 import {OperationsConstant} from "../../../../_constants/operations.constant";
 import {take} from "rxjs";
 import {ErrorCodeConstant} from "../../../../_constants/error-code.constant";
-import {EventBusService} from "../../../../_services/event-bus.service";
-import {EventNamesConstant} from "../../../../_constants/event-names.constant";
 import {CoreConfigConstant} from "../../../../_constants/core-config.constant";
 
 @Component({
@@ -30,8 +28,7 @@ export class NavigationComponent implements OnInit {
   constructor(private route: ActivatedRoute,
               private authService: AuthenticationService,
               private menuService: MenuService,
-              private router: Router,
-              private eventBus: EventBusService) {
+              private router: Router) {
   }
 
   // public method
@@ -41,19 +38,16 @@ export class NavigationComponent implements OnInit {
       this.path = route[0].path
       this.authService.user.subscribe(auth => {
         let moduleList = auth.modules.toString().split(',');
-        const langObj$ = this.eventBus.getObservable(EventNamesConstant.LANGUAGE);
         if (this.path === 'access-control' && moduleList.find(k => k.split('!')[0] === 'ACCESS_CONTROL')) {
           let moduleValue = moduleList.find(k => k.split('!')[0] === 'ACCESS_CONTROL');
-          langObj$.subscribe(lang => {
-            this.menuService.getMenusByModule(this.path, moduleValue.split('!')[1], lang.langValue.code).pipe(take(1)).subscribe(menu => {
-              this.menuGenerator(menu, AccessControlConstant.ACCESS_CONTROL_COMPONENT_MAP)
+            this.menuService.getMenusByModule(this.path, moduleValue.split('!')[1])
+              .pipe(take(1))
+              .subscribe(menu => {
+                this.menuGenerator(menu, AccessControlConstant.ACCESS_CONTROL_COMPONENT_MAP)
             });
-          });
-
-        } else if (this.path === 'operations' && moduleList.find(k => k.split('!')[0] === 'OPERATION')) {
-          langObj$.subscribe(lang => {
-            let moduleValue = auth.modules.find(k => k.split('!')[0] === 'OPERATION');
-            this.menuService.getMenusByModule(this.path, moduleValue.split('!')[1], lang.langValue?.code)
+        } else if (this.path === 'operations' && moduleList.find(k => k === 'OPERATIONS')) {
+            let moduleValue = auth.modules.find(k => k.split('!')[0] === 'OPERATIONS');
+            this.menuService.getMenusByModule(this.path, moduleValue.split('!')[1])
               .pipe(take(1)).subscribe({
               next: (menu) => {
                 this.menuGenerator(menu, OperationsConstant.OPERATIONS_COMPONENT_MAP);
@@ -64,11 +58,9 @@ export class NavigationComponent implements OnInit {
                 }
               }
             });
-          });
         } else if (this.path === 'core-config' && moduleList.find(k => k.split('!')[0] === 'CCONF')) {
-          langObj$.subscribe(lang => {
             let moduleValue = moduleList.find(k => k.split('!')[0] === 'CCONF');
-            this.menuService.getMenusByModule(this.path, moduleValue.split('!')[1], lang.langValue.code)
+            this.menuService.getMenusByModule(this.path, moduleValue.split('!')[1])
               .pipe(take(1)).subscribe({
               next: (menu) => {
                 this.menuGenerator(menu, CoreConfigConstant.CORE_CONFIG_COMPONENT_MAP)
@@ -78,7 +70,6 @@ export class NavigationComponent implements OnInit {
                 }
               }
             });
-          });
         }
       });
     });
