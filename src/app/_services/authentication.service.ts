@@ -30,6 +30,8 @@ export class AuthenticationService {
       .pipe(map(v => {
         sessionStorage.setItem("refreshToken", v.refreshToken);
         sessionStorage.setItem("jwtToken", v.jwtToken);
+        // storing user default Language Code
+        sessionStorage.setItem('langCode',"BAN");
         this.userSubject.next(this.extractUserFromToken(v.jwtToken));
         this.startRefreshTokenTimer(v.jwtToken);
        // return user;
@@ -42,6 +44,7 @@ export class AuthenticationService {
     this.userSubject.next(null);
     sessionStorage.removeItem("refreshToken");
     sessionStorage.removeItem("jwtToken");
+    sessionStorage.removeItem("langCode")
     this.router.navigate(['/public/login']);
   }
 
