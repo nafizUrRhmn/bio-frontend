@@ -50,9 +50,9 @@ export class NavigationComponent implements OnInit {
             });
           });
 
-        } else if (this.path === 'operations' && moduleList.find(k => k === 'OPERATIONS')) {
+        } else if (this.path === 'operations' && moduleList.find(k => k.split('!')[0] === 'OPERATION')) {
           langObj$.subscribe(lang => {
-            let moduleValue = auth.modules.find(k => k.split('!')[0] === 'OPERATIONS');
+            let moduleValue = auth.modules.find(k => k.split('!')[0] === 'OPERATION');
             this.menuService.getMenusByModule(this.path, moduleValue.split('!')[1], lang.langValue?.code)
               .pipe(take(1)).subscribe({
               next: (menu) => {
