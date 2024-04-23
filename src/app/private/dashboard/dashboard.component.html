@@ -1,0 +1,42 @@
+<div class="card card-body">
+
+  <div class="row border-bottom">
+    <div class="col-6 border-end" id="chart1">
+      <apx-chart
+        [series]="chartOptionsNonAxis.series"
+        [chart]="chartOptionsNonAxis.chart"
+        [labels]="chartOptionsNonAxis.labels"
+        [responsive]="chartOptionsNonAxis.responsive"
+      ></apx-chart>
+    </div>
+    <div class= 'col-6' id="chart2">
+      <apx-chart
+        [series]="chartOptionsAxis.series"
+        [chart]="chartOptionsAxis.chart"
+        [dataLabels]="chartOptionsAxis.dataLabels"
+        [plotOptions]="chartOptionsAxis.plotOptions"
+        [yaxis]="chartOptionsAxis.yaxis"
+        [legend]="chartOptionsAxis.legend"
+        [fill]="chartOptionsAxis.fill"
+        [stroke]="chartOptionsAxis.stroke"
+        [tooltip]="chartOptionsAxis.tooltip"
+        [xaxis]="chartOptionsAxis.xaxis"
+      ></apx-chart>
+    </div>
+  </div>
+  <div>
+    <div id="chart3">
+      <apx-chart
+        [series]="chartOptionsLine.series"
+        [chart]="chartOptionsLine.chart"
+        [xaxis]="chartOptionsLine.xaxis"
+        [dataLabels]="chartOptionsLine.dataLabels"
+        [grid]="chartOptionsLine.grid"
+        [stroke]="chartOptionsLine.stroke"
+        [title]="chartOptionsLine.title"
+      ></apx-chart>
+    </div>
+  </div>
+
+
+</div>
