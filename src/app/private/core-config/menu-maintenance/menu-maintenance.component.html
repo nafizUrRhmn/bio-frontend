@@ -1,14 +1,16 @@
 <div class="m-5">
   <div class="border-bottom">
-    <h1 class="text-primary fw-bold">{{'MENU_MAINTENANCE' | translate}}</h1>
+    <h1 class="text-primary fw-bold">{{'MENU_MAINT' | translate | uppercase}}</h1>
   </div>
 
   <mat-stepper [linear]="false" #stepper>
-    <mat-step [stepControl]="menuSearchForm" [completed]="false" label="{{'MENU_MAINTENANCE' | translate}}">
+    <mat-step [stepControl]="menuSearchForm" [completed]="false" label="{{'MENU_MAINT' | translate}}">
       <form [formGroup]="menuSearchForm">
         <div class="d-flex flex-column m-2 me-5">
           <div class="pt-1 w-50 row mt-5">
-            <label for="funcCode" class="form-label text-muted col-4 fw-bold"> {{'MENU_FUNCTION_CODE' | translate }} </label>
+            <label for="funcCode" class="form-label text-muted col-4 fw-bold"> 
+              {{'MENU_FUNC_CODE' | translate}} 
+            </label>
             <div class="col-8">
               <select id="funcCode" class="form-select" formControlName="funcCode">
                 <option value="I">I-Inquiry</option>
@@ -23,7 +25,9 @@
             </div>
           </div>
           <div class="pt-4 w-50 row">
-            <label for="menuId" class="form-label text-muted fw-bold col-4">{{'MENU_ID' | translate}}</label>
+            <label for="menuId" class="form-label text-muted fw-bold col-4">
+              {{'MENU_ID' | translate}}
+            </label>
             <div class="col-8">
               <div class="d-flex flex-row">
                 <input
@@ -31,34 +35,52 @@
                   class="form-control" formControlName="menuId" minlength="1" maxlength="10"
                   id="menuId"/>
                 <button type="button" class="btn btn-outline-primary ms-5"
-                        (click)="onSearchMenuId()" [disabled]="funCode==='A'">{{'BUTTON_SEARCH' | translate}}</button>
+                        (click)="onSearchMenuId()" [disabled]="funCode==='A'">
+                        <div class="d-flex align-items-center justify-content-center gap-1">
+                          {{'BTN_SRCH' | translate}}
+                          <i class="ti ti-search fs-3"></i>
+                        </div>
+                </button>
               </div>
             </div>
           </div>
           <div class="pt-4 row">
-            <div class="col-2 text-muted fw-bold pt-1 ">{{'MENU_DETAILS' | translate}}</div>
+            <div class="col-2 text-muted fw-bold pt-1 ">
+              {{'MENU_DETLS' | translate}}
+            </div>
             <div
               class="col-10 pt-2 justify-content-start">{{menuFormData?.menuDesc ? menuFormData?.menuDesc : 'N/A'}}</div>
           </div>
         </div>
         <div class="text-end">
           <button type="button" class="btn btn-secondary" (click)="onNext()">
-            Next&nbsp;<span class="ti ti-arrow-right"></span></button>
+            {{'BTN_NXT' | translate}}&nbsp;<span class="ti ti-arrow-right"></span></button>
         </div>
       </form>
     </mat-step>
-    <mat-step [stepControl]="menuSaveForm" label="{{'MENU_DETAILS' | translate}}" [completed]="false">
+    <mat-step [stepControl]="menuSaveForm" label="{{'MENU_DETLS' | translate}}" [completed]="false">
       <form [formGroup]="menuSaveForm">
         <div class="mt-5">
 
-          <div class=" d-flex flex-row">
-            <div class="text-muted fw-bold pe-5 pt-1">{{'MENU_FUNC_CODE' | translate}}</div>
-            <div class="fw-bold pe-5 pt-1">{{funCodeDetails}}</div>
+          <div class="row mb-2">
+              <div class="col-2 text-muted fw-bold">
+                {{'MENU_FUNC_CODE' | translate}}
+              </div>
+              <div class="col-6 fw-bold">
+                {{funCodeDetails}}
+              </div>
           </div>
-          <div class=" d-flex flex-row">
-            <div class="text-muted fw-bold pe-5 pt-1">{{'MENU_ID' | translate}}</div>
-            <div class="fw-bold pe-5 pt-1">{{menuId}}</div>
-          </div>
+
+          <div class="row">
+            <div class="col-2 text-muted fw-bold">
+              {{'MENU_ID' | translate}}
+            </div>
+            <div class="col-6 fw-bold">
+              {{menuId}}
+            </div>
+        </div>
+
+
 <!--          <div class=" mt-5 d-flex flex-row">-->
 <!--            <div class="text-muted fw-bold pe-5 pt-1">{{ 'MODULE' | translate}}</div>-->
 <!--            <select class="form-select w-50" formControlName="module">-->
@@ -68,7 +90,7 @@
           <div class="mt-5">
             <div class="row border-bottom m-1 pb-3">
               <div class="col-4">
-                <span class="fw-bold p-5">{{'MENU_LANGUAGE' | translate}}</span>
+                <span class="fw-bold p-5">{{'MENU_LANG' | translate}}</span>
               </div>
               <div class="col-4">
                 <span class="fw-bold">{{'MENU_LANG_CODE_DESC' | translate}}</span>
@@ -103,14 +125,14 @@
           </div>
           <div class="mt-5 col-12">
             <span class="form-label text-muted fw-bold pe-5">
-                {{'MENU_TYPE' | translate}}
+                {{'MENU_TYP' | translate}}
             </span>
             <div class="form-check form-check-inline">
               <input class="form-check-input" type="radio" name="menuTp" id="root" value="R" checked
                      formControlName="menuTp"
                      (change)="onMenuTypeChange($event)">
               <label class="form-check-label" for="root">
-                Root
+                {{'MENU_ROOT'|translate}}
               </label>
             </div>
             <div class="form-check form-check-inline">
@@ -118,7 +140,7 @@
                      formControlName="menuTp"
                      (change)="onMenuTypeChange($event)">
               <label class="form-check-label" for="group">
-                Group
+                {{'MENU_GROUP'|translate}}
               </label>
             </div>
             <div class="form-check form-check-inline">
@@ -126,14 +148,14 @@
                      formControlName="menuTp"
                      (change)="onMenuTypeChange($event)">
               <label class="form-check-label" for="menu">
-                Menu
+                {{'MENU'|translate}}
               </label>
             </div>
           </div>
           <div class="mt-5" *ngIf="menuFormData?.menuTp==='G' || menuFormData?.menuTp==='M';">
             <div class="row mb-2">
               <div class="col-2">
-                <div class="text-muted fw-bold pe-5 pt-1">{{ 'MENU_PERMISSION' | translate }}</div>
+                <div class="text-muted fw-bold pe-5 pt-1">{{ 'MENU_PERMSN' | translate }}</div>
               </div>
               <div class="col-10">
                 <app-nrx-grid [columnDefs]="mopParemListcolumnDefs" [rowData]="mopPermList"
@@ -144,7 +166,7 @@
             <form [formGroup]="parentMenuForm" *ngIf="funCode == 'A' || funCode == 'M' || funCode == 'C'">
               <div class="row pb-3">
                 <div class="col-2 text-start">
-                  <div class="text-muted fw-bold pe-5 pt-1">Parent Menu</div>
+                  <div class="text-muted fw-bold pe-5 pt-1">{{'MENU_PARNT'|translate}}</div>
                 </div>
                 <div class="col-6 text-start">
                   <input
@@ -157,12 +179,20 @@
                     id="parMenuCodeDesc"/>
                 </div>
                 <div class="col-4 text-start">
-                  <button class="btn btn-outline-primary" (click)="onSearchParentMenuId()" [disabled]=isDisabled>Search</button>
+                  <!-- BUTTON SEARCH -->
+                  <button class="btn btn-outline-primary" (click)="onSearchParentMenuId()" [disabled]=isDisabled>
+                    <div class="d-flex align-items-center justify-content-center gap-1">
+                      {{'BTN_SRCH' | translate}}
+                      <i class="ti ti-search fs-3 mb-1"></i>
+                    </div>
+                  </button>
                 </div>
               </div>
               <div class="row pb-3">
                 <div class="col-2 text-start">
-                  <div class="text-muted fw-bold pe-5 pt-1">Level</div>
+                  <div class="text-muted fw-bold pe-5 pt-1">
+                    {{'MENU_LVL2'|translate}}
+                  </div>
                 </div>
                 <div class="col-4 text-start">
                   <input
@@ -180,7 +210,7 @@
               </div>
               <div class="row pb-3">
                 <div class="col-2 text-start">
-                  <div class="text-muted fw-bold pe-5 pt-1">Delete?</div>
+                  <div class="text-muted fw-bold pe-5 pt-1">{{'MENU_DLT_Q'|translate}}</div>
                 </div>
                 <div class="col-6 text-start">
                   <input class="form-check-input" type="checkbox" value="Y"
@@ -188,10 +218,21 @@
 
                 </div>
                 <div class="col-4 text-start">
-
-                  <button class="btn btn-outline-success text-start" (click)="addOnParentGrid('update')" *ngIf="isUpdate; else add">Update</button>
+                    <!-- BUTTON UPDATE -->
+                  <button class="btn btn-outline-success text-start" (click)="addOnParentGrid('update')" *ngIf="isUpdate; else add">
+                    <div class="d-flex align-items-center justify-content-center gap-1">
+                      {{'BTN_UPDT'|translate}}
+                      <i class="ti ti-edit fs-3 mb-1"></i>
+                    </div>
+                  </button>
                   <ng-template #add>
-                    <button class="btn btn-outline-success text-start" (click)="addOnParentGrid('add')">Add</button>
+                    <!-- BUTTON ADD -->
+                    <button class="btn btn-outline-success text-start" (click)="addOnParentGrid('add')">
+                    <div class="d-flex align-items-center justify-content-center gap-1">
+                      {{'BTN_ADD'|translate}}
+                      <i class="ti ti-plus fs-3 mb-1"></i>
+                    </div>
+                    </button>
                   </ng-template>
                 </div>
               </div>
@@ -200,94 +241,102 @@
           <div class="mt-5 row" *ngIf="menuFormData?.menuTp==='M'">
             <div class="d-flex col-2">
              <span class="form-label text-muted fw-bold pe-5">
-                 {{'menu.security' | translate }}
+                 {{'MENU_SECU' | translate }}
             </span>
             </div>
-            <div class="col-8">
-              <div class="m-2 justify-content-around">
-                <div class="form-check">
-                  <div class="form-check form-check-inline">
+            <div class="col-8 ms-3">
+              <div>
+                <div class="row">
+                  <div class="form-check form-check-inline col-2">
                     <input class="form-check-input" type="checkbox"
                            id="add" formControlName="hasAdd" (change)="checkBoxValues()" >
                     <label class="form-check-label" for="add">
-                      Add
+                      {{'MENU_ADD'|translate}}
                     </label>
                   </div>
-                  <div class="form-check form-check-inline">
+                  <div class="form-check form-check-inline col-4">
                     <input class="form-check-input" type="checkbox" value=""
                            id="add-auto-verify" formControlName="addAutoVerify">
                     <label class="form-check-label" for="add-auto-verify">
-                      Auto Verify
+                      {{'MENU_AUTO_VER'|translate}}
                     </label>
                   </div>
                 </div>
-                <div class="form-check">
-                  <div class="form-check form-check-inline">
+                <div class="row">
+                  <div class="form-check form-check-inline col-2">
                     <input class="form-check-input" type="checkbox" value="" id="delete" formControlName="hasDelete"
                            (change)="checkBoxValues()">
                     <label class="form-check-label" for="delete">
-                      Delete
+                      {{'MENU_DLT'|translate}}
                     </label>
                   </div>
-                  <div class="form-check form-check-inline">
+                  <div class="form-check form-check-inline col-4">
                     <input class="form-check-input" type="checkbox" value="" id="delete-auto-verify"
                            formControlName="deleteAutoVerify">
                     <label class="form-check-label" for="delete-auto-verify">
-                      Auto Verify
+                      {{'MENU_AUTO_VER'|translate}}
                     </label>
                   </div>
                 </div>
-                <div class="form-check">
-                  <div class="form-check form-check-inline">
+                <div class="row">
+                  <div class="form-check form-check-inline col-2">
                     <input class="form-check-input" type="checkbox" id="undelete" formControlName="hasUndelete"
                            (change)="checkBoxValues()">
                     <label class="form-check-label" for="undelete">
-                      Undelete
+                      {{'MENU_UNDLT'|translate}}
                     </label>
                   </div>
-                  <div class="form-check form-check-inline">
+                  <div class="form-check form-check-inline col-4">
                     <input class="form-check-input" type="checkbox" id="undelete-auto-verify"
                            formControlName="undeleteAutoVerify">
                     <label class="form-check-label" for="undelete-auto-verify">
-                      Auto Verify
+                      {{'MENU_AUTO_VER'|translate}}
                     </label>
                   </div>
                 </div>
 
-                <div class="form-check">
-                  <div class="form-check form-check-inline">
+                <div class="row">
+                  <div class="form-check form-check-inline col-2">
                     <input class="form-check-input" type="checkbox" value="" id="modification"
                            formControlName="hasModification" (change)="checkBoxValues()">
                     <label class="form-check-label" for="modification">
-                      Modification
+                      {{'MENU_MOD'|translate}}
                     </label>
                   </div>
-                  <div class="form-check form-check-inline">
+                  <div class="form-check form-check-inline col-4">
                     <input class="form-check-input" type="checkbox" value="" id="modification-auto-verify"
                            formControlName="modificationAutoVerify">
                     <label class="form-check-label" for="modification-auto-verify">
-                      Auto Verify
+                      {{'MENU_AUTO_VER'|translate}}
                     </label>
                   </div>
                 </div>
-                <div class="ps-5 form-check">
-                  <input class="form-check-input" type="checkbox" value="" id="verify" formControlName="hasVerify">
-                  <label class="form-check-label" for="verify">
-                    Verify
-                  </label>
+                <div class="row">
+                  <div class="form-check col-2">
+                    <input class="form-check-input" type="checkbox" value="" id="verify" formControlName="hasVerify">
+                    <label class="form-check-label" for="verify">
+                      {{'MENU_VER'|translate}}
+                    </label>
+                  </div>
+                  <div class="col-2"></div>
                 </div>
-                <div class="ps-5 form-check">
-                  <input class="form-check-input" type="checkbox" value="" id="cancel" formControlName="hasCancel">
-                  <label class="form-check-label" for="cancel">
-                    Cancel
-                  </label>
+                <div class="row">
+                  <div class="form-check col-2">
+                    <input class="form-check-input" type="checkbox" value="" id="cancel" formControlName="hasCancel">
+                    <label class="form-check-label" for="cancel">
+                      {{'MENU_CNCL'|translate}}
+                    </label>
+                  </div>
+                  <div class="col-2"></div>
                 </div>
               </div>
             </div>
           </div>
           <div class="mt-5">
             <div class="pt-1 w-50 row mt-5" *ngIf="menuFormData?.menuTp==='M'">
-              <label for="funcCode" class="form-label text-muted col-4 fw-bold">{{'MENU_SECURITY_INDICATION' | translate}}</label>
+              <label for="funcCode" class="form-label text-muted col-4 fw-bold">
+                {{'MENU_SECU_INDIC' | translate}}
+              </label>
               <div class="col-8">
                 <select id="secuInd" class="form-select" formControlName="secuInd">
                   <option value="I">I-Inquiry</option>
@@ -314,8 +363,14 @@
                        class="form-control" formControlName="param2">
               </div>
               <div class="col-4 text-start">
+                <!-- BUTTON SEARCH -->
                 <button type="button" class="btn btn-outline-primary ms-5"
-                        (click)="onSearchAppId()" [disabled]="funCode!=='A' && funCode!=='M' && funCode!=='C'">{{'BUTTON_SEARCH' | translate}}</button>
+                        (click)="onSearchAppId()" [disabled]="funCode!=='A' && funCode!=='M' && funCode!=='C'">
+                        <div class="d-flex align-items-center justify-content-center gap-1">
+                          {{'BTN_SRCH' | translate}}
+                          <i class="ti ti-search fs-3 mb-1"></i>
+                        </div>
+                      </button>
               </div>
             </div>
             <div class="row pt-5" *ngIf="menuFormData?.menuTp==='M'">
@@ -327,8 +382,14 @@
                        class="form-control" formControlName="param3">
               </div>
               <div class="col-4 text-start">
+                <!-- BUTTON SEARCH -->
                 <button type="button" class="btn btn-outline-primary ms-5"
-                        (click)="onSearchModuleId()" [disabled]="funCode!=='A' && funCode!=='M' && funCode!=='C'">{{'BUTTON_SEARCH' | translate}}</button>
+                        (click)="onSearchModuleId()" [disabled]="funCode!=='A' && funCode!=='M' && funCode!=='C'">
+                        <div class="d-flex align-items-center justify-content-center gap-1">
+                          {{'BTN_SRCH' | translate}}
+                          <i class="ti ti-search fs-3 mb-1"></i>
+                        </div>
+                      </button>
               </div>
             </div>
             <div class="row pt-5" *ngIf="menuFormData?.menuTp==='M'">
@@ -352,8 +413,21 @@
           </div>
         </div>
         <div class="text-end">
-          <button class="btn btn-danger me-2" (click)="onCancel()">Cancel</button>
-          <button class="btn btn-primary" (click)="onSave()" [disabled]="funCode === 'I'">Save</button>
+          <!-- BUTTON CANCEL -->
+          <button class="btn btn-danger me-2" (click)="onCancel()">
+            <div class="d-flex align-items-center justify-content-center gap-1">
+              <i class="ti ti-x fs-3 mb-1"></i>
+              {{'BTN_CNCL'|translate}}
+            </div>
+            
+          </button>
+          <!-- BUTTON SAVE -->
+          <button class="btn btn-primary" (click)="onSave()" [disabled]="funCode === 'I'">
+            <div class="d-flex align-items-center justify-content-center gap-1">
+              {{'BTN_SAVE'|translate}}
+            <i class="ti ti-check fs-3 mb-1"></i>
+            </div>
+          </button>
         </div>
       </form>
     </mat-step>
