@@ -1,14 +1,14 @@
-  <div class="card card-body" *ngIf="tabs.length>0">
-    <mat-tab-group fitInkBarToContent>
-      <ng-container *ngFor="let tab of tabs; let index = index">
-        <mat-tab *ngIf="tab.title">
-          <ng-template mat-tab-label>
-            <div class="col pe-3">{{tab.title}}</div>
-            <button class="btn-close" style="height: .45em; width: .45em;" aria-label="Close" (click)="closeTab($event, index)">
-            </button>
-          </ng-template>
-          <ng-container *ngComponentOutlet="tab.component;"/>
-        </mat-tab>
-      </ng-container>
-    </mat-tab-group>
-  </div>
+<div class="card card-body" *ngIf="tabs.length > 0">
+  <mat-tab-group>
+    <ng-container *ngFor="let tab of tabs; let index = index">
+      <mat-tab *ngIf="tab.title">
+        <ng-template mat-tab-label>
+          <div class="pe-3" [style.font-weight]="isActiveTab(index) ? 'bold' : 'normal'">{{ tab.title }}</div>
+          <button class="btn-close btn-secondary fs-6" aria-label="Close" (click)="closeTab($event, index)">
+          </button>
+        </ng-template>
+        <ng-container *ngComponentOutlet="tab.component;"></ng-container>
+      </mat-tab>
+    </ng-container>
+  </mat-tab-group>
+</div>
