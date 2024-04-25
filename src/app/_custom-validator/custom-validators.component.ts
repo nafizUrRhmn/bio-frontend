@@ -3,7 +3,11 @@ import {AbstractControl, ValidatorFn} from "@angular/forms";
 export function englishOnlyValidator(): ValidatorFn {
   return (control: AbstractControl): { [key: string]: any } | null => {
     const value: string = control.value;
-    if (!/^[a-zA-Z\s]*$/.test(value)) {
+    if(value == null || value.length<=0 || value == undefined){
+      control.markAsPristine({onlySelf: true})
+      return null;
+    }
+    if (!/^[a-zA-Z0-9\s]*$/.test(value)) {
       return {'englishOnly': {value: value}};
     }
     return null;
@@ -13,6 +17,10 @@ export function englishOnlyValidator(): ValidatorFn {
 export function numbersOnlyValidator(): ValidatorFn {
   return (control: AbstractControl): { [key: string]: any } | null => {
     const value: string = control.value;
+    if(value == null || (value+'').length<=0 || value == undefined){
+      control.markAsPristine({onlySelf: true})
+      return null;
+    }
     if (!/^[0-9]*$/.test(value)) {
       return {'numbersOnly': {value: value}};
     }
@@ -23,8 +31,27 @@ export function numbersOnlyValidator(): ValidatorFn {
 export function precisionValidator(): ValidatorFn {
   return (control: AbstractControl): { [key: string]: any } | null => {
     const value: string = control.value;
+    if(value == null || value.length<=0 || value == undefined){
+      control.markAsPristine({onlySelf: true})
+      return null;
+    }
     if (!/^\d+(\.\d{1,6})?$/.test(value)) {
       return {'precisionError': {value: value}};
+    }
+    return null;
+  };
+}
+
+export function negativeIntegerValidator(): ValidatorFn {
+  return (control: AbstractControl): {[key: string]: any} | null => {
+    const value: number = control.value;
+    if(value == null || (value+'').length<=0 || value == undefined){
+      control.markAsPristine({onlySelf: true})
+      return null;
+    }
+    if (isNaN(value) || value >= 0 || !Number.isInteger(value)) {
+      console.log('2' + value);
+      return {'negativeInteger': {value: value}};
     }
     return null;
   };

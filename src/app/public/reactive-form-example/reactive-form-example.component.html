@@ -10,13 +10,12 @@
         </div>
         <div class="col-8">
           <input type="text" id="normal"
-                 class="form-control" [class]="normal.valid ? 'is-valid': 'is-invalid'" formControlName="normal"
-                 required>
+                 class="form-control" [class]="classInitializer(normal)" formControlName="normal">
           <div class="invalid-feedback" *ngIf="normal.invalid && (normal.dirty || normal.touched)">{{normalErrors}}
           </div>
-          <div class="valid-feedback" *ngIf="normal.valid">
-            Looks good!
-          </div>
+          <!--          <div class="valid-feedback" *ngIf="normal.valid">-->
+          <!--            Looks good!-->
+          <!--          </div>-->
         </div>
       </div>
       <div class="m-2 row">
@@ -24,24 +23,23 @@
           <div class="text-muted fw-bold pe-5 pt-1">Amount <span class="text-danger">*</span></div>
         </div>
         <div class="col-8">
-          <input type="text"
+          <input type="number"
                  class="form-control float-end text-end" formControlName="amount"
-                 [class]="amount.valid ? 'is-valid': 'is-invalid'"
-                 required>
+                 [class]="classInitializer(amount)">
           <div class="invalid-feedback"
                *ngIf="amount.invalid && (amount.dirty || amount.touched)">{{amountErrors}}</div>
         </div>
       </div>
-      <div class="m-2 row">
-        <div class="col-4">
-          <div class="text-muted fw-bold pe-5 pt-1 control-label">Positive Integer <span class="text-danger">*</span>
-          </div>
-        </div>
-        <div class="col-8">
-          <input type="number"
-                 class="form-control" formControlName="positiveInteger" required>
-        </div>
-      </div>
+      <!--      <div class="m-2 row">-->
+      <!--        <div class="col-4">-->
+      <!--          <div class="text-muted fw-bold pe-5 pt-1 control-label">Positive Integer <span class="text-danger">*</span>-->
+      <!--          </div>-->
+      <!--        </div>-->
+      <!--        <div class="col-8">-->
+      <!--          <input type="number"-->
+      <!--                 class="form-control float-end text-end" formControlName="positiveInteger" required>-->
+      <!--        </div>-->
+      <!--      </div>-->
     </div>
     <div class="col-6">
       <div class="m-2 row">
@@ -51,19 +49,21 @@
         <div class="col-8">
           <input type="text"
                  class="form-control" formControlName="englishOnly"
-                 [class]="englishOnly.valid ? 'is-valid': 'is-invalid'" required>
+                 [class]="classInitializer(englishOnly)">
           <div class="invalid-feedback"
                *ngIf="englishOnly.invalid && (englishOnly.dirty || englishOnly.touched)">{{englishErrors}}</div>
         </div>
       </div>
       <div class="m-2 row">
         <div class="col-4">
-          <div class="text-muted fw-bold pe-5 pt-1">Percentage with six digit precision <span
-            class="text-danger">*</span></div>
+          <div class="text-muted fw-bold pe-5 pt-1">Percentage with six digit precision
+            <!--            <span class="text-danger">*</span>-->
+          </div>
         </div>
         <div class="col-8">
           <input type="number"
-                 class="form-control" formControlName="percentageWithSixDigitPrecision" [class]="percentageWithSixDigitPrecision.valid ? 'is-valid': 'is-invalid'" required>
+                 class="form-control float-end text-end" formControlName="percentageWithSixDigitPrecision"
+                 [class]="classInitializer(percentageWithSixDigitPrecision)">
           <div class="invalid-feedback"
                *ngIf="percentageWithSixDigitPrecision.invalid && (percentageWithSixDigitPrecision.dirty || percentageWithSixDigitPrecision.touched)">{{percentageWithSixDigitPrecisionErrors}}</div>
         </div>
@@ -74,7 +74,10 @@
         </div>
         <div class="col-8">
           <input type="number"
-                 class="form-control" formControlName="negativeInteger" required>
+                 class="form-control float-end text-end" formControlName="negativeInteger"
+                 [class]="classInitializer(negativeInteger)" required>
+          <div class="invalid-feedback"
+               *ngIf="negativeInteger.invalid && (negativeInteger.dirty || negativeInteger.touched)">{{negativeIntegerErrors}}</div>
         </div>
       </div>
     </div>
@@ -89,7 +92,7 @@
 
         </button>
         <!-- BUTTON SAVE -->
-        <button class="btn btn-primary" (click)="onSubmit()">
+        <button class="btn btn-primary" (click)="onSubmit()" [disabled]="(exampleForm.dirty || exampleForm.untouched) && exampleForm.invalid">
           <div class="d-flex align-items-center justify-content-center gap-1">
             Submit <i class="ti ti-check fs-3 mb-1"></i>
           </div>

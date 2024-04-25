@@ -2,7 +2,7 @@ import {Component} from '@angular/core';
 
 import {FormBuilder, Validators} from "@angular/forms";
 import {
-  englishOnlyValidator,
+  englishOnlyValidator, negativeIntegerValidator,
   numbersOnlyValidator,
   precisionValidator
 } from "../../_custom-validator/custom-validators.component";
@@ -23,8 +23,8 @@ export class ReactiveFormExampleComponent {
     amount: ['', [Validators.required, Validators.min(1),
       Validators.max(9999999999), numbersOnlyValidator()]],
     percentageWithSixDigitPrecision: ['', [precisionValidator()]],
-    positiveInteger: [''],
-    negativeInteger: ['']
+    // positiveInteger: [''],
+    negativeInteger: ['',[Validators.required, negativeIntegerValidator()]]
   });
 
   get normal() {
@@ -59,8 +59,27 @@ export class ReactiveFormExampleComponent {
     return this.checker(this.percentageWithSixDigitPrecision.errors);
   }
 
+  get negativeInteger(){
+    return this.exampleForm.get('negativeInteger');
+  }
+
+  get negativeIntegerErrors(){
+    return this.checker(this.negativeInteger.errors);
+  }
+
+  classInitializer(value){
+    if(value.pristine){
+      return '';
+    } else if(value.invalid){
+      return 'is-invalid';
+    }else if(value.valid){
+      return 'is-valid'
+    }else{
+      return '';
+    }
+  }
+
   checker(errors): string {
-    console.log(errors);
     if (errors?.['required']) {
       return 'Value is required';
     } else if (errors?.min){
@@ -74,10 +93,12 @@ export class ReactiveFormExampleComponent {
     } else if (errors?.englishOnly) {
       return 'English Characters only';
     } else if (errors?.numbersOnly) {
-      return 'Number format Allowed Only';
+      return 'Integer Number Allowed Only';
     }  else if (errors?.precisionError) {
       return 'At most after point 6 digits allowed';
-    } else {
+    } else if (errors?.negativeInteger) {
+      return 'Negative value only';
+    }else {
       return '';
     }
   }
@@ -91,7 +112,7 @@ export class ReactiveFormExampleComponent {
   }
 
   onReset() {
-
+    this.exampleForm.reset();
   }
 
 }
