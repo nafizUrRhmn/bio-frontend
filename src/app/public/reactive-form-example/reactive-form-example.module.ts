@@ -4,6 +4,8 @@ import {ReactiveFormExampleComponent} from './reactive-form-example.component';
 import {RouterModule, Routes} from '@angular/router';
 import {NgApexchartsModule} from "ng-apexcharts";
 import {BrowserModule} from "@angular/platform-browser";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {AppModule} from "../../app.module";
 
 const routes: Routes = [
   {
@@ -20,7 +22,8 @@ const routes: Routes = [
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
-    NgApexchartsModule,
-]
+    FormsModule,
+    ReactiveFormsModule,
+  ]
 })
 export class ReactiveFormExampleModule { }
