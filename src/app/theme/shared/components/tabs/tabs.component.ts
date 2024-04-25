@@ -66,4 +66,8 @@ export class TabsComponent  {
     this.tabGroup.selectedIndex = -1;
     }
   }
+  
+  isActiveTab(index: number): boolean {
+    return this.tabGroup ? this.tabGroup.selectedIndex === index : false;
+  }
 }
