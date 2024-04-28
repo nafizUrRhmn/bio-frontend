@@ -1,202 +1,268 @@
-<mat-stepper [linear]="isLinear" #stepper>
-  <mat-step [stepControl]="refCodeForm" label="RCM Maintenece">
-    <form [formGroup]="refCodeForm">
-      <div class="d-flex flex-column m-3 me-5">
-        <div class="pt-1 row mt-5">
-          <label for="funcCode" class="form-label text-muted fw-bold col-sm-6 col-md-6 col-lg-3">Function Code</label>
-          <div class="col-sm-6 col-md-6 col-lg-4">
-            <select id="funcCode" class="form-select form-select-sm" aria-label=".form-select-lg example"
-              formControlName="funcCode" (change)="onChangeFuncCode($event)">
+<div class="mx-5 mt-5">
+  <div class="border-bottom">
+    <h1 class="text-primary fw-bold">{{'RCM'|translate}}</h1>
+  </div>
+  <mat-stepper [linear]="isLinear" #stepper>
+    <mat-step [stepControl]="refCodeForm" label="{{'RCM_MAINT'|translate}}">
+      <form [formGroup]="refCodeForm">
+        <div class="d-flex flex-column">
+          <!-- FUNC CODE -->
+          <div class="pt-1 row w-50 mt-5">
+            <div class="col-sm-5 col-md-5 col-lg-5">
+              <label for="funcCode" class="form-label text-muted fw-bold">
+                {{'RCM_FUNC_CODE'|translate}}
+              </label>
+            </div>
+            <div class="col-sm-7 col-md-7 col-lg-7">
+              <select id="funcCode" class="form-select form-select-sm" aria-label=".form-select-lg example"
+                formControlName="funcCode" (change)="onChangeFuncCode($event)">
+                <option selected></option>
+                <option value="I">I-Inquiry</option>
+                <option value="A">A-Add</option>
+                <option value="D">D-Delete</option>
+                <option value="U">U-Undelete</option>
+                <option value="M">M-Modification</option>
+                <option value="V">V-Verification</option>
+                <option value="X">C-Cancel</option>
+                <option value="C">C-Copy</option>
+              </select>
+            </div>
+          </div>
+          <!-- REF TYPE -->
+          <div class="pt-4 w-50 row">
+            <div class="col-sm-5 col-md-5 col-lg-5">
+              <label for="refCodeType" class="form-label text-muted fw-bold">
+                {{'RCM_REF_TYP'|translate}}
+              </label>
+            </div>
+            <div class="col-sm-7 col-md-7 col-lg-7">
+              <div class="d-flex flex-row">
+                <input type="text" class="form-control" id="refCodeType" formControlName="refCodeType"
+                  (focusout)="onFocusOutEvent($event)" />
+                <button type="button" class="btn btn-outline-primary ms-5"
+                  (click)="onSrchRefType('I', refCodeType.value)">
+                  <div class="d-flex align-items-center justify-content-center gap-1">
+                    {{'BTN_SRCH' | translate}}
+                    <i class="ti ti-search fs-3"></i>
+                  </div>
+                  </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- REF TYPE DETAILS -->
+          <div class="pt-4 w-50 row">
+            <div class="col-sm-5 col-md-5 col-lg-5">
+              <label for="refCodeType" class="form-label  text-muted fw-bold">
+                {{'RCM_REF_TYP_DTLS'|translate}}
+              </label>
+            </div>
+            <div class="col-sm-7 col-md-7 col-lg-7">
+              <div class="d-flex flex-row">
+                <label class="form-label fw-bold">{{ refTypeDesc?refTypeDesc:'N/A' }}</label>
+              </div>
+            </div>
+          </div>
+
+          <!-- REF CODE -->
+          <div class="pt-4 row w-50">
+            <div class="col-sm-5 col-md-5 col-lg-5">
+              <label for="refCode" class="form-label text-muted fw-bold">
+                {{'RCM_REF_CODE'|translate}}
+              </label>
+            </div>
+            <div class="col-sm-7 col-md-7 col-lg-7">
+              <div class="d-flex flex-row">
+                <input type="text" class="form-control" id="refCode" formControlName="refCode"
+                  (focusout)="onFocusOutEvent($event)" />
+                <button type="button" class="btn btn-outline-primary ms-5" [hidden]="isHiddenRefCodeSrchBtn"
+                  (click)="onSrchRefCode(funcCode.value, refCodeType.value, refCode.value)">
+                  <div class="d-flex align-items-center justify-content-center gap-1">
+                    {{'BTN_SRCH' | translate}}
+                    <i class="ti ti-search fs-3"></i>
+                  </div>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- REF CODE DETAILS -->
+          <div class="pt-4 row w-50">
+            <div class="col-sm-5 col-md-5 col-lg-5">
+              <label for="refCode" class="form-label text-muted fw-bold">
+                {{'RCM_REF_CODE_DTLS'|translate}}
+              </label>
+            </div>
+            <div class="col-sm-7 col-md-7 col-lg-7">
+              <div class="d-flex flex-row">
+                <label class="form-label fw-bold">{{ refCodeDesc?refCodeDesc:'N/A' }} </label>
+              </div>
+            </div>
+          </div>
+
+          <!-- NEXT BUTTON -->
+        <div class="d-flex justify-content-end">
+          <button type="button" mat-button matStepperNext class="btn btn-secondary" [disabled]="refCodeForm.invalid"
+            (click)="onNext()">
+            <div class="d-flex align-items-center justify-content-center gap-1">
+              {{'BTN_NXT' | translate}}&nbsp;<span class="ti ti-arrow-right"></span>
+            </div>
+          </button>
+        </div>
+      </div>
+  
+        
+      </form>
+    </mat-step>
+  
+    <!-- SECOND STEP -->
+    <mat-step [stepControl]="refCodeDetailForm" label="{{'RCM_DTLS'|translate}}">
+      <form [formGroup]="refCodeDetailForm">
+        <div class="w-50 mt-4">
+          <div class="row ">
+            <div class="col-sm-3 col-md-3 col-lg-3">
+              <label class="form-label text-muted fw-bold">
+                {{'RCM_FUNC_CODE'|translate}}
+              </label>
+            </div>
+            <div class="col-sm-7 col-md-7 col-lg-7">
+              <span class="fw-bold">{{ funcCode.value }}</span>
+            </div>
+          </div>
+          <div class="row mb-4">
+            <div class="col-sm-3 col-md-3 col-lg-3">
+              <label class="form-label text-muted fw-bold">
+                {{'RCM_REF_CODE'|translate}}
+              </label>
+            </div>
+            <div class="col-sm-7 col-md-7 col-lg-7">
+              <span class="fw-bold">{{ refCode.value }}</span>
+            </div>
+          </div>
+        </div>
+  
+        <hr>
+
+        <!-- SHORT LIST FLG -->
+        <div class="pt-1 row mt-3 w-50">
+          <label for="shortListFlg" class="form-label text-muted fw-bold col-sm-5 col-md-5 col-lg-5">
+            {{'RCM_SRT_LST_FLG'|translate}}
+          </label>
+          <div class="col-sm-7 col-md-7 col-lg-7">
+            <select id="shortListFlg" class="form-select form-select-sm" aria-label=".form-select-lg example"
+              formControlName="shortListFlg">
               <option selected></option>
-              <option value="I">I-Inquiry</option>
-              <option value="A">A-Add</option>
-              <option value="D">D-Delete</option>
-              <option value="U">U-Undelete</option>
-              <option value="M">M-Modification</option>
-              <option value="V">V-Verification</option>
-              <option value="X">C-Cancel</option>
-              <option value="C">C-Copy</option>
+              <option value="Y">Y-Yes</option>
+              <option value="N">N-No</option>
             </select>
           </div>
         </div>
-        <div class="pt-4 w-50 row">
-          <label for="refCodeType" class="form-label text-muted fw-bold col-sm-6 col-md-6 col-lg-6">Reference Type
+        <div class="pt-4 row w-50" *ngIf="depFlg == 'Y'">
+          <label for="depRefCode" class="form-label text-muted fw-bold col-sm-5 col-md-5 col-lg-5" *ngIf="depFlg == 'Y'">
+            {{'RCM_DEP_REF_CODE'|translate}}
           </label>
-          <div class="col-sm-6 col-md-6 col-lg-6">
+          <div class="col-sm-7 col-md-7 col-lg-7">
             <div class="d-flex flex-row">
-              <input type="text" class="form-control" id="refCodeType" formControlName="refCodeType"
+              <input type="text" class="form-control" id="depRefCode" formControlName="depRefCode"
                 (focusout)="onFocusOutEvent($event)" />
+  
               <button type="button" class="btn btn-outline-primary ms-5"
-                (click)="onSrchRefType('I', refCodeType.value)"> Search </button>
+                (click)="onSrchdepRefCode('I',depRefCodeType, depRefCode.value)">
+                <div class="d-flex align-items-center justify-content-center gap-1">
+                  {{'BTN_SRCH' | translate}}
+                  <i class="ti ti-search fs-3"></i>
+                </div>
+              </button>
+          
             </div>
           </div>
         </div>
-        <div class="pt-4 w-50 row">
-          <label for="refCodeType" class="form-label  text-muted fw-bold col-sm-6 col-md-6 col-lg-6">Reference Type
-            Details </label>
-          <div class="col-sm-6 col-md-6 col-lg-6">
-            <div class="d-flex flex-row">
-              <label class="form-label text-muted">{{ refTypeDesc }}</label>
+        <div class="pt-4 row w-50" *ngIf="depFlg == 'Y'">
+          <label for="depRefCode" class="form-label text-muted fw-bold col-sm-5 col-md-5 col-lg-5">
+            {{'RCM_DEP_REF_CODE_DTLS'|translate}}
+          </label>
+          <div class="col-sm-7 col-md-7 col-lg-7">         
+              <label class="form-label fw-bold">{{ depRefCodeDesc }}</label>
+          </div>
+        </div>
+        <div class="w-50 row mt-3">
+          <label for="delFlg" class="form-label text-muted fw-bold col-sm-5 col-md-5 col-lg-5">
+            {{'RCM_DLT_FLG'|translate}}
+          </label>
+          <div class="col-sm-7 col-md-7 col-lg-7">
+            <select id="delFlg" class="form-select form-select-sm" aria-label=".form-select-lg example"
+              formControlName="shortListFlg">
+              <option selected></option>
+              <option value="Y">Y-Yes</option>
+              <option value="N">N-No</option>
+            </select>
+          </div>
+        </div>
+        
+        <hr>
+  
+        <div class="mt-5">
+          <div class="row border-bottom m-1 pb-3">
+            <div class="col-4">
+              <span class="fw-bold p-5">
+                {{'RCM_LANG'|translate}}
+              </span>
+            </div>
+            <div class="col-4">
+              <span class="fw-bold">
+                {{'RCM_LANG_CODE_DES'|translate}}
+              </span>
+            </div>
+            <div class="col-4">
+              <span class="fw-bold">
+                {{'RCM_REF_CODE_DES'|translate}}
+              </span>
+            </div>
+          </div>
+          <div formArrayName="language">
+            <div *ngFor="let mop of mopCodeDescList; let i = index">
+              <div class="row m-1 pb-2 pt-2" [formGroupName]="i">
+                <div class="col-4">
+                  <input type="hidden" formControlName="refCodeLang" class="form-control" />
+                  <span class="fw-bold p-5">{{ mop.refCodeLang }}</span>
+                </div>
+                <div class="col-4">
+                  <input type="text" class="form-control" formControlName="refCodeLangDesc"
+                    [readOnly]="funcCode?.value === 'I'" />
+                </div>
+                <div class="col-4">
+                  <input type="text" class="form-control" formControlName="refCodeDesc"
+                    [readOnly]="funcCode?.value === 'I'" />
+                </div>
+              </div>
             </div>
           </div>
         </div>
-        <div class="pt-4 row">
-          <label for="refCode" class="form-label text-muted fw-bold col-sm-6 col-md-6 col-lg-3">Reference Code</label>
-          <div class="col-sm-6 col-md-6 col-lg-4">
-            <div class="d-flex flex-row">
-              <input type="text" class="form-control" id="refCode" formControlName="refCode"
-                (focusout)="onFocusOutEvent($event)" />
-              <button type="button" class="btn btn-outline-primary ms-5" [hidden]="isHiddenRefCodeSrchBtn"
-                (click)="onSrchRefCode(funcCode.value, refCodeType.value, refCode.value)">Search
+
+        <!-- BUTTON CANCEL & SUBMIT -->
+        <div class="text-end mt-3  d-flex justify-content-end">
+          <div>
+            <button type="button" mat-button matStepperPrevious 
+            class="btn btn-danger" (click)="clearRefCodeFormFields()">
+            <div class="d-flex align-items-center justify-content-center gap-1">
+              <i class="ti ti-x fs-3 mb-1"></i>
+              {{'BTN_CNCL'|translate}}
+            </div>
+            </button>
+          </div>
+  
+          <ng-template [ngIf]="!isInquirySelected()">
+            <div class="ms-2">
+              <button type="button" class="btn btn-primary" (click)="onSubmit()">
+                <div class="d-flex align-items-center justify-content-center gap-1">
+                  {{'BTN_SBMT'|translate}}
+                  <i class="ti ti-check fs-3 mb-1"></i>
+                </div>
               </button>
             </div>
-          </div>
+          </ng-template>
         </div>
-        <div class="pt-4 row">
-          <label for="refCode" class="form-label text-muted fw-bold col-sm-6 col-md-6 col-lg-3">Reference Code
-            Details</label>
-          <div class="col-sm-6 col-md-6 col-lg-4">
-            <div class="d-flex flex-row">
-              <label class="form-label text-muted">{{ refCodeDesc }} </label>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- NEXT BUTTON -->
-      <div class="mt-4 d-flex justify-content-end">
-        <button type="button" mat-button matStepperNext class="btn btn-secondary mt-5" [disabled]="refCodeForm.invalid"
-          (click)="onNext()">
-          <div class="d-flex align-items-center justify-content-center gap-1"> Next <i
-              class="ti ti-arrow-right fs-3"></i> </div>
-        </button>
-      </div>
-    </form>
-  </mat-step>
-
-  <!-- SECOND STEP -->
-  <mat-step [stepControl]="refCodeDetailForm" label="RCM Details" class="prevent-scroll">
-    <form [formGroup]="refCodeDetailForm">
-      <div class="">
-        <div class="row">
-          <div class="col-sm-6 col-md-6 col-lg-6">
-            <label class="form-label text-muted fw-bold mt-2">Function Code :</label>
-            <span>{{ funcCode.value }}</span>
-          </div>
-        </div>
-        <div class="row mb-4">
-          <div class="col-sm-6 col-md-6 col-lg-6">
-            <label class="form-label text-muted fw-bold mt-2">Reference Code :</label>
-            <span >{{ refCode.value }}</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="border-bottom">
-        <!-- <h4 class="text-primary fw-bold my-4">{{ 'BBL000031' | translate | uppercase }}</h4> -->
-      </div>
-      <div class="pt-1 row mt-3">
-        <label for="shortListFlg" class="form-label text-muted fw-bold col-sm-6 col-md-6 col-lg-3">Short List
-          Flg</label>
-        <div class="col-sm-4 col-md-4 col-lg-2">
-          <select id="shortListFlg" class="form-select form-select-sm" aria-label=".form-select-lg example"
-            formControlName="shortListFlg">
-            <option selected></option>
-            <option value="Y">Y-Yes</option>
-            <option value="N">N-No</option>
-          </select>
-        </div>
-      </div>
-      <div class="pt-4 row" *ngIf="depFlg == 'Y'">
-        <label for="depRefCode" class="form-label text-muted fw-bold col-sm-6 col-md-6 col-lg-2" *ngIf="depFlg == 'Y'">
-          Dependent Reference Code
-        </label>
-        <div class="col-sm-6 col-md-6 col-lg-5">
-          <div class="d-flex flex-row">
-            <input type="text" class="form-control" id="depRefCode" formControlName="depRefCode"
-              (focusout)="onFocusOutEvent($event)" />
-
-            <button type="button" class="btn btn-outline-primary ms-5"
-              (click)="onSrchdepRefCode('I',depRefCodeType, depRefCode.value)">Search
-            </button>
-            <!-- <button type="button" class="btn btn-outline-primary ms-5" (click)="onSearch()">Search</button> -->
-            <!-- <label class="form-label text-muted">{{ refCodeDesc }}</label> -->
-          </div>
-        </div>
-      </div>
-      <div class="pt-4 row" *ngIf="depFlg == 'Y'">
-        <label for="depRefCode" class="form-label text-muted fw-bold col-sm-6 col-md-6 col-lg-2"> Dependent Reference
-          Code Details </label>
-        <div class="col-sm-6 col-md-6 col-lg-5">
-          <div class="d-flex flex-row">
-            <label class="form-label text-muted">{{ depRefCodeDesc }}</label>
-          </div>
-        </div>
-      </div>
-      <div class="pt-1 w-50 row mt-3">
-        <label for="delFlg" class="form-label text-muted fw-bold col-sm-6 col-md-6 col-lg-4">Del Flg</label>
-        <div class="col-sm-4 col-md-4 col-lg-4">
-          <select id="delFlg" class="form-select form-select-sm" aria-label=".form-select-lg example"
-            formControlName="shortListFlg">
-            <option selected></option>
-            <option value="Y">Y-Yes</option>
-            <option value="N">N-No</option>
-          </select>
-        </div>
-      </div>
-      <div class="border-bottom p-3">
-        <!-- <h4 class="text-primary fw-bold my-4">{{ 'BBL000030' | translate | uppercase}}</h4> -->
-      </div>
-
-      <div class="mt-5">
-        <div class="row border-bottom m-1 pb-3">
-          <div class="col-4">
-            <span class="fw-bold p-5">Language</span>
-          </div>
-          <div class="col-4">
-            <span class="fw-bold">Lang Code Description</span>
-          </div>
-          <div class="col-4">
-            <span class="fw-bold">Ref. Code Description</span>
-          </div>
-        </div>
-        <div formArrayName="language">
-          <div *ngFor="let mop of mopCodeDescList; let i = index">
-            <div class="row m-1 pb-2 pt-2" [formGroupName]="i">
-              <div class="col-4">
-                <input type="hidden" formControlName="refCodeLang" class="form-control" />
-                <span class="fw-bold p-5">{{ mop.refCodeLang }}</span>
-              </div>
-              <div class="col-4">
-                <input type="text" class="form-control" formControlName="refCodeLangDesc"
-                  [readOnly]="funcCode?.value === 'I'" />
-              </div>
-              <div class="col-4">
-                <input type="text" class="form-control" formControlName="refCodeDesc"
-                  [readOnly]="funcCode?.value === 'I'" />
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="border-bottom"> </div>
-
-      <div class="d-flex flex-row justify-content-end">
-        <div>
-          <button type="button" mat-button matStepperPrevious class="btn btn-danger" (click)="clearRefCodeFormFields()">Cancel</button>
-        </div>
-
-        <!-- <div class="ms-2" *ngIf="!isInquirySelected()">
-          <button type="button" class="btn btn-primary" (click)="onSubmit()">Submit</button>
-        </div> -->
-
-        <ng-template [ngIf]="!isInquirySelected()">
-          <div class="ms-2">
-            <button type="button" class="btn btn-primary" (click)="onSubmit()">Submit</button>
-          </div>
-        </ng-template>
-      </div>
-    </form>
-  </mat-step>
-</mat-stepper>
+      </form>
+    </mat-step>
+  </mat-stepper>
+</div>
