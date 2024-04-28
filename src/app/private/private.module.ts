@@ -31,6 +31,11 @@ const routes: Routes = [
     path: 'change-password',
     component: PrivateLayoutComponent,
     loadChildren: () => import('./change-password/change-password.module').then((m) => m.ChangePasswordModule)
+  },
+  {
+    path: 'dashboard',
+    component: PrivateLayoutComponent,
+    loadChildren: () => import('./dashboard/dashboard.module').then((m) => m.DashboardModule)
   }
 ];
 
