@@ -58,6 +58,12 @@ export class RefCodeTypeMaintComponent implements OnInit {
   }
 
   onSearch(funcCode:string, refTypeOrDsc:string,fromControlName:string) {
+
+    if (this.funcCode.invalid) {
+      this.funcCode.markAsTouched();
+      return;
+    }
+
     const payLoad = {
       "functionCode": funcCode,
       "refCodeType" : refTypeOrDsc
@@ -85,6 +91,9 @@ export class RefCodeTypeMaintComponent implements OnInit {
 
   onNext() {
     if (this.refCodeTypeForm.invalid) {
+      for (const control of Object.keys(this.refCodeTypeForm.controls)) {
+        this.refCodeTypeForm.controls[control].markAsTouched();
+      }
       return;
     }
     this.refCodeService.getRefTypeDetail(this.funcCode.value, this.refCodeType.value)
@@ -138,6 +147,7 @@ export class RefCodeTypeMaintComponent implements OnInit {
     this.refCodeService.submit(payLoad).pipe(take(1)).subscribe({
       next: (v) => {
         this.alertService.successAlert(v.responseMessage);
+        this.stepper.previous();
       },
       error: (err) => {
         this.alertService.errorAlert(err.error.message);
@@ -188,7 +198,9 @@ export class RefCodeTypeMaintComponent implements OnInit {
       }
         break;
       case 'D':
-      case 'V':{
+      case 'V':
+      case 'U':
+      case 'X':{
         this.disableDetailFormFields();
         this.isHiddenNewRefType = true;
         this.newRefCodeType.setValue('');
@@ -197,10 +209,16 @@ export class RefCodeTypeMaintComponent implements OnInit {
         this.isHiddenRefSrchBtn = false;
       }
       break;
-      case 'A':
-      case 'U':
-      case 'M':
-      case 'X':{
+      case 'M' :{
+        this.enableDetailFormFields();
+        this.isHiddenNewRefType = true;
+        this.newRefCodeType.setValue('');
+        this.isHiddenSubmitBtn = false;
+        this.isHiddenDepSrchBtn = false;
+        this.isHiddenRefSrchBtn = false;
+      }
+      break;
+      case 'A': {
         this.enableDetailFormFields();
         this.isHiddenNewRefType = true;
         this.newRefCodeType.setValue('');
@@ -212,6 +230,10 @@ export class RefCodeTypeMaintComponent implements OnInit {
       default:
         break;
     }
+
+    // reset refCodeType and Desc Field
+    this.refCodeType.reset();
+    this.refCodeTypeDesc = '';
   }
 
   get funcCode() {
