@@ -1,0 +1,131 @@
+<mat-stepper [linear]="isLinear" #stepper>
+    <mat-step [stepControl]="msgIdForm" label="{{'MESSAGE_ID_MAINTENANCE'| translate}}">
+        <form [formGroup]="msgIdForm">
+            <div class="d-flex flex-column m-2 me-5">
+                <div class="pt-1 w-50 row mt-5">
+                    <label for="funcCode" class="form-label text-muted fw-bold col-sm-6 col-md-6 col-lg-4">
+                        {{ 'MENU_FUNC_CODE' | translate }}
+                    </label>
+                    <div class="col-sm-6 col-md-6 col-lg-8">
+                        <select id="funcCode" class="form-select form-select-sm" aria-label=".form-select-lg example"
+                            formControlName="funcCode" (change)="onChangeFuncCode($event)"
+                            [class.is-invalid]="( funcCode.touched) && funcCode.invalid">
+                            <option selected> </option>
+                            <option value="I">I-Inquiry</option>
+                            <option *ngFor="let item of funcCodeOptions" [value]="item.optionValue">
+                                {{item.optionText}}
+                            </option>
+                        </select>
+                        <div class="d-flex flex-row">
+                            <div *ngIf="( funcCode.touched) && funcCode.hasError('required')" class="error-feedback">
+                                {{ 'ER_RCTM_FUNC_CODE' | translate }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="pt-4 w-50 row">
+                    <label for="msgId" class="form-label text-muted fw-bold col-sm-6 col-md-6 col-lg-4">
+                        {{'MESSAGE_ID'|translate}}
+                    </label>
+                    <div class="col-sm-6 col-md-6 col-lg-8">
+                        <div class="d-flex flex-row">
+                            <input type="text" class="form-control" id="msgId" formControlName="msgId" maxlength="10"
+                                [class.is-invalid]="(msgId.touched) && funcCode.invalid" />
+                            <button type="button" class="btn btn-outline-primary ms-5" *ngIf="!isHiddenMsgIdSrchBtn()"
+                                (click)="onSearch(funcCode.value,msgId.value,'msgId')">
+                                {{ 'BTN_SRCH' | translate }}
+                            </button>
+                        </div>
+                        <div class="d-flex flex-row">
+                            <div *ngIf="( msgId.touched) && msgId.hasError('required')" class="error-feedback">
+                                {{ 'MCM_ID_REQ' | translate }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="pt-4 w-50 row">
+                    <label for="msgIdDesc" class="text-muted fw-bold col-sm-6 col-md-6 col-lg-4">
+                        {{'MESSAGE_ID_DESC' | translate }}
+                    </label>
+                    <div class="col-sm-6 col-md-6 col-lg-8">
+                        {{msgIdTypeDesc}}
+                    </div>
+                </div>
+            </div>
+
+            <!-- NEXT BUTTON -->
+            <div class="mt-4 d-flex justify-content-end">
+                <button type="button" mat-button class="btn btn-secondary mt-5" (click)="onNext()">
+                    <div class="d-flex align-items-center justify-content-center gap-1">
+                        {{ 'BTN_NXT' | translate}}
+                        <i class="ti ti-arrow-right fs-3"></i>
+                    </div>
+                </button>
+            </div>
+        </form>
+    </mat-step>
+
+    <!-- SECOND STEP -->
+    <mat-step [stepControl]="msgIdLangForm" label="{{'MESSAGE_ID_DETAIL'| translate}}" class="prevent-scroll">
+        <form [formGroup]="msgIdLangForm">
+            <div class="row text-center pb-5" *ngIf="isHiddenNewMsgIdBtn()">
+                <div class="col-sm-6 col-md-4 col-lg-4">
+                    <label class="text-muted fw-bold mt-2">{{'MESSAGE_ID' | translate }}</label>
+                </div>
+                <div class="col-sm-6 col-md-8 col-lg-8">
+                    <input type="text" class="form-control" maxlength="10" formControlName="msgIdNew">
+                </div>
+            </div>
+            <div class="row text-center pb-5">
+                <div class="col-sm-6 col-md-4 col-lg-4">
+                    <span class="text-muted fw-bold mt-2">{{ 'MENU_FUNC_CODE' | translate }} - {{ funcCode.value
+                        }}</span>
+                </div>
+                <div class="col-sm-6 col-md-4 col-lg-4">
+                    <span class="text-muted fw-bold mt-2">{{'MESSAGE_ID' | translate}} - {{ msgId.value }}</span>
+                </div>
+            </div>
+            <div class="mt-5">
+                <div class="row border-bottom m-1 pb-3">
+                    <div class="col-4">
+                        <span class="fw-bold p-5">Language</span>
+                    </div>
+                    <div class="col-4">
+                        <span class="fw-bold">Message Lang Description</span>
+                    </div>
+                    <div class="col-4">
+                        <span class="fw-bold">Message Description</span>
+                    </div>
+                </div>
+                <div formArrayName="language">
+                    <div *ngFor="let mop of mopCodeDescList; let i = index">
+                        <div class="row m-1 pb-2 pt-2" [formGroupName]="i">
+                            <div class="col-4">
+                                <input type="hidden" formControlName="msgLang" class="form-control" />
+                                <span class="fw-bold p-5">{{ mop.msgLang }}</span>
+                            </div>
+                            <div class="col-4">
+                                <input type="text" class="form-control" formControlName="msgLangDesc"
+                                    readOnly />
+                            </div>
+                            <div class="col-4">
+                                <input type="text" class="form-control" formControlName="msgDesc"
+                                    [readOnly]="funcCode?.value === 'I'" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="border-bottom"> </div>
+            <div class="d-flex flex-row justify-content-end">
+                <div>
+                    <button type="button" mat-button matStepperPrevious class="btn btn-danger"
+                        (click)="clearMsgIdFormFields()">Cancel</button>
+                </div>
+                <div class="ms-2" *ngIf="!isInquirySelected()">
+                    <button type="button" class="btn btn-primary" (click)="onSubmit()">Submit</button>
+                </div>
+            </div>
+        </form>
+    </mat-step>
+</mat-stepper>
