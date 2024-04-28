@@ -20,4 +20,8 @@ export class SearchListService {
     return this.http.post<any>(`${this.baseUrl}/menu/search-by-menu-id`,menuSearchObj);
   }
 
+  getMsgIdList(payload: any){
+    return this.http.post<any>(`${this.baseUrl}/msg/get-msgId-list`,payload);
+  }
+
 }

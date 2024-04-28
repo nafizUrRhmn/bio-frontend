@@ -21,6 +21,7 @@ import {RefCodeMaintComponent} from "./refcode-maint/refcode-maint.component";
 import {MenuMaintenanceComponent} from "./menu-maintenance/menu-maintenance.component";
 import {NrxGridModule} from "../../shared/components/nrx-grid/nrx-grid.module";
 import {BtnCellRendererModule} from "../../shared/components/btn-grid/btn-cell-renderer.module";
+import { MessageIdMaintComponent } from './message-id-maint/message-id-maint.component';
 
 
 const routes: Routes = [
@@ -35,7 +36,8 @@ const routes: Routes = [
     CoreConfigComponent,
     RefCodeTypeMaintComponent,
     RefCodeMaintComponent,
-    MenuMaintenanceComponent
+    MenuMaintenanceComponent,
+    MessageIdMaintComponent
   ],
   imports: [
     RouterModule.forChild(routes),
@@ -58,7 +60,6 @@ const routes: Routes = [
     MatStepperModule,
     NrxGridModule,
     BtnCellRendererModule
-
   ],
 })
 export class CoreConfigModule {
