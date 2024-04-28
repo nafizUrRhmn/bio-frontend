@@ -4,9 +4,7 @@
       <div class="d-flex flex-column m-2 me-5">
         <div class="pt-1 w-50 row mt-5">
           <label for="funcCode" class="form-label text-muted fw-bold col-sm-6 col-md-6 col-lg-4">
-
             {{ 'RCTM_FUNC_CODE' | translate }}
-
           </label>
           <div class="col-sm-6 col-md-6 col-lg-8">
             <select id="funcCode"
@@ -14,7 +12,7 @@
                     aria-label=".form-select-lg example"
                     formControlName="funcCode"
                     (change)="onChangeFuncCode($event)"
-                    [class.is-invalid]="( funcCode.touched) && funcCode.invalid" >
+                    [class.is-invalid]="funcCode.touched && funcCode.invalid" >
               <option selected > </option>
               <option value="I">I-Inquiry</option>
               <option *ngFor="let item of funcCodeOptions" [value]="item.optionValue">
@@ -22,11 +20,9 @@
               </option>
             </select>
             <div class="d-flex flex-row">
-              <div  *ngIf="( funcCode.touched) && funcCode.hasError('required')"
+              <div  *ngIf="funcCode.touched && refCodeType.hasError('required')"
                     class="error-feedback">
-
                 {{ 'ER_RCTM_FUNC_CODE' | translate }}
-
               </div>
             </div>
           </div>

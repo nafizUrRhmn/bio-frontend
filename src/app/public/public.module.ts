@@ -20,6 +20,10 @@ const routes: Routes = [
   {
     path: 'forgot-password',
     loadChildren: () => import('./forgot-password/forgot-password.module').then((m) => m.ForgotPasswordModule)
+  },
+  {
+    path: 'reactive-form-example',
+    loadChildren: () => import('./reactive-form-example/reactive-form-example.module').then((m) => m.ReactiveFormExampleModule)
   }
 ];
 
