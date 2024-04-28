@@ -12,7 +12,7 @@
               {{'MENU_FUNC_CODE' | translate}} 
             </label>
             <div class="col-8">
-              <select id="funcCode" class="form-select" formControlName="funcCode">
+              <select id="funcCode" class="form-select border-2" formControlName="funcCode">
                 <option value="I">I-Inquiry</option>
                 <option value="A">A-Add</option>
                 <option value="D">D-Delete</option>
@@ -32,7 +32,7 @@
               <div class="d-flex flex-row">
                 <input
                   type="text"
-                  class="form-control" formControlName="menuId" minlength="1" maxlength="10"
+                  class="form-control border-2" formControlName="menuId" minlength="1" maxlength="10"
                   id="menuId"/>
                 <button type="button" class="btn btn-outline-primary ms-5"
                         (click)="onSearchMenuId()" [disabled]="funCode==='A'">
@@ -104,20 +104,20 @@
                 <div class="row m-1 pb-2 pt-2" [formGroupName]="i">
                   <div class="col-4">
                     <input type="hidden" formControlName="langCode"
-                           class="form-control">
+                           class="form-control border-2">
                     <input type="hidden" formControlName="delFlg"
-                           class="form-control">
+                           class="form-control border-2">
                     <input type="hidden" formControlName="lchgTime"
                            class="form-control">
                     <span class="fw-bold p-5">{{mop.langCode}}</span>
                   </div>
                   <div class="col-4">
                     <input type="text"
-                           class="form-control" formControlName="langCodeDesc" [readOnly]="true">
+                           class="form-control border-2" formControlName="langCodeDesc" [readOnly]="true">
                   </div>
                   <div class="col-4">
                     <input type="text"
-                           class="form-control" formControlName="menuDesc" [readOnly]="funCode !== 'A' && funCode !== 'M' && funCode !== 'C'">
+                           class="form-control border-2" formControlName="menuDesc" [readOnly]="funCode !== 'A' && funCode !== 'M' && funCode !== 'C'">
                   </div>
                 </div>
               </div>
@@ -128,7 +128,7 @@
                 {{'MENU_TYP' | translate}}
             </span>
             <div class="form-check form-check-inline">
-              <input class="form-check-input" type="radio" name="menuTp" id="root" value="R" checked
+              <input class="form-check-input border-2" type="radio" name="menuTp" id="root" value="R" checked
                      formControlName="menuTp"
                      (change)="onMenuTypeChange($event)">
               <label class="form-check-label" for="root">
@@ -136,7 +136,7 @@
               </label>
             </div>
             <div class="form-check form-check-inline">
-              <input class="form-check-input" type="radio" name="menuTp" id="group" value="G"
+              <input class="form-check-input border-2" type="radio" name="menuTp" id="group" value="G"
                      formControlName="menuTp"
                      (change)="onMenuTypeChange($event)">
               <label class="form-check-label" for="group">
@@ -144,7 +144,7 @@
               </label>
             </div>
             <div class="form-check form-check-inline">
-              <input class="form-check-input" type="radio" name="menuTp" id="menu" value="M"
+              <input class="form-check-input border-2" type="radio" name="menuTp" id="menu" value="M"
                      formControlName="menuTp"
                      (change)="onMenuTypeChange($event)">
               <label class="form-check-label" for="menu">
@@ -171,11 +171,11 @@
                 <div class="col-6 text-start">
                   <input
                     type="text"
-                    class="form-control" formControlName="parMenuCode" readonly = "true"
+                    class="form-control border-2" formControlName="parMenuCode" readonly = "true"
                     id="parMenuCode" />
                   <input
                     type="hidden"
-                    class="form-control" formControlName="parMenuCodeDesc"
+                    class="form-control border-2" formControlName="parMenuCodeDesc"
                     id="parMenuCodeDesc"/>
                 </div>
                 <div class="col-4 text-start">
@@ -197,15 +197,15 @@
                 <div class="col-4 text-start">
                   <input
                     type="text"
-                    class="form-control" formControlName="levelCode"
+                    class="form-control border-2" formControlName="levelCode"
                     id="level"/>
                   <input
                     type="hidden"
-                    class="form-control" formControlName="entityCreFlg"
+                    class="form-control border-2" formControlName="entityCreFlg"
                     id="entityCreFlg"/>
                   <input
                     type="hidden"
-                    class="form-control" formControlName="lchgTime" id="lchgTime"/>
+                    class="form-control border-2" formControlName="lchgTime" id="lchgTime"/>
                 </div>
               </div>
               <div class="row pb-3">
@@ -213,7 +213,7 @@
                   <div class="text-muted fw-bold pe-5 pt-1">{{'MENU_DLT_Q'|translate}}</div>
                 </div>
                 <div class="col-6 text-start">
-                  <input class="form-check-input" type="checkbox" value="Y"
+                  <input class="form-check-input border-2" type="checkbox" value="Y"
                          id="delFlag" formControlName="delFlg" >
 
                 </div>
@@ -248,14 +248,14 @@
               <div>
                 <div class="row">
                   <div class="form-check form-check-inline col-2">
-                    <input class="form-check-input" type="checkbox"
+                    <input class="form-check-input border-2" type="checkbox"
                            id="add" formControlName="hasAdd" (change)="checkBoxValues()" >
                     <label class="form-check-label" for="add">
                       {{'MENU_ADD'|translate}}
                     </label>
                   </div>
                   <div class="form-check form-check-inline col-4">
-                    <input class="form-check-input" type="checkbox" value=""
+                    <input class="form-check-input border-2" type="checkbox" value=""
                            id="add-auto-verify" formControlName="addAutoVerify">
                     <label class="form-check-label" for="add-auto-verify">
                       {{'MENU_AUTO_VER'|translate}}
@@ -264,14 +264,14 @@
                 </div>
                 <div class="row">
                   <div class="form-check form-check-inline col-2">
-                    <input class="form-check-input" type="checkbox" value="" id="delete" formControlName="hasDelete"
+                    <input class="form-check-input border-2" type="checkbox" value="" id="delete" formControlName="hasDelete"
                            (change)="checkBoxValues()">
                     <label class="form-check-label" for="delete">
                       {{'MENU_DLT'|translate}}
                     </label>
                   </div>
                   <div class="form-check form-check-inline col-4">
-                    <input class="form-check-input" type="checkbox" value="" id="delete-auto-verify"
+                    <input class="form-check-input border-2" type="checkbox" value="" id="delete-auto-verify"
                            formControlName="deleteAutoVerify">
                     <label class="form-check-label" for="delete-auto-verify">
                       {{'MENU_AUTO_VER'|translate}}
@@ -280,14 +280,14 @@
                 </div>
                 <div class="row">
                   <div class="form-check form-check-inline col-2">
-                    <input class="form-check-input" type="checkbox" id="undelete" formControlName="hasUndelete"
+                    <input class="form-check-input border-2" type="checkbox" id="undelete" formControlName="hasUndelete"
                            (change)="checkBoxValues()">
                     <label class="form-check-label" for="undelete">
                       {{'MENU_UNDLT'|translate}}
                     </label>
                   </div>
                   <div class="form-check form-check-inline col-4">
-                    <input class="form-check-input" type="checkbox" id="undelete-auto-verify"
+                    <input class="form-check-input border-2" type="checkbox" id="undelete-auto-verify"
                            formControlName="undeleteAutoVerify">
                     <label class="form-check-label" for="undelete-auto-verify">
                       {{'MENU_AUTO_VER'|translate}}
@@ -297,14 +297,14 @@
 
                 <div class="row">
                   <div class="form-check form-check-inline col-2">
-                    <input class="form-check-input" type="checkbox" value="" id="modification"
+                    <input class="form-check-input border-2" type="checkbox" value="" id="modification"
                            formControlName="hasModification" (change)="checkBoxValues()">
                     <label class="form-check-label" for="modification">
                       {{'MENU_MOD'|translate}}
                     </label>
                   </div>
                   <div class="form-check form-check-inline col-4">
-                    <input class="form-check-input" type="checkbox" value="" id="modification-auto-verify"
+                    <input class="form-check-input border-2" type="checkbox" value="" id="modification-auto-verify"
                            formControlName="modificationAutoVerify">
                     <label class="form-check-label" for="modification-auto-verify">
                       {{'MENU_AUTO_VER'|translate}}
@@ -313,7 +313,7 @@
                 </div>
                 <div class="row">
                   <div class="form-check col-2">
-                    <input class="form-check-input" type="checkbox" value="" id="verify" formControlName="hasVerify">
+                    <input class="form-check-input border-2" type="checkbox" value="" id="verify" formControlName="hasVerify">
                     <label class="form-check-label" for="verify">
                       {{'MENU_VER'|translate}}
                     </label>
@@ -322,7 +322,7 @@
                 </div>
                 <div class="row">
                   <div class="form-check col-2">
-                    <input class="form-check-input" type="checkbox" value="" id="cancel" formControlName="hasCancel">
+                    <input class="form-check-input border-2" type="checkbox" value="" id="cancel" formControlName="hasCancel">
                     <label class="form-check-label" for="cancel">
                       {{'MENU_CNCL'|translate}}
                     </label>
@@ -338,7 +338,7 @@
                 {{'MENU_SECU_INDIC' | translate}}
               </label>
               <div class="col-8">
-                <select id="secuInd" class="form-select" formControlName="secuInd">
+                <select id="secuInd" class="form-select border-2" formControlName="secuInd">
                   <option value="I">I-Inquiry</option>
                   <option value="M">M-Modification</option>
                 </select>
@@ -350,7 +350,7 @@
               </div>
               <div class="col-10 text-start">
                 <input type="text"
-                       class="form-control w-50" formControlName="param1">
+                       class="form-control w-50 border-2" formControlName="param1">
               </div>
             </div>
 
@@ -360,7 +360,7 @@
               </div>
               <div class="col-4">
                 <input type="text"
-                       class="form-control" formControlName="param2">
+                       class="form-control border-2" formControlName="param2">
               </div>
               <div class="col-4 text-start">
                 <!-- BUTTON SEARCH -->
@@ -379,7 +379,7 @@
               </div>
               <div class="col-4">
                 <input type="text"
-                       class="form-control" formControlName="param3">
+                       class="form-control border-2" formControlName="param3">
               </div>
               <div class="col-4 text-start">
                 <!-- BUTTON SEARCH -->
@@ -398,7 +398,7 @@
               </div>
               <div class="col-10 text-start">
                 <input type="text"
-                       class="form-control w-50" formControlName="param4">
+                       class="form-control w-50 border-2" formControlName="param4">
               </div>
             </div>
 <!--            <div class="row pt-5">-->

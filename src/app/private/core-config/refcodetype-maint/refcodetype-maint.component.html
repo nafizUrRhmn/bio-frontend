@@ -1,206 +1,211 @@
-<mat-stepper [linear]="isLinear" #stepper>
-  <mat-step [stepControl]="refCodeTypeForm" label="{{'RCTM_MAIN_HDER'| translate}}">
-    <form [formGroup]="refCodeTypeForm">
-      <div class="d-flex flex-column m-2 me-5">
-        <div class="pt-1 w-50 row mt-5">
-          <label for="funcCode" class="form-label text-muted fw-bold col-sm-6 col-md-6 col-lg-4">
-            {{ 'RCTM_FUNC_CODE' | translate }}
-          </label>
-          <div class="col-sm-6 col-md-6 col-lg-8">
-            <select id="funcCode"
-                    class="form-select form-select-sm"
-                    aria-label=".form-select-lg example"
-                    formControlName="funcCode"
-                    (change)="onChangeFuncCode($event)"
-                    [class.is-invalid]="funcCode.touched && funcCode.invalid" >
-              <option selected > </option>
-              <option value="I">I-Inquiry</option>
-              <option *ngFor="let item of funcCodeOptions" [value]="item.optionValue">
-                {{item.optionText}}
-              </option>
-            </select>
-            <div class="d-flex flex-row">
-              <div  *ngIf="funcCode.touched && refCodeType.hasError('required')"
-                    class="error-feedback">
-                {{ 'ER_RCTM_FUNC_CODE' | translate }}
+<div class="mx-5 mt-5">
+  <div class="border-bottom">
+    <h1 class="text-primary fw-bold">{{'RCTM'|translate}}</h1>
+  </div>
+  <mat-stepper [linear]="isLinear" #stepper>
+    <mat-step [stepControl]="refCodeTypeForm" [completed]="false" label="{{'RCTM_MAIN_HDER'| translate}}">
+      <form [formGroup]="refCodeTypeForm">
+        <div class="d-flex flex-column m-2 me-5">
+          <div class="pt-1 w-50 row mt-5">
+            <label for="funcCode" class="form-label text-muted fw-bold col-sm-6 col-md-6 col-lg-4">
+              {{ 'RCTM_FUNC_CODE' | translate }}
+            </label>
+            <div class="col-sm-6 col-md-6 col-lg-8">
+              <select id="funcCode"
+                      class="form-select form-select-sm border-2"
+                      aria-label=".form-select-lg example"
+                      formControlName="funcCode"
+                      (change)="onChangeFuncCode($event)"
+                      [class.is-invalid]="funcCode.touched && funcCode.invalid" >
+                <option selected > </option>
+                <option value="I">I-Inquiry</option>
+                <option *ngFor="let item of funcCodeOptions" [value]="item.optionValue">
+                  {{item.optionText}}
+                </option>
+              </select>
+              <div class="d-flex flex-row">
+                <div  *ngIf="funcCode.touched && refCodeType.hasError('required')"
+                      class="error-feedback">
+                  {{ 'ER_RCTM_FUNC_CODE' | translate }}
+                </div>
               </div>
             </div>
           </div>
+          <div class="pt-4 w-50 row">
+            <label for="refCodeType" class="form-label text-muted fw-bold col-sm-6 col-md-6 col-lg-4">
+              {{'RCTM_REF_TYP'|translate}}
+            </label>
+            <div class="col-sm-6 col-md-6 col-lg-8">
+              <div class="d-flex flex-row">
+                <input
+                  type="text"
+                  class="form-control border-2"
+                  id="refCodeType"
+                  formControlName="refCodeType"
+                  maxlength="2"
+                  [class.is-invalid]="(refCodeType.touched) && funcCode.invalid"
+                />
+                  <button type="button" class="btn btn-outline-primary ms-5" [hidden]="isHiddenRefSrchBtn"
+                        (click)="onSearch(funcCode.value,refCodeType.value,'refCodeType')">
+                  {{ 'BTN_SRCH' | translate }}
+                </button>
+              </div>
+              <div class="d-flex flex-row">
+                <div  *ngIf="( refCodeType.touched) && refCodeType.hasError('required')"
+                      class="error-feedback">
+                  {{ 'ER_RCTM_REF_TYP' | translate }}
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="pt-4 w-50 row">
+            <label for="refCodeType" class="text-muted fw-bold col-sm-6 col-md-6 col-lg-4">
+              {{'RCTM_REF_TYP_DESC' | translate }}
+            </label>
+              <div class="col-sm-6 col-md-6 col-lg-8">
+                {{refCodeTypeDesc}}
+              </div>
+          </div>
         </div>
-        <div class="pt-4 w-50 row">
-          <label for="refCodeType" class="form-label text-muted fw-bold col-sm-6 col-md-6 col-lg-4">
-            {{'RCTM_REF_TYP'|translate}}
-          </label>
-          <div class="col-sm-6 col-md-6 col-lg-8">
-            <div class="d-flex flex-row">
-              <input
-                type="text"
-                class="form-control"
-                id="refCodeType"
-                formControlName="refCodeType"
-                maxlength="2"
-                [class.is-invalid]="(refCodeType.touched) && funcCode.invalid"
-              />
-                <button type="button" class="btn btn-outline-primary ms-5" [hidden]="isHiddenRefSrchBtn"
-                      (click)="onSearch(funcCode.value,refCodeType.value,'refCodeType')">
+  
+        <!-- NEXT BUTTON -->
+        <div class="mt-4 d-flex justify-content-end">
+          <button type="button" mat-button class="btn btn-secondary mt-5" (click)="onNext()">
+            <div class="d-flex align-items-center justify-content-center gap-1">
+              {{ 'BTN_NXT' | translate}}
+              <i class="ti ti-arrow-right fs-3"></i>
+            </div>
+  
+          </button>
+        </div>
+      </form>
+    </mat-step>
+  
+  
+    <!-- SECOND STEP -->
+    <mat-step [stepControl]="refDetailForm" [completed]="false" label="{{'RCTM_DETAIL_HDER'| translate}}" class="prevent-scroll">
+      <div class="row text-center pb-5">
+        <div class="col-sm-6 col-md-4 col-lg-4">
+          <span class="text-muted fw-bold mt-2">{{ 'RCTM_FUNC_CODE' | translate }} - {{ funcCode.value }}</span>
+        </div>
+        <div class="col-sm-6 col-md-4 col-lg-4">
+          <span class="text-muted fw-bold mt-2">{{'RCTM_REF_TYP' | translate}} - {{ refCodeType.value }}</span>
+        </div>
+      </div>
+      <form [formGroup]="refDetailForm">
+        <div class="m-2 w-50">
+          <div class="row" [hidden]="isHiddenNewRefType">
+            <div class="col-sm-6 col-md-4 col-lg-4">
+              <label class="text-muted fw-bold mt-2">{{'RCTM_NEW_REF_TYP' | translate }}</label>
+            </div>
+            <div class="col-sm-6 col-md-8 col-lg-8">
+              <input type="text" class="form-control border-2" maxlength="2" formControlName="newRefCodeType">
+            </div>
+          </div>
+          <div class="row mt-3">
+            <div class="col-sm-6 col-md-4 col-lg-4 ">
+              <label class="fw-bold mt-2">{{'RCTM_REF_TYP_DESC' | translate }}</label>
+            </div>
+            <div class="col-sm-6 col-md-8 col-lg-8">
+              <input type="text"
+                     class="form-control border-2"
+                     maxlength="100"
+                     formControlName="refDescription" />
+            </div>
+          </div>
+  
+          <div class="row mt-3">
+            <div class="col-sm-6 col-md-4 col-lg-4">
+              <label class="text-muted fw-bold">{{ 'RCTM_REF_TYP_LEN' | translate}}</label>
+            </div>
+            <div class="col-sm-6 col-md-8 col-lg-8">
+              <input type="number"
+                     class="form-control right-input border-2"
+                     onKeyPress="if(this.value.length==2) return false;"
+                     formControlName="refLength">
+            </div>
+          </div>
+  
+  
+          <div class="row mt-3">
+            <div class="col-sm-6 col-md-4 col-lg-4">
+              <label class="text-muted fw-bold">{{ 'RCTM_DEP_FLG' | translate }}</label>
+            </div>
+            <div class="col-sm-6 col-md-8 col-lg-8 d-flex justify-content-around">
+              <div class="form-check">
+                <input class="form-check-input border-2"
+                       type="radio"
+                       id="dependentFlgYes"
+                       value="Y"
+                       formControlName="dependentFlg"
+                       (change)="onChangeDepFlg($event)">
+                <label class="form-check-label" for="dependentFlgYes">
+                  {{'BTN_YES' | translate}}
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input border-2"
+                       type="radio"
+                       id="dependentFlgNo"
+                       value="N"
+                       formControlName="dependentFlg"
+                       (change)="onChangeDepFlg($event)">
+                <label class="form-check-label" for="dependentFlgNo">
+                  {{'BTN_NO' | translate}}
+                </label>
+              </div>
+            </div>
+          </div>
+  
+          <div class="row mt-3" [hidden]="isHiddenDepFlds">
+            <div class="col-sm-6 col-md-4 col-lg-4">
+              <label class="text-muted fw-bold">{{ 'RCTM_DEP_TYP' | translate}}</label>
+            </div>
+            <div class="col-sm-6 col-md-4 col-lg-4">
+              <input type="text" class="form-control border-2"
+                     maxlength="2"
+                     formControlName="depRefType">
+            </div>
+            <div class="col-sm-6 col-md-4 col-lg-4 " [hidden]="isHiddenDepSrchBtn">
+              <button type="button" class="btn btn-outline-primary"
+                      (click)="onSearch('I',depRefType.value,'depRefType')">
                 {{ 'BTN_SRCH' | translate }}
               </button>
             </div>
-            <div class="d-flex flex-row">
-              <div  *ngIf="( refCodeType.touched) && refCodeType.hasError('required')"
-                    class="error-feedback">
-                {{ 'ER_RCTM_REF_TYP' | translate }}
-              </div>
+  
+  
+  
+          </div>
+          <div class="row mt-3 d-flex justify-content-center align-items-center" [hidden]="isHiddenDepFlds">
+            <div class="col-sm-6 col-md-4 col-lg-4">
+              <label class="text-muted fw-bold">{{'RCTM_DEP_DESC' | translate}}</label>
+            </div>
+            <div class="col-sm-6 col-md-8 col-lg-8">
+              <input type="text"
+                     class="form-control border-2"
+                     formControlName="depRefCodeTypeDesc">
             </div>
           </div>
         </div>
-        <div class="pt-4 w-50 row">
-          <label for="refCodeType" class="text-muted fw-bold col-sm-6 col-md-6 col-lg-4">
-            {{'RCTM_REF_TYP_DESC' | translate }}
-          </label>
-            <div class="col-sm-6 col-md-6 col-lg-8">
-              {{refCodeTypeDesc}}
-            </div>
-        </div>
-      </div>
-
-      <!-- NEXT BUTTON -->
-      <div class="mt-4 d-flex justify-content-end">
-        <button type="button" mat-button class="btn btn-secondary mt-5" (click)="onNext()">
-          <div class="d-flex align-items-center justify-content-center gap-1">
-            {{ 'BTN_NXT' | translate}}
-            <i class="ti ti-arrow-right fs-3"></i>
-          </div>
-
-        </button>
-      </div>
-    </form>
-  </mat-step>
-
-
-  <!-- SECOND STEP -->
-  <mat-step [stepControl]="refDetailForm" label="{{'RCTM_DETAIL_HDER'| translate}}" class="prevent-scroll">
-    <div class="row text-center pb-5">
-      <div class="col-sm-6 col-md-4 col-lg-4">
-        <span class="text-muted fw-bold mt-2">{{ 'RCTM_FUNC_CODE' | translate }} - {{ funcCode.value }}</span>
-      </div>
-      <div class="col-sm-6 col-md-4 col-lg-4">
-        <span class="text-muted fw-bold mt-2">{{'RCTM_REF_TYP' | translate}} - {{ refCodeType.value }}</span>
-      </div>
-    </div>
-    <form [formGroup]="refDetailForm">
-      <div class="m-2 w-50">
-        <div class="row" [hidden]="isHiddenNewRefType">
-          <div class="col-sm-6 col-md-4 col-lg-4">
-            <label class="text-muted fw-bold mt-2">{{'RCTM_NEW_REF_TYP' | translate }}</label>
-          </div>
-          <div class="col-sm-6 col-md-8 col-lg-8">
-            <input type="text" class="form-control" maxlength="2" formControlName="newRefCodeType">
-          </div>
-        </div>
-        <div class="row mt-3">
-          <div class="col-sm-6 col-md-4 col-lg-4 ">
-            <label class="fw-bold mt-2">{{'RCTM_REF_TYP_DESC' | translate }}</label>
-          </div>
-          <div class="col-sm-6 col-md-8 col-lg-8">
-            <input type="text"
-                   class="form-control"
-                   maxlength="100"
-                   formControlName="refDescription" />
-          </div>
-        </div>
-
-        <div class="row mt-3">
-          <div class="col-sm-6 col-md-4 col-lg-4">
-            <label class="text-muted fw-bold">{{ 'RCTM_REF_TYP_LEN' | translate}}</label>
-          </div>
-          <div class="col-sm-6 col-md-8 col-lg-8">
-            <input type="number"
-                   class="form-control right-input"
-                   onKeyPress="if(this.value.length==2) return false;"
-                   formControlName="refLength">
-          </div>
-        </div>
-
-
-        <div class="row mt-3">
-          <div class="col-sm-6 col-md-4 col-lg-4">
-            <label class="text-muted fw-bold">{{ 'RCTM_DEP_FLG' | translate }}</label>
-          </div>
-          <div class="col-sm-6 col-md-8 col-lg-8 d-flex justify-content-around">
-            <div class="form-check">
-              <input class="form-check-input"
-                     type="radio"
-                     id="dependentFlgYes"
-                     value="Y"
-                     formControlName="dependentFlg"
-                     (change)="onChangeDepFlg($event)">
-              <label class="form-check-label" for="dependentFlgYes">
-                {{'BTN_YES' | translate}}
-              </label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input"
-                     type="radio"
-                     id="dependentFlgNo"
-                     value="N"
-                     formControlName="dependentFlg"
-                     (change)="onChangeDepFlg($event)">
-              <label class="form-check-label" for="dependentFlgNo">
-                {{'BTN_NO' | translate}}
-              </label>
-            </div>
-          </div>
-        </div>
-
-        <div class="row mt-3" [hidden]="isHiddenDepFlds">
-          <div class="col-sm-6 col-md-4 col-lg-4">
-            <label class="text-muted fw-bold">{{ 'RCTM_DEP_TYP' | translate}}</label>
-          </div>
-          <div class="col-sm-6 col-md-4 col-lg-4">
-            <input type="text" class="form-control"
-                   maxlength="2"
-                   formControlName="depRefType">
-          </div>
-          <div class="col-sm-6 col-md-4 col-lg-4 " [hidden]="isHiddenDepSrchBtn">
-            <button type="button" class="btn btn-outline-primary"
-                    (click)="onSearch('I',depRefType.value,'depRefType')">
-              {{ 'BTN_SRCH' | translate }}
+  
+        <!-- BOTTOM BUTTONS -->
+        <div class="d-flex flex-row justify-content-end">
+          <div>
+            <button type="button" mat-button matStepperPrevious class="btn btn-danger"
+                    (click)="onCancel()">
+              {{'BTN_CNCL' | translate}}
             </button>
           </div>
-
-
-
-        </div>
-        <div class="row mt-3 d-flex justify-content-center align-items-center" [hidden]="isHiddenDepFlds">
-          <div class="col-sm-6 col-md-4 col-lg-4">
-            <label class="text-muted fw-bold">{{'RCTM_DEP_DESC' | translate}}</label>
-          </div>
-          <div class="col-sm-6 col-md-8 col-lg-8">
-            <input type="text"
-                   class="form-control"
-                   formControlName="depRefCodeTypeDesc">
+  
+          <div class="ms-2">
+            <button type="button" class="btn btn-primary"
+                    [hidden] ="isHiddenSubmitBtn"
+                    (click)="onSubmit()">
+              {{'BTN_SBMT' | translate}}
+            </button>
           </div>
         </div>
-      </div>
-
-      <!-- BOTTOM BUTTONS -->
-      <div class="d-flex flex-row justify-content-end">
-        <div>
-          <button type="button" mat-button matStepperPrevious class="btn btn-danger"
-                  (click)="onCancel()">
-            {{'BTN_CNCL' | translate}}
-          </button>
-        </div>
-
-        <div class="ms-2">
-          <button type="button" class="btn btn-primary"
-                  [hidden] ="isHiddenSubmitBtn"
-                  (click)="onSubmit()">
-            {{'BTN_SBMT' | translate}}
-          </button>
-        </div>
-      </div>
-    </form>
-  </mat-step>
-</mat-stepper>
+      </form>
+    </mat-step>
+  </mat-stepper>
+</div>
