@@ -95,6 +95,7 @@
 
 
 
+  "RCTM" : "Reference Code Type Maintainance",
   "RCTM_MAIN_HDER" : "RCT Maintainance",
   "RCTM_DETAIL_HDER" : "RCT Details",
   "RCTM_FUNC_CODE" : "Function Code",
@@ -164,7 +165,21 @@
   "RCM_DLT_FLG" : "Delete Flag",
   "RCM_LANG" : "Language",
   "RCM_LANG_CODE_DES" : "Lang Code Description",
-  "RCM_REF_CODE_DES" : "Reference Code Description"
+  "RCM_REF_CODE_DES" : "Reference Code Description",
+
+  "MIM" : "Message ID Maintenance",
+  "MIM_DTLS" : "Message ID Details",
+  "MIM_FUNC_CODE" : "Function Code",
+  "ER_MIM_FUNC_CODE": "Function Code Required",
+  "MIM_MSG_ID": "Message ID",
+  "ER_MIM_MSG_ID": "Message ID Required",
+  "ER_MIM_MSG_ID_L2": "Message ID must contain at least 2 digits",
+  "ER_MIM_MSG_ID_L10": "Message ID cannot exceed 10 characters",
+  "MIM_MSG_ID_DES": "Message ID Description",
+  "MIM_LANG": "Language",
+  "MIM_MSG_LANG_DES": "Message Lang Description",
+  "MIM_MSG_DES": "Message Description"
+
 
 
 
