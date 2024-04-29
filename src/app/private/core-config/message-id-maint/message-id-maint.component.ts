@@ -37,11 +37,11 @@ export class MessageIdMaintComponent {
     this.funcCodeOptions = this.navService.getPermittedOptions();
     this.msgIdForm = this.fb.group({
       funcCode: ['', [Validators.required]],
-      msgId: ['', [Validators.required, Validators.maxLength(10)]],
+      msgId: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(10)]],
     });
 
     this.msgIdLangForm = this.fb.group({
-      msgIdNew: ['', [Validators.required]],
+      msgIdNew: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(10)]],
       language: this.fb.array([])
     });
 
@@ -175,41 +175,24 @@ export class MessageIdMaintComponent {
         console.log("isInquiry  " + event.target.value === 'I');
         console.log("code  " + this.funcCode.value);
         this.isInquiry = (event.target.value === 'I');
-       
-       
-        //this.isHiddenSubmitBtn = true;
-       
-        // this.isHiddenRefSrchBtn = false;
       }
         break;
       case 'C': {
-       
-       
-        //this.isHiddenSubmitBtn = false;
-        // this.isHiddenDepSrchBtn  false;
-        // this.isHiddenRefSrchBtn = false;
+
       }
         break;
       case 'D':
       case 'V': {
-       
-     
-        
-        //this.isHiddenSubmitBtn = false;
-       
-        // this.isHiddenRefSrchBtn = false;
+
+
       }
         break;
       case 'A':
       case 'U':
       case 'M':
       case 'X': {
-       
-       
-       
-        //this.isHiddenSubmitBtn = false;
-     
-        // this.isHiddenRefSrchBtn = true;
+
+
       }
         break;
       default:
@@ -225,13 +208,13 @@ export class MessageIdMaintComponent {
     return this.msgIdForm.get('msgId');
   }
 
-  get newMsgId(){
-    return this.msgIdLangForm.get('newMsgId');
+  get msgIdNew(){
+    return this.msgIdLangForm.get('msgIdNew');
   }
 
 
 
-  
+
 
 
 

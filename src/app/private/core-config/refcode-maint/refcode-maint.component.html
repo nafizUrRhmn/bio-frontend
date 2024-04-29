@@ -3,7 +3,7 @@
     <h1 class="text-primary fw-bold">{{'RCM'|translate}}</h1>
   </div>
   <mat-stepper [linear]="isLinear" #stepper>
-    <mat-step [stepControl]="refCodeForm" label="{{'RCM_MAINT'|translate}}">
+    <mat-step [stepControl]="refCodeForm" [completed]="false" label="{{'RCM_MAINT'|translate}}">
       <form [formGroup]="refCodeForm">
         <div class="d-flex flex-column">
           <!-- FUNC CODE -->
@@ -14,7 +14,7 @@
               </label>
             </div>
             <div class="col-sm-7 col-md-7 col-lg-7">
-              <select id="funcCode" class="form-select form-select-sm" aria-label=".form-select-lg example"
+              <select id="funcCode" class="form-select form-select-sm border-2" aria-label=".form-select-lg example"
                 formControlName="funcCode" (change)="onChangeFuncCode($event)">
                 <option selected></option>
                 <option value="I">I-Inquiry</option>
@@ -37,7 +37,7 @@
             </div>
             <div class="col-sm-7 col-md-7 col-lg-7">
               <div class="d-flex flex-row">
-                <input type="text" class="form-control" id="refCodeType" formControlName="refCodeType"
+                <input type="text" class="form-control border-2" id="refCodeType" formControlName="refCodeType"
                   (focusout)="onFocusOutEvent($event)" />
                 <button type="button" class="btn btn-outline-primary ms-5"
                   (click)="onSrchRefType('I', refCodeType.value)">
@@ -59,7 +59,7 @@
             </div>
             <div class="col-sm-7 col-md-7 col-lg-7">
               <div class="d-flex flex-row">
-                <label class="form-label fw-bold">{{ refTypeDesc?refTypeDesc:'N/A' }}</label>
+                <label class="form-label">{{ refTypeDesc?refTypeDesc:'N/A' }}</label>
               </div>
             </div>
           </div>
@@ -73,7 +73,7 @@
             </div>
             <div class="col-sm-7 col-md-7 col-lg-7">
               <div class="d-flex flex-row">
-                <input type="text" class="form-control" id="refCode" formControlName="refCode"
+                <input type="text" class="form-control border-2" id="refCode" formControlName="refCode"
                   (focusout)="onFocusOutEvent($event)" />
                 <button type="button" class="btn btn-outline-primary ms-5" [hidden]="isHiddenRefCodeSrchBtn"
                   (click)="onSrchRefCode(funcCode.value, refCodeType.value, refCode.value)">
@@ -95,7 +95,7 @@
             </div>
             <div class="col-sm-7 col-md-7 col-lg-7">
               <div class="d-flex flex-row">
-                <label class="form-label fw-bold">{{ refCodeDesc?refCodeDesc:'N/A' }} </label>
+                <label class="form-label">{{ refCodeDesc?refCodeDesc:'N/A' }} </label>
               </div>
             </div>
           </div>
@@ -116,7 +116,7 @@
     </mat-step>
   
     <!-- SECOND STEP -->
-    <mat-step [stepControl]="refCodeDetailForm" label="{{'RCM_DTLS'|translate}}">
+    <mat-step [stepControl]="refCodeDetailForm" [completed]="false" label="{{'RCM_DTLS'|translate}}">
       <form [formGroup]="refCodeDetailForm">
         <div class="w-50 mt-4">
           <div class="row ">
@@ -149,7 +149,7 @@
             {{'RCM_SRT_LST_FLG'|translate}}
           </label>
           <div class="col-sm-7 col-md-7 col-lg-7">
-            <select id="shortListFlg" class="form-select form-select-sm" aria-label=".form-select-lg example"
+            <select id="shortListFlg" class="form-select form-select-sm border-2" aria-label=".form-select-lg example"
               formControlName="shortListFlg">
               <option selected></option>
               <option value="Y">Y-Yes</option>
@@ -163,7 +163,7 @@
           </label>
           <div class="col-sm-7 col-md-7 col-lg-7">
             <div class="d-flex flex-row">
-              <input type="text" class="form-control" id="depRefCode" formControlName="depRefCode"
+              <input type="text" class="form-control border-2" id="depRefCode" formControlName="depRefCode"
                 (focusout)="onFocusOutEvent($event)" />
   
               <button type="button" class="btn btn-outline-primary ms-5"
@@ -190,7 +190,7 @@
             {{'RCM_DLT_FLG'|translate}}
           </label>
           <div class="col-sm-7 col-md-7 col-lg-7">
-            <select id="delFlg" class="form-select form-select-sm" aria-label=".form-select-lg example"
+            <select id="delFlg" class="form-select form-select-sm border-2" aria-label=".form-select-lg example"
               formControlName="shortListFlg">
               <option selected></option>
               <option value="Y">Y-Yes</option>
@@ -223,15 +223,15 @@
             <div *ngFor="let mop of mopCodeDescList; let i = index">
               <div class="row m-1 pb-2 pt-2" [formGroupName]="i">
                 <div class="col-4">
-                  <input type="hidden" formControlName="refCodeLang" class="form-control" />
+                  <input type="hidden" formControlName="refCodeLang" class="form-control border-2" />
                   <span class="fw-bold p-5">{{ mop.refCodeLang }}</span>
                 </div>
                 <div class="col-4">
-                  <input type="text" class="form-control" formControlName="refCodeLangDesc"
+                  <input type="text" class="form-control border-2" formControlName="refCodeLangDesc"
                     [readOnly]="funcCode?.value === 'I'" />
                 </div>
                 <div class="col-4">
-                  <input type="text" class="form-control" formControlName="refCodeDesc"
+                  <input type="text" class="form-control border-2" formControlName="refCodeDesc"
                     [readOnly]="funcCode?.value === 'I'" />
                 </div>
               </div>
