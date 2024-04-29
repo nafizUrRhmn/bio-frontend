@@ -13,49 +13,54 @@
           <div class="card-body">
             <div class="justify-content-start gap-5 d-flex align-items-center">
 
-                  <div *ngIf="hasAccessControl">
-                    <a class="button" (click)="routing('/private/access-control')">
-                      <div class="d-flex flex-column justify-content-center align-items-center">
-                        <img src="assets/images/access-control.svg" alt="Access Control"
-                          id="access-control" class="img-thumbnail shadow shadow-sm"/>
+              <div *ngIf="hasAccessControl">
+                <a class="button" (click)="routing('/private/access-control')">
+                  <div class="d-flex flex-column justify-content-center align-items-center">
+                    <img src="assets/images/access-control.svg" alt="Access Control"
+                         id="access-control" class="img-thumbnail shadow shadow-sm mb-2"/>
 
-                        <span class="text-muted">{{ 'ACCESS_CTRL' | translate }}</span>
-                      </div>
-                    </a>
+                    <span class="text-center text-muted">{{ 'ACCESS_CTRL' | translate }}</span>
                   </div>
+                </a>
+              </div>
 
 
-                  <div *ngIf="hasOperation">
-                    <a class="button" (click)="routing('/private/operations')">
-                      <div class="d-flex flex-column justify-content-center align-items-center">
-                        <img src="assets/images/operations.svg" alt="Access Control"
-                         id="operations" class="img-thumbnail shadow shadow-sm"/>
+              <div *ngIf="hasOperation">
+                <a class="button" (click)="routing('/private/operations')">
+                  <div class="d-flex flex-column justify-content-center align-items-center">
+                    <img src="assets/images/operations.svg" alt="Operations"
+                         id="operations" class="img-thumbnail shadow shadow-sm mb-2"/>
 
-                        <span class="text-center text-muted">{{ 'OPERATIONS' | translate }}</span>
-                      </div>
-                    </a>
+                    <span class="text-center text-muted">{{ 'OPERATIONS' | translate }}</span>
                   </div>
+                </a>
+              </div>
 
-                  <div *ngIf="hasCoreConfig">
-                    <a class="button" (click)="routing('/private/core-config')">
-                      <div class="d-flex flex-column justify-content-center align-items-center">
-                        <img src="assets/images/core-configuration.svg" alt="core-config"
-                         id="core-config" class="img-thumbnail shadow shadow-sm"/>
-                        <span class="text-center text-muted">{{ 'CORE_CONFIG' | translate }}</span>
-                      </div>
-                    </a>
+              <div *ngIf="hasCoreConfig">
+                <a class="button" (click)="routing('/private/core-config')">
+                  <div class="d-flex flex-column justify-content-center align-items-center">
+                    <img src="assets/images/core-configuration.svg" alt="core-config"
+                         id="core-config" class="img-thumbnail shadow shadow-sm mb-2"/>
+                    <span class="text-center text-muted">{{ 'CORE_CONFIG' | translate }}</span>
                   </div>
+                </a>
+              </div>
+
+              <div *ngIf="hasBiome">
+                <a class="button" (click)="routing('/private/biome-reg')">
+                  <div class="d-flex flex-column justify-content-center align-items-center">
+                    <img src="assets/images/bio-reg.svg" alt="Biometric Registration"
+                         id="biometric" class="img-thumbnail shadow shadow-sm mb-2"/>
+                    <span class="text-center text-muted text-break">{{ 'BIOME_REG' | translate }}</span>
+                  </div>
+                </a>
+              </div>
 
             </div>
-
-
           </div>
-
         </div>
       </div>
-
     </div>
-
   </div>
 
   <!-- NOTICE BOARD STARTS -->
@@ -64,22 +69,23 @@
       <div class="card shadow-none border-end  rounded-3 m-0 ">
         <div class="card-header">
           <h5 class="card-title text-primary fw-bold">
-            {{ 'NOTICE' | translate | uppercase}}
+            {{ 'NOTICE' | translate | uppercase }}
           </h5>
         </div>
-         <div class="notice-section">
+        <div class="notice-section">
           <!--NOTICE CARDS START -->
           <div class="card" *ngFor="let notice of notices ;let i = index">
-            <h5 class="card-header  fs-5">{{notice.header}}</h5>
+            <h5 class="card-header  fs-5">{{ notice.header }}</h5>
             <div class="card-body">
 
               <div *ngIf="notice.message.length<maxLength">
-                <span>{{notice.message}}</span>
+                <span>{{ notice.message }}</span>
               </div>
 
               <div *ngIf="notice.message.length>maxLength">
                 <span>{{ isExpanded[i] ? notice.message : notice.message.substring(0, maxLength) + '...' }}</span>
-                <span (click)="toggleText(i)" class="show-less-button" *ngIf="notice.message.length > maxLength && !isExpanded[i]">
+                <span (click)="toggleText(i)" class="show-less-button"
+                      *ngIf="notice.message.length > maxLength && !isExpanded[i]">
                   Show more
                 </span>
                 <span (click)="toggleText(i)" class="show-more-button" *ngIf="isExpanded[i]">
@@ -91,13 +97,13 @@
             </div>
           </div>
 
-         </div>
+        </div>
       </div>
     </div>
   </div>
 </div>
 
- <!-- FOOTER STARTS -->
+<!-- FOOTER STARTS -->
 
 <app-footer></app-footer>
 

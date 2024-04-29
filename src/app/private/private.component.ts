@@ -16,12 +16,14 @@ export class PrivateComponent {
   hasAccessControl = false;
   hasOperation = false;
   hasCoreConfig = false;
+  hasBiome:boolean=false;
   constructor(private authService: AuthenticationService, private router: Router) {
   }
 
   ngOnInit() {
     this.isExpanded = new Array(this.notices.length).fill(false);
     this.authService.user.subscribe(u => {
+      console.log(u?.modules);
       u?.modules.toString().split(',').forEach(module => {
         if(module.split('!')[0] === 'CCONF'){
           this.hasCoreConfig = true;
@@ -29,6 +31,8 @@ export class PrivateComponent {
           this.hasOperation = true;
         }else if(module.split('!')[0] === 'ACCESS_CTRL'){
           this.hasAccessControl = true;
+        }else if(module.split('!')[0] === 'BIOME'){
+          this.hasBiome = true;
         }
       })
       this.username = u?.fullName;

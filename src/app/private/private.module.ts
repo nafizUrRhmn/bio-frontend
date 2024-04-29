@@ -28,6 +28,11 @@ const routes: Routes = [
     loadChildren: () => import('./core-config/core-config.module').then((m) => m.CoreConfigModule)
   },
   {
+    path: 'biome-reg',
+    component: PrivateLayoutComponent,
+    loadChildren: () => import('./biome-reg/biome-reg.module').then((m) => m.BiomeRegModule)
+  },
+  {
     path: 'change-password',
     component: PrivateLayoutComponent,
     loadChildren: () => import('./change-password/change-password.module').then((m) => m.ChangePasswordModule)

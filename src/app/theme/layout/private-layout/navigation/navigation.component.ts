@@ -9,6 +9,7 @@ import {OperationsConstant} from "../../../../_constants/operations.constant";
 import {take} from "rxjs";
 import {ErrorCodeConstant} from "../../../../_constants/error-code.constant";
 import {CoreConfigConstant} from "../../../../_constants/core-config.constant";
+import {BiomeRegConstant} from "../../../../_constants/biome-reg.constant";
 
 @Component({
   selector: 'app-navigation',
@@ -40,36 +41,48 @@ export class NavigationComponent implements OnInit {
         let moduleList = auth.modules.toString().split(',');
         if (this.path === 'access-control' && moduleList.find(k => k.split('!')[0] === 'ACCESS_CONTROL')) {
           let moduleValue = moduleList.find(k => k.split('!')[0] === 'ACCESS_CONTROL');
-            this.menuService.getMenusByModule(this.path, moduleValue.split('!')[1])
-              .pipe(take(1))
-              .subscribe(menu => {
-                this.menuGenerator(menu, AccessControlConstant.ACCESS_CONTROL_COMPONENT_MAP)
+          this.menuService.getMenusByModule(this.path, moduleValue.split('!')[1])
+            .pipe(take(1))
+            .subscribe(menu => {
+              this.menuGenerator(menu, AccessControlConstant.ACCESS_CONTROL_COMPONENT_MAP)
             });
         } else if (this.path === 'operations' && moduleList.find(k => k.split('!')[0] === 'OPERATION')) {
-            let moduleValue = moduleList.find(k => k.split('!')[0] === 'OPERATION');
-            this.menuService.getMenusByModule(this.path, moduleValue.split('!')[1])
-              .pipe(take(1)).subscribe({
-              next: (menu) => {
-                this.menuGenerator(menu, OperationsConstant.OPERATIONS_COMPONENT_MAP);
-              },
-              error: (err) => {
-                if (err.error.errorCode && err.error.errorCode === ErrorCodeConstant.PASSWORD_CHANGE_SCREEN_ERROR_CODE) {
-                  this.router.navigate(['/private/change-password']);
-                }
+          let moduleValue = moduleList.find(k => k.split('!')[0] === 'OPERATION');
+          this.menuService.getMenusByModule(this.path, moduleValue.split('!')[1])
+            .pipe(take(1)).subscribe({
+            next: (menu) => {
+              this.menuGenerator(menu, OperationsConstant.OPERATIONS_COMPONENT_MAP);
+            },
+            error: (err) => {
+              if (err.error.errorCode && err.error.errorCode === ErrorCodeConstant.PASSWORD_CHANGE_SCREEN_ERROR_CODE) {
+                this.router.navigate(['/private/change-password']);
               }
-            });
+            }
+          });
         } else if (this.path === 'core-config' && moduleList.find(k => k.split('!')[0] === 'CCONF')) {
-            let moduleValue = moduleList.find(k => k.split('!')[0] === 'CCONF');
-            this.menuService.getMenusByModule(this.path, moduleValue.split('!')[1])
-              .pipe(take(1)).subscribe({
-              next: (menu) => {
-                this.menuGenerator(menu, CoreConfigConstant.CORE_CONFIG_COMPONENT_MAP)
-              }, error: (err) => {
-                if (err.error.errorCode && err.error.errorCode === ErrorCodeConstant.PASSWORD_CHANGE_SCREEN_ERROR_CODE) {
-                  this.router.navigate(['/private/change-password']);
-                }
+          let moduleValue = moduleList.find(k => k.split('!')[0] === 'CCONF');
+          this.menuService.getMenusByModule(this.path, moduleValue.split('!')[1])
+            .pipe(take(1)).subscribe({
+            next: (menu) => {
+              this.menuGenerator(menu, CoreConfigConstant.CORE_CONFIG_COMPONENT_MAP)
+            }, error: (err) => {
+              if (err.error.errorCode && err.error.errorCode === ErrorCodeConstant.PASSWORD_CHANGE_SCREEN_ERROR_CODE) {
+                this.router.navigate(['/private/change-password']);
               }
-            });
+            }
+          });
+        } else if (this.path === 'biome-reg' && moduleList.find(k => k.split('!')[0] === 'BIOME')) {
+          let moduleValue = moduleList.find(k => k.split('!')[0] === 'BIOME');
+          this.menuService.getMenusByModule(this.path, moduleValue.split('!')[1])
+            .pipe(take(1)).subscribe({
+            next: (menu) => {
+              this.menuGenerator(menu,BiomeRegConstant.BIOME_REG_COMPONENT_MAP)
+            }, error: (err) => {
+              if (err.error.errorCode && err.error.errorCode === ErrorCodeConstant.PASSWORD_CHANGE_SCREEN_ERROR_CODE) {
+                this.router.navigate(['/private/change-password']);
+              }
+            }
+          });
         }
       });
     });
