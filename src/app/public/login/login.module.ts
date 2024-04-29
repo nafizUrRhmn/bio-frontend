@@ -3,6 +3,7 @@ import {RouterModule, Routes} from "@angular/router";
 import {LoginComponent} from "./login.component";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {CommonModule} from "@angular/common";
+import {DirectiveModule} from "../../directives/upper-case.directive";
 
 
 const routes: Routes = [
@@ -20,6 +21,7 @@ const routes: Routes = [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
+    DirectiveModule,
     RouterModule.forChild(routes)
   ],
 })

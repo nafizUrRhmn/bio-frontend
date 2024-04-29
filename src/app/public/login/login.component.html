@@ -9,7 +9,7 @@
         <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
           <div class="form-outline mb-4">
             <label class="form-label" for="form1Example13">User ID</label>
-            <input type="text" id="form1Example13" class="form-control form-control-lg" formControlName="username" [ngClass]="{ 'is-invalid': submitted && f['username'].errors }" />
+            <input type="text" appUpperCase id="form1Example13" class="form-control form-control-lg" formControlName="username" [ngClass]="{ 'is-invalid': submitted && f['username'].errors }" />
             <div *ngIf="submitted && f['username'].errors" class="invalid-feedback">
               <div *ngIf="f['username'].errors['required']">Username is required</div>
             </div>
