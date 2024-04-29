@@ -158,8 +158,6 @@ export class MenuMaintenanceComponent {
       disableClose: true
     });
     dialogRef.afterClosed().pipe(take(1)).subscribe(res => {
-      console.log(res);
-      // this.menuFormData = {...this.menuFormData, ...res};
       this.menuSaveForm.get('param3').setValue(res.refCode);
     });
   }
@@ -303,7 +301,20 @@ export class MenuMaintenanceComponent {
     let rows = []
     this.nrxGrid?.gridApi.getRenderedNodes().forEach(u => rows.push(u.data));
     let formData = this.menuSaveForm.getRawValue();
+
     formData = {...formData, 'param5': this.param5Gen(formData)};
+    delete formData['hasAdd'];
+    delete formData['addAutoVerify'];
+    delete formData['hasDelete'];
+    delete formData['deleteAutoVerify'];
+    delete formData['hasModification'];
+    delete formData['modificationAutoVerify'];
+    delete formData['hasUndelete'];
+    delete formData['undeleteAutoVerify'];
+    delete formData['hasCancel'];
+    delete formData['hasVerify'];
+    delete formData['otherIndustry'];
+
     let languageDetails = this.menuSaveForm.get('languageDetails').value;
     console.log(rows);
     console.log(languageDetails);
@@ -328,18 +339,22 @@ export class MenuMaintenanceComponent {
       next: (v) => this.alertService.successAlert("Data Save Successfully")
         .then(() => {
           this.menuSaveForm.reset();
+          (this.menuSaveForm.get('languageDetails') as FormArray).clear();
           this.stepper.reset();
+          this.mopCodeDescMrh = new MrhBlock();
+          this.mopCodeDescList = [];
+
+          this.mopPermMrh = new MrhBlock();
+          this.mopPermList = [];
+          this.isUpdate = false;
         }),
       error: (e) => {
         this.alertService.errorAlert(e.error.message)
       }
     });
-    console.log(payload);
-
   }
 
   param5Gen(formData){
-    debugger;
     let value = '';
     value = formData.hasAdd === true ? value.concat('A-', formData.addAutoVerify ===true ? 'Y,': 'N,'): value;
     value = formData.hasDelete === true ? value.concat('D-', formData.deleteAutoVerify ===true ? 'Y,': 'N,'): value;
@@ -394,7 +409,7 @@ export class MenuMaintenanceComponent {
       for (let j = 0; j < mrhBlock.headerInfo.length; j++) {
         let key = mrhBlock.headerInfo[j];
         let value = mrhBlock.dataBlock[i][j];
-        obj = {...obj, [key]: value};
+        obj = {...obj, [key]: value ? value : ''};
       }
       list.push(obj);
     }
@@ -409,7 +424,7 @@ export class MenuMaintenanceComponent {
     for (let item of list) {
       let rowData = [];
       for (let key of headerInfo) {
-        rowData.push(item[key]);
+        rowData.push(item[key]? item[key] : '');
       }
       dataBlock.push(rowData);
     }
