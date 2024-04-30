@@ -6,10 +6,10 @@
     <div class="col-6">
       <div class="m-2 row">
         <div class="col-4">
-          <div class="text-muted fw-bold pe-5 pt-1 ">Normal <span class="text-danger">*</span></div>
+          <div class="text-muted fw-bold pe-5 pt-1 ">Normal(Auto Capitalization)<span class="text-danger">*</span></div>
         </div>
         <div class="col-8">
-          <input type="text" id="normal"
+          <input type="text" id="normal" appUpperCase
                  class="form-control" [class]="classInitializer(normal)" formControlName="normal">
           <div class="invalid-feedback" *ngIf="normal.invalid && (normal.dirty || normal.touched)">
             <div *ngIf="normal.errors?.['required']">Value is required</div>
@@ -112,5 +112,37 @@
         </div>
       </button>
     </div>
+  </div>
+</div>
+<div class="container m-5">
+  <h3> Date Picker Examples</h3>
+  <div class="row">
+    <div class="col-3">
+      <div class="text-muted fw-bold pe-5 pt-1">Date of Birth <span class="text-danger">*</span></div>
+    </div>
+    <div class="col-3">
+      <mat-form-field>
+        <mat-label>Choose a date</mat-label>
+        <input matInput [matDatepicker]="picker1" >
+        <mat-hint>DD/MM/YYYY</mat-hint>
+        <mat-datepicker-toggle matIconSuffix [for]="picker1"></mat-datepicker-toggle>
+        <mat-datepicker #picker1></mat-datepicker>
+      </mat-form-field>
+    </div>
+    <div class="col-3">
+      <div class="text-muted fw-bold pe-5 pt-1">Duration <span class="text-danger">*</span></div>
+    </div>
+  <div class="col-3">
+    <mat-form-field>
+      <mat-label>Enter a date range</mat-label>
+      <mat-date-range-input [rangePicker]="picker2">
+        <input matStartDate placeholder="Start date">
+        <input matEndDate placeholder="End date">
+      </mat-date-range-input>
+      <mat-hint>DD/MM/YYYY – DD/MM/YYYY</mat-hint>
+      <mat-datepicker-toggle matIconSuffix [for]="picker2"></mat-datepicker-toggle>
+      <mat-date-range-picker #picker2></mat-date-range-picker>
+    </mat-form-field>
+  </div>
   </div>
 </div>

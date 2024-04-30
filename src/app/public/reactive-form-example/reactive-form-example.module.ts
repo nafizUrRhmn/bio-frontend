@@ -6,6 +6,11 @@ import {NgApexchartsModule} from "ng-apexcharts";
 import {BrowserModule} from "@angular/platform-browser";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {AppModule} from "../../app.module";
+import {NgbDatepickerModule} from "@ng-bootstrap/ng-bootstrap";
+import {MatDatepicker, MatDatepickerModule} from "@angular/material/datepicker";
+import {MatInputModule} from "@angular/material/input";
+import {MatNativeDateModule} from "@angular/material/core";
+import {DirectiveModule} from "../../directives/upper-case.directive";
 
 const routes: Routes = [
   {
@@ -24,6 +29,11 @@ const routes: Routes = [
     RouterModule.forChild(routes),
     FormsModule,
     ReactiveFormsModule,
-  ]
+    MatDatepickerModule,
+    MatNativeDateModule,
+    DirectiveModule,
+    MatInputModule
+  ],
+  providers: [MatDatepickerModule]
 })
 export class ReactiveFormExampleModule { }

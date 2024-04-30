@@ -6,6 +6,8 @@ import {
   numbersOnlyValidator,
   precisionValidator
 } from "../../_custom-validator/custom-validators.component";
+import {DateAdapter} from "@angular/material/core";
+import {CommonUtil} from "../../_helpers/common.util";
 
 
 @Component({
@@ -13,8 +15,9 @@ import {
   templateUrl: './reactive-form-example.component.html',
   styleUrls: ['./reactive-form-example.component.scss']
 })
-export class ReactiveFormExampleComponent {
+export class ReactiveFormExampleComponent extends CommonUtil{
 
+  classInitializer = CommonUtil.classInitializer;
   exampleForm = this.formBuilder.group({
     normal: ['', [Validators.required, Validators.minLength(4),
       Validators.maxLength(20)]],
@@ -25,6 +28,7 @@ export class ReactiveFormExampleComponent {
     percentageWithSixDigitPrecision: ['', [precisionValidator()]],
     negativeInteger: ['',[Validators.required, negativeIntegerValidator()]]
   });
+
 
   get normal() {
     return this.exampleForm.get('normal');
@@ -66,17 +70,7 @@ export class ReactiveFormExampleComponent {
   //   return checker(this.negativeInteger.errors);
   // }
 
-  classInitializer(value){
-    if(value.pristine){
-      return '';
-    } else if(value.invalid){
-      return 'is-invalid';
-    }else if(value.valid){
-      return 'is-valid'
-    }else{
-      return '';
-    }
-  }
+
 
   // export function checker(errors): string {
   //   if (errors?.['required']) {
@@ -103,7 +97,9 @@ export class ReactiveFormExampleComponent {
   // }
 
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(private formBuilder: FormBuilder, private dateAdapter: DateAdapter<Date>) {
+    super();
+    this.dateAdapter.setLocale('en-GB');
   }
 
 
