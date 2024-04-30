@@ -4,13 +4,14 @@ import {ColDef, GridApi, SelectionChangedEvent} from 'ag-grid-community';
 import {AgGridAngular} from "ag-grid-angular";
 import {take} from "rxjs";
 import {SearchListService} from "../../../_services/search-list.service";
+import {CommonModule} from "@angular/common";
 
 @Component({
   selector: 'app-agb-list',
   templateUrl: './agb-list.component.html',
   standalone: true,
   styleUrls: ['./agb-list.component.scss'],
-  imports: [AgGridAngular]
+  imports: [AgGridAngular, CommonModule]
 })
 export class AgbListComponent implements OnInit {
   private gridApi: GridApi;

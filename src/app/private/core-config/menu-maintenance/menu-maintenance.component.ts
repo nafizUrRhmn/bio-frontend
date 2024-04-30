@@ -12,6 +12,12 @@ import {MenuFormData} from "./menu-form-data";
 import {EventBusService} from "../../../_services/event-bus.service";
 import {take} from "rxjs";
 import {NavigationService} from "../../../theme/layout/private-layout/navigation/nav-content/navigation.service";
+import {CommonUtil} from "../../../_helpers/common.util";
+import {
+  englishOnlyValidator,
+  englishOnlyValidatorForFormArray,
+  numbersOnlyValidator
+} from "../../../_custom-validator/custom-validators.component";
 
 @Component({
   selector: 'app-menu1',
@@ -19,6 +25,7 @@ import {NavigationService} from "../../../theme/layout/private-layout/navigation
   styleUrls: ['./menu-maintenance.component.scss'],
 })
 export class MenuMaintenanceComponent {
+  classInitializer = CommonUtil.classInitializer;
 
   @ViewChild('stepper', {read: MatStepper}) stepper: MatStepper;
 
@@ -266,7 +273,7 @@ export class MenuMaintenanceComponent {
               let featureNameForm = new FormGroup({
                 langCode: new FormControl('', Validators.required),
                 langCodeDesc: new FormControl('', Validators.required),
-                menuDesc: new FormControl('', Validators.required),
+                menuDesc: new FormControl('', englishOnlyValidatorForFormArray(mop.langCode)),
                 delFlg: new FormControl(''),
                 lchgTime: new FormControl('')
               });
@@ -288,6 +295,10 @@ export class MenuMaintenanceComponent {
     });
 
     // this.stepper.next()
+  }
+
+  menuDesc(i){
+    return (this.menuSaveForm?.get('languageDetails') as FormArray).controls[i]?.get('menuDesc');
   }
 
   onCancel() {

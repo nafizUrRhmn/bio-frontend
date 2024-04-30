@@ -8,8 +8,8 @@
       <form [formGroup]="menuSearchForm">
         <div class="d-flex flex-column m-2 me-5">
           <div class="pt-1 w-50 row mt-5">
-            <label for="funcCode" class="form-label text-muted col-4 fw-bold"> 
-              {{'MENU_FUNC_CODE' | translate}} 
+            <label for="funcCode" class="form-label text-muted col-4 fw-bold">
+              {{'MENU_FUNC_CODE' | translate}}
             </label>
             <div class="col-8">
               <select id="funcCode" class="form-select border-2" formControlName="funcCode">
@@ -117,7 +117,8 @@
                   </div>
                   <div class="col-4">
                     <input type="text"
-                           class="form-control border-2" formControlName="menuDesc" [readOnly]="funCode !== 'A' && funCode !== 'M' && funCode !== 'C'">
+                           class="form-control border-2" [class]="classInitializer(menuDesc(i))" formControlName="menuDesc" [readOnly]="funCode !== 'A' && funCode !== 'M' && funCode !== 'C'">
+
                   </div>
                 </div>
               </div>
@@ -419,7 +420,7 @@
               <i class="ti ti-x fs-3 mb-1"></i>
               {{'BTN_CNCL'|translate}}
             </div>
-            
+
           </button>
           <!-- BUTTON SAVE -->
           <button class="btn btn-primary" (click)="onSave()" [disabled]="funCode === 'I'">
