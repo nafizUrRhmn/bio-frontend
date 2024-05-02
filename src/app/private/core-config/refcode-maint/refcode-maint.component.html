@@ -1,9 +1,9 @@
 <div class="mx-5 mt-5">
   <div class="border-bottom">
-    <h1 class="text-primary fw-bold">{{ 'RCM' | translate }}</h1>
+    <h1 class="text-primary fw-bold">{{'RCM'|translate|uppercase}}</h1>
   </div>
   <mat-stepper [linear]="isLinear" #stepper>
-    <mat-step [stepControl]="refCodeForm" [completed]="false" label="{{ 'RCM_MAINT' | translate }}">
+    <mat-step [stepControl]="refCodeForm" [completed]="false" label="{{'RCM_MAINT'|translate}}">
       <form [formGroup]="refCodeForm">
         <div class="d-flex flex-column">
           <!-- FUNC CODE -->
@@ -17,6 +17,7 @@
               <select id="funcCode" class="form-select form-select-sm border-2" aria-label=".form-select-lg example"
                 [class]="classInitializer(funcCode)" [class.is-invalid]="(funcCode.touched) && funcCode.invalid"
                 formControlName="funcCode" (change)="onChangeFuncCode($event)">
+                <option selected></option>
                 <option value="I">I-Inquiry</option>
                 <option *ngFor="let item of funcCodeOptions" [value]="item.optionValue">
                   {{item.optionText}}
@@ -272,7 +273,7 @@
                       <div *ngIf="menuDesc(i)?.errors">English Characters only</div>
                       <!-- Add custom validation messages here -->
                     </div>
-                    
+
                 </div>
               </div>
             </div>

@@ -1,6 +1,6 @@
 <div class="mx-5 mt-5">
   <div class="border-bottom">
-    <h1 class="text-primary fw-bold">{{'RCTM'|translate}}</h1>
+    <h1 class="text-primary fw-bold">{{'RCTM'|translate|uppercase}}</h1>
   </div>
   <mat-stepper [linear]="isLinear" #stepper>
     <mat-step [stepControl]="refCodeTypeForm" [completed]="false" label="{{'RCTM_MAIN_HDER'| translate}}">
@@ -47,7 +47,10 @@
                 />
                   <button type="button" class="btn btn-outline-primary ms-5" [hidden]="isHiddenRefSrchBtn"
                         (click)="onSearch(funcCode.value,refCodeType.value,'refCodeType')">
-                  {{ 'BTN_SRCH' | translate }}
+                        <div class="d-flex align-items-center justify-content-center gap-1">
+                          {{'BTN_SRCH' | translate}}
+                          <i class="ti ti-search fs-3"></i>
+                        </div>
                 </button>
               </div>
               <div class="d-flex flex-row">
@@ -84,14 +87,30 @@
   
     <!-- SECOND STEP -->
     <mat-step [stepControl]="refDetailForm" [completed]="false" label="{{'RCTM_DETAIL_HDER'| translate}}" class="prevent-scroll">
-      <div class="row text-center pb-5">
-        <div class="col-sm-6 col-md-4 col-lg-4">
-          <span class="text-muted fw-bold mt-2">{{ 'RCTM_FUNC_CODE' | translate }} - {{ funcCode.value }}</span>
+      <div class="w-50 mt-4">
+        <div class="row ">
+          <div class="col-sm-3 col-md-3 col-lg-3">
+            <label class="form-label text-muted fw-bold">
+              {{'RCTM_FUNC_CODE'|translate}}
+            </label>
+          </div>
+          <div class="col-sm-7 col-md-7 col-lg-7">
+            <span class="fw-bold">{{ funcCode.value }}</span>
+          </div>
         </div>
-        <div class="col-sm-6 col-md-4 col-lg-4">
-          <span class="text-muted fw-bold mt-2">{{'RCTM_REF_TYP' | translate}} - {{ refCodeType.value }}</span>
+        <div class="row mb-4">
+          <div class="col-sm-3 col-md-3 col-lg-3">
+            <label class="form-label text-muted fw-bold">
+              {{'RCTM_REF_TYP'|translate}}
+            </label>
+          </div>
+          <div class="col-sm-7 col-md-7 col-lg-7">
+            <span class="fw-bold">{{ refCodeType.value }}</span>
+          </div>
         </div>
       </div>
+  
+      
       <form [formGroup]="refDetailForm">
         <div class="m-2 w-50">
           <div class="row" [hidden]="isHiddenNewRefType">
@@ -193,7 +212,10 @@
           <div>
             <button type="button" mat-button matStepperPrevious class="btn btn-danger"
                     (click)="onCancel()">
-              {{'BTN_CNCL' | translate}}
+                    <div class="d-flex align-items-center justify-content-center gap-1">
+                      <i class="ti ti-x fs-3 mb-1"></i>
+                      {{'BTN_CNCL'|translate}}
+                    </div>
             </button>
           </div>
   
@@ -201,7 +223,10 @@
             <button type="button" class="btn btn-primary"
                     [hidden] ="isHiddenSubmitBtn"
                     (click)="onSubmit()">
-              {{'BTN_SBMT' | translate}}
+                    <div class="d-flex align-items-center justify-content-center gap-1">
+                      {{'BTN_SBMT'|translate}}
+                      <i class="ti ti-check fs-3 mb-1"></i>
+                    </div>
             </button>
           </div>
         </div>
