@@ -1,0 +1,233 @@
+<div class="mx-5 mt-5">
+  <div class="border-bottom">
+    <h1 class="text-primary fw-bold">Create Retail</h1>
+  </div>
+
+  <!-- Detail Stepper -->
+  <mat-stepper [linear]="isLinear" #retailCreateStepper>
+    <mat-step [stepControl]="detailsForm" [completed]="false" label="Details">
+      <form [formGroup]="detailsForm">
+        <div class="d-flex flex-column m-2 me-5">
+          <div class="pt-1 w-50 row mt-5">
+            <label  class="form-label text-muted fw-bold col-sm-6 col-md-6 col-lg-4">
+              Title
+            </label>
+            <div class="col-sm-6 col-md-6 col-lg-8">
+              <input
+                type="text"
+                class="form-control border-2"
+                formControlName="title"
+              />
+            </div>
+          </div>
+        </div>
+        <!-- NEXT BUTTON -->
+        <div class="mt-4 d-flex justify-content-end">
+          <button type="button" mat-button class="btn btn-secondary mt-5" (click)="onPrevious(retailCreateStepper)">
+            <div class="d-flex align-items-center justify-content-center gap-1">
+              <i class="ti ti-arrow-left fs-3"></i>
+              Previous
+            </div>
+          </button>
+          <button type="button" mat-button class="btn btn-secondary mt-5" (click)="onNext(retailCreateStepper)">
+            <div class="d-flex align-items-center justify-content-center">
+              Next
+              <i class="ti ti-arrow-right fs-3"></i>
+            </div>
+          </button>
+        </div>
+      </form>
+    </mat-step>
+
+    <!-- Contact Stepper -->
+    <mat-step [stepControl]="contactForm" [completed]="false"
+              label="Contact"
+              class="prevent-scroll" >
+      <form [formGroup]="contactForm">
+        <div class="d-flex flex-column m-2 me-5">
+          <div class="pt-1 w-50 row mt-5">
+            <label  class="form-label text-muted fw-bold col-sm-6 col-md-6 col-lg-4">
+              Address Line 1
+            </label>
+            <div class="col-sm-6 col-md-6 col-lg-8">
+              <input
+                type="text"
+                class="form-control border-2"
+                formControlName="secondField"
+              />
+            </div>
+          </div>
+        </div>
+        <!-- NEXT BUTTON -->
+        <div class="mt-4 d-flex justify-content-end">
+          <button type="button" mat-button class="btn btn-secondary mt-5" (click)="onPrevious(retailCreateStepper)">
+            <div class="d-flex align-items-center justify-content-center gap-1">
+              <i class="ti ti-arrow-left fs-3"></i>
+              Previous
+            </div>
+          </button>
+
+          <button type="button" mat-button class="btn btn-secondary mt-5" (click)="onNext(retailCreateStepper)">
+            <div class="d-flex align-items-center justify-content-center gap-1">
+              Next
+              <i class="ti ti-arrow-right fs-3"></i>
+            </div>
+          </button>
+        </div>
+      </form>
+    </mat-step>
+
+    <!-- AdditionalInfo Stepper -->
+    <mat-step [stepControl]="additionalInfoForm" [completed]="false"
+              label="Additional Info"
+              class="prevent-scroll">
+      <form [formGroup]="additionalInfoForm">
+          <div class="d-flex flex-column m-2 me-5">
+            <div class="pt-1 w-50 row mt-5">
+              <label  class="form-label text-muted fw-bold col-sm-6 col-md-6 col-lg-4">
+                Details Of Profession
+              </label>
+              <div class="col-sm-6 col-md-6 col-lg-8">
+                <input
+                  type="text"
+                  class="form-control border-2"
+                  formControlName="thirdField"
+                />
+              </div>
+            </div>
+          </div>
+        <!-- NEXT BUTTON -->
+        <div class="mt-4 d-flex justify-content-end">
+          <button type="button" mat-button class="btn btn-secondary mt-5" (click)="onPrevious(retailCreateStepper)">
+            <div class="d-flex align-items-center justify-content-center gap-1">
+              <i class="ti ti-arrow-left fs-3"></i>
+              Previous
+            </div>
+          </button>
+
+          <button type="button" mat-button class="btn btn-secondary mt-5" (click)="onNext(retailCreateStepper)">
+            <div class="d-flex align-items-center justify-content-center gap-1">
+              Next
+              <i class="ti ti-arrow-right fs-3"></i>
+            </div>
+          </button>
+        </div>
+      </form>
+    </mat-step>
+
+    <!-- Documents Stepper -->
+    <mat-step [stepControl]="documentForm" [completed]="false"
+              label="Documents"
+              class="prevent-scroll">
+      <form [formGroup]="documentForm">
+        <div class="d-flex flex-column m-2 me-5">
+          <div class="pt-1 w-50 row mt-5">
+            <label  class="form-label text-muted fw-bold col-sm-6 col-md-6 col-lg-4">
+              Documents Proof of Business
+            </label>
+            <div class="col-sm-6 col-md-6 col-lg-8">
+              <input
+                type="text"
+                class="form-control border-2"
+                formControlName="fourthField"
+              />
+            </div>
+          </div>
+        </div>
+        <!-- NEXT BUTTON -->
+        <div class="mt-4 d-flex justify-content-end">
+          <button type="button" mat-button class="btn btn-secondary mt-5" (click)="onPrevious(retailCreateStepper)">
+            <div class="d-flex align-items-center justify-content-center gap-1">
+              <i class="ti ti-arrow-left fs-3"></i>
+              Previous
+            </div>
+          </button>
+
+          <button type="button" mat-button class="btn btn-secondary mt-5" (click)="onNext(retailCreateStepper)">
+            <div class="d-flex align-items-center justify-content-center gap-1">
+              Next
+              <i class="ti ti-arrow-right fs-3"></i>
+            </div>
+          </button>
+        </div>
+      </form>
+    </mat-step>
+
+
+    <!-- Account Preferences Stepper -->
+    <mat-step [stepControl]="accPreferForm" [completed]="false"
+              label="Documents"
+              class="prevent-scroll">
+      <form [formGroup]="accPreferForm">
+        <div class="d-flex flex-column m-2 me-5">
+          <div class="pt-1 w-50 row mt-5">
+            <label  class="form-label text-muted fw-bold col-sm-6 col-md-6 col-lg-4">
+              Product
+            </label>
+            <div class="col-sm-6 col-md-6 col-lg-8">
+              <input
+                type="text"
+                class="form-control border-2"
+                formControlName="fifthField"
+              />
+            </div>
+          </div>
+        </div>
+        <!-- NEXT BUTTON -->
+        <div class="mt-4 d-flex justify-content-end">
+          <button type="button" mat-button class="btn btn-secondary mt-5" (click)="onPrevious(retailCreateStepper)">
+            <div class="d-flex align-items-center justify-content-center gap-1">
+              <i class="ti ti-arrow-left fs-3"></i>
+              Previous
+            </div>
+          </button>
+
+          <button type="button" mat-button class="btn btn-secondary mt-5" (click)="onNext(retailCreateStepper)">
+            <div class="d-flex align-items-center justify-content-center gap-1">
+              Next
+              <i class="ti ti-arrow-right fs-3"></i>
+            </div>
+          </button>
+        </div>
+      </form>
+    </mat-step>
+
+    <!-- Declarations Stepper -->
+    <mat-step [stepControl]="declarationForm" [completed]="false"
+              label="Declarations"
+              class="prevent-scroll">
+      <form [formGroup]="declarationForm">
+        <div class="d-flex flex-column m-2 me-5">
+          <div class="pt-1 w-50 row mt-5">
+            <label  class="form-label text-muted fw-bold col-sm-6 col-md-6 col-lg-4">
+              Source of funds(in Details)
+            </label>
+            <div class="col-sm-6 col-md-6 col-lg-8">
+              <input
+                type="text"
+                class="form-control border-2"
+                formControlName="sixthField"
+              />
+            </div>
+          </div>
+        </div>
+        <!-- NEXT BUTTON -->
+        <div class="mt-4 d-flex justify-content-end">
+          <button type="button" mat-button class="btn btn-secondary mt-5" (click)="onPrevious(retailCreateStepper)">
+            <div class="d-flex align-items-center justify-content-center gap-1">
+              <i class="ti ti-arrow-left fs-3"></i>
+              Previous
+            </div>
+          </button>
+
+          <button type="button" mat-button class="btn btn-secondary mt-5" (click)="onNext(retailCreateStepper)">
+            <div class="d-flex align-items-center justify-content-center gap-1">
+              Next
+              <i class="ti ti-arrow-right fs-3"></i>
+            </div>
+          </button>
+        </div>
+      </form>
+    </mat-step>
+  </mat-stepper>
+</div>
