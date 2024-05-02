@@ -8,6 +8,7 @@ import { NavigationService } from "../../../theme/layout/private-layout/navigati
 import { take } from "rxjs";
 import { MessageIdMaintService } from "./message-id-maint.service";
 import { CommonUtil } from 'src/app/_helpers/common.util';
+import { englishOnlyValidator } from 'src/app/_custom-validator/custom-validators.component';
 
 @Component({
   selector: 'app-message-id-maint',
@@ -39,11 +40,11 @@ export class MessageIdMaintComponent {
     this.funcCodeOptions = this.navService.getPermittedOptions();
     this.msgIdForm = this.fb.group({
       funcCode: ['', [Validators.required]],
-      msgId: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(10)]],
+      msgId: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(10),englishOnlyValidator()]],
     });
 
     this.msgIdLangForm = this.fb.group({
-      msgIdNew: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(10)]],
+      msgIdNew: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(10),englishOnlyValidator()]],
       language: this.fb.array([])
     });
 
