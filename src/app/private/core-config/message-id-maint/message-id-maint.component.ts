@@ -148,21 +148,20 @@ export class MessageIdMaintComponent {
   }
 
   onSubmit() {
-
     const payload = {
       ...this.msgIdForm.value,
       ...this.msgIdLangForm.value,
-      "menuId": this.navService.getMenuId()
+      "menuId": this.navService.getMenuId(),
     };
-
-    //console.log("menuId" +this.navService.getMenuId());
-
+    console.log(payload);
     this.messageIdMaintService.submit(payload).pipe(take(1)).subscribe({
-      next: (v) => {
+      next: (v) =>
         this.alertService.successAlert(v.responseMessage)
-          .then(() => this.msgIdForm.reset(),
-          ).then(() => this.stepper.reset());
-      },
+          .then(() => {
+            this.msgIdForm.reset();
+            (this.msgIdLangForm.get('language') as FormArray).clear();
+            this.stepper.reset();
+          }),
       error: (err) => {
         this.alertService.errorAlert(err.error.message);
       }
