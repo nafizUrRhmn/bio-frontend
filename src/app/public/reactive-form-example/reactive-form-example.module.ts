@@ -2,15 +2,12 @@ import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {ReactiveFormExampleComponent} from './reactive-form-example.component';
 import {RouterModule, Routes} from '@angular/router';
-import {NgApexchartsModule} from "ng-apexcharts";
-import {BrowserModule} from "@angular/platform-browser";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import {AppModule} from "../../app.module";
-import {NgbDatepickerModule} from "@ng-bootstrap/ng-bootstrap";
-import {MatDatepicker, MatDatepickerModule} from "@angular/material/datepicker";
+import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MatInputModule} from "@angular/material/input";
 import {MatNativeDateModule} from "@angular/material/core";
 import {DirectiveModule} from "../../directives/upper-case.directive";
+import {InputMaskModule} from "@ngneat/input-mask";
 
 const routes: Routes = [
   {
@@ -32,7 +29,8 @@ const routes: Routes = [
     MatDatepickerModule,
     MatNativeDateModule,
     DirectiveModule,
-    MatInputModule
+    MatInputModule,
+    InputMaskModule
   ],
   providers: [MatDatepickerModule]
 })

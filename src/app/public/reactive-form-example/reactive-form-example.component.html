@@ -67,7 +67,7 @@
           </div>
         </div>
         <div class="col-8">
-          <input type="number"
+          <input type="text" [inputMask]="currencyInputMask"
                  class="form-control float-end text-end" formControlName="percentageWithSixDigitPrecision"
                  [class]="classInitializer(percentageWithSixDigitPrecision)">
           <div class="invalid-feedback"

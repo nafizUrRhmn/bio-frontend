@@ -8,6 +8,7 @@ import {
 } from "../../_custom-validator/custom-validators.component";
 import {DateAdapter} from "@angular/material/core";
 import {CommonUtil} from "../../_helpers/common.util";
+import {createMask} from "@ngneat/input-mask";
 
 
 @Component({
@@ -25,10 +26,23 @@ export class ReactiveFormExampleComponent extends CommonUtil{
       Validators.maxLength(20), englishOnlyValidator()]],
     amount: ['', [Validators.required, Validators.min(1),
       Validators.max(9999999999), numbersOnlyValidator()]],
-    percentageWithSixDigitPrecision: ['', [precisionValidator()]],
+    percentageWithSixDigitPrecision: [''],
     negativeInteger: ['',[Validators.required, negativeIntegerValidator()]]
   });
 
+
+  currencyInputMask = createMask({
+    alias: 'numeric',
+    groupSeparator: ',',
+    digits: 6,
+    digitsOptional: false,
+    prefix: 'BDT ',
+    placeholder: '0',
+    parser: (value: string)=> {
+      return value.replace(/,/g, '').substring(3).trim();
+
+    }
+  });
 
   get normal() {
     return this.exampleForm.get('normal');
