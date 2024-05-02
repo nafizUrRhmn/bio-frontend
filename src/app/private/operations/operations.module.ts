@@ -39,6 +39,8 @@ import { RetailComponent } from './retail/retail.component';
 import { CorporateComponent } from './corporate/corporate.component';
 import {TranslateModule} from "@ngx-translate/core";
 import { ReportComponent } from './report/report.component';
+import {OnboardingComponent} from "./onboarding/onboarding.component";
+import {MatStepperModule} from "@angular/material/stepper";
 
 
 const routes: Routes = [
@@ -78,6 +80,7 @@ const routes: Routes = [
     RetailComponent,
     CorporateComponent,
     ReportComponent,
+    OnboardingComponent
   ],
   imports: [
     RouterModule.forChild(routes),
@@ -96,7 +99,8 @@ const routes: Routes = [
     MatDialogModule,
     MatInputModule,
     MatRadioModule,
-    TranslateModule
+    TranslateModule,
+    MatStepperModule
   ],
 })
 export class OperationsModule {
