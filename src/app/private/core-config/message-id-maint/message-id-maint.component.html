@@ -16,20 +16,15 @@
                                 (change)="onChangeFuncCode($event)"
                                 [class]="classInitializer(funcCode)"
                                 [class.is-invalid]="( funcCode.touched) && funcCode.invalid">
-                                <option selected> </option>
-                                <option value="I">I-Inquiry</option>
+                                <option selected value="I">I-Inquiry</option>
                                 <option *ngFor="let item of funcCodeOptions" [value]="item.optionValue">
                                     {{item.optionText}}
                                 </option>
                             </select>
-                            <div class="invalid-feedback d-flex flex-row"
-                            *ngIf="funcCode.invalid && (funcCode.dirty || funcCode.touched)">
-                                <div *ngIf="funcCode.errors?.['required']">
-                                    {{ 'ER_MIM_FUNC_CODE' | translate }}
-                                </div>
-                            </div>
+                           
                         </div>
                     </div>
+                    <!-- MSG ID -->
                     <div class="pt-4 w-50 row">
                         <label for="msgId" class="form-label text-muted fw-bold col-sm-6 col-md-6 col-lg-4">
                             {{'MIM_MSG_ID'|translate}}<span class="ms-2 text-danger fs-3">*</span>
@@ -42,6 +37,7 @@
                                     id="msgId" 
                                     maxlength="10" 
                                     formControlName="msgId"
+                                    (change)="onChangeMsgId()"    
                                     [class]="classInitializer(msgId)"
                                     [class.is-invalid]="(msgId.touched) && msgId.invalid" />
                                 <!-- SEARCH BUTTON -->
@@ -75,6 +71,7 @@
                             </div>
                         </div>
                     </div>
+                    <!-- MSG ID DESCRIPTION -->
                     <div class="pt-4 w-50 row">
                         <label for="msgIdDesc" class="text-muted fw-bold col-sm-6 col-md-6 col-lg-4">
                             {{'MIM_MSG_ID_DES' | translate }}
@@ -136,7 +133,10 @@
                 <!-- MSG ID FIELD -->
                 <div class="row w-50 mb-4" >
                     <div class="col-sm-6 col-md-3 col-lg-3">
-                        <label class="text-muted fw-bold mt-2">{{'MIM_MSG_ID' | translate }}</label>
+                        <label class="text-muted fw-bold mt-2">
+                            {{'MIM_MSG_ID' | translate }}
+                            <span class="ms-2 text-danger fs-3" *ngIf="funcCode.value === 'C'">*</span>
+                        </label>
                     </div>
                     <div class="col-sm-6 col-md-7 col-lg-7">
                         <input 
@@ -145,10 +145,10 @@
                             maxlength="10" 
                             formControlName="msgIdNew"
                             [class]="classInitializer(msgIdNew)"
-                            [class.is-invalid]="(msgIdNew.touched) && msgIdNew.invalid"
+                            [class.is-invalid]="(msgIdNew.touched) && msgIdNew.invalid && funcCode.value==='C'"
                             >
                         <div class="error-feedback d-flex flex-column" 
-                        *ngIf="msgIdNew.invalid && (msgIdNew.dirty || msgIdNew.touched)">
+                        *ngIf="msgIdNew.invalid && (msgIdNew.dirty || msgIdNew.touched) && funcCode.value==='C'">
                            <div>
                             <div *ngIf="msgIdNew.errors?.['required']">
                                 {{ 'ER_MIM_MSG_ID' | translate }}
@@ -203,14 +203,14 @@
                                         
                                         [readOnly]="funcCode?.value === 'I'" />
                                         
-                                        <!-- <div class="error-feedback" 
-                                       >
+                                        <div class="error-feedback" 
+                                        *ngIf="msgDesc(i)?.invalid && (msgDesc(i)?.dirty || msgDesc(i)?.touched)">
                                             <div *ngIf="msgDesc(i).errors?.['englishOnly']">
                                                 {{ 'ER_ENG_CHAR' | translate }}
                                             </div>
-                                        </div> -->
+                                        </div>
                                 </div>
-                                <!-- [class.is-invalid]="(msgDesc(i).touched) && msgDesc(i).invalid" -->
+                                
                             </div>
                         </div>
                     </div>
@@ -235,8 +235,9 @@
                                 mat-button 
                                 class="btn btn-primary" 
                                 (click)="onSubmit()"
-                                [disabled]="funcCode.value==='I' ||
-                                (msgIdLangForm.dirty || msgIdLangForm.untouched) && msgIdLangForm.invalid"  
+                                [disabled]="(msgIdLangForm.pristine || msgIdLangForm.dirty || msgIdLangForm.untouched) &&
+                                msgIdLangForm.invalid ||
+                                funcCode.value==='I'"  
                                 >
                                 
                             <div class="d-flex align-items-center justify-content-center gap-1">
