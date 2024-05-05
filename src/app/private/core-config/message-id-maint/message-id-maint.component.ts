@@ -8,7 +8,7 @@ import { NavigationService } from "../../../theme/layout/private-layout/navigati
 import { take } from "rxjs";
 import { MessageIdMaintService } from "./message-id-maint.service";
 import { CommonUtil } from 'src/app/_helpers/common.util';
-import { englishOnlyValidator } from 'src/app/_custom-validator/custom-validators.component';
+import { englishOnlyValidator, englishOnlyValidatorForFormArray } from 'src/app/_custom-validator/custom-validators.component';
 
 @Component({
   selector: 'app-message-id-maint',
@@ -39,15 +39,25 @@ export class MessageIdMaintComponent {
 
     this.funcCodeOptions = this.navService.getPermittedOptions();
     this.msgIdForm = this.fb.group({
-      funcCode: ['', [Validators.required]],
+      funcCode: ['I', [Validators.required]],
       msgId: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(10),englishOnlyValidator()]],
     });
 
     this.msgIdLangForm = this.fb.group({
-      msgIdNew: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(10),englishOnlyValidator()]],
+      msgIdNew: [''],
       language: this.fb.array([])
     });
 
+    this.msgIdForm.get('funcCode').valueChanges.subscribe((value) => {
+      if (value === 'C') {
+        this.msgIdLangForm.get('msgIdNew').setValidators([Validators.required,Validators.minLength(2), Validators.maxLength(10),englishOnlyValidator()]);
+
+      } else {
+        this.msgIdLangForm.get('msgIdNew').clearValidators();
+      }
+      this.msgIdLangForm.get('msgIdNew').updateValueAndValidity();
+    });
+    
   }
 
   onSearch(funcCode: string, msgIdOrDsc: string, fromControlName: string) {
@@ -75,6 +85,10 @@ export class MessageIdMaintComponent {
     });
   }
 
+  onChangeMsgId(){
+    this.msgIdTypeDesc = '';
+  }
+
   onNext() {
 
     if (this.msgIdForm.invalid) {
@@ -97,7 +111,7 @@ export class MessageIdMaintComponent {
           let featureFrom = new FormGroup({
             msgLang: new FormControl(''),
             msgLangDesc: new FormControl(''),
-            msgDesc: new FormControl(''),
+            msgDesc: new FormControl('',englishOnlyValidatorForFormArray(mop.msgLang)),
             delFlg: new FormControl('N'),
             lchgTime: new FormControl(''),
           });
@@ -106,7 +120,18 @@ export class MessageIdMaintComponent {
         }
         this.msgIdLangForm.get('language').patchValue(<any[]>this.mopCodeDescList);
 
+        
+        if(this.msgIdForm.get('funcCode').value!=='C')
+          {
+            this.msgIdLangForm.get('msgIdNew').disable();
+          }
+        else{
+            this.msgIdLangForm.get('msgIdNew').enable();
+          }
+
       });
+
+      
   };
 
 
@@ -148,6 +173,9 @@ export class MessageIdMaintComponent {
 
   clearMsgIdFormFields() {
     this.msgIdForm.reset();
+    this.msgIdForm.get('funcCode').setValue('I');
+    this.msgIdTypeDesc='';
+    this.msgIdLangForm.reset();
   }
 
   onSubmit() {
@@ -172,47 +200,8 @@ export class MessageIdMaintComponent {
   }
 
   onChangeFuncCode(event: any) {
-    switch (this.funcCode.value) {
-      case 'I': {
-        console.log("isInquiry  " + event.target.value === 'I');
-        console.log("code  " + this.funcCode.value);
-        this.isInquiry = (event.target.value === 'I');
-        this.msgIdLangForm.get('msgIdNew').disable();
-      }
-        break;
-      case 'C': {
-        this.msgIdLangForm.get('msgIdNew').enable();
-      }
-        break;
-      case 'D': {
-        this.msgIdLangForm.get('msgIdNew').disable();
-      }
-        break;
-      case 'V': {
-        this.msgIdLangForm.get('msgIdNew').disable();
-
-      }
-        break;
-      case 'A':{
-        this.msgIdLangForm.get('msgIdNew').disable();
-      }
-        break;
-      case 'U':{
-        this.msgIdLangForm.get('msgIdNew').disable();
-      }
-        break;
-      case 'M':{
-        this.msgIdLangForm.get('msgIdNew').disable();
-      }
-        break;
-      case 'X': {
-        this.msgIdLangForm.get('msgIdNew').disable();
-
-      }
-        break;
-      default:
-        break;
-    }
+    this.msgIdForm.get('msgId').setValue('');
+    this.msgIdTypeDesc='';
   }
 
   get funcCode() {
@@ -228,32 +217,13 @@ export class MessageIdMaintComponent {
   }
 
 
-
-
-
-
-
-
-  isInquirySelected(): boolean {
-    return this.msgIdForm.get('funcCode').value === 'I';
-  }
-
-  // isHiddenMsgIdSrchBtn(): boolean {
-  //   return this.msgIdForm.get('funcCode').value === 'A';
-  // }
-
-  isHiddenNewMsgIdBtn(): boolean {
-    return this.msgIdForm.get('funcCode').value === 'C';
-  }
-
   msgDesc(i){
     return (this.msgIdLangForm?.get('language') as FormArray).controls[i]?.get('msgDesc');
   }
 
   onReset(){
     this.msgIdForm.reset();
-    // this.msgIdForm.get('msgId').enable();
-    // this.msgIdTypeDesc=null;
+    this.msgIdForm.get('funcCode').setValue('I');
   }
 
 }
