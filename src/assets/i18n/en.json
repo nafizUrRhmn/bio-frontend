@@ -24,6 +24,8 @@
 
   "TRANS_DTLS" : "Transaction Details",
 
+  "ER_ENG_CHAR":"English Characters Only",
+
   "ACNT_NO" : "Account No",
   "ER_ACNT_NO" : "Account No is required",
   "ER_ACNT_NO_L" : "Account Number must be of 13 or 16 digits",
@@ -101,10 +103,10 @@
   "RCTM_DETAIL_HDER" : "RCT Details",
   "RCTM_FUNC_CODE" : "Function Code",
   "ER_RCTM_FUNC_CODE" : "Function Code Must be Selected",
-  "RCTM_REF_TYP" : "Reference Type",
-  "ER_RCTM_REF_TYP" : "Reference Type Required",
-  "RCTM_REF_TYP_DESC" : "Reference Type Desc",
-  "RCTM_NEW_REF_TYP" : "New Reference Type",
+  "RCTM_REF_TYP" : "Reference Code Type",
+  "ER_RCTM_REF_TYP" : "Reference Code Type Required",
+  "RCTM_REF_TYP_DESC" : "Reference Code Type Desc",
+  "RCTM_NEW_REF_TYP" : "New Reference Code Type",
   "RCTM_REF_TYP_LEN" : "Length",
   "RCTM_DEP_FLG" : "Dependent Flag",
   "RCTM_DEP_TYP" : "Dependent Ref Type",

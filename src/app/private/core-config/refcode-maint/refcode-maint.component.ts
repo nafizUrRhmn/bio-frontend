@@ -33,7 +33,7 @@ export class RefCodeMaintComponent implements OnInit {
   depRefCodeDesc: any;
   isInquiry: boolean = false;
   isDelete: boolean = false;
-  isHiddenDefRefCode: Boolean;
+  isHiddenDefRefCode: Boolean = false;
 
   onNextPayload: any;
 
@@ -51,7 +51,7 @@ export class RefCodeMaintComponent implements OnInit {
   ngOnInit() {    
     this.funcCodeOptions=this.navService.getPermittedOptions();
     this.refCodeForm = this.fb.group({
-      funcCode: ['', [Validators.required]],
+      funcCode: ['I', [Validators.required]],
       refCodeType: ['', [Validators.required, englishOnlyValidator()]],
       refCode: ['', [Validators.required, englishOnlyValidator()]],
       depFlg: [''],
@@ -61,11 +61,10 @@ export class RefCodeMaintComponent implements OnInit {
     });
     this.refCodeDetailForm = this.fb.group({
       shortListFlg: ['', [Validators.required]],
-      depRefCode: ['', [Validators.required, englishOnlyValidator()]],      
+      depRefCode: ['', [ englishOnlyValidator()]],      
       language: this.fb.array([])
     });
     this.isHiddenRefCodeSrchBtn = false;
-    this.isHiddenDefRefCode = false;
   }
 
 
@@ -92,9 +91,9 @@ export class RefCodeMaintComponent implements OnInit {
         this.refCodeType.setValue(selectedRow?.refCodeType);
         this.refTypeDesc = selectedRow?.refCodeTypeDesc;
 
-        if (selectedRow !== null && selectedRow !== undefined) {
-          this.refCodeForm.get('refCodeType').disable();
-        }
+        // if (selectedRow !== null && selectedRow !== undefined) {
+        //   this.refCodeForm.get('refCodeType').disable();
+        // }
       });
   }
 
@@ -173,6 +172,13 @@ export class RefCodeMaintComponent implements OnInit {
           this.refCodeDetailForm.patchValue(response.genDataBlock.formData);
           this.mopCodeDescList = this.mrhBlockToGrid(response.mrhBlock.mrhBlocks[0]);
 
+          if(this.depFlg === 'Y'&& this.refCodeForm.get('funcCode').value !=='I'){
+            this.refCodeDetailForm.get('depRefCode').addValidators(Validators.required);
+            this.isHiddenDefRefCode = true;
+          }else{
+            this.isHiddenDefRefCode = false;
+          }
+         
           console.log(response);
 
           const mrh = this.gridToMrhBlock(this.mopCodeDescList);
@@ -202,13 +208,14 @@ export class RefCodeMaintComponent implements OnInit {
   }
 
   onReset() {
-    this.refCodeForm.reset();
-    this.refCodeForm.get('refCode').enable();
+       this.refCodeForm.reset();
+        this.refCodeForm.get('refCode').enable();
     this.refCodeForm.get('refCodeType').enable();
     this.isHiddenRefCodeSrchBtn=false;
     this.refCodeDesc = '';
     this.refTypeDesc = '';
     this.onNextPayload = '';
+    this.refCodeForm.get('funcCode').setValue('I');
   }
 
   mrhBlockToGrid(mrhBlock: any) {
@@ -248,8 +255,8 @@ export class RefCodeMaintComponent implements OnInit {
 
   onChangeFuncCode(event: any) {
     // this.refCodeForm.patchValue({ refCodeType: '', refCode: '' });
-    this.refCodeForm.get('refCode').enable();
-    this.refCodeForm.get('refCodeType').enable();
+    this.refCodeForm.get('refCode').setValue('');
+    this.refCodeForm.get('refCodeType').setValue('');
     this.refTypeDesc = '';
     this.refCodeDesc = '';
     switch (this.funcCode.value) {
@@ -309,26 +316,29 @@ export class RefCodeMaintComponent implements OnInit {
         next: (v) => {
           this.alertService
             .successAlert(v.responseMessage)
-            .then(() => this.refCodeForm.reset())
-            .then(() => (this.refTypeDesc = ''))
-            .then(() => this.stepper.reset())
-            .then(() => this.refCodeForm.get('refCodeType').enable())
-            .then(() => this.isHiddenRefCodeSrchBtn=false)
-            ;
+            .then(() => {
+              this.clearRefCodeFormFields();
+            });
         },
         error: (err) => {
           this.alertService.errorAlert(err.error.message);
         }
       });
   }
-
+  onChangeRefCode(){
+    this.refCodeForm.get('refCode').setValue('');
+    this.refTypeDesc = '';
+    this.refCodeDesc = '';
+  }
   clearRefCodeFormFields() {
     this.refCodeForm.reset();
+    this.refCodeDetailForm.reset();
     this.refCodeForm.get('refCode').enable();
     this.refCodeForm.get('refCodeType').enable();
     this.isHiddenRefCodeSrchBtn=false;
     this.refCodeDesc = '';
     this.refTypeDesc = '';
+    this.refCodeForm.get('funcCode').setValue('I');
   }
 
   get funcCode() {
@@ -354,6 +364,4 @@ export class RefCodeMaintComponent implements OnInit {
   get langCode() {
     return this.refCodeForm.get('langCode');
   }
-
-  onFocusOutEvent($event: any) {}
 }

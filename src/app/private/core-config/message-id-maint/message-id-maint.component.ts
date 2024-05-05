@@ -7,6 +7,8 @@ import { MatStepper } from "@angular/material/stepper";
 import { NavigationService } from "../../../theme/layout/private-layout/navigation/nav-content/navigation.service";
 import { take } from "rxjs";
 import { MessageIdMaintService } from "./message-id-maint.service";
+import { CommonUtil } from 'src/app/_helpers/common.util';
+import { englishOnlyValidator } from 'src/app/_custom-validator/custom-validators.component';
 
 @Component({
   selector: 'app-message-id-maint',
@@ -16,6 +18,7 @@ import { MessageIdMaintService } from "./message-id-maint.service";
 export class MessageIdMaintComponent {
 
   @ViewChild('stepper', { read: MatStepper }) stepper: MatStepper
+  classInitializer = CommonUtil.classInitializer;
 
   constructor(private fb: FormBuilder,
     private alertService: AlertService,
@@ -37,11 +40,11 @@ export class MessageIdMaintComponent {
     this.funcCodeOptions = this.navService.getPermittedOptions();
     this.msgIdForm = this.fb.group({
       funcCode: ['', [Validators.required]],
-      msgId: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(10)]],
+      msgId: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(10),englishOnlyValidator()]],
     });
 
     this.msgIdLangForm = this.fb.group({
-      msgIdNew: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(10)]],
+      msgIdNew: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(10),englishOnlyValidator()]],
       language: this.fb.array([])
     });
 
@@ -174,23 +177,36 @@ export class MessageIdMaintComponent {
         console.log("isInquiry  " + event.target.value === 'I');
         console.log("code  " + this.funcCode.value);
         this.isInquiry = (event.target.value === 'I');
+        this.msgIdLangForm.get('msgIdNew').disable();
       }
         break;
       case 'C': {
-
+        this.msgIdLangForm.get('msgIdNew').enable();
       }
         break;
-      case 'D':
+      case 'D': {
+        this.msgIdLangForm.get('msgIdNew').disable();
+      }
+        break;
       case 'V': {
-
+        this.msgIdLangForm.get('msgIdNew').disable();
 
       }
         break;
-      case 'A':
-      case 'U':
-      case 'M':
+      case 'A':{
+        this.msgIdLangForm.get('msgIdNew').disable();
+      }
+        break;
+      case 'U':{
+        this.msgIdLangForm.get('msgIdNew').disable();
+      }
+        break;
+      case 'M':{
+        this.msgIdLangForm.get('msgIdNew').disable();
+      }
+        break;
       case 'X': {
-
+        this.msgIdLangForm.get('msgIdNew').disable();
 
       }
         break;
@@ -222,12 +238,22 @@ export class MessageIdMaintComponent {
     return this.msgIdForm.get('funcCode').value === 'I';
   }
 
-  isHiddenMsgIdSrchBtn(): boolean {
-    return this.msgIdForm.get('funcCode').value === 'A';
-  }
+  // isHiddenMsgIdSrchBtn(): boolean {
+  //   return this.msgIdForm.get('funcCode').value === 'A';
+  // }
 
   isHiddenNewMsgIdBtn(): boolean {
     return this.msgIdForm.get('funcCode').value === 'C';
+  }
+
+  msgDesc(i){
+    return (this.msgIdLangForm?.get('language') as FormArray).controls[i]?.get('msgDesc');
+  }
+
+  onReset(){
+    this.msgIdForm.reset();
+    // this.msgIdForm.get('msgId').enable();
+    // this.msgIdTypeDesc=null;
   }
 
 }

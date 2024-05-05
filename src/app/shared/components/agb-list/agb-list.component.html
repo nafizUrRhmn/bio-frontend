@@ -1,7 +1,8 @@
 <div class="card shadow-none">
-  <div class="card-header text-primary fs-3 fw-bold">
-    <div class="d-flex justify-content-between align-items-center">
-      <h3>{{data.title | uppercase}}</h3>
+  <div>
+    <div class="card-header">
+    <div class="d-flex justify-content-between align-items-center mb-0">
+      <div class="text-uppercase text-primary fw-bold fs-3">{{data.title}}</div>
 
       <div mat-dialog-actions class="d-flex justify-content-end p-2">
         <button (click)="onCloseClick()" class="btn btn-outline-danger btn-sm shadow shadow-sm">
@@ -10,7 +11,8 @@
       </div>
     </div>
 
-    <p>{{ messageDetails }}</p>
+    <p class="text-muted fw-bold">{{ messageDetails }}</p>
+    <hr>
   </div>
 
   <div mat-dialog-content style="height: calc(100vh - 400px);" class="px-4">
