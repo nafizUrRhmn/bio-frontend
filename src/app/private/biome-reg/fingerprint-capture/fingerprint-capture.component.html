@@ -1,0 +1,65 @@
+<div class="mx-5 mt-5">
+    <div class="border-bottom">
+        <h1 class="text-primary fw-bold">{{'Fingerprint Capture'|translate|uppercase}}</h1>
+    </div>
+    <form [formGroup]="nidForm">
+        <div class="d-flex flex-column m-2 me-5">
+            <div class="pt-1  mt-5">
+                <div>
+                    <div class="w-50 row d-flex justify-content-center align-items-center">
+                        <div class="col-sm-6 col-md-2 col-lg-2 mb-2">
+                            <label for="nid" class="form-label text-muted fw-bold ">NID</label>
+                        </div>
+                        <div class="col-sm-6 col-md-7 col-lg-7 mb-2">
+                            <input type="number" class="form-control border-2 " id="nid" maxlength="17"
+                                formControlName="nid">
+                            <div class="d-flex flex-row">
+                                <div *ngIf="( nid.touched) && nid.hasError('required')" class="error-feedback">
+                                    {{ 'ER_NID_ID' | translate }}
+                                </div>
+                                <div *ngIf="nidForm.get('nid').hasError('pattern')" class="error-feedback">
+                                    {{"ER_NID_ID_ERROR_10_OR_17_DIGITS"|translate}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="w-50 row d-flex justify-content-center align-items-center">
+                        <div class="col-sm-6 col-md-2 col-lg-2">
+                            <label for="dob" class="form-label text-muted fw-bold ">Date of Birth</label>
+                        </div>
+                        <div class="col-sm-6 col-md-7 col-lg-7">
+
+                            <mat-form-field appearance="fill"> <mat-label>Select Date of Birth</mat-label>
+                                <input matInput [matDatepicker]="picker" formControlName="dob" maxlength="10">
+                                <mat-hint>MM/DD/YYYY</mat-hint>
+                                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                <mat-datepicker #picker></mat-datepicker>
+                            </mat-form-field>
+
+                            <div class="d-flex flex-row">
+                                <div *ngIf="( dob.touched) && dob.hasError('required')" class="error-feedback">
+                                    {{ 'ER_DOB' | translate }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="w-50 mt-4 d-flex flex-row justify-content-center align-items-center">
+                        <div class="">
+                            <button type="button" class="btn btn-outline-primary" (click)="onRegistration()"
+                                [disabled]="nidForm.invalid">
+                                <div class="d-flex align-items-center justify-content-center gap-1">
+                                    {{'Register' | translate}}
+                                    <i class="ti ti-fingerprint fs-3"></i>
+                                </div>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </form>
+
+</div>
