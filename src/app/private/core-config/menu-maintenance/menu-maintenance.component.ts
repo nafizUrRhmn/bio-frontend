@@ -1,18 +1,18 @@
-import {Component, ViewChild} from '@angular/core';
-import {FormArray, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
-import {MatStepper} from "@angular/material/stepper";
-import {MenuMaintenanceService} from "./menu-maintenance.service";
-import {MatDialog} from "@angular/material/dialog";
-import {AlertService} from "../../../_services/alert-service";
-import {AgbListComponent} from "../../../shared/components/agb-list/agb-list.component";
-import {MrhBlock} from "../../../_models/socket-payload/mrh-block";
-import {ColDef} from "ag-grid-community";
-import {NrxGridComponent} from "../../../shared/components/nrx-grid/nrx-grid.component";
-import {MenuFormData} from "./menu-form-data";
-import {EventBusService} from "../../../_services/event-bus.service";
-import {take} from "rxjs";
-import {NavigationService} from "../../../theme/layout/private-layout/navigation/nav-content/navigation.service";
-import {CommonUtil} from "../../../_helpers/common.util";
+import { Component, ViewChild } from '@angular/core';
+import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatStepper } from "@angular/material/stepper";
+import { MenuMaintenanceService } from "./menu-maintenance.service";
+import { MatDialog } from "@angular/material/dialog";
+import { AlertService } from "../../../_services/alert-service";
+import { AgbListComponent } from "../../../shared/components/agb-list/agb-list.component";
+import { MrhBlock } from "../../../_models/socket-payload/mrh-block";
+import { ColDef } from "ag-grid-community";
+import { NrxGridComponent } from "../../../shared/components/nrx-grid/nrx-grid.component";
+import { MenuFormData } from "./menu-form-data";
+import { EventBusService } from "../../../_services/event-bus.service";
+import { take } from "rxjs";
+import { NavigationService } from "../../../theme/layout/private-layout/navigation/nav-content/navigation.service";
+import { CommonUtil } from "../../../_helpers/common.util";
 import {
   englishOnlyValidator,
   englishOnlyValidatorForFormArray,
@@ -27,14 +27,18 @@ import {
 export class MenuMaintenanceComponent {
   classInitializer = CommonUtil.classInitializer;
 
-  @ViewChild('stepper', {read: MatStepper}) stepper: MatStepper;
+  @ViewChild('stepper', { read: MatStepper }) stepper: MatStepper;
 
   @ViewChild(NrxGridComponent) nrxGrid: NrxGridComponent;
   menuSearchForm = this._formBuilder.group({
-    funcCode: '',
-    menuId: '',
+    funcCode: 'I',
+    menuId: ['', [Validators.required, englishOnlyValidator()]],
     menuIdSource: ''
   });
+
+  // get menuIdObj(){
+  //   return this.menuSearchForm.get('menuId');
+  // }
   parentMenuForm = this._formBuilder.group({
     parMenuCode: '',
     parMenuCodeDesc: '',
@@ -47,6 +51,7 @@ export class MenuMaintenanceComponent {
   mopCodeDescMrh: MrhBlock = new MrhBlock();
   mopCodeDescList: any[];
 
+
   mopPermMrh: MrhBlock = new MrhBlock();
   mopPermList: any[];
   // menuObj = {'menuId': '', 'menuTp': 'N/A', 'menuDesc': 'N/A'};
@@ -57,16 +62,16 @@ export class MenuMaintenanceComponent {
     module: '',
     menuTp: '',
     lchgUserId: '',
-    secuInd: '',
+    secuInd: 'I',
     languageDetails: new FormArray([]),
     hasAdd: false,
-    addAutoVerify: [{value: false, disabled: true}],
+    addAutoVerify: [{ value: false, disabled: true }],
     hasDelete: false,
-    deleteAutoVerify: [{value: false, disabled: true}],
+    deleteAutoVerify: [{ value: false, disabled: true }],
     hasUndelete: false,
-    undeleteAutoVerify: [{value: false, disabled: true}],
+    undeleteAutoVerify: [{ value: false, disabled: true }],
     hasModification: false,
-    modificationAutoVerify: [{value: false, disabled: true}],
+    modificationAutoVerify: [{ value: false, disabled: true }],
     hasVerify: false,
     hasCancel: false,
     param1: '',
@@ -81,8 +86,8 @@ export class MenuMaintenanceComponent {
 
   mopParemListrowData: any;
   mopParemListcolumnDefs: ColDef[];
-  modules = [{key: 'ACCESS_CONTROL', moduleName: 'ACCESS CONTROL'}, {key: 'OPERATIONS', moduleName: 'OPERATIONS'},
-    {key: 'CCONF', moduleName: 'CORE CONFIG'}]
+  modules = [{ key: 'ACCESS_CONTROL', moduleName: 'ACCESS CONTROL' }, { key: 'OPERATIONS', moduleName: 'OPERATIONS' },
+  { key: 'CCONF', moduleName: 'CORE CONFIG' }]
 
   // parentRows = [];
   isUpdate = false;
@@ -92,21 +97,22 @@ export class MenuMaintenanceComponent {
   // menuIdSource: any;
 
   constructor(private _formBuilder: FormBuilder, private navService: NavigationService,
-              private menuMaintenanceService: MenuMaintenanceService,
-              private dialog: MatDialog, private alertService: AlertService,
-              private eventBus: EventBusService) {
+    private menuMaintenanceService: MenuMaintenanceService,
+    private dialog: MatDialog, private alertService: AlertService,
+    private eventBus: EventBusService) {
 
   }
 
   ngOnInit(): void {
+    this.funcCodeOptions = this.navService.getPermittedOptions();
     this.menuSearchForm.get('menuIdSource').setValue(this.navService.getMenuId());
     this.mopParemListcolumnDefs = [
-      {field: 'parMenuCode', headerName: 'Parent Menu', colId: 'parMenuCode'},
-      {field: 'parMenuCodeDesc', headerName: 'Parent Menu Desc'},
-      {field: 'entityCreFlg', hide: true},
-      {field: 'lchgTime', hide: true},
-      {field: 'levelCode', headerName: 'Level'},
-      {field: 'delFlg', headerName: 'Delete?'}
+      { field: 'parMenuCode', headerName: 'Parent Menu', colId: 'parMenuCode' },
+      { field: 'parMenuCodeDesc', headerName: 'Parent Menu Desc' },
+      { field: 'entityCreFlg', hide: true },
+      { field: 'lchgTime', hide: true },
+      { field: 'levelCode', headerName: 'Level' },
+      { field: 'delFlg', headerName: 'Delete?' }
     ];
   }
 
@@ -121,7 +127,7 @@ export class MenuMaintenanceComponent {
       disableClose: true
     });
     dialogRef.afterClosed().pipe(take(1)).subscribe(res => {
-      this.menuFormData = {...this.menuFormData, ...res};
+      this.menuFormData = { ...this.menuFormData, ...res };
       this.menuSearchForm.get('menuId').setValue(this.menuFormData.menuId);
     });
   }
@@ -176,20 +182,20 @@ export class MenuMaintenanceComponent {
   }
 
   get funCodeDetails() {
-    switch(this.menuSearchForm.get('funcCode').value) {
+    switch (this.menuSearchForm.get('funcCode').value) {
       case 'I': {
         return 'I - Inquiry';
-      }case 'A': {
+      } case 'A': {
         return 'A - Add';
-      }case 'D': {
+      } case 'D': {
         return 'D - Delete';
-      }case 'U': {
+      } case 'U': {
         return 'U - Undelete';
-      }case 'M': {
+      } case 'M': {
         return 'M - Modification';
-      }case 'V': {
+      } case 'V': {
         return 'V - Verification';
-      }case 'X': {
+      } case 'X': {
         return 'X - Cancel';
       }
       case 'C': {
@@ -202,31 +208,46 @@ export class MenuMaintenanceComponent {
   }
 
   get menuId() {
-    return this.menuSearchForm.get('menuId').value;
+    return this.menuSearchForm.get('menuId');
   }
 
   get isDisabled() {
     return (this.parentMenuForm.get('lchgTime').value && this.isUpdate) ? true : false;
   }
 
+  get param1() {
+    return this.menuSaveForm.get('param1');
+  }
+  get param2() {
+    return this.menuSaveForm.get('param2');
+  }
+  get param3() {
+    return this.menuSaveForm.get('param3');
+  }
+  get param4() {
+    return this.menuSaveForm.get('param4');
+  }
+
   onNext() {
+
     this.mopPermList = [];
     this.menuMaintenanceService.menuVerification(this.menuSearchForm.value).subscribe({
       next: (response) => {
         this.menuFormData = response?.genDataBlock?.formData;
         this.funcToFormSet(this.menuFormData.param5);
         this.menuSaveForm.patchValue(this.menuFormData);
-        if(this.menuSearchForm.get('funcCode').value !== 'A'){
+        if (this.menuSearchForm.get('funcCode').value !== 'A') {
           this.menuSaveForm.get('menuTp').disable();
-        }else{
+        } else {
           this.menuSaveForm.get('menuTp').enable();
         }
 
-        if((this.menuSearchForm.get('funcCode').value === 'I')
+
+        if ((this.menuSearchForm.get('funcCode').value === 'I')
           || (this.menuSearchForm.get('funcCode').value === 'D')
           || (this.menuSearchForm.get('funcCode').value === 'U')
           || (this.menuSearchForm.get('funcCode').value === 'V')
-          || (this.menuSearchForm.get('funcCode').value === 'X')){
+          || (this.menuSearchForm.get('funcCode').value === 'X')) {
           this.menuSaveForm.get('hasAdd').disable();
           this.menuSaveForm.get('addAutoVerify').disable();
           this.menuSaveForm.get('hasDelete').disable();
@@ -243,7 +264,7 @@ export class MenuMaintenanceComponent {
           this.menuSaveForm.get('param4').disable();
           // this.menuSaveForm.get('menuIdSource').disable();
           this.menuSaveForm.get('secuInd').disable();
-        }else{
+        } else {
           this.menuSaveForm.get('hasAdd').enable();
           this.menuSaveForm.get('addAutoVerify').enable();
           this.menuSaveForm.get('hasDelete').enable();
@@ -266,7 +287,7 @@ export class MenuMaintenanceComponent {
         for (let mrhBlock of mrhBlocks) {
           if (mrhBlock.listName === 'mopCodeDescList') {
             this.mopCodeDescMrh = mrhBlock;
-            if(mrhBlock.numberOfRecs >0){
+            if (mrhBlock.numberOfRecs > 0) {
               this.mopCodeDescList = this.mrhBlockToGrid(mrhBlock);
             }
             for (const mop of this.mopCodeDescList) {
@@ -283,8 +304,8 @@ export class MenuMaintenanceComponent {
             this.menuSaveForm.get('languageDetails').patchValue(this.mopCodeDescList);
           } else if (mrhBlock.listName === 'mopPermList') {
             this.mopPermMrh = mrhBlock;
-            if(mrhBlock.numberOfRecs >0)
-            this.mopPermList = this.mrhBlockToGrid(mrhBlock);
+            if (mrhBlock.numberOfRecs > 0)
+              this.mopPermList = this.mrhBlockToGrid(mrhBlock);
           }
         }
         this.stepper.next()
@@ -297,7 +318,7 @@ export class MenuMaintenanceComponent {
     // this.stepper.next()
   }
 
-  menuDesc(i){
+  menuDesc(i) {
     return (this.menuSaveForm?.get('languageDetails') as FormArray).controls[i]?.get('menuDesc');
   }
 
@@ -313,7 +334,7 @@ export class MenuMaintenanceComponent {
     this.nrxGrid?.gridApi.getRenderedNodes().forEach(u => rows.push(u.data));
     let formData = this.menuSaveForm.getRawValue();
 
-    formData = {...formData, 'param5': this.param5Gen(formData)};
+    formData = { ...formData, 'param5': this.param5Gen(formData) };
     delete formData['hasAdd'];
     delete formData['addAutoVerify'];
     delete formData['hasDelete'];
@@ -330,11 +351,11 @@ export class MenuMaintenanceComponent {
     console.log(rows);
     console.log(languageDetails);
     delete formData.languageDetails;
-    if(this.mopPermMrh?.headerInfo) {
+    if (this.mopPermMrh?.headerInfo) {
       this.mopPermMrh.dataBlock = this.gridToMrhBlock(rows, this.mopPermMrh?.headerInfo);
       console.log(this.mopPermMrh.dataBlock)
     }
-    if(this.mopCodeDescMrh?.headerInfo){
+    if (this.mopCodeDescMrh?.headerInfo) {
       this.mopCodeDescMrh.dataBlock = this.gridToMrhBlock(languageDetails, this.mopCodeDescMrh?.headerInfo);
     }
 
@@ -365,51 +386,74 @@ export class MenuMaintenanceComponent {
     });
   }
 
-  param5Gen(formData){
+  param5Gen(formData) {
     let value = '';
-    value = formData.hasAdd === true ? value.concat('A-', formData.addAutoVerify ===true ? 'Y,': 'N,'): value;
-    value = formData.hasDelete === true ? value.concat('D-', formData.deleteAutoVerify ===true ? 'Y,': 'N,'): value;
-    value = formData.hasUndelete === true ? value.concat('U-', formData.undeleteAutoVerify ===true ? 'Y,': 'N,'): value;
-    value = formData.hasModification === true ? value.concat('M-', formData.modificationAutoVerify ===true ? 'Y,': 'N,'): value;
-    value = formData.hasVerify === true ? 'V-N,': value;
-    value = formData.hasCancel === true ? 'X-N,': value;
+    value = formData.hasAdd === true ? value.concat('A-', formData.addAutoVerify === true ? 'Y,' : 'N,') : value;
+    value = formData.hasDelete === true ? value.concat('D-', formData.deleteAutoVerify === true ? 'Y,' : 'N,') : value;
+    value = formData.hasUndelete === true ? value.concat('U-', formData.undeleteAutoVerify === true ? 'Y,' : 'N,') : value;
+    value = formData.hasModification === true ? value.concat('M-', formData.modificationAutoVerify === true ? 'Y,' : 'N,') : value;
+    value = formData.hasVerify === true ? 'V-N,' : value;
+    value = formData.hasCancel === true ? 'X-N,' : value;
 
-    if(value.length>1 && value[value.length-1] === ','){
-      value = value.slice(0,-1);
+    if (value.length > 1 && value[value.length - 1] === ',') {
+      value = value.slice(0, -1);
     }
     return value;
   }
 
   onMenuTypeChange($event) {
     this.menuFormData.menuTp = $event.target.value;
+    if (this.menuFormData.menuTp === 'R') {
+      this.menuSaveForm.get('param1').clearValidators();
+      this.menuSaveForm.get('param2').addValidators(Validators.required);
+      this.menuSaveForm.get('param3').clearValidators();
+      this.menuSaveForm.get('param4').clearValidators();
+    } else if (this.menuFormData.menuTp === 'M') {
+      this.menuSaveForm.get('param1').addValidators(Validators.required);
+      this.menuSaveForm.get('param2').clearValidators();
+      this.menuSaveForm.get('param3').addValidators(Validators.required);
+      this.menuSaveForm.get('param4').addValidators(Validators.required);
+    }else{
+      this.menuSaveForm.get('param1'&&'param2'&&'param3'&&'param4').clearValidators();
+    }
 
+
+
+  }
+
+
+
+  onChangeFunCode() {
+    this.menuSearchForm.get('menuId').setValue('');
+    // this.menuSearchForm.get('menuIdSource').setValue('');
+    this.menuFormData.menuDesc = '';
   }
 
   checkBoxValues() {
     if (this.menuSaveForm.get('hasAdd').value) {
-      this.menuSaveForm.get('addAutoVerify').enable({onlySelf: true});
+      this.menuSaveForm.get('addAutoVerify').enable({ onlySelf: true });
     } else {
       this.menuSaveForm.get('addAutoVerify').setValue(false);
-      this.menuSaveForm.get('addAutoVerify').disable({onlySelf: true});
+      this.menuSaveForm.get('addAutoVerify').disable({ onlySelf: true });
     }
     if (this.menuSaveForm.get('hasDelete').value) {
-      this.menuSaveForm.get('deleteAutoVerify').enable({onlySelf: true});
+      this.menuSaveForm.get('deleteAutoVerify').enable({ onlySelf: true });
     } else {
-      this.menuSaveForm.get('deleteAutoVerify').disable({onlySelf: true});
+      this.menuSaveForm.get('deleteAutoVerify').disable({ onlySelf: true });
       this.menuSaveForm.get('deleteAutoVerify').setValue(false);
     }
 
     if (this.menuSaveForm.get('hasUndelete').value) {
-      this.menuSaveForm.get('undeleteAutoVerify').enable({onlySelf: true});
+      this.menuSaveForm.get('undeleteAutoVerify').enable({ onlySelf: true });
     } else {
       this.menuSaveForm.get('undeleteAutoVerify').setValue(false);
-      this.menuSaveForm.get('undeleteAutoVerify').disable({onlySelf: true});
+      this.menuSaveForm.get('undeleteAutoVerify').disable({ onlySelf: true });
     }
     if (this.menuSaveForm.get('hasModification').value) {
-      this.menuSaveForm.get('modificationAutoVerify').enable({onlySelf: true});
+      this.menuSaveForm.get('modificationAutoVerify').enable({ onlySelf: true });
     } else {
       this.menuSaveForm.get('modificationAutoVerify').setValue(false);
-      this.menuSaveForm.get('modificationAutoVerify').disable({onlySelf: true});
+      this.menuSaveForm.get('modificationAutoVerify').disable({ onlySelf: true });
     }
   }
 
@@ -420,7 +464,7 @@ export class MenuMaintenanceComponent {
       for (let j = 0; j < mrhBlock.headerInfo.length; j++) {
         let key = mrhBlock.headerInfo[j];
         let value = mrhBlock.dataBlock[i][j];
-        obj = {...obj, [key]: value ? value : ''};
+        obj = { ...obj, [key]: value ? value : '' };
       }
       list.push(obj);
     }
@@ -435,7 +479,7 @@ export class MenuMaintenanceComponent {
     for (let item of list) {
       let rowData = [];
       for (let key of headerInfo) {
-        rowData.push(item[key]? item[key] : '');
+        rowData.push(item[key] ? item[key] : '');
       }
       dataBlock.push(rowData);
     }
@@ -465,7 +509,7 @@ export class MenuMaintenanceComponent {
 
   addOnParentGrid(type: string) {
     let formData = this.parentMenuForm.value;
-    formData = {...formData, 'delFlg': formData.delFlg ? 'Y' : 'N'};
+    formData = { ...formData, 'delFlg': formData.delFlg ? 'Y' : 'N' };
     let parentRows = <any>this.nrxGrid.gridApi.getRenderedNodes();
     let arr = [];
     let obj = parentRows.find(u => u.parMenuCode === formData.parMenuCode);
@@ -491,54 +535,54 @@ export class MenuMaintenanceComponent {
     this.isUpdate = true;
   }
 
-  funcToFormSet(param5: string){
-    if(!param5)
+  funcToFormSet(param5: string) {
+    if (!param5)
       return;
-    const arr= param5.split(',');
-    for(let i =0; i< arr.length; i++){
-     let value = arr[i].split('-');
+    const arr = param5.split(',');
+    for (let i = 0; i < arr.length; i++) {
+      let value = arr[i].split('-');
 
-     switch (value[0]){
-       case "A": {
-        this.menuSaveForm.get('hasAdd').setValue(true);
-        if(value[1] && value[1]=='Y'){
-          this.menuSaveForm.get('addAutoVerify')!.setValue( true);
+      switch (value[0]) {
+        case "A": {
+          this.menuSaveForm.get('hasAdd').setValue(true);
+          if (value[1] && value[1] == 'Y') {
+            this.menuSaveForm.get('addAutoVerify')!.setValue(true);
+          }
+          break;
         }
-         break;
-       }
-       case "D": {
-         this.menuSaveForm.get('hasDelete').setValue(true);
-         if(value[1] && value[1]=='Y'){
-           this.menuSaveForm.get('deleteAutoVerify').setValue(true);
-         }
-         break;
-       }
-       case "U": {
-         this.menuSaveForm.get('hasUndelete').setValue(true);
-         if(value[1] && value[1]=='Y'){
-           this.menuSaveForm.get('undeleteAutoVerify').setValue(true);
-         }
-         break;
-       }
-       case "M": {
-         this.menuSaveForm.get('hasModification').setValue(true);
-         if(value[1] && value[1]=='Y'){
-           this.menuSaveForm.get('modificationAutoVerify')!.setValue(true); //@ts-ignore
-         }
-         break;
-       }
-       case "V": {
-         this.menuSaveForm.get('hasVerify').setValue(true);
-         break;
-       }case "X": {
-         this.menuSaveForm.get('hasCancel').setValue(true);
-         break;
-       }
-       default: {
-         console.log('type mismatch ' + value[0]);
-         break;
-       }
-     }
+        case "D": {
+          this.menuSaveForm.get('hasDelete').setValue(true);
+          if (value[1] && value[1] == 'Y') {
+            this.menuSaveForm.get('deleteAutoVerify').setValue(true);
+          }
+          break;
+        }
+        case "U": {
+          this.menuSaveForm.get('hasUndelete').setValue(true);
+          if (value[1] && value[1] == 'Y') {
+            this.menuSaveForm.get('undeleteAutoVerify').setValue(true);
+          }
+          break;
+        }
+        case "M": {
+          this.menuSaveForm.get('hasModification').setValue(true);
+          if (value[1] && value[1] == 'Y') {
+            this.menuSaveForm.get('modificationAutoVerify')!.setValue(true); //@ts-ignore
+          }
+          break;
+        }
+        case "V": {
+          this.menuSaveForm.get('hasVerify').setValue(true);
+          break;
+        } case "X": {
+          this.menuSaveForm.get('hasCancel').setValue(true);
+          break;
+        }
+        default: {
+          console.log('type mismatch ' + value[0]);
+          break;
+        }
+      }
     }
 
   }
