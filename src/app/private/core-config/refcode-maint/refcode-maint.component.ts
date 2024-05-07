@@ -91,9 +91,7 @@ export class RefCodeMaintComponent implements OnInit {
         this.refCodeType.setValue(selectedRow?.refCodeType);
         this.refTypeDesc = selectedRow?.refCodeTypeDesc;
 
-        // if (selectedRow !== null && selectedRow !== undefined) {
-        //   this.refCodeForm.get('refCodeType').disable();
-        // }
+        
       });
   }
 

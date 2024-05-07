@@ -106,10 +106,14 @@
   "RCTM_REF_TYP" : "Reference Code Type",
   "ER_RCTM_REF_TYP" : "Reference Code Type Required",
   "RCTM_REF_TYP_DESC" : "Reference Code Type Desc",
+  "ER_RCTM_REF_TYP_DESC" : "Reference Code Type Desc Required",
   "RCTM_NEW_REF_TYP" : "New Reference Code Type",
+  "ER_RCTM_NEW_REF_TYP" : "New Reference Code Type Required",
   "RCTM_REF_TYP_LEN" : "Length",
+  "ER_RCTM_REF_TYP_LEN" : "Length Required",
   "RCTM_DEP_FLG" : "Dependent Flag",
-  "RCTM_DEP_TYP" : "Dependent Ref Type",
+  "RCTM_DEP_REF_TYP" : "Dependent Ref Type",
+  "ER_RCTM_DEP_REF_TYP" : "Dependent Ref Type Required",
   "RCTM_DEP_DESC" : "Dep Ref Type Description",
 
 
