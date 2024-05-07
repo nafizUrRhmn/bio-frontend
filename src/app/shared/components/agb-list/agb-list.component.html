@@ -5,8 +5,12 @@
       <div class="text-uppercase text-primary fw-bold fs-3">{{data.title}}</div>
 
       <div mat-dialog-actions class="d-flex justify-content-end p-2">
-        <button (click)="onCloseClick()" class="btn btn-outline-danger btn-sm shadow shadow-sm">
-          <i class="ti ti-x fs-3"></i>
+        <!-- CROSS BUTTON -->
+        <button 
+            type="button"
+            class="btn-close shadow-none p-2"
+            aria-label="Close" 
+            (click)="onCloseClick()">
         </button>
       </div>
     </div>
