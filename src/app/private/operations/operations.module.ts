@@ -17,30 +17,35 @@ import {CommissionSummaryComponent} from "./commission-summary/commission-summar
 import {PocketStatementComponent} from "./customer-summary/pocket-statement/pocket-statement.component";
 import {PanelViewComponent} from "./customer-summary/panel-view/panel-view.component";
 import {TabsModule} from "../../theme/shared/components/tabs/tabs.module";
-import { MatDialogModule } from '@angular/material/dialog';
-import { BankTransfersComponent } from './bank-transfers/bank-transfers.component';
-import { GenerateFacComponent } from './generate-fac/generate-fac.component';
-import { AgGridModule } from 'ag-grid-angular';
-import { FacCashWithdrawalComponent } from './faccash-withdrawal/faccash-withdrawal.component';
-import { BalanceInquiryComponent } from './balance-inquiry/balance-inquiry.component';
+import {MatDialogModule} from '@angular/material/dialog';
+import {BankTransfersComponent} from './bank-transfers/bank-transfers.component';
+import {GenerateFacComponent} from './generate-fac/generate-fac.component';
+import {AgGridModule} from 'ag-grid-angular';
+import {FacCashWithdrawalComponent} from './faccash-withdrawal/faccash-withdrawal.component';
+import {BalanceInquiryComponent} from './balance-inquiry/balance-inquiry.component';
 import {CashDepositComponent} from "./cash-deposit/cash-deposit.component";
 import {CashWithdrawalComponent} from "./cash-withdrawal/cash-withdrawal.component";
 import {CashRefundComponent} from "./cash-refund/cash-refund.component";
 import {LoanDisbursementComponent} from "./loan-disbursement/loan-disbursement.component";
 import {LoanInstallmentComponent} from "./loan-installment/loan-installment.component";
-import { RemittanceDisbursementComponent } from './remittance-disbursement/remittance-disbursement.component';
+import {RemittanceDisbursementComponent} from './remittance-disbursement/remittance-disbursement.component';
 import {MigrateOfferComponent} from "./customer-summary/migrate-offer/migrate-offer.component";
-import { InsurancePremiumCollectionComponent } from './bill-pay/insurance-premium-collection/insurance-premium-collection.component';
-import { CreditCardComponent } from './bill-pay/credit-card/credit-card.component';
-import { InstitutionFeePaymentComponent } from './institution-fee-payment/institution-fee-payment.component';
-import { MatRadioModule } from '@angular/material/radio';
-import { DistributorBillCollectionsComponent } from './distributor-bill-collections/distributor-bill-collections.component';
-import { RetailComponent } from './retail/retail.component';
-import { CorporateComponent } from './corporate/corporate.component';
+import {InsurancePremiumCollectionComponent} from './bill-pay/insurance-premium-collection/insurance-premium-collection.component';
+import {CreditCardComponent} from './bill-pay/credit-card/credit-card.component';
+import {InstitutionFeePaymentComponent} from './institution-fee-payment/institution-fee-payment.component';
+import {MatRadioModule} from '@angular/material/radio';
+import {DistributorBillCollectionsComponent} from './distributor-bill-collections/distributor-bill-collections.component';
+import {RetailComponent} from './retail/retail.component';
+import {CorporateComponent} from './corporate/corporate.component';
 import {TranslateModule} from "@ngx-translate/core";
-import { ReportComponent } from './report/report.component';
+import {ReportComponent} from './report/report.component';
 import {OnboardingComponent} from "./onboarding/onboarding.component";
 import {MatStepperModule} from "@angular/material/stepper";
+import {DetailsComponent} from "./onboarding/details/details.component";
+import {ContactsComponent} from "./onboarding/contacts/contacts.component";
+import {AdditionalInfoComponent} from "./onboarding/additional-info/additional-info.component";
+import {DeclarationsComponent} from "./onboarding/declarations/declarations.component";
+import {DocumentsComponent} from "./onboarding/documents/documents.component";
 
 
 const routes: Routes = [
@@ -100,7 +105,12 @@ const routes: Routes = [
     MatInputModule,
     MatRadioModule,
     TranslateModule,
-    MatStepperModule
+    MatStepperModule,
+    DetailsComponent,
+    ContactsComponent,
+    AdditionalInfoComponent,
+    DeclarationsComponent,
+    DocumentsComponent
   ],
 })
 export class OperationsModule {

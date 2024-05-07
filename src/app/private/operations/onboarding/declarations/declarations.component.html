@@ -1,0 +1,68 @@
+<form [formGroup]="detailsForm" (ngSubmit)="onSubmit()">
+  <mat-accordion>
+    <mat-expansion-panel (opened)="panelOpenState = true"
+                         (closed)="panelOpenState = false" class="pb-2">
+      <mat-expansion-panel-header class="border bg-light">
+        <mat-panel-title class="fs-3 fw-bold text-muted">
+          Declarations
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+
+      <div class="mt-5 row">
+        <div class="col-6">
+          <div class="form-outline mb-4 password-visibility-container">
+            <label class="form-label fw-bold fs-5 mb-0">
+              First Name
+            </label>
+            <input type="text" formControlName="firstName"
+                   class="form-control form-control-lg border-2"/>
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="form-outline mb-4 password-visibility-container">
+            <label class="form-label fw-bold fs-5 mb-0">
+              Second Name
+            </label>
+            <input type="text" formControlName="firstName"
+                   class="form-control form-control-lg border-2"/>
+          </div>
+        </div>
+
+      </div>
+
+
+    </mat-expansion-panel>
+    <mat-expansion-panel (opened)="panelOpenState = true"
+                         (closed)="panelOpenState = false" class="pb-2">
+      <mat-expansion-panel-header class="border bg-light">
+        <mat-panel-title class="fs-3 fw-bold text-muted">
+          Risk Grading on Profession/Business
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+
+      <div class="form-outline mb-4 password-visibility-container">
+        <label class="form-label fw-bold fs-5 mb-0">
+          First Name
+        </label>
+        <input type="text" formControlName="firstName"
+               class="form-control form-control-lg border-2"/>
+      </div>
+    </mat-expansion-panel>
+  </mat-accordion>
+
+  <div class="mt-4 d-flex justify-content-end">
+    <button type="button" mat-button class="btn btn-secondary mt-5 me-2" (click)="previous()">
+      <div class="d-flex align-items-center justify-content-center gap-1">
+        <i class="ti ti-arrow-left fs-3"></i>
+        Previous
+      </div>
+    </button>
+
+    <button type="button" mat-button class="btn btn-secondary mt-5" (click)="onSubmit()">
+      <div class="d-flex align-items-center justify-content-center gap-1">
+        Next
+        <i class="ti ti-arrow-right fs-3"></i>
+      </div>
+    </button>
+  </div>
+</form>
