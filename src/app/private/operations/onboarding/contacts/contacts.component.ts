@@ -14,13 +14,50 @@ import {MatExpansionModule} from "@angular/material/expansion";
 export class ContactsComponent {
   panelOpenState = false;
   detailsForm: FormGroup;
+  presentAddressForm: FormGroup;
+  permanentAddressForm: FormGroup;
   @Output() submitEvent =  new EventEmitter<any>();
   @Output() previousEvent = new EventEmitter<any>();
+
+
   constructor(private fb: FormBuilder) {
     this.detailsForm = this.fb.group({
       firstName: ['', Validators.required],
       middleName: ['', Validators.required],
       lastName: ['', Validators.required]
+    });
+  }
+
+  ngOnInit(){
+    this.presentAddressForm=this.fb.group({
+      addressLine1: ['',Validators.required],
+      country: ['',Validators.required],
+      cityDistrict: ['',Validators.required],
+      postCode: ['',Validators.required],
+      addressVerified: ['',Validators.required],
+      mobile: ['',Validators.required],
+      fax: ['',Validators.required],
+      addressLine2: ['',Validators.required],
+      division: ['',Validators.required],
+      upazilaThana: ['',Validators.required],
+      nearestLandmark: ['',Validators.required],
+      AcHolderVerifiedAddress: ['',Validators.required],
+      email: ['',Validators.required]
+    });
+    this.permanentAddressForm=this.fb.group({
+      addressLine1: ['',Validators.required],
+      country: ['',Validators.required],
+      cityDistrict: ['',Validators.required],
+      postCode: ['',Validators.required],
+      addressVerified: ['',Validators.required],
+      mobile: ['',Validators.required],
+      fax: ['',Validators.required],
+      addressLine2: ['',Validators.required],
+      division: ['',Validators.required],
+      upazilaThana: ['',Validators.required],
+      nearestLandmark: ['',Validators.required],
+      AcHolderVerifiedAddress: ['',Validators.required],
+      email: ['',Validators.required]
     });
   }
 

@@ -14,7 +14,7 @@
               </label>
             </div>
             <div class="col-sm-7 col-md-7 col-lg-7">
-              <select id="funcCode" class="form-select form-select-sm border-2" aria-label=".form-select-lg example"
+              <select id="funcCode" class="form-select border-2"
                 [class]="classInitializer(funcCode)" [class.is-invalid]="(funcCode.touched) && funcCode.invalid"
                 formControlName="funcCode" (change)="onChangeFuncCode($event)" >
                <option selected value="I">I-Inquiry</option>
@@ -78,7 +78,7 @@
               </label>
             </div>
             <div class="col-5">
-              <input type="text" id="refCode" class="form-control"               
+              <input type="text" id="refCode" class="form-control border-2"               
                 [class]="classInitializer(refCode)" formControlName="refCode" />
               <div class="invalid-feedback" *ngIf="refCode.invalid && (refCode.dirty || refCode.touched)">
                 <div *ngIf="refCode.errors?.['required']">Value is required</div>
@@ -163,7 +163,7 @@
             {{ 'RCM_SRT_LST_FLG' | translate }} <span class="ms-2 text-danger fs-3">*</span>
           </label>
           <div class="col-sm-7 col-md-7 col-lg-7">
-            <select id="shortListFlg" class="form-select form-select-sm border-2" aria-label=".form-select-lg example"
+            <select id="shortListFlg" class="form-select border-2"
               formControlName="shortListFlg">          
                         <option value="Y">Y-Yes</option>
               <option value="N">N-No</option>
@@ -212,7 +212,7 @@
             {{ 'RCM_DLT_FLG' | translate }} <span class="ms-2 text-danger fs-3">*</span>
           </label>
           <div class="col-sm-7 col-md-7 col-lg-7">
-            <select id="delFlg" class="form-select form-select-sm border-2" aria-label=".form-select-lg example"
+            <select id="delFlg" class="form-select border-2"
               formControlName="shortListFlg">         
               <option value="Y">Y-Yes</option>
               <option value="N">N-No</option>
