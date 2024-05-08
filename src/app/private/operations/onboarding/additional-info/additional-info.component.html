@@ -1,64 +1,194 @@
 <form [formGroup]="detailsForm" (ngSubmit)="onSubmit()">
   <mat-accordion>
-    <mat-expansion-panel (opened)="panelOpenState = true"
-                         (closed)="panelOpenState = false" class="pb-2">
+    <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false" class="pb-2">
       <mat-expansion-panel-header class="border bg-light">
         <mat-panel-title class="fs-3 fw-bold text-muted">
           Employment Details
         </mat-panel-title>
       </mat-expansion-panel-header>
 
+      <!-- Employment Details -->
+
       <div class="mt-5 row">
         <div class="col-6">
           <div class="form-outline mb-4 password-visibility-container">
             <label class="form-label fw-bold fs-5 mb-0">
-              First Name
+              Details Of Profession
             </label>
-            <input type="text" formControlName="firstName"
-                   class="form-control form-control-lg border-2"/>
+            <select class="form-select border-2" aria-label="Grade" formControlName="detailsOFprof">
+              <option value="" disabled selected hidden></option>
+              <option value="Employed">Employed</option>
+              <option value="Housewife">Housewife</option>
+              <option value="MIGR">MIGR</option>
+              <option value="Retired">Retired</option>
+              <option value="Salaried">Salaried</option>
+              <option value="Self">Self employed</option>
+              <option value="Unemployed">Unemployed </option>
+              <option value="Other">Other</option>
+            </select>
           </div>
         </div>
         <div class="col-6">
-          <div class="form-outline mb-4 password-visibility-container">
+          <div class="mb-4 password-visibility-container">
             <label class="form-label fw-bold fs-5 mb-0">
-              Second Name
+              Monthly Income (Income range)
             </label>
-            <input type="text" formControlName="firstName"
-                   class="form-control form-control-lg border-2"/>
+            <input type="text" formControlName="monthlyIncomeRange"            
+             class="form-control border-2" />             
           </div>
+        </div>
+        <div class="col-7">
+          <app-nrx-grid [columnDefs]="incomeSummaryTbl" [rowData]="incomeSegmentList"
+            [gridSize]="'width: auto; height: 250px;'">
+          </app-nrx-grid>
+        </div>
+
+        <div class="mt-3 row">
+          <div class="col-6">
+            <div class="form-outline mb-4 password-visibility-container">
+              <label class="form-label fw-bold fs-5 mb-0 mt-4">
+                Organization's Name
+              </label>
+              <input type="text" formControlName="organizationName"
+               class="form-control border-2"
+               
+               [class]="classInitializer(organizationName)"
+               />
+               <div class="invalid-feedback" *ngIf="organizationName.invalid && (organizationName.dirty || organizationName.touched)">
+                <div *ngIf="organizationName.errors?.['required']">
+                  Value is required 
+              </div>
+                          
+              </div>
+
+              <label class="form-label fw-bold fs-5 mb-0 mt-4">
+                Position/Designation
+              </label>
+              <input type="text" formControlName="position" class="form-control  border-2" />
+
+              <label class="form-label fw-bold fs-5 mb-0 mt-4">
+                Other Business
+              </label>
+              <input type="text" formControlName="otherBusiness" class="form-control border-2" />
+
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="form-outline mb-4 password-visibility-container">
+              <label class="form-label fw-bold fs-5 mb-0 mt-4">
+                Source of Income/ Fund
+              </label>
+              <input type="text" formControlName="sourceOfIncome" class="form-control  border-2" />
+  
+  
+              <label class="form-label fw-bold fs-5 mb-0 mt-4">
+                Nature/Type of Business
+              </label>
+              <input type="text" formControlName="natureOfbusiness" class="form-control  border-2" />
+
+            </div>
+          </div>
+
         </div>
 
       </div>
 
 
     </mat-expansion-panel>
-    <mat-expansion-panel (opened)="panelOpenState = true"
-                         (closed)="panelOpenState = false" class="pb-2">
+    <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false" class="pb-2">
       <mat-expansion-panel-header class="border bg-light">
         <mat-panel-title class="fs-3 fw-bold text-muted">
           Introducer Information
         </mat-panel-title>
       </mat-expansion-panel-header>
 
-      <div class="form-outline mb-4 password-visibility-container">
-        <label class="form-label fw-bold fs-5 mb-0">
-          First Name
-        </label>
-        <input type="text" formControlName="firstName"
-               class="form-control form-control-lg border-2"/>
+      <!-- Introducer Information -->
+
+
+
+      <div class="mt-5 row">
+        <div class="col-6">
+          <div class="form-outline mb-4 password-visibility-container">
+            <label class="form-label fw-bold fs-5 mb-0">
+              Account Number
+            </label>
+            <input type="text" formControlName="accountNo" class="form-control border-2" />
+
+            <label class="form-label fw-bold fs-5 mb-0 mt-4">
+              CIF ID
+            </label>
+            <input type="text" formControlName="cifId" class="form-control border-2" />
+
+
+
+            <label class="form-label fw-bold fs-5 mb-0 mt-4">
+              Account Title
+            </label>
+            <input type="text" formControlName="accountTitle" class="form-control  border-2" />
+
+            <label class="form-label fw-bold fs-5 mb-0 mt-4">
+              Years of knowing the introducer
+            </label>
+            <select class="form-select  border-2" aria-label="Grade" formControlName="yearofknowIntro">
+              <option value="" disabled selected hidden></option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
+              <option value="7">7</option>
+              <option value="8">8</option>
+              <option value="9">9</option>
+              <option value="10">10</option>
+              <option value="10+">10+</option>
+            </select>
+
+          </div>
+        </div>
+
+        <div class="col-6">
+          <div class="form-outline mb-4 password-visibility-container">
+            <label class="form-label fw-bold fs-5 mb-0">
+              Account Name
+            </label>
+            <input type="text" formControlName="accountName" class="form-control  border-2" />
+            <label class="form-label fw-bold fs-5 mb-0 mt-4">
+              Relation with Introducer
+            </label>
+            <input type="text" formControlName="relationWithIntro" class="form-control  border-2" />
+
+            <div class="col-6 row mt-4">
+              <label class="form-label fw-bold fs-5 mb-0">
+                Date of Birth
+              </label>
+              <mat-form-field>
+                <mat-label>Choose a date</mat-label>
+                <input matInput [matDatepicker]="picker1" formControlName="dob">
+                <mat-hint>DD/MM/YYYY</mat-hint>
+                <mat-datepicker-toggle matIconSuffix [for]="picker1"></mat-datepicker-toggle>
+                <mat-datepicker #picker1></mat-datepicker>
+              </mat-form-field>
+
+            </div>
+
+
+          </div>
+        </div>
       </div>
+
     </mat-expansion-panel>
   </mat-accordion>
 
   <div class="mt-4 d-flex justify-content-end">
-    <button type="button" mat-button class="btn btn-secondary mt-5 me-2" (click)="previous()">
+    <button type="button"  class="btn btn-secondary mt-5 me-2" (click)="previous()">
       <div class="d-flex align-items-center justify-content-center gap-1">
         <i class="ti ti-arrow-left fs-3"></i>
         Previous
       </div>
     </button>
 
-    <button type="button" mat-button class="btn btn-secondary mt-5" (click)="onSubmit()">
+    <button type="button"  class="btn btn-secondary mt-5" (click)="onSubmit()">
       <div class="d-flex align-items-center justify-content-center gap-1">
         Next
         <i class="ti ti-arrow-right fs-3"></i>

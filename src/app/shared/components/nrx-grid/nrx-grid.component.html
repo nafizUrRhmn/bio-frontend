@@ -1,5 +1,5 @@
 <ag-grid-angular
-  style="width: auto; height: 400px;"
+   [style]="gridSize"
   class="ag-theme-quartz"
   [rowData]="rowData" [rowSelection]="rowSelection" (selectionChanged)="onSelectionChanged($event)" (rowClicked)="onRowClick($event)"
   [columnDefs]="columnDefs" (gridReady)="onGridReady($event)" [defaultColDef]="defaultColDef"></ag-grid-angular>
