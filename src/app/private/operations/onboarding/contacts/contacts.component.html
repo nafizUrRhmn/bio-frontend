@@ -2,155 +2,200 @@
   <mat-accordion>
     <mat-expansion-panel (opened)="panelOpenState = true"
                          (closed)="panelOpenState = false" class="pb-2">
+
+      <!-- PRESENT ADDRESS STARTS -->
       <mat-expansion-panel-header class="border bg-light">
         <mat-panel-title class="fs-3 fw-bold text-muted">
           Present Address
         </mat-panel-title>
       </mat-expansion-panel-header>
 
-      <form [formGroup]="presentAddressForm">
         <div class="mt-5 row">
           <div class="col-6">
-            <!-- ADDRESS LINE 1 -->
-            <div class="form-outline mb-4 password-visibility-container">
-              <label class="form-label fw-bold fs-5 mb-0">
-                Address Line 1
+            <!-- PRE ADDRESS LINE 1 -->
+            <div class="form-outline mb-4">
+              <label 
+                  class="form-label fw-bold fs-5 mb-0"
+                  for="preAddressLine1">
+                  Address Line 1
               </label>
-              <input type="text" formControlName="addressLine1"
-                     class="form-control  border-2"/>
+              <input 
+                  type="text" 
+                  formControlName="preAddressLine1"
+                  class="form-control  border-2"/>
             </div>
-            <!-- COUNTRY -->
+            <!-- PRE COUNTRY -->
             <div class="form-outline mb-4 ">
-              <label class="form-label fw-bold fs-5 mb-0">
-                Country
+              <label 
+                  class="form-label fw-bold fs-5 mb-0"
+                  for="preCountry">
+                  Country
               </label>
-              <select id="country" class="form-select border-2" formControlName="country">
+              <select class="form-select border-2" formControlName="preCountry">
                 <option value="" disabled selected hidden></option>
                 <option value="Bagerhat">Bagerhat</option>
                 <option value="Bandarban">Bandarban</option>
                 <option value="Bogura">Bogura</option>
              </select>
             </div>
-            <!-- CITY/DISTRICT -->
-            <div class="form-outline mb-4 password-visibility-container">
-              <label class="form-label fw-bold fs-5 mb-0">
-                City/District
+            <!-- PRE CITY/DISTRICT -->
+            <div class="form-outline mb-4  ">
+              <label 
+                  class="form-label fw-bold fs-5 mb-0"
+                  for="preCityDistrict">
+                  City/District
               </label>
-              <select id="cityDistrict" class="form-select border-2" formControlName="cityDistrict">
+              <select class="form-select border-2" formControlName="preCityDistrict">
                   <option value="" disabled selected hidden></option>
                   <option value="1-D">1-Dhaka</option>
                   <option value="2-D">2-Dhaka</option>
                   <option value="3-D">3-Dhaka</option>
               </select>
             </div>
-            <!-- POST CODE -->
-            <div class="form-outline mb-4 password-visibility-container">
-              <label class="form-label fw-bold fs-5 mb-0">
-                Post Code
+            <!-- PRE POST CODE -->
+            <div class="form-outline mb-4  ">
+              <label 
+                  class="form-label fw-bold fs-5 mb-0"
+                  for="prePostCode">
+                  Post Code
               </label>
-              <input type="text" formControlName="postCode"
-                     class="form-control border-2"/>
+              <input 
+                  type="text" 
+                  formControlName="prePostCode"
+                  class="form-control border-2"/>
             </div>
-            <!-- ADDRESS VERIFY -->
-            <div class="form-outline mt-5 mb-2 password-visibility-container">
+            <!-- PRE ADDRESS VERIFY -->
+            <div class="form-outline mt-5 mb-2  ">
               <div class="form-check">
-                <input class="form-check-input" type="checkbox" id="addressVerified">
-                <label class="form-check-label fs-4 ms-3" for="addressVerified">
-                  Address Verified
+                <input 
+                    class="form-check-input" 
+                    type="checkbox" 
+                    formControlName="preAddressVerified">
+                <label 
+                    class="form-check-label fs-4 ms-3" 
+                    for="preAddressVerified">
+                    Address Verified
                 </label>
               </div>
             </div>
 
-            <!-- MOBILE -->
-            <div class="form-outline mb-4 mt-4 pt-3 password-visibility-container">
-              <label class="form-label fw-bold fs-5 mb-0">
-                Mobile
+            <!-- PRE MOBILE -->
+            <div class="form-outline mb-4 mt-4 pt-3  ">
+              <label 
+                  class="form-label fw-bold fs-5 mb-0"
+                  for="preMobile">
+                  Mobile
               </label>
-              <input type="text" formControlName="mobile"
-                     class="form-control border-2"/>
+              <input 
+                  type="text" 
+                  formControlName="preMobile"
+                  class="form-control border-2"/>
             </div>
 
-            <!-- FAX -->
-            <div class="form-outline mb-4 password-visibility-container">
-              <label class="form-label fw-bold fs-5 mb-0">
-                Fax
+            <!-- PRE FAX -->
+            <div class="form-outline mb-4  ">
+              <label 
+                  class="form-label fw-bold fs-5 mb-0"
+                  for="preFax">
+                  Fax
               </label>
-              <input type="text" formControlName="fax"
-                     class="form-control border-2"/>
+              <input 
+                  type="text" 
+                  formControlName="preFax"
+                  class="form-control border-2"/>
             </div>
           </div>
           <div class="col-6">
-            <!-- ADDRESS LINE 2 -->
-            <div class="form-outline mb-4 password-visibility-container">
-              <label class="form-label fw-bold fs-5 mb-0">
-                Address Line 2
+            <!-- PRE ADDRESS LINE 2 -->
+            <div class="form-outline mb-4  ">
+              <label 
+                  class="form-label fw-bold fs-5 mb-0"
+                  for="preAddressLine2">
+                  Address Line 2
               </label>
-              <input type="text" formControlName="addressLine2"
-                     class="form-control border-2"/>
+              <input 
+                  type="text" 
+                  formControlName="preAddressLine2"
+                  class="form-control border-2"/>
             </div>
-            <!-- DIVISION -->
-            <div class="form-outline mb-4 password-visibility-container">
-              <label class="form-label fw-bold fs-5 mb-0">
-                Division
+            <!-- PRE DIVISION -->
+            <div class="form-outline mb-4  ">
+              <label 
+                  class="form-label fw-bold fs-5 mb-0"
+                  for="preDivision">
+                  Division
               </label>
 
-              <select id="division" class="form-select border-2" formControlName="division">
+              <select class="form-select border-2" formControlName="preDivision">
                   <option value="" disabled selected hidden></option>
                   <option value="Dha">1-Dhaka</option>
                   <option value="Syl">2-Sylhet</option>
                   <option value="Bar">3-Barishal</option>
               </select>
             </div>
-            <!-- UPAZILA/THANA -->
-            <div class="form-outline mb-4 password-visibility-container">
-              <label class="form-label fw-bold fs-5 mb-0">
-                Upazila/Thana
+            <!-- PRE UPAZILA/THANA -->
+            <div class="form-outline mb-4  ">
+              <label 
+                  class="form-label fw-bold fs-5 mb-0"
+                  for="preUpazilaThana">
+                  Upazila/Thana
               </label>
-              <select id="upazilaThana" class="form-select border-2" formControlName="upazilaThana">
+              <select 
+                  class="form-select border-2" 
+                  formControlName="preUpazilaThana">
                   <option value="" disabled selected hidden></option>
                   <option value="Tej">TEJGAON</option>
                   <option value="Bad">BADDA</option>
                   <option value="Khi">KHILKHET</option>
               </select>
             </div>
-            <!-- NEAREST LANDMARK -->
-            <div class="form-outline mb-4 password-visibility-container">
-              <label class="form-label fw-bold fs-5 mb-0">
-                Nearest Landmark
+            <!-- PRE NEAREST LANDMARK -->
+            <div class="form-outline mb-4  ">
+              <label 
+                  class="form-label fw-bold fs-5 mb-0"
+                  for="preNearestLandmark">
+                  Nearest Landmark
               </label>
-              <input type="text" formControlName="nearestLandmark"
-                     class="form-control border-2"/>
+              <input 
+                  type="text" 
+                  formControlName="preNearestLandmark"
+                  class="form-control border-2"/>
             </div>
-            <!-- ADDRESS(ES) OF THE A/C HOLDER VERIFIED THROUGH -->
-            <div class="form-outline mb-4 password-visibility-container">
-              <label class="form-label fw-bold fs-5 mb-0">
-                Address(es) of the A/C holder verified through
+            <!-- PRE ADDRESS(ES) OF THE A/C HOLDER VERIFIED THROUGH -->
+            <div class="form-outline mb-4  ">
+              <label 
+                  class="form-label fw-bold fs-5 mb-0"
+                  for="preAcHolderVerifiedAddress">
+                  Address(es) of the A/C holder verified through
               </label>
 
               <select
-                  id="AcHolderVerifiedAddress"
                   class="form-select border-2"
-                  formControlName="AcHolderVerifiedAddress">
+                  formControlName="preAcHolderVerifiedAddress">
                   <option value="" disabled selected hidden></option>
                   <option value="A02">A02-Physical Verification Report</option>
                   <option value="A03">A03-Physical Verification Report</option>
                   <option value="A04">A04-Physical Verification Report</option>
               </select>
             </div>
-            <!-- EMAIL -->
-            <div class="form-outline mb-4 password-visibility-container">
-              <label class="form-label fw-bold fs-5 mb-0">
-                Email
+            <!-- PRE EMAIL -->
+            <div class="form-outline mb-4  ">
+              <label 
+                  class="form-label fw-bold fs-5 mb-0"
+                  for="preEmail">
+                  Email
               </label>
-              <input type="text" formControlName="email"
-                     class="form-control border-2"/>
+              <input 
+                  type="text" 
+                  formControlName="preEmail"
+                  class="form-control border-2"/>
             </div>
           </div>
 
         </div>
-      </form>
+    <!-- PRESENT ADDRESS ENDS -->
 
-
+    <!-- PERMANENT ADDRESS STARTS -->
     </mat-expansion-panel>
     <mat-expansion-panel (opened)="panelOpenState = true"
                          (closed)="panelOpenState = false" class="pb-2">
@@ -160,157 +205,213 @@
         </mat-panel-title>
       </mat-expansion-panel-header>
 
-      <form [formGroup]="permanentAddressForm">
         <div class="mt-5 row">
-          <div class="form-outline password-visibility-container">
+          <!-- PER SAME AS PRESENT ADDRESS -->
+          <div class="form-outline  ">
             <div class="form-check">
-              <input class="form-check-input" type="checkbox" id="addressVerified">
-              <label class="form-check-label fs-4 ms-3" for="addressVerified">
+              <input 
+                  class="form-check-input" 
+                  type="checkbox" 
+                  formControlName="perSameAsPresentAddress">
+              <label 
+                  class="form-check-label fs-4 ms-3" 
+                  for="perSameAsPresentAddress">
                 Permanent Address is same as Present Address
               </label>
             </div>
           </div>
           <div class="col-6 mt-5">
-            <!-- ADDRESS LINE 1 -->
-            <div class="form-outline mb-4 password-visibility-container">
-              <label class="form-label fw-bold fs-5 mb-0">
-                Address Line 1
+            <!-- PER ADDRESS LINE 1 -->
+            <div class="form-outline mb-4  ">
+              <label 
+                  class="form-label fw-bold fs-5 mb-0"
+                  for="perAddressLine1">
+                  Address Line 1
               </label>
-              <input type="text" formControlName="addressLine1"
-                     class="form-control  border-2"/>
+              <input 
+                  type="text" 
+                  formControlName="perAddressLine1"
+                  class="form-control border-2"/>
             </div>
-            <!-- COUNTRY -->
+            <!-- PER COUNTRY -->
             <div class="form-outline mb-4 ">
-              <label class="form-label fw-bold fs-5 mb-0">
+              <label 
+                  class="form-label fw-bold fs-5 mb-0"
+                  for="perCountry">
                 Country
               </label>
-              <select id="country" class="form-select border-2" formControlName="country">
+              <select 
+                  class="form-select border-2" 
+                  formControlName="perCountry">
                 <option value="" disabled selected hidden></option>
                 <option value="Bagerhat">Bagerhat</option>
                 <option value="Bandarban">Bandarban</option>
                 <option value="Bogura">Bogura</option>
              </select>
             </div>
-            <!-- CITY/DISTRICT -->
-            <div class="form-outline mb-4 password-visibility-container">
-              <label class="form-label fw-bold fs-5 mb-0">
+            <!-- PER CITY/DISTRICT -->
+            <div class="form-outline mb-4  ">
+              <label 
+                  class="form-label fw-bold fs-5 mb-0"
+                  for="perCityDistrict">
                 City/District
               </label>
-              <select id="cityDistrict" class="form-select border-2" formControlName="cityDistrict">
+              <select 
+                  class="form-select border-2" 
+                  formControlName="perCityDistrict">
                   <option value="" disabled selected hidden></option>
                   <option value="1-D">1-Dhaka</option>
                   <option value="2-D">2-Dhaka</option>
                   <option value="3-D">3-Dhaka</option>
               </select>
             </div>
-            <!-- POST CODE -->
-            <div class="form-outline mb-4 password-visibility-container">
-              <label class="form-label fw-bold fs-5 mb-0">
-                Post Code
+            <!-- PER POST CODE -->
+            <div class="form-outline mb-4  ">
+              <label 
+                  class="form-label fw-bold fs-5 mb-0"
+                  for="perPostCode">
+                  Post Code
               </label>
-              <input type="text" formControlName="postCode"
+              <input type="text" formControlName="perPostCode"
                      class="form-control border-2"/>
             </div>
-            <!-- ADDRESS VERIFY -->
-            <div class="form-outline mt-5 mb-2 password-visibility-container">
+            <!-- PER ADDRESS VERIFY -->
+            <div class="form-outline mt-5 mb-2  ">
               <div class="form-check">
-                <input class="form-check-input" type="checkbox" id="addressVerified">
-                <label class="form-check-label fs-4 ms-3" for="addressVerified">
-                  Address Verified
+                <input 
+                    class="form-check-input" 
+                    type="checkbox"
+                    formControlName="perAddressVerified">
+                <label 
+                    class="form-check-label fs-4 ms-3" 
+                    for="perAddressVerified">
+                    Address Verified
                 </label>
               </div>
             </div>
 
-            <!-- MOBILE -->
-            <div class="form-outline mb-4 mt-4 pt-3 password-visibility-container">
-              <label class="form-label fw-bold fs-5 mb-0">
+            <!-- PER MOBILE -->
+            <div class="form-outline mb-4 mt-4 pt-3  ">
+              <label 
+                  class="form-label fw-bold fs-5 mb-0"
+                  for="perMobile">
                 Mobile
               </label>
-              <input type="text" formControlName="mobile"
-                     class="form-control border-2"/>
+              <input 
+                  type="text" 
+                  formControlName="perMobile"
+                  class="form-control border-2"/>
             </div>
 
-            <!-- FAX -->
-            <div class="form-outline mb-4 password-visibility-container">
-              <label class="form-label fw-bold fs-5 mb-0">
+            <!-- PER FAX -->
+            <div class="form-outline mb-4  ">
+              <label 
+                  class="form-label fw-bold fs-5 mb-0"
+                  for="perFax">
                 Fax
               </label>
-              <input type="text" formControlName="fax"
-                     class="form-control border-2"/>
+              <input 
+                  type="text" 
+                  formControlName="perFax"
+                  class="form-control border-2"/>
             </div>
           </div>
           <div class="col-6 mt-5">
-            <!-- ADDRESS LINE 2 -->
-            <div class="form-outline mb-4 password-visibility-container">
-              <label class="form-label fw-bold fs-5 mb-0">
-                Address Line 2
+            <!-- PER ADDRESS LINE 2 -->
+            <div class="form-outline mb-4  ">
+              <label 
+                  class="form-label fw-bold fs-5 mb-0"
+                  for="perAddressLine2">
+                  Address Line 2
               </label>
-              <input type="text" formControlName="addressLine2"
-                     class="form-control border-2"/>
+              <input 
+                  type="text" 
+                  formControlName="perAddressLine2"
+                  class="form-control border-2"/>
             </div>
-            <!-- DIVISION -->
-            <div class="form-outline mb-4 password-visibility-container">
-              <label class="form-label fw-bold fs-5 mb-0">
-                Division
+            <!-- PER DIVISION -->
+            <div class="form-outline mb-4  ">
+              <label 
+                  class="form-label fw-bold fs-5 mb-0"
+                  for="perDivision">
+                  Division
               </label>
 
-              <select id="division" class="form-select border-2" formControlName="division">
+              <select 
+                  class="form-select border-2" 
+                  formControlName="perDivision">
                   <option value="" disabled selected hidden></option>
                   <option value="Dha">1-Dhaka</option>
                   <option value="Syl">2-Sylhet</option>
                   <option value="Bar">3-Barishal</option>
               </select>
             </div>
-            <!-- UPAZILA/THANA -->
-            <div class="form-outline mb-4 password-visibility-container">
-              <label class="form-label fw-bold fs-5 mb-0">
-                Upazila/Thana
+            <!-- PER UPAZILA/THANA -->
+            <div class="form-outline mb-4  ">
+              <label 
+                  class="form-label fw-bold fs-5 mb-0"
+                  for="perUpazilaThana">
+                  Upazila/Thana
               </label>
-              <select id="upazilaThana" class="form-select border-2" formControlName="upazilaThana">
+              <select
+                  class="form-select border-2" 
+                  formControlName="perUpazilaThana">
                   <option value="" disabled selected hidden></option>
                   <option value="Tej">TEJGAON</option>
                   <option value="Bad">BADDA</option>
                   <option value="Khi">KHILKHET</option>
               </select>
             </div>
-            <!-- NEAREST LANDMARK -->
-            <div class="form-outline mb-4 password-visibility-container">
-              <label class="form-label fw-bold fs-5 mb-0">
-                Nearest Landmark
+            <!-- PER NEAREST LANDMARK -->
+            <div class="form-outline mb-4  ">
+              <label 
+                  class="form-label fw-bold fs-5 mb-0"
+                  for="perNearestLandmark">
+                  Nearest Landmark
               </label>
-              <input type="text" formControlName="nearestLandmark"
+              <input type="text" formControlName="perNearestLandmark"
                      class="form-control border-2"/>
             </div>
-            <!-- ADDRESS(ES) OF THE A/C HOLDER VERIFIED THROUGH -->
-            <div class="form-outline mb-4 password-visibility-container">
-              <label class="form-label fw-bold fs-5 mb-0">
-                Address(es) of the A/C holder verified through
+            <!-- PER ADDRESS(ES) OF THE A/C HOLDER VERIFIED THROUGH -->
+            <div class="form-outline mb-4  ">
+              <label 
+                  class="form-label fw-bold fs-5 mb-0"
+                  for="perAcHolderVerifiedAddress">
+                  Address(es) of the A/C holder verified through
               </label>
 
               <select
-                  id="AcHolderVerifiedAddress"
                   class="form-select border-2"
-                  formControlName="AcHolderVerifiedAddress">
+                  formControlName="perAcHolderVerifiedAddress">
                   <option value="" disabled selected hidden></option>
                   <option value="A02">A02-Physical Verification Report</option>
                   <option value="A03">A03-Physical Verification Report</option>
                   <option value="A04">A04-Physical Verification Report</option>
               </select>
             </div>
-            <!-- EMAIL -->
-            <div class="form-outline mb-4 password-visibility-container">
-              <label class="form-label fw-bold fs-5 mb-0">
+            <!-- PER EMAIL -->
+            <div class="form-outline mb-4  ">
+              <label 
+                  class="form-label fw-bold fs-5 mb-0"
+                  for="perEmail">
                 Email
               </label>
-              <input type="text" formControlName="email"
-                     class="form-control border-2"/>
+              <input 
+                  type="text" 
+                  formControlName="perEmail"
+                  class="form-control border-2"/>
             </div>
           </div>
 
         </div>
-      </form>
+
 
     </mat-expansion-panel>
+    <!-- PERMANENT ADDRESS ENDS -->
+
+
+
+    <!-- WORK ADDRESS STARTS -->
     <mat-expansion-panel (opened)="panelOpenState = true"
                          (closed)="panelOpenState = false" class="pb-2">
       <mat-expansion-panel-header class="border bg-light">
@@ -318,29 +419,240 @@
           Work Address
         </mat-panel-title>
       </mat-expansion-panel-header>
-      <div class="form-outline mb-4 password-visibility-container">
-        <label class="form-label fw-bold fs-5 mb-0">
-          First Name
-        </label>
-        <input type="text" formControlName="firstName"
-               class="form-control border-2"/>
+      
+      <div class="mt-5 row">
+        <!-- PER SAME AS PRESENT ADDRESS -->
+        <div class="form-outline  ">
+          <div class="form-check">
+            <input 
+                class="form-check-input" 
+                type="checkbox" 
+                formControlName="workSameAsPresentAddress">
+            <label 
+                class="form-check-label fs-4 ms-3" 
+                for="workSameAsPresentAddress">
+              Work Address/Business/office is same as Present Address
+            </label>
+          </div>
+        </div>
+        <div class="col-6 mt-5">
+          <!-- PER ADDRESS LINE 1 -->
+          <div class="form-outline mb-4  ">
+            <label 
+                class="form-label fw-bold fs-5 mb-0"
+                for="workAddressLine1">
+                Address Line 1
+            </label>
+            <input 
+                type="text" 
+                formControlName="workAddressLine1"
+                class="form-control border-2"/>
+          </div>
+          <!-- PER COUNTRY -->
+          <div class="form-outline mb-4 ">
+            <label 
+                class="form-label fw-bold fs-5 mb-0"
+                for="workCountry">
+              Country
+            </label>
+            <select 
+                class="form-select border-2" 
+                formControlName="workCountry">
+              <option value="" disabled selected hidden></option>
+              <option value="Bagerhat">Bagerhat</option>
+              <option value="Bandarban">Bandarban</option>
+              <option value="Bogura">Bogura</option>
+           </select>
+          </div>
+          <!-- PER CITY/DISTRICT -->
+          <div class="form-outline mb-4  ">
+            <label 
+                class="form-label fw-bold fs-5 mb-0"
+                for="workCityDistrict">
+              City/District
+            </label>
+            <select 
+                class="form-select border-2" 
+                formControlName="workCityDistrict">
+                <option value="" disabled selected hidden></option>
+                <option value="1-D">1-Dhaka</option>
+                <option value="2-D">2-Dhaka</option>
+                <option value="3-D">3-Dhaka</option>
+            </select>
+          </div>
+          <!-- PER POST CODE -->
+          <div class="form-outline mb-4  ">
+            <label 
+                class="form-label fw-bold fs-5 mb-0"
+                for="workPostCode">
+                Post Code
+            </label>
+            <input type="text" formControlName="workPostCode"
+                   class="form-control border-2"/>
+          </div>
+          <!-- PER ADDRESS VERIFY -->
+          <div class="form-outline mt-5 mb-2  ">
+            <div class="form-check">
+              <input 
+                  class="form-check-input" 
+                  type="checkbox"
+                  formControlName="workAddressVerified">
+              <label 
+                  class="form-check-label fs-4 ms-3" 
+                  for="workAddressVerified">
+                  Address Verified
+              </label>
+            </div>
+          </div>
+
+          <!-- PER MOBILE -->
+          <div class="form-outline mb-4 mt-4 pt-3  ">
+            <label 
+                class="form-label fw-bold fs-5 mb-0"
+                for="workMobile">
+              Mobile
+            </label>
+            <input 
+                type="text" 
+                formControlName="workMobile"
+                class="form-control border-2"/>
+          </div>
+
+          <!-- PER FAX -->
+          <div class="form-outline mb-4  ">
+            <label 
+                class="form-label fw-bold fs-5 mb-0"
+                for="workFax">
+              Fax
+            </label>
+            <input 
+                type="text" 
+                formControlName="workFax"
+                class="form-control border-2"/>
+          </div>
+        </div>
+        <div class="col-6 mt-5">
+          <!-- PER ADDRESS LINE 2 -->
+          <div class="form-outline mb-4  ">
+            <label 
+                class="form-label fw-bold fs-5 mb-0"
+                for="workAddressLine2">
+                Address Line 2
+            </label>
+            <input 
+                type="text" 
+                formControlName="workAddressLine2"
+                class="form-control border-2"/>
+          </div>
+          <!-- PER DIVISION -->
+          <div class="form-outline mb-4  ">
+            <label 
+                class="form-label fw-bold fs-5 mb-0"
+                for="workDivision">
+                Division
+            </label>
+
+            <select 
+                class="form-select border-2" 
+                formControlName="workDivision">
+                <option value="" disabled selected hidden></option>
+                <option value="Dha">1-Dhaka</option>
+                <option value="Syl">2-Sylhet</option>
+                <option value="Bar">3-Barishal</option>
+            </select>
+          </div>
+          <!-- PER UPAZILA/THANA -->
+          <div class="form-outline mb-4  ">
+            <label 
+                class="form-label fw-bold fs-5 mb-0"
+                for="workUpazilaThana">
+                Upazila/Thana
+            </label>
+            <select
+                class="form-select border-2" 
+                formControlName="workUpazilaThana">
+                <option value="" disabled selected hidden></option>
+                <option value="Tej">TEJGAON</option>
+                <option value="Bad">BADDA</option>
+                <option value="Khi">KHILKHET</option>
+            </select>
+          </div>
+          <!-- PER NEAREST LANDMARK -->
+          <div class="form-outline mb-4  ">
+            <label 
+                class="form-label fw-bold fs-5 mb-0"
+                for="workNearestLandmark">
+                Nearest Landmark
+            </label>
+            <input type="text" formControlName="workNearestLandmark"
+                   class="form-control border-2"/>
+          </div>
+          <!-- PER ADDRESS(ES) OF THE A/C HOLDER VERIFIED THROUGH -->
+          <div class="form-outline mb-4  ">
+            <label 
+                class="form-label fw-bold fs-5 mb-0"
+                for="workAcHolderVerifiedAddress">
+                Address(es) of the A/C holder verified through
+            </label>
+
+            <select
+                class="form-select border-2"
+                formControlName="workAcHolderVerifiedAddress">
+                <option value="" disabled selected hidden></option>
+                <option value="A02">A02-Physical Verification Report</option>
+                <option value="A03">A03-Physical Verification Report</option>
+                <option value="A04">A04-Physical Verification Report</option>
+            </select>
+          </div>
+          <!-- PER EMAIL -->
+          <div class="form-outline mb-4  ">
+            <label 
+                class="form-label fw-bold fs-5 mb-0"
+                for="workEmail">
+                Email
+            </label>
+            <input 
+                type="text" 
+                formControlName="workEmail"
+                class="form-control border-2"/>
+          </div>
+        </div>
+
       </div>
+
     </mat-expansion-panel>
+    <!-- WORK ADDRESS ENDS -->
+
+
+    <!-- MAILING / COMMUNICATION ADDRESS STARTS -->
     <mat-expansion-panel (opened)="panelOpenState = true"
                          (closed)="panelOpenState = false" class="pb-2">
       <mat-expansion-panel-header class="border bg-light">
         <mat-panel-title class="fs-3 fw-bold text-muted">
-          Mailing Address
+          Mailing / Communication Address
         </mat-panel-title>
       </mat-expansion-panel-header>
-      <div class="form-outline mb-4 password-visibility-container">
-        <label class="form-label fw-bold fs-5 mb-0">
-          First Name
+      <!-- CHOOSING MAILING ADDRESS -->
+      <div class="form-outline mb-4 mt-5">
+        <label 
+            class="form-label fw-bold fs-5 mb-0"
+            for="mailingAddress">
+            Mailing / Communication Address is Same as
         </label>
-        <input type="text" formControlName="firstName"
-               class="form-control border-2"/>
+        <select
+            class="form-select border-2" 
+            formControlName="mailingAddress">
+            <option value="" disabled selected hidden></option>
+            <option value="Per">Permanent Address</option>
+            <option value="Pre">Permanent Address</option>
+        </select>
       </div>
+
     </mat-expansion-panel>
+    <!-- MAILING / COMMUNICATION ADDRESS ENDS -->
+    
+
+    <!-- EMERGENCY CONTACT PERSON STARTS -->
     <mat-expansion-panel (opened)="panelOpenState = true"
                          (closed)="panelOpenState = false" class="pb-2">
       <mat-expansion-panel-header class="border bg-light">
@@ -348,14 +660,89 @@
           Emergency Contact Person
         </mat-panel-title>
       </mat-expansion-panel-header>
-      <div class="form-outline mb-4 password-visibility-container">
-        <label class="form-label fw-bold fs-5 mb-0">
-          First Name
-        </label>
-        <input type="text" formControlName="firstName"
-               class="form-control border-2"/>
+      
+      <div class="row mt-5">
+
+          <div class="col-6">
+              <!-- EMERGENCY PERSON NAME -->
+            <div class="form-outline mb-4">
+              <label 
+                  class="form-label fw-bold fs-5 mb-0"
+                  for="emergencyName">
+                  Name
+              </label>
+              <input 
+                  type="text" 
+                  formControlName="emergencyName"
+                  class="form-control  border-2"/>
+            </div>
+
+             <!-- CHOOSING MAILING ADDRESS -->
+            <div class="form-outline mb-4">
+              <label 
+                  class="form-label fw-bold fs-5 mb-0"
+                  for="emergencyRelationship">
+                  Relationship with Accountholder
+              </label>
+              <select
+                  class="form-select border-2" 
+                  formControlName="emergencyRelationship">
+                  <option value="" disabled selected hidden></option>
+                  <option value="">MA</option>
+                  <option value="">BABA</option>
+                  <option value="">BHAI</option>
+              </select>
+            </div>
+
+            <!-- EMERGENCY EMAIL -->
+            <div class="form-outline mb-4">
+              <label 
+                  class="form-label fw-bold fs-5 mb-0"
+                  for="emergencyEmail">
+                  Email
+              </label>
+              <input 
+                  type="text" 
+                  formControlName="emergencyEmail"
+                  class="form-control  border-2"/>
+            </div>
+
+          </div>
+
+          <div class="col-6">
+            <!-- EMERGENCY ADDRESS -->
+            <div class="form-outline mb-4">
+              <label 
+                  class="form-label fw-bold fs-5 mb-0"
+                  for="emergencyAddress">
+                  Address
+              </label>
+              <input 
+                  type="text" 
+                  formControlName="emergencyAddress"
+                  class="form-control  border-2"/>
+            </div>
+
+            <!-- EMERGENCY MOBILE -->
+            <div class="form-outline mb-4">
+              <label 
+                  class="form-label fw-bold fs-5 mb-0"
+                  for="emergencyMobile">
+                  Mobile
+              </label>
+              <input 
+                  type="text" 
+                  formControlName="emergencyMobile"
+                  class="form-control  border-2"/>
+            </div>
+
+          </div>
+
       </div>
+
     </mat-expansion-panel>
+    <!-- EMERGENCY CONTACT PERSON STARTS -->
+
   </mat-accordion>
 
   <div class="mt-4 d-flex justify-content-end">

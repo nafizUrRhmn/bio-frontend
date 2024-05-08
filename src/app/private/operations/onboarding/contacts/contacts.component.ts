@@ -14,51 +14,74 @@ import {MatExpansionModule} from "@angular/material/expansion";
 export class ContactsComponent {
   panelOpenState = false;
   detailsForm: FormGroup;
-  presentAddressForm: FormGroup;
-  permanentAddressForm: FormGroup;
   @Output() submitEvent =  new EventEmitter<any>();
   @Output() previousEvent = new EventEmitter<any>();
 
 
   constructor(private fb: FormBuilder) {
     this.detailsForm = this.fb.group({
-      firstName: ['', Validators.required],
-      middleName: ['', Validators.required],
-      lastName: ['', Validators.required]
+      // PRESENT ADDRESS
+      preAddressLine1: ['',Validators.required],
+      preCountry: ['',Validators.required],
+      preCityDistrict: ['',Validators.required],
+      prePostCode: ['',Validators.required],
+      preAddressVerified: ['',Validators.required],
+      preMobile: ['',Validators.required],
+      preFax: ['',Validators.required],
+      preAddressLine2: ['',Validators.required],
+      preDivision: ['',Validators.required],
+      preUpazilaThana: ['',Validators.required],
+      preNearestLandmark: ['',Validators.required],
+      preAcHolderVerifiedAddress: ['',Validators.required],
+      preEmail: ['',Validators.required],
+
+      // PERMANENT ADDRESS
+      perSameAsPresentAddress: ['',Validators.required],
+      perAddressLine1: ['',Validators.required],
+      perCountry: ['',Validators.required],
+      perCityDistrict: ['',Validators.required],
+      perPostCode: ['',Validators.required],
+      perAddressVerified: ['',Validators.required],
+      perMobile: ['',Validators.required],
+      perFax: ['',Validators.required],
+      perAddressLine2: ['',Validators.required],
+      perDivision: ['',Validators.required],
+      perUpazilaThana: ['',Validators.required],
+      perNearestLandmark: ['',Validators.required],
+      perAcHolderVerifiedAddress: ['',Validators.required],
+      perEmail: ['',Validators.required],
+
+
+      // WORK ADDRESS
+      workSameAsPresentAddress: ['',Validators.required],
+      workAddressLine1: ['',Validators.required],
+      workCountry: ['',Validators.required],
+      workCityDistrict: ['',Validators.required],
+      workPostCode: ['',Validators.required],
+      workAddressVerified: ['',Validators.required],
+      workMobile: ['',Validators.required],
+      workFax: ['',Validators.required],
+      workAddressLine2: ['',Validators.required],
+      workDivision: ['',Validators.required],
+      workUpazilaThana: ['',Validators.required],
+      workNearestLandmark: ['',Validators.required],
+      workAcHolderVerifiedAddress: ['',Validators.required],
+      workEmail: ['',Validators.required],
+
+      // MAILING / COMMUNICATION ADDRESS
+      mailingAddress: ['',Validators.required],
+
+      // EMERGENCY CONTACT PERSON
+      emergencyName: ['',Validators.required],
+      emergencyRelationship: ['',Validators.required],
+      emergencyEmail: ['',Validators.required],
+      emergencyAddress: ['',Validators.required],
+      emergencyMobile: ['',Validators.required]
     });
   }
 
   ngOnInit(){
-    this.presentAddressForm=this.fb.group({
-      addressLine1: ['',Validators.required],
-      country: ['',Validators.required],
-      cityDistrict: ['',Validators.required],
-      postCode: ['',Validators.required],
-      addressVerified: ['',Validators.required],
-      mobile: ['',Validators.required],
-      fax: ['',Validators.required],
-      addressLine2: ['',Validators.required],
-      division: ['',Validators.required],
-      upazilaThana: ['',Validators.required],
-      nearestLandmark: ['',Validators.required],
-      AcHolderVerifiedAddress: ['',Validators.required],
-      email: ['',Validators.required]
-    });
-    this.permanentAddressForm=this.fb.group({
-      addressLine1: ['',Validators.required],
-      country: ['',Validators.required],
-      cityDistrict: ['',Validators.required],
-      postCode: ['',Validators.required],
-      addressVerified: ['',Validators.required],
-      mobile: ['',Validators.required],
-      fax: ['',Validators.required],
-      addressLine2: ['',Validators.required],
-      division: ['',Validators.required],
-      upazilaThana: ['',Validators.required],
-      nearestLandmark: ['',Validators.required],
-      AcHolderVerifiedAddress: ['',Validators.required],
-      email: ['',Validators.required]
-    });
+    
   }
 
 
