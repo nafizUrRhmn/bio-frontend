@@ -8,27 +8,147 @@
         </mat-panel-title>
       </mat-expansion-panel-header>
 
-      <div class="mt-5 row">
-        <div class="col-6">
-          <div class="form-outline mb-4 password-visibility-container">
-            <label class="form-label fw-bold fs-5 mb-0">
-              First Name
-            </label>
-            <input type="text" formControlName="firstName"
-                   class="form-control form-control-lg border-2"/>
+      <form [formGroup]="presentAddressForm">
+        <div class="mt-5 row">
+          <div class="col-6">
+            <!-- ADDRESS LINE 1 -->
+            <div class="form-outline mb-4 password-visibility-container">
+              <label class="form-label fw-bold fs-5 mb-0">
+                Address Line 1
+              </label>
+              <input type="text" formControlName="addressLine1"
+                     class="form-control  border-2"/>
+            </div>
+            <!-- COUNTRY -->
+            <div class="form-outline mb-4 ">
+              <label class="form-label fw-bold fs-5 mb-0">
+                Country
+              </label>
+              <select id="country" class="form-select border-2" formControlName="country">
+                <option value="" disabled selected hidden></option>
+                <option value="Bagerhat">Bagerhat</option>
+                <option value="Bandarban">Bandarban</option>
+                <option value="Bogura">Bogura</option>
+             </select>
+            </div>
+            <!-- CITY/DISTRICT -->
+            <div class="form-outline mb-4 password-visibility-container">
+              <label class="form-label fw-bold fs-5 mb-0">
+                City/District
+              </label>
+              <select id="cityDistrict" class="form-select border-2" formControlName="cityDistrict">
+                  <option value="" disabled selected hidden></option>
+                  <option value="1-D">1-Dhaka</option>
+                  <option value="2-D">2-Dhaka</option>
+                  <option value="3-D">3-Dhaka</option>
+              </select>
+            </div>
+            <!-- POST CODE -->
+            <div class="form-outline mb-4 password-visibility-container">
+              <label class="form-label fw-bold fs-5 mb-0">
+                Post Code
+              </label>
+              <input type="text" formControlName="postCode"
+                     class="form-control border-2"/>
+            </div>
+            <!-- ADDRESS VERIFY -->
+            <div class="form-outline mt-5 mb-2 password-visibility-container">
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="addressVerified">
+                <label class="form-check-label fs-4 ms-3" for="addressVerified">
+                  Address Verified
+                </label>
+              </div>
+            </div>
+  
+            <!-- MOBILE -->
+            <div class="form-outline mb-4 mt-4 pt-3 password-visibility-container">
+              <label class="form-label fw-bold fs-5 mb-0">
+                Mobile
+              </label>
+              <input type="text" formControlName="mobile"
+                     class="form-control border-2"/>
+            </div>
+  
+            <!-- FAX -->
+            <div class="form-outline mb-4 password-visibility-container">
+              <label class="form-label fw-bold fs-5 mb-0">
+                Fax
+              </label>
+              <input type="text" formControlName="fax"
+                     class="form-control border-2"/>
+            </div>
           </div>
-        </div>
-        <div class="col-6">
-          <div class="form-outline mb-4 password-visibility-container">
-            <label class="form-label fw-bold fs-5 mb-0">
-              Second Name
-            </label>
-            <input type="text" formControlName="firstName"
-                   class="form-control form-control-lg border-2"/>
-          </div>
-        </div>
+          <div class="col-6">
+            <!-- ADDRESS LINE 2 -->
+            <div class="form-outline mb-4 password-visibility-container">
+              <label class="form-label fw-bold fs-5 mb-0">
+                Address Line 2
+              </label>
+              <input type="text" formControlName="addressLine2"
+                     class="form-control border-2"/>
+            </div>
+            <!-- DIVISION -->
+            <div class="form-outline mb-4 password-visibility-container">
+              <label class="form-label fw-bold fs-5 mb-0">
+                Division
+              </label>
 
-      </div>
+              <select id="division" class="form-select border-2" formControlName="division">
+                  <option value="" disabled selected hidden></option>
+                  <option value="Dha">1-Dhaka</option>
+                  <option value="Syl">2-Sylhet</option>
+                  <option value="Bar">3-Barishal</option>
+              </select>
+            </div>
+            <!-- UPAZILA/THANA -->
+            <div class="form-outline mb-4 password-visibility-container">
+              <label class="form-label fw-bold fs-5 mb-0">
+                Upazila/Thana
+              </label>
+              <select id="upazilaThana" class="form-select border-2" formControlName="upazilaThana">
+                  <option value="" disabled selected hidden></option>
+                  <option value="Tej">TEJGAON</option>
+                  <option value="Bad">BADDA</option>
+                  <option value="Khi">KHILKHET</option>
+              </select>
+            </div>
+            <!-- NEAREST LANDMARK -->
+            <div class="form-outline mb-4 password-visibility-container">
+              <label class="form-label fw-bold fs-5 mb-0">
+                Nearest Landmark
+              </label>
+              <input type="text" formControlName="nearestLandmark"
+                     class="form-control border-2"/>
+            </div>
+            <!-- ADDRESS(ES) OF THE A/C HOLDER VERIFIED THROUGH -->
+            <div class="form-outline mb-4 password-visibility-container">
+              <label class="form-label fw-bold fs-5 mb-0">
+                Address(es) of the A/C holder verified through
+              </label>
+              
+              <select 
+                  id="AcHolderVerifiedAddress" 
+                  class="form-select border-2" 
+                  formControlName="AcHolderVerifiedAddress">
+                  <option value="" disabled selected hidden></option>
+                  <option value="A02">A02-Physical Verification Report</option>
+                  <option value="A03">A03-Physical Verification Report</option>
+                  <option value="A04">A04-Physical Verification Report</option>
+              </select>
+            </div>
+            <!-- EMAIL -->
+            <div class="form-outline mb-4 password-visibility-container">
+              <label class="form-label fw-bold fs-5 mb-0">
+                Email
+              </label>
+              <input type="text" formControlName="email"
+                     class="form-control border-2"/>
+            </div>
+          </div>
+  
+        </div>
+      </form>
 
 
     </mat-expansion-panel>
@@ -40,13 +160,156 @@
         </mat-panel-title>
       </mat-expansion-panel-header>
 
-      <div class="form-outline mb-4 password-visibility-container">
-        <label class="form-label fw-bold fs-5 mb-0">
-          First Name
-        </label>
-        <input type="text" formControlName="firstName"
-               class="form-control form-control-lg border-2"/>
-      </div>
+      <form [formGroup]="permanentAddressForm">
+        <div class="mt-5 row">
+          <div class="form-outline password-visibility-container">
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" id="addressVerified">
+              <label class="form-check-label fs-4 ms-3" for="addressVerified">
+                Permanent Address is same as Present Address
+              </label>
+            </div>
+          </div>
+          <div class="col-6 mt-5">
+            <!-- ADDRESS LINE 1 -->
+            <div class="form-outline mb-4 password-visibility-container">
+              <label class="form-label fw-bold fs-5 mb-0">
+                Address Line 1
+              </label>
+              <input type="text" formControlName="addressLine1"
+                     class="form-control  border-2"/>
+            </div>
+            <!-- COUNTRY -->
+            <div class="form-outline mb-4 ">
+              <label class="form-label fw-bold fs-5 mb-0">
+                Country
+              </label>
+              <select id="country" class="form-select border-2" formControlName="country">
+                <option value="" disabled selected hidden></option>
+                <option value="Bagerhat">Bagerhat</option>
+                <option value="Bandarban">Bandarban</option>
+                <option value="Bogura">Bogura</option>
+             </select>
+            </div>
+            <!-- CITY/DISTRICT -->
+            <div class="form-outline mb-4 password-visibility-container">
+              <label class="form-label fw-bold fs-5 mb-0">
+                City/District
+              </label>
+              <select id="cityDistrict" class="form-select border-2" formControlName="cityDistrict">
+                  <option value="" disabled selected hidden></option>
+                  <option value="1-D">1-Dhaka</option>
+                  <option value="2-D">2-Dhaka</option>
+                  <option value="3-D">3-Dhaka</option>
+              </select>
+            </div>
+            <!-- POST CODE -->
+            <div class="form-outline mb-4 password-visibility-container">
+              <label class="form-label fw-bold fs-5 mb-0">
+                Post Code
+              </label>
+              <input type="text" formControlName="postCode"
+                     class="form-control border-2"/>
+            </div>
+            <!-- ADDRESS VERIFY -->
+            <div class="form-outline mt-5 mb-2 password-visibility-container">
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="addressVerified">
+                <label class="form-check-label fs-4 ms-3" for="addressVerified">
+                  Address Verified
+                </label>
+              </div>
+            </div>
+  
+            <!-- MOBILE -->
+            <div class="form-outline mb-4 mt-4 pt-3 password-visibility-container">
+              <label class="form-label fw-bold fs-5 mb-0">
+                Mobile
+              </label>
+              <input type="text" formControlName="mobile"
+                     class="form-control border-2"/>
+            </div>
+  
+            <!-- FAX -->
+            <div class="form-outline mb-4 password-visibility-container">
+              <label class="form-label fw-bold fs-5 mb-0">
+                Fax
+              </label>
+              <input type="text" formControlName="fax"
+                     class="form-control border-2"/>
+            </div>
+          </div>
+          <div class="col-6 mt-5">
+            <!-- ADDRESS LINE 2 -->
+            <div class="form-outline mb-4 password-visibility-container">
+              <label class="form-label fw-bold fs-5 mb-0">
+                Address Line 2
+              </label>
+              <input type="text" formControlName="addressLine2"
+                     class="form-control border-2"/>
+            </div>
+            <!-- DIVISION -->
+            <div class="form-outline mb-4 password-visibility-container">
+              <label class="form-label fw-bold fs-5 mb-0">
+                Division
+              </label>
+
+              <select id="division" class="form-select border-2" formControlName="division">
+                  <option value="" disabled selected hidden></option>
+                  <option value="Dha">1-Dhaka</option>
+                  <option value="Syl">2-Sylhet</option>
+                  <option value="Bar">3-Barishal</option>
+              </select>
+            </div>
+            <!-- UPAZILA/THANA -->
+            <div class="form-outline mb-4 password-visibility-container">
+              <label class="form-label fw-bold fs-5 mb-0">
+                Upazila/Thana
+              </label>
+              <select id="upazilaThana" class="form-select border-2" formControlName="upazilaThana">
+                  <option value="" disabled selected hidden></option>
+                  <option value="Tej">TEJGAON</option>
+                  <option value="Bad">BADDA</option>
+                  <option value="Khi">KHILKHET</option>
+              </select>
+            </div>
+            <!-- NEAREST LANDMARK -->
+            <div class="form-outline mb-4 password-visibility-container">
+              <label class="form-label fw-bold fs-5 mb-0">
+                Nearest Landmark
+              </label>
+              <input type="text" formControlName="nearestLandmark"
+                     class="form-control border-2"/>
+            </div>
+            <!-- ADDRESS(ES) OF THE A/C HOLDER VERIFIED THROUGH -->
+            <div class="form-outline mb-4 password-visibility-container">
+              <label class="form-label fw-bold fs-5 mb-0">
+                Address(es) of the A/C holder verified through
+              </label>
+              
+              <select 
+                  id="AcHolderVerifiedAddress" 
+                  class="form-select border-2" 
+                  formControlName="AcHolderVerifiedAddress">
+                  <option value="" disabled selected hidden></option>
+                  <option value="A02">A02-Physical Verification Report</option>
+                  <option value="A03">A03-Physical Verification Report</option>
+                  <option value="A04">A04-Physical Verification Report</option>
+              </select>
+            </div>
+            <!-- EMAIL -->
+            <div class="form-outline mb-4 password-visibility-container">
+              <label class="form-label fw-bold fs-5 mb-0">
+                Email
+              </label>
+              <input type="text" formControlName="email"
+                     class="form-control border-2"/>
+            </div>
+          </div>
+  
+        </div>
+      </form>
+
     </mat-expansion-panel>
     <mat-expansion-panel (opened)="panelOpenState = true"
                          (closed)="panelOpenState = false" class="pb-2">
@@ -60,7 +323,7 @@
           First Name
         </label>
         <input type="text" formControlName="firstName"
-               class="form-control form-control-lg border-2"/>
+               class="form-control border-2"/>
       </div>
     </mat-expansion-panel>
     <mat-expansion-panel (opened)="panelOpenState = true"
@@ -75,7 +338,7 @@
           First Name
         </label>
         <input type="text" formControlName="firstName"
-               class="form-control form-control-lg border-2"/>
+               class="form-control border-2"/>
       </div>
     </mat-expansion-panel>
     <mat-expansion-panel (opened)="panelOpenState = true"
@@ -90,20 +353,20 @@
           First Name
         </label>
         <input type="text" formControlName="firstName"
-               class="form-control form-control-lg border-2"/>
+               class="form-control border-2"/>
       </div>
     </mat-expansion-panel>
   </mat-accordion>
 
   <div class="mt-4 d-flex justify-content-end">
-    <button type="button" mat-button class="btn btn-secondary mt-5 me-2" (click)="previous()">
+    <button type="button" class="btn btn-secondary mt-5 me-2" (click)="previous()">
       <div class="d-flex align-items-center justify-content-center gap-1">
         <i class="ti ti-arrow-left fs-3"></i>
         Previous
       </div>
     </button>
 
-    <button type="button" mat-button class="btn btn-secondary mt-5" (click)="onSubmit()">
+    <button type="button" class="btn btn-secondary mt-5" (click)="onSubmit()">
       <div class="d-flex align-items-center justify-content-center gap-1">
         Next
         <i class="ti ti-arrow-right fs-3"></i>

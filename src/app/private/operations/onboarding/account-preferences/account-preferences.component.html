@@ -1,0 +1,391 @@
+<form [formGroup]="accPrefForm">
+  <mat-accordion>
+    <mat-expansion-panel (opened)="panelOpenState = true"
+                         (closed)="panelOpenState = false" class="pb-2">
+      <mat-expansion-panel-header class="border bg-light">
+        <mat-panel-title class="fs-3  fw-bold text-muted">
+          Product Details
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <div class="pt-1 w-75 row mt-5">
+        <div class="col-sm-5">
+          <label for="prodCode" class="form-label text-muted fw-bold ">
+            Product
+            <span class="ms-2 text-danger fs-3">*</span>
+          </label>
+          <select id="prodCode"
+                  class="form-select form-select-sm border-2"
+                  aria-label=".form-select-lg example"
+                  formControlName="prodCode"
+                  (change)="onChangeProduct($event)">
+            <option value="">Select one...</option>
+            <option value="NRCO">Non Registered Customer Offer</option>
+            <option value="NOKYC">OFFERNOKYC</option>
+            <option value="S">Subscriber</option>
+          </select>
+        </div>
+
+        <div class="col-sm-5">
+          <label for="schemaType" class="form-label text-muted fw-bold ">
+            Schema Type
+            <span class="ms-2 text-danger fs-3">*</span>
+          </label>
+          <select id="schemaType"
+                  class="form-select form-select-sm border-2"
+                  aria-label=".form-select-lg example"
+                  formControlName="schemaType"
+                  (change)="onChangeSchemeType($event)">
+            <option value="">Select one...</option>
+            <option value="C">CURRENT</option>
+            <option value="S">SAVINGS</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="pt-4 w-75 row">
+        <div class="col-sm-5">
+          <label for="schemaCode" class="form-label text-muted fw-bold">
+            Schema Code <span class="ms-2 text-danger fs-3">*</span>
+          </label>
+          <select id="schemaCode"
+                  class="form-select form-select-sm border-2"
+                  aria-label=".form-select-lg example"
+                  formControlName="schemaCode"
+                  (change)="onChangeSchemeType($event)">
+            <option value="">Select one...</option>
+            <option *ngFor=" let opt of schemaCodeLists" [ngValue]="opt">{{ opt.title }}</option>
+          </select>
+        </div>
+      </div>
+    </mat-expansion-panel>
+
+    <mat-expansion-panel (opened)="panelOpenState = true"
+                         (closed)="panelOpenState = false" class="pb-2">
+      <mat-expansion-panel-header class="border bg-light">
+        <mat-panel-title class="fs-3  fw-bold text-muted">
+          Nominee Details
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+
+      <div class="pt-4 w-25 row">
+        <button type="button" mat-button class="btn btn-secondary" (click)="addNominee()">
+          <div class="d-flex align-items-center justify-content-center gap-1">
+            Add Nominee
+            <!--<i class="person-add fs-3"></i> -->
+          </div>
+        </button>
+      </div>
+    </mat-expansion-panel>
+
+    <mat-expansion-panel (opened)="panelOpenState = true"
+                         (closed)="panelOpenState = false"
+                         class="pb-2">
+      <mat-expansion-panel-header class="border bg-light">
+        <mat-panel-title class="fs-3 fw-bold text-muted">
+          Account Preferences
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <div class="pt-4 w-75 row">
+        <div class="form-check form-check-inline col-sm-4">
+          <input class="form-check-input border-2" type="checkbox" id="eBanking" formControlName="eBanking">
+          <label class="form-label text-muted fw-bold" for="eBanking">
+            Electronic Banking
+          </label>
+        </div>
+      </div>
+
+      <div class="pt-4 w-75 row">
+        <div class="form-check form-check-inline col-sm-4">
+          <input class="form-check-input border-2" type="checkbox" id="eStatement" formControlName="eStatement">
+          <label class="form-label text-muted fw-bold" for="eStatement">
+            e-statement
+          </label>
+        </div>
+
+        <div class="form-check form-check-inline col-sm-4">
+          <input class="form-check-input border-2" type="checkbox" id="smsBanking" formControlName="smsBanking">
+          <label class="form-label text-muted fw-bold" for="smsBanking">
+            SMS Banking
+          </label>
+        </div>
+      </div>
+
+      <div class="pt-4 w-75 row">
+        <div class="form-check form-check-inline col-sm-4">
+          <input class="form-check-input border-2" type="checkbox" id="iBankReg" formControlName="iBankReg">
+          <label class="form-label text-muted fw-bold" for="iBankReg">
+            Internet Banking Registration
+          </label>
+        </div>
+      </div>
+
+      <div class="pt-4 w-75 row">
+        <div class="col-sm-4">
+          <label for="modeType" class="form-label text-muted fw-bold">
+            Mode Type
+          </label>
+          <select id="modeType"
+                  class="form-select form-select-sm border-2"
+                  aria-label=".form-select-lg example"
+                  formControlName="modeType"
+                  (change)="onChangeSchemeType($event)">
+            <option value="">Select one...</option>
+            <option *ngFor=" let opt of modeTypeList" [ngValue]="opt">{{ opt.title }}</option>
+          </select>
+        </div>
+
+        <div class="col-sm-4">
+          <label for="tokenType" class="form-label text-muted fw-bold">
+            Token Type
+          </label>
+          <select id="tokenType"
+                  class="form-select form-select-sm border-2"
+                  aria-label=".form-select-lg example"
+                  formControlName="tokenType"
+                  (change)="onChangeSchemeType($event)">
+            <option value="">Select one...</option>
+            <option *ngFor=" let opt of tokenTypeList" [ngValue]="opt">{{ opt.title }}</option>
+          </select>
+        </div>
+      </div>
+    </mat-expansion-panel>
+
+    <mat-expansion-panel (opened)="panelOpenState = true"
+                         (closed)="panelOpenState = false" class="pb-2">
+      <mat-expansion-panel-header class="border bg-light">
+        <mat-panel-title class="fs-3  fw-bold text-muted">
+          Transaction Preferences
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+
+      <div class="pt-4 w-75 row">
+        <div class="col-sm-4">
+          <label for="accOpenPurpose" class="form-label text-muted fw-bold">
+            Account Opening Purpose
+          </label>
+          <select id="accOpenPurpose"
+                  class="form-select form-select-sm border-2"
+                  aria-label=".form-select-lg example"
+                  formControlName="accOpenPurpose"
+                  (change)="onChangeAccOpenPurpose($event)">
+            <option value="">Select one...</option>
+            <option *ngFor=" let opt of accOpenPurposeList" [ngValue]="opt">{{ opt.title }}</option>
+          </select>
+        </div>
+        <div class="col-sm-4">
+          <label for="srcOfFund" class="form-label text-muted fw-bold">
+            Source of Income/Fund
+          </label>
+          <select id="srcOfFund"
+                  class="form-select form-select-sm border-2"
+                  aria-label=".form-select-lg example"
+                  formControlName="srcOfFund"
+                  (change)="onChangesrcOfFund($event)">
+            <option value="">Select one...</option>
+            <option *ngFor=" let opt of srcOfFundList" [ngValue]="opt">{{ opt.title }}</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="pt-4 w-75 row">
+        <div class="col-sm-4">
+          <label for="accOpenPurpose" class="form-label text-muted fw-bold">
+            Initial Deposit BDT
+          </label>
+          <input type="number"
+                 class="form-control float-end text-end" formControlName="initDep" [disabled]="true"
+                 [class]="classInitializer(initDep)">
+        </div>
+      </div>
+
+      <div class="pt-4 w-75 row">
+        <div class="form-check form-check-inline col-sm-2">
+          <input class="form-check-input border-2" type="checkbox" id="byCash" formControlName="byCash">
+          <label class="form-label text-muted fw-bold" for="byCash">
+            By Cash
+          </label>
+        </div>
+        <div class="col-sm-4">
+          <label for="accOpenPurpose" class="form-label text-muted fw-bold">
+            Cash Amount
+          </label>
+          <input type="number"
+                 class="form-control float-end text-end" formControlName="cashAmount"
+                 [class]="classInitializer(cashAmount)">
+        </div>
+      </div>
+
+      <!--<div class="pt-4 w-75 row">
+        <div class="form-check form-check-inline col-sm-2">
+          <input class="form-check-input border-2" type="checkbox" id="byCheque" formControlName="byCheque">
+          <label class="form-label text-muted fw-bold" for="byCheque">
+            By Cheque
+          </label>
+        </div>
+        <div class="col-sm-4">
+          <label for="accOpenPurpose" class="form-label text-muted fw-bold">
+            Cheque Amount
+          </label>
+          <input type="number"
+                 class="form-control float-end text-end"
+                 formControlName="chkAmount"
+                 [class]="classInitializer(chkAmount)">
+        </div>
+      </div>
+      <div class="pt-4 w-75 row">
+        <div class="col-sm-4">
+          <label for="chequeNo" class="form-label text-muted fw-bold">
+            Cheque No.
+          </label>
+          <input type="text" id="chequeNo" appUpperCase
+                 class="form-control"
+                 [class]="classInitializer(chequeNo)"
+                 formControlName="chequeNo">
+        </div>
+        <div class="col-sm-4">
+          <label for="routingNumber" class="form-label text-muted fw-bold">
+            Routing Number
+          </label>
+          <input type="number"
+                 id="routingNumber"
+                 class="form-control float-end text-end"
+                 formControlName="routingNumber"
+                 [class]="classInitializer(routingNumber)">
+        </div>
+      </div>
+
+      <div class="pt-4 w-75 row">
+        <div class="col-sm-4">
+          <label for="draweeBank" class="form-label text-muted fw-bold">
+            Drawee on (Bank Name)
+          </label>
+          <input type="text" id="draweeBank" appUpperCase
+                 class="form-control"
+                 formControlName="draweeBank"
+                 [class]="classInitializer(draweeBank)">
+        </div>
+      </div>-->
+    </mat-expansion-panel>
+
+    <mat-expansion-panel (opened)="panelOpenState = true"
+                         (closed)="panelOpenState = false" class="pb-2">
+      <mat-expansion-panel-header class="border bg-light">
+        <mat-panel-title class="fs-3  fw-bold text-muted">
+          Nature & Volume of Transaction - Deposit/Withdrawal (monthly)
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+
+      <div class="pt-4 w-auto row">
+        <app-nrx-grid [columnDefs]="depTypeColDefs" [rowData]="depTypeList"
+                      [suppressRowSelection]="true">
+        </app-nrx-grid>
+      </div>
+      <div class="pt-4 w-auto row">
+        <app-nrx-grid [columnDefs]="withDrawTypeColDefs" [rowData]="withDrawTypeList"
+                      [suppressRowSelection]="true">
+        </app-nrx-grid>
+      </div>
+
+    </mat-expansion-panel>
+
+    <mat-expansion-panel (opened)="panelOpenState = true"
+                         (closed)="panelOpenState = false" class="pb-2">
+      <mat-expansion-panel-header class="border bg-light">
+        <mat-panel-title class="fs-3  fw-bold text-muted">
+          Custom Fields
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+
+      <div class="pt-4 w-75 row">
+        <div class="col-sm-4">
+          <label for="accCostCenter" class="form-label text-muted fw-bold">
+            Account Cost Center
+          </label>
+          <input type="text" id="accCostCenter" appUpperCase
+                 class="form-control"
+                 formControlName="accCostCenter"
+                 [class]="classInitializer(accCostCenter)">
+        </div>
+        <div class="col-sm-4">
+          <label for="custSegment" class="form-label text-muted fw-bold">
+            Customer Segmentation
+          </label>
+          <select id="custSegment"
+                  class="form-select form-select-sm border-2"
+                  aria-label=".form-select-lg example"
+                  formControlName="custSegment">
+            <option value="AB8">88888888-Agent Banking</option>
+          </select>
+        </div>
+      </div>
+
+
+      <div class="pt-4 w-75 row">
+        <div class="col-sm-4">
+          <label for="custSegment" class="form-label text-muted fw-bold">
+            Customer Sector
+          </label>
+          <select id="custSec"
+                  class="form-select form-select-sm border-2"
+                  aria-label=".form-select-lg example"
+                  formControlName="custSec">
+            <option value="">Select one...</option>
+            <option value="B">Businessman/Industrialists</option>
+            <option value="F">Farmer/Fisherman</option>
+            <option value="FI">Foreign Individuals</option>
+            <option value="H">Housewives</option>
+          </select>
+        </div>
+        <div class="col-sm-4">
+          <label for="psoId" class="form-label text-muted fw-bold">
+            PSO Id
+          </label>
+          <input type="text" id="psoId" appUpperCase
+                 class="form-control"
+                 formControlName="psoId"
+                 [class]="classInitializer(psoId)">
+        </div>
+      </div>
+
+      <div class="pt-4 w-75 row">
+        <div class="col-sm-4">
+          <label for="mPsoId" class="form-label text-muted fw-bold">
+            MPSO ID
+          </label>
+          <input type="text" id="mPsoId" appUpperCase
+                 class="form-control"
+                 formControlName="mPsoId"
+                 [class]="classInitializer(mPsoId)">
+        </div>
+
+        <div class="col-sm-4">
+          <label for="rPsoId" class="form-label text-muted fw-bold">
+            RPSO ID
+          </label>
+          <input type="text" id="rPsoId" appUpperCase
+                 class="form-control"
+                 formControlName="rPsoId"
+                 [class]="classInitializer(mPsoId)">
+        </div>
+      </div>
+
+    </mat-expansion-panel>
+
+  </mat-accordion>
+</form>
+
+<div class="mt-4 d-flex justify-content-end">
+  <button type="button" class="btn btn-secondary mt-5 me-2" (click)="previous()">
+    <div class="d-flex align-items-center justify-content-center gap-1">
+      <i class="ti ti-arrow-left fs-3"></i>
+      Previous
+    </div>
+  </button>
+
+  <button type="button"  class="btn btn-secondary mt-5" (click)="onSubmit()">
+    <div class="d-flex align-items-center justify-content-center gap-1">
+      Next
+      <i class="ti ti-arrow-right fs-3"></i>
+    </div>
+  </button>
+</div>
