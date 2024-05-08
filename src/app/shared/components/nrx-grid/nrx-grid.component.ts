@@ -18,6 +18,7 @@ export class NrxGridComponent implements OnInit {
   @Input() suppressRowSelection = true;
   @Output() onSelectionChange = new EventEmitter<any>();
   @Output() onRowClickEvent = new EventEmitter<any>();
+  @Input() gridSize = 'width: auto; height: 400px;';
 
   gridApi: GridApi;
 
