@@ -2,7 +2,6 @@
   <div class="border-bottom">
     <h1 class="text-primary fw-bold text-uppercase">On Boarding</h1>
   </div>
-
   <!-- Detail Stepper -->
   <mat-stepper [linear]="isLinear" #onboarding>
     <mat-step [completed]="false" label="Details">
@@ -10,37 +9,31 @@
     </mat-step>
 
     <!-- Contact Stepper -->
-    <mat-step [completed]="false"
-              label="Contact"
-              class="prevent-scroll">
+    <mat-step [completed]="false" label="Contact">
       <app-contacts (submitEvent)="onNext($event)" (previousEvent)="onPrevious($event)"></app-contacts>
     </mat-step>
 
     <!-- AdditionalInfo Stepper -->
     <mat-step [completed]="false"
-              label="Additional Info"
-              class="prevent-scroll">
+              label="Additional Info">
       <app-additional-info (submitEvent)="onNext($event)" (previousEvent)="onPrevious($event)"></app-additional-info>
     </mat-step>
 
     <!-- Documents -->
     <mat-step [completed]="false"
-              label="Documents"
-              class="prevent-scroll">
+              label="Documents">
       <app-documents (submitEvent)="onNext($event)" (previousEvent)="onPrevious($event)"></app-documents>
     </mat-step>
     <!-- Account Preference -->
     <mat-step [completed]="false"
-              label="Account Preference"
-              class="prevent-scroll">
+              label="Account Preference">
       <app-account-preferences (submitEvent)="onNext($event)" (previousEvent)="onPrevious($event)">
 
       </app-account-preferences>
     </mat-step>
     <!-- Declaration -->
     <mat-step [completed]="false"
-              label="Declaration"
-              class="prevent-scroll">
+              label="Declaration">
       <app-declarations (submitEvent)="onNext($event)" (previousEvent)="onPrevious($event)"></app-declarations>
     </mat-step>
   </mat-stepper>

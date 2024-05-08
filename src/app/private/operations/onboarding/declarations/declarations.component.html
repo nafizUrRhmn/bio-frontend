@@ -1,4 +1,4 @@
-<form [formGroup]="detailsForm" (ngSubmit)="onSubmit()">
+<form [formGroup]="detailsForm">
   <mat-accordion>
     <mat-expansion-panel (opened)="panelOpenState = true"
                          (closed)="panelOpenState = false" class="pb-2">
@@ -58,11 +58,11 @@
       </div>
     </button>
 
-    <button type="button" mat-button class="btn btn-secondary mt-5" (click)="onSubmit()">
-      <div class="d-flex align-items-center justify-content-center gap-1">
-        Next
-        <i class="ti ti-arrow-right fs-3"></i>
-      </div>
-    </button>
+<!--    <button type="button" mat-button class="btn btn-secondary mt-5" (click)="onSubmit()">-->
+<!--      <div class="d-flex align-items-center justify-content-center gap-1">-->
+<!--        Next-->
+<!--        <i class="ti ti-arrow-right fs-3"></i>-->
+<!--      </div>-->
+<!--    </button>-->
   </div>
 </form>

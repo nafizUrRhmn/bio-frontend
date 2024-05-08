@@ -1,4 +1,4 @@
-<form [formGroup]="detailsForm" (ngSubmit)="onSubmit()">
+<form [formGroup]="detailsForm">
   <mat-accordion>
     <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false" class="pb-2">
       <mat-expansion-panel-header class="border bg-light">
@@ -33,8 +33,8 @@
             <label class="form-label fw-bold fs-5 mb-0">
               Monthly Income (Income range)
             </label>
-            <input type="text" formControlName="monthlyIncomeRange"            
-             class="form-control border-2" />             
+            <input type="text" formControlName="monthlyIncomeRange"
+             class="form-control border-2" />
           </div>
         </div>
         <div class="col-7">
@@ -51,14 +51,14 @@
               </label>
               <input type="text" formControlName="organizationName"
                class="form-control border-2"
-               
+
                [class]="classInitializer(organizationName)"
                />
                <div class="invalid-feedback" *ngIf="organizationName.invalid && (organizationName.dirty || organizationName.touched)">
                 <div *ngIf="organizationName.errors?.['required']">
-                  Value is required 
+                  Value is required
               </div>
-                          
+
               </div>
 
               <label class="form-label fw-bold fs-5 mb-0 mt-4">
@@ -79,8 +79,8 @@
                 Source of Income/ Fund
               </label>
               <input type="text" formControlName="sourceOfIncome" class="form-control  border-2" />
-  
-  
+
+
               <label class="form-label fw-bold fs-5 mb-0 mt-4">
                 Nature/Type of Business
               </label>

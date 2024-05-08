@@ -1,4 +1,4 @@
-<form [formGroup]="detailsForm" (ngSubmit)="onSubmit()">
+<form [formGroup]="detailsForm">
   <mat-accordion>
     <mat-expansion-panel (opened)="panelOpenState = true"
                          (closed)="panelOpenState = false" class="pb-2">
@@ -60,7 +60,7 @@
                 </label>
               </div>
             </div>
-  
+
             <!-- MOBILE -->
             <div class="form-outline mb-4 mt-4 pt-3 password-visibility-container">
               <label class="form-label fw-bold fs-5 mb-0">
@@ -69,7 +69,7 @@
               <input type="text" formControlName="mobile"
                      class="form-control border-2"/>
             </div>
-  
+
             <!-- FAX -->
             <div class="form-outline mb-4 password-visibility-container">
               <label class="form-label fw-bold fs-5 mb-0">
@@ -126,10 +126,10 @@
               <label class="form-label fw-bold fs-5 mb-0">
                 Address(es) of the A/C holder verified through
               </label>
-              
-              <select 
-                  id="AcHolderVerifiedAddress" 
-                  class="form-select border-2" 
+
+              <select
+                  id="AcHolderVerifiedAddress"
+                  class="form-select border-2"
                   formControlName="AcHolderVerifiedAddress">
                   <option value="" disabled selected hidden></option>
                   <option value="A02">A02-Physical Verification Report</option>
@@ -146,7 +146,7 @@
                      class="form-control border-2"/>
             </div>
           </div>
-  
+
         </div>
       </form>
 
@@ -220,7 +220,7 @@
                 </label>
               </div>
             </div>
-  
+
             <!-- MOBILE -->
             <div class="form-outline mb-4 mt-4 pt-3 password-visibility-container">
               <label class="form-label fw-bold fs-5 mb-0">
@@ -229,7 +229,7 @@
               <input type="text" formControlName="mobile"
                      class="form-control border-2"/>
             </div>
-  
+
             <!-- FAX -->
             <div class="form-outline mb-4 password-visibility-container">
               <label class="form-label fw-bold fs-5 mb-0">
@@ -286,10 +286,10 @@
               <label class="form-label fw-bold fs-5 mb-0">
                 Address(es) of the A/C holder verified through
               </label>
-              
-              <select 
-                  id="AcHolderVerifiedAddress" 
-                  class="form-select border-2" 
+
+              <select
+                  id="AcHolderVerifiedAddress"
+                  class="form-select border-2"
                   formControlName="AcHolderVerifiedAddress">
                   <option value="" disabled selected hidden></option>
                   <option value="A02">A02-Physical Verification Report</option>
@@ -306,7 +306,7 @@
                      class="form-control border-2"/>
             </div>
           </div>
-  
+
         </div>
       </form>
 
