@@ -15,7 +15,7 @@
               </label>
             </div>
               <div class="col-sm-7 col-md-7 col-lg-7">
-              <select id="funcCode" class="form-select form-select-sm border-2" formControlName="funcCode"
+              <select id="funcCode" class="form-select border-2" formControlName="funcCode"
                 (change)="onChangeFunCode()"
               >
                 <option value="I">I-Inquiry</option>
@@ -39,7 +39,7 @@
                 {{'MENU_ID' | translate}} <span class="ms-2 text-danger fs-3">*</span>
               </label>
             </div>
-            <div class="col-5">
+            <div class="col-4">
               <input type="text" class="form-control border-2" formControlName="menuId" minlength="1" maxlength="10"
                 [class]="classInitializer(menuId)" id="menuId" />
               <div class="invalid-feedback" *ngIf="menuId.invalid && (menuId.dirty || menuId.touched)">
@@ -47,8 +47,8 @@
                 <div *ngIf="menuId.errors?.['englishOnly']">English Characters only</div>
               </div>
             </div>
-            <div class="col-2">
-              <button type="button" class="btn btn-outline-primary ms-5" (click)="onSearchMenuId()"
+            <div class="col-3">
+              <button type="button" class="btn btn-outline-primary ms-2" (click)="onSearchMenuId()"
                 [disabled]="funCode==='A'">
                 <div class="d-flex align-items-center justify-content-center gap-1">
                   {{'BTN_SRCH' | translate}}
@@ -92,7 +92,9 @@
           </div>
         </div>
         <div class="text-end">
-          <button type="button" class="btn btn-secondary" (click)="onNext()">
+          <button type="button" class="btn btn-secondary" (click)="onNext()"
+          [disabled]="(menuSearchForm.dirty || menuSearchForm.untouched) 
+          && menuSearchForm.invalid">
             {{'BTN_NXT' | translate}}&nbsp;<span class="ti ti-arrow-right"></span></button>
         </div>
       </form>

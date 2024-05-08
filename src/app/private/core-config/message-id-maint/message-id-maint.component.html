@@ -11,8 +11,8 @@
                             {{ 'MIM_FUNC_CODE' | translate }}<span class="ms-2 text-danger fs-3">*</span>
                         </label>
                         <div class="col-sm-6 col-md-6 col-lg-8">
-                            <select id="funcCode" class="form-select form-select-sm border-2"
-                                aria-label=".form-select-lg example" formControlName="funcCode"
+                            <select id="funcCode" class="form-select border-2"
+                                formControlName="funcCode"
                                 (change)="onChangeFuncCode($event)"
                                 [class]="classInitializer(funcCode)"
                                 [class.is-invalid]="( funcCode.touched) && funcCode.invalid">
