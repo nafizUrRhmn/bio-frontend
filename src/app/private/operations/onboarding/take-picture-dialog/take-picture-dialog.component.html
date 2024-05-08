@@ -1,0 +1,15 @@
+<h2 mat-dialog-title>Take Picture</h2>
+<mat-dialog-content>
+    <div class="d-flex justify-content-around">
+        <div class="webcam-container" *ngIf="videoVisible">
+            <video #video id="video" width="100%" height="auto" autoplay></video>
+            <canvas #canvas hidden></canvas>
+        </div>
+        <img *ngIf="photo" [src]="photo" class="captured-image" width="100%" height="auto">
+    </div>
+</mat-dialog-content>
+<mat-dialog-actions>
+    <button mat-button (click)="takePicture()">Take Picture</button>
+    <button mat-button (click)="closeDialog(true)">Done</button>
+    <!-- <button mat-button mat-dialog-close cdkFocusInitial>Cancel</button> -->
+</mat-dialog-actions>
