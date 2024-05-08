@@ -46,6 +46,7 @@ import {ContactsComponent} from "./onboarding/contacts/contacts.component";
 import {AdditionalInfoComponent} from "./onboarding/additional-info/additional-info.component";
 import {DeclarationsComponent} from "./onboarding/declarations/declarations.component";
 import {DocumentsComponent} from "./onboarding/documents/documents.component";
+import {AccountPreferencesComponent} from "./onboarding/account-preferences/account-preferences.component";
 
 
 const routes: Routes = [
@@ -87,31 +88,32 @@ const routes: Routes = [
     ReportComponent,
     OnboardingComponent
   ],
-  imports: [
-    RouterModule.forChild(routes),
-    CommonModule,
-    SharedModule,
-    TabsModule,
-    MatTabsModule,
-    MatIconModule,
-    FormsModule,
-    ReactiveFormsModule,
-    MatNativeDateModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatDatepickerModule,
-    AgGridModule,
-    MatDialogModule,
-    MatInputModule,
-    MatRadioModule,
-    TranslateModule,
-    MatStepperModule,
-    DetailsComponent,
-    ContactsComponent,
-    AdditionalInfoComponent,
-    DeclarationsComponent,
-    DocumentsComponent
-  ],
+    imports: [
+        RouterModule.forChild(routes),
+        CommonModule,
+        SharedModule,
+        TabsModule,
+        MatTabsModule,
+        MatIconModule,
+        FormsModule,
+        ReactiveFormsModule,
+        MatNativeDateModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatDatepickerModule,
+        AgGridModule,
+        MatDialogModule,
+        MatInputModule,
+        MatRadioModule,
+        TranslateModule,
+        MatStepperModule,
+        DetailsComponent,
+        ContactsComponent,
+        AdditionalInfoComponent,
+        DeclarationsComponent,
+        DocumentsComponent,
+        AccountPreferencesComponent
+    ],
 })
 export class OperationsModule {
 }

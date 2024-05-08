@@ -33,6 +33,9 @@
     <mat-step [completed]="false"
               label="Account Preference"
               class="prevent-scroll">
+      <app-account-preferences (submitEvent)="onNext($event)" (previousEvent)="onPrevious($event)">
+
+      </app-account-preferences>
     </mat-step>
     <!-- Declaration -->
     <mat-step [completed]="false"
