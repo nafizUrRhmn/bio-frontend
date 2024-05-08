@@ -20,7 +20,8 @@
                   Address Line 1
               </label>
               <input 
-                  type="text" 
+                  type="text"
+                  id="preAddressLine1" 
                   formControlName="preAddressLine1"
                   class="form-control  border-2"/>
             </div>
@@ -31,7 +32,10 @@
                   for="preCountry">
                   Country
               </label>
-              <select class="form-select border-2" formControlName="preCountry">
+              <select 
+                id="preCountry"
+                class="form-select border-2" 
+                formControlName="preCountry">
                 <option value="" disabled selected hidden></option>
                 <option value="Bagerhat">Bagerhat</option>
                 <option value="Bandarban">Bandarban</option>
@@ -45,7 +49,10 @@
                   for="preCityDistrict">
                   City/District
               </label>
-              <select class="form-select border-2" formControlName="preCityDistrict">
+              <select 
+                  id="preCityDistrict"
+                  class="form-select border-2" 
+                  formControlName="preCityDistrict">
                   <option value="" disabled selected hidden></option>
                   <option value="1-D">1-Dhaka</option>
                   <option value="2-D">2-Dhaka</option>
@@ -61,6 +68,7 @@
               </label>
               <input 
                   type="text" 
+                  id="prePostCode"
                   formControlName="prePostCode"
                   class="form-control border-2"/>
             </div>
@@ -69,7 +77,8 @@
               <div class="form-check">
                 <input 
                     class="form-check-input" 
-                    type="checkbox" 
+                    type="checkbox"
+                    id="preAddressVerified" 
                     formControlName="preAddressVerified">
                 <label 
                     class="form-check-label fs-4 ms-3" 
@@ -87,7 +96,8 @@
                   Mobile
               </label>
               <input 
-                  type="text" 
+                  type="text"
+                  id="preMobile" 
                   formControlName="preMobile"
                   class="form-control border-2"/>
             </div>
@@ -100,7 +110,8 @@
                   Fax
               </label>
               <input 
-                  type="text" 
+                  type="text"
+                  id="preFax" 
                   formControlName="preFax"
                   class="form-control border-2"/>
             </div>
@@ -115,6 +126,7 @@
               </label>
               <input 
                   type="text" 
+                  id="preAddressLine2"
                   formControlName="preAddressLine2"
                   class="form-control border-2"/>
             </div>
@@ -126,7 +138,10 @@
                   Division
               </label>
 
-              <select class="form-select border-2" formControlName="preDivision">
+              <select 
+                  class="form-select border-2" 
+                  formControlName="preDivision"
+                  id="preDivision">
                   <option value="" disabled selected hidden></option>
                   <option value="Dha">1-Dhaka</option>
                   <option value="Syl">2-Sylhet</option>
@@ -134,14 +149,15 @@
               </select>
             </div>
             <!-- PRE UPAZILA/THANA -->
-            <div class="form-outline mb-4  ">
+            <div class="form-outline mb-4">
               <label 
                   class="form-label fw-bold fs-5 mb-0"
                   for="preUpazilaThana">
                   Upazila/Thana
               </label>
               <select 
-                  class="form-select border-2" 
+                  class="form-select border-2"
+                  id="preUpazilaThana" 
                   formControlName="preUpazilaThana">
                   <option value="" disabled selected hidden></option>
                   <option value="Tej">TEJGAON</option>
@@ -158,6 +174,7 @@
               </label>
               <input 
                   type="text" 
+                  id="preNearestLandmark"
                   formControlName="preNearestLandmark"
                   class="form-control border-2"/>
             </div>
@@ -171,6 +188,7 @@
 
               <select
                   class="form-select border-2"
+                  id="preAcHolderVerifiedAddress"
                   formControlName="preAcHolderVerifiedAddress">
                   <option value="" disabled selected hidden></option>
                   <option value="A02">A02-Physical Verification Report</option>
@@ -187,6 +205,7 @@
               </label>
               <input 
                   type="text" 
+                  id="preEmail"
                   formControlName="preEmail"
                   class="form-control border-2"/>
             </div>
@@ -212,6 +231,7 @@
               <input 
                   class="form-check-input" 
                   type="checkbox" 
+                  id="perSameAsPresentAddress"
                   formControlName="perSameAsPresentAddress">
               <label 
                   class="form-check-label fs-4 ms-3" 
@@ -230,6 +250,7 @@
               </label>
               <input 
                   type="text" 
+                  id="perAddressLine1"
                   formControlName="perAddressLine1"
                   class="form-control border-2"/>
             </div>
@@ -242,6 +263,7 @@
               </label>
               <select 
                   class="form-select border-2" 
+                  id="perCountry"
                   formControlName="perCountry">
                 <option value="" disabled selected hidden></option>
                 <option value="Bagerhat">Bagerhat</option>
@@ -254,10 +276,11 @@
               <label 
                   class="form-label fw-bold fs-5 mb-0"
                   for="perCityDistrict">
-                City/District
+                  City/District
               </label>
               <select 
                   class="form-select border-2" 
+                  id="perCityDistrict"
                   formControlName="perCityDistrict">
                   <option value="" disabled selected hidden></option>
                   <option value="1-D">1-Dhaka</option>
@@ -272,8 +295,11 @@
                   for="perPostCode">
                   Post Code
               </label>
-              <input type="text" formControlName="perPostCode"
-                     class="form-control border-2"/>
+              <input 
+                  type="text" 
+                  id="perPostCode"
+                  formControlName="perPostCode"
+                  class="form-control border-2"/>
             </div>
             <!-- PER ADDRESS VERIFY -->
             <div class="form-outline mt-5 mb-2  ">
@@ -281,6 +307,7 @@
                 <input 
                     class="form-check-input" 
                     type="checkbox"
+                    id="perAddressVerified"
                     formControlName="perAddressVerified">
                 <label 
                     class="form-check-label fs-4 ms-3" 
@@ -299,6 +326,7 @@
               </label>
               <input 
                   type="text" 
+                  id="perMobile"
                   formControlName="perMobile"
                   class="form-control border-2"/>
             </div>
@@ -312,6 +340,7 @@
               </label>
               <input 
                   type="text" 
+                  id="perFax"
                   formControlName="perFax"
                   class="form-control border-2"/>
             </div>
@@ -326,6 +355,7 @@
               </label>
               <input 
                   type="text" 
+                  id="perAddressLine2"
                   formControlName="perAddressLine2"
                   class="form-control border-2"/>
             </div>
@@ -339,6 +369,7 @@
 
               <select 
                   class="form-select border-2" 
+                  id="perDivision"
                   formControlName="perDivision">
                   <option value="" disabled selected hidden></option>
                   <option value="Dha">1-Dhaka</option>
@@ -354,7 +385,8 @@
                   Upazila/Thana
               </label>
               <select
-                  class="form-select border-2" 
+                  class="form-select border-2"
+                  id="perUpazilaThana" 
                   formControlName="perUpazilaThana">
                   <option value="" disabled selected hidden></option>
                   <option value="Tej">TEJGAON</option>
@@ -369,8 +401,11 @@
                   for="perNearestLandmark">
                   Nearest Landmark
               </label>
-              <input type="text" formControlName="perNearestLandmark"
-                     class="form-control border-2"/>
+              <input 
+                  type="text" 
+                  id="perNearestLandmark"
+                  formControlName="perNearestLandmark"
+                  class="form-control border-2"/>
             </div>
             <!-- PER ADDRESS(ES) OF THE A/C HOLDER VERIFIED THROUGH -->
             <div class="form-outline mb-4  ">
@@ -382,6 +417,7 @@
 
               <select
                   class="form-select border-2"
+                  id="perAcHolderVerifiedAddress"
                   formControlName="perAcHolderVerifiedAddress">
                   <option value="" disabled selected hidden></option>
                   <option value="A02">A02-Physical Verification Report</option>
@@ -398,6 +434,7 @@
               </label>
               <input 
                   type="text" 
+                  id="perEmail"
                   formControlName="perEmail"
                   class="form-control border-2"/>
             </div>
@@ -427,6 +464,7 @@
             <input 
                 class="form-check-input" 
                 type="checkbox" 
+                id="workSameAsPresentAddress"
                 formControlName="workSameAsPresentAddress">
             <label 
                 class="form-check-label fs-4 ms-3" 
@@ -445,6 +483,7 @@
             </label>
             <input 
                 type="text" 
+                id="workAddressLine1"
                 formControlName="workAddressLine1"
                 class="form-control border-2"/>
           </div>
@@ -457,6 +496,7 @@
             </label>
             <select 
                 class="form-select border-2" 
+                id="workCountry"
                 formControlName="workCountry">
               <option value="" disabled selected hidden></option>
               <option value="Bagerhat">Bagerhat</option>
@@ -473,6 +513,7 @@
             </label>
             <select 
                 class="form-select border-2" 
+                id="workCityDistrict"
                 formControlName="workCityDistrict">
                 <option value="" disabled selected hidden></option>
                 <option value="1-D">1-Dhaka</option>
@@ -487,8 +528,11 @@
                 for="workPostCode">
                 Post Code
             </label>
-            <input type="text" formControlName="workPostCode"
-                   class="form-control border-2"/>
+            <input 
+                type="text" 
+                id="workPostCode"
+                formControlName="workPostCode"
+                class="form-control border-2"/>
           </div>
           <!-- PER ADDRESS VERIFY -->
           <div class="form-outline mt-5 mb-2  ">
@@ -496,6 +540,7 @@
               <input 
                   class="form-check-input" 
                   type="checkbox"
+                  id="workAddressVerified"
                   formControlName="workAddressVerified">
               <label 
                   class="form-check-label fs-4 ms-3" 
@@ -514,6 +559,7 @@
             </label>
             <input 
                 type="text" 
+                id="workMobile"
                 formControlName="workMobile"
                 class="form-control border-2"/>
           </div>
@@ -527,6 +573,7 @@
             </label>
             <input 
                 type="text" 
+                id="workFax"
                 formControlName="workFax"
                 class="form-control border-2"/>
           </div>
@@ -541,6 +588,7 @@
             </label>
             <input 
                 type="text" 
+                id="workAddressLine2"
                 formControlName="workAddressLine2"
                 class="form-control border-2"/>
           </div>
@@ -554,6 +602,7 @@
 
             <select 
                 class="form-select border-2" 
+                id="workDivision"
                 formControlName="workDivision">
                 <option value="" disabled selected hidden></option>
                 <option value="Dha">1-Dhaka</option>
@@ -570,6 +619,7 @@
             </label>
             <select
                 class="form-select border-2" 
+                id="workUpazilaThana"
                 formControlName="workUpazilaThana">
                 <option value="" disabled selected hidden></option>
                 <option value="Tej">TEJGAON</option>
@@ -584,8 +634,11 @@
                 for="workNearestLandmark">
                 Nearest Landmark
             </label>
-            <input type="text" formControlName="workNearestLandmark"
-                   class="form-control border-2"/>
+            <input 
+                type="text" 
+                id="workNearestLandmark"
+                formControlName="workNearestLandmark"
+                class="form-control border-2"/>
           </div>
           <!-- PER ADDRESS(ES) OF THE A/C HOLDER VERIFIED THROUGH -->
           <div class="form-outline mb-4  ">
@@ -597,6 +650,7 @@
 
             <select
                 class="form-select border-2"
+                id="workAcHolderVerifiedAddress"
                 formControlName="workAcHolderVerifiedAddress">
                 <option value="" disabled selected hidden></option>
                 <option value="A02">A02-Physical Verification Report</option>
@@ -613,6 +667,7 @@
             </label>
             <input 
                 type="text" 
+                id="workEmail"
                 formControlName="workEmail"
                 class="form-control border-2"/>
           </div>
@@ -641,6 +696,7 @@
         </label>
         <select
             class="form-select border-2" 
+            id="mailingAddress"
             formControlName="mailingAddress">
             <option value="" disabled selected hidden></option>
             <option value="Per">Permanent Address</option>
@@ -673,6 +729,7 @@
               </label>
               <input 
                   type="text" 
+                  id="emergencyName"
                   formControlName="emergencyName"
                   class="form-control  border-2"/>
             </div>
@@ -685,7 +742,8 @@
                   Relationship with Accountholder
               </label>
               <select
-                  class="form-select border-2" 
+                  class="form-select border-2"
+                  id="emergencyRelationship"
                   formControlName="emergencyRelationship">
                   <option value="" disabled selected hidden></option>
                   <option value="">MA</option>
@@ -703,6 +761,7 @@
               </label>
               <input 
                   type="text" 
+                  id="emergencyEmail"
                   formControlName="emergencyEmail"
                   class="form-control  border-2"/>
             </div>
@@ -719,6 +778,7 @@
               </label>
               <input 
                   type="text" 
+                  id="emergencyAddress"
                   formControlName="emergencyAddress"
                   class="form-control  border-2"/>
             </div>
@@ -732,6 +792,7 @@
               </label>
               <input 
                   type="text" 
+                  id="emergencyMobile"
                   formControlName="emergencyMobile"
                   class="form-control  border-2"/>
             </div>
