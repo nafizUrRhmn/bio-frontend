@@ -1,15 +1,29 @@
-<h2 mat-dialog-title>Take Picture</h2>
-<mat-dialog-content>
-    <div class="d-flex justify-content-around">
-        <div class="webcam-container" *ngIf="videoVisible">
-            <video #video id="video" width="100%" height="auto" autoplay></video>
-            <canvas #canvas hidden></canvas>
+<!-- <h2 mat-dialog-title>Take Picture</h2> -->
+<div class="card shadow-none">
+    <div class="card-header mb-0">
+        <div class="d-flex justify-content-between align-items-center mb-0">
+            <div class="text-uppercase text-primary fw-bold fs-3">Take Picture</div>
+
+            <div mat-dialog-actions class="d-flex justify-content-end p-2">
+                <!-- CROSS BUTTON -->
+                <button type="button" class="btn-close shadow-none p-2" aria-label="Close" (click)="onCloseClick()">
+                </button>
+            </div>
         </div>
-        <img *ngIf="photo" [src]="photo" class="captured-image" width="100%" height="auto">
     </div>
-</mat-dialog-content>
-<mat-dialog-actions>
-    <button mat-button (click)="takePicture()">Take Picture</button>
-    <button mat-button (click)="closeDialog(true)">Done</button>
-    <!-- <button mat-button mat-dialog-close cdkFocusInitial>Cancel</button> -->
-</mat-dialog-actions>
+    <mat-dialog-content>
+        <div class="d-flex justify-content-around">
+            <div class="webcam-container" *ngIf="videoVisible">
+                <video #video id="video" width="100%" height="auto" autoplay></video>
+                <canvas #canvas hidden></canvas>
+            </div>
+            <img *ngIf="photo" [src]="photo" class="captured-image" width="100%" height="auto">
+        </div>
+    </mat-dialog-content>
+    <mat-dialog-actions class="d-flex justify-content-end">
+        <div>
+            <button class="btn btn-outline-success me-2" (click)="takePicture()">Take Picture</button>
+            <button class="btn btn-primary me-2" (click)="closeDialog(true)">Submit</button>
+        </div>
+    </mat-dialog-actions>
+</div>

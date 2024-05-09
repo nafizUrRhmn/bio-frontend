@@ -14,15 +14,17 @@ import { MatButtonModule } from '@angular/material/button';
   selector: 'app-details',
   templateUrl: './details.component.html',
   standalone: true,
-  imports: [MatFormFieldModule, MatButtonModule, MatExpansionModule, FormsModule, ReactiveFormsModule, MatDatepickerModule, MatInputModule,CommonModule],
+  imports: [MatFormFieldModule, MatButtonModule, MatExpansionModule, FormsModule, ReactiveFormsModule, MatDatepickerModule, MatInputModule, CommonModule],
   styleUrls: ['./details.component.scss']
 })
 
 export class DetailsComponent {
 
-  
-  imageUrl: string = '';
- 
+
+  // imageUrl: string = '';
+  imageUrl: string = '../../../../../assets/images/empty-profile-pic.jpg';
+  showDemoImage: boolean = true;
+  uploadedFileName: string = '';
 
   panelOpenState = false;
   detailsForm: FormGroup;
@@ -51,11 +53,6 @@ export class DetailsComponent {
       gender: ['', Validators.required],
     });
   }
- 
-
-  ngOnInit() {
-    
-  }
 
 
   onSubmit(): void {
@@ -69,7 +66,7 @@ export class DetailsComponent {
     this.previousEvent.emit(payload);
   }
 
-  
+
 
   onFileSelected(event: any) {
     const file: File = event.target.files[0];
@@ -77,6 +74,8 @@ export class DetailsComponent {
 
     reader.onload = (e: any) => {
       this.imageUrl = e.target.result;
+      this.showDemoImage = false;
+      this.uploadedFileName = file.name;
     };
 
     console.log(this.imageUrl);
@@ -85,21 +84,21 @@ export class DetailsComponent {
   }
 
   openTakePictureDialog() {
-    const dialogRef = this.dialog.open(TakePictureDialogComponent,{
-      
-        width: '50%',
-        height:'50%',
-        data: {
-          title: 'Take Picture',
-        },
-        disableClose: true
-      
+    const dialogRef = this.dialog.open(TakePictureDialogComponent, {
+
+      width: '50%',
+      height: '50%',
+      data: {
+        title: 'Take Picture',
+      },
+      disableClose: true
+
     });
 
-    dialogRef.afterClosed().subscribe(result => { 
+    dialogRef.afterClosed().subscribe(result => {
       console.log("Hi");
       if (result) {
-        console.log("image data "+result);
+        console.log("image data " + result);
         this.imageUrl = result;
       }
     });
