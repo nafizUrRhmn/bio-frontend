@@ -7,18 +7,27 @@
         </mat-panel-title>
       </mat-expansion-panel-header>
       <div class="mt-5 row">
-        <div class="col-4">
-          <div class="form-outline mb-4 password-visibility-container">
-            <label class="form-label fw-bold fs-5 mb-0">
-            </label>
-            <img [src]="imageUrl" alt="" *ngIf="imageUrl"  style=" width: 60%;height: 50%;">
-            <input type="file" (change)="onFileSelected($event)" accept="image/*" style="display: none; width: 30%;height: 30%;" #fileInput>
-            <button class="btn upload-profile-btn btn-outline-success me-2" (click)="fileInput.click();  $event.preventDefault()">Click to upload
-              profile picture</button>
-            <button class="btn take-picture-btn btn-outline-success"  (click)="openTakePictureDialog();  $event.preventDefault()">Take picture</button>
+        <div class="col-6">
+          <div class="d-flex flex-column mb-4 password-visibility-container">
+            <!-- <label class="form-label fw-bold fs-5 mb-0">
+            </label> -->
+            <div>
+              <img [src]="imageUrl" alt="" *ngIf="imageUrl"  style=" width: 60%;height: 50%;">
+              <input type="file" (change)="onFileSelected($event)" accept="image/*" style="display: none; width: 30%;height: 30%;" #fileInput>
+            </div>
+            <div class="mt-4 ms-1 d-flex justify-content-start">
+              <button class="btn upload-profile-btn btn-outline-success me-5 pe-4"  (click)="fileInput.click();  $event.preventDefault()">
+                <span *ngIf="uploadedFileName" [title]="uploadedFileName"><i class="ti ti-upload">Upload</i></span>
+                <span *ngIf="!uploadedFileName" title="Click to upload profile picture"> <i class="ti ti-upload">Upload</i></span>
+                
+              </button>
+              <button class="btn take-picture-btn btn-outline-success ms-5 ps-5" title="Take Picture"  (click)="openTakePictureDialog();  $event.preventDefault()">
+                <i class="ti ti-device-computer-camera">Take Picture</i>
+              </button>
+            </div>
           </div>
         </div>
-        <div class="col-4">
+        <div class="col-6">
           <div class="form-outline mb-4 password-visibility-container">
             <label class="form-label fw-bold fs-5 mb-0">
               Title
@@ -30,44 +39,6 @@
               <option value="Ms.">Ms.</option>
             </select>
           </div>
-          <div class="form-outline mb-4 password-visibility-container">
-            <label class="form-label fw-bold fs-5 mb-0">
-              Middle Name
-            </label>
-            <input type="text" formControlName="middleName" class="form-control form-control-lg border-2" />
-          </div>
-          <div class="form-outline mb-4 password-visibility-container">
-            <label class="form-label fw-bold fs-5 mb-0">
-              Relation with Account
-            </label>
-            <select class="form-select form-control-lg border-2" formControlName="relationWithAccount">
-              <option value="">Select One</option>
-              <option value="First Applicant">First Applicant</option>
-              <option value="Others">Others</option>
-              <option value=" Second Applicant"> Second Applicant</option>
-            </select>
-          </div>
-          <div class="form-outline mb-4 password-visibility-container w-100">
-            <mat-form-field appearance="fill"> <mat-label class="form-label fw-bold fs-5 mb-0">Select Date of
-                Birth</mat-label>
-              <input matInput [matDatepicker]="picker" formControlName="dob" maxlength="10">
-              <mat-hint>MM/DD/YYYY</mat-hint>
-              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-              <mat-datepicker #picker></mat-datepicker>
-            </mat-form-field>
-          </div>
-          <div class="form-outline mb-4 password-visibility-container">
-            <label class="form-label fw-bold fs-5 mb-0">
-              Document Type
-            </label>
-            <select class="form-select form-control-lg border-2" formControlName="documentType">
-              <option value="">Select One</option>
-              <option value="NID">NID</option>
-              <option value="SNID">SNID</option>
-            </select>
-          </div>
-        </div>
-        <div class="col-4">
           <div class="form-outline mb-4 password-visibility-container">
             <label class="form-label fw-bold fs-5 mb-0">
               First Name
@@ -82,88 +53,146 @@
           </div>
           <div class="form-outline mb-4 password-visibility-container">
             <label class="form-label fw-bold fs-5 mb-0">
-              Place of Birth
+              Middle Name
             </label>
-            <select class="form-select form-control-lg border-2" formControlName="placeOfBirth">
-              <option value=""></option>
-              <option value="02-BAGHERHAT">02-BAGHERHAT</option>
-              <option value="03-BANDARBAN">03-BANDARBAN</option>
-              <option value="04-BARGUNA">04-BARGUNA</option>
-              <option value="05-BARISHAL">05-BARISHAL</option>
-              <option value="06-BHOLA">06-BHOLA</option>
-              <option value="07-BOGRA">07-BOGRA</option>
-              <option value="08-BRAHMANBARIA">08-BRAHMANBARIA</option>
-              <option value="09-CHANDPUR">09-CHANDPUR</option>
-              <option value="10-CHAPINAWABGANJ">10-CHAPINAWABGANJ</option>
-              <option value="11-CHITTAGONG">11-CHITTAGONG</option>
-              <option value="12-CHUADANGA">12-CHUADANGA</option>
-              <option value="13-COMILLA">13-COMILLA</option>
-              <option value="14-COX'S BAZAR">14-COX'S BAZAR</option>
-              <option value="15-DHAKA">15-DHAKA</option>
-              <option value="16-DINAJPUR">16-DINAJPUR</option>
-              <option value="17-FARIDPUR">17-FARIDPUR</option>
-              <option value="18-FENI">18-FENI</option>
-              <option value="19-GAIBANDHA">19-GAIBANDHA</option>
-              <option value="20-GAZIPUR">20-GAZIPUR</option>
-              <option value="21-GOPALGANJ">21-GOPALGANJ</option>
-              <option value="22-HOBIGANJ">22-HOBIGANJ</option>
-              <option value="23-JAMALPUR">23-JAMALPUR</option>
-              <option value="24-JESSORE">24-JESSORE</option>
-              <option value="25-JHALOKATHI">25-JHALOKATHI</option>
-              <option value="26-JOYPURHAT">26-JOYPURHAT</option>
-              <option value="27-JINAIDAHA">27-JINAIDAHA</option>
-              <option value="28-KHULNA">28-KHULNA</option>
-              <option value="29-KHAGRACHARI">29-KHAGRACHARI</option>
-              <option value="30-KISHOREGANJ">30-KISHOREGANJ</option>
-              <option value="31-KUSTIA">31-KUSTIA</option>
-              <option value="32-KURIGRAM">32-KURIGRAM</option>
-              <option value="33-LALMONIRHAT">33-LALMONIRHAT</option>
-              <option value="34-LAKSHMIPUR">34-LAKSHMIPUR</option>
-              <option value="35-MADARIPUR">35-MADARIPUR</option>
-              <option value="36-MAGURA">36-MAGURA</option>
-              <option value="37-MANIKGANJ">37-MANIKGANJ</option>
-              <option value="38-MEHERPUR">38-MEHERPUR</option>
-              <option value="39-MOULVIBAZAR">39-MOULVIBAZAR</option>
-              <option value="40-MUNSHIGANJ">40-MUNSHIGANJ</option>
-              <option value="41-MYMENSINGH">41-MYMENSINGH</option>
-              <option value="42-NARAIL">42-NARAIL</option>
-              <option value="43-NARAYANGANJ">43-NARAYANGANJ</option>
-              <option value="44-NARSHINGDI">44-NARSHINGDI</option>
-              <option value="45-NATORE">45-NATORE</option>
-              <option value="46-NETRAKONA">46-NETRAKONA</option>
-              <option value="47-NILPHAMARI">47-NILPHAMARI</option>
-              <option value="48-NAOGAON">48-NAOGAON</option>
-              <option value="49-NOAKHALI">49-NOAKHALI</option>
-              <option value="50-PABNA">50-PABNA</option>
-              <option value="51-PANCHAGARH">51-PANCHAGARH</option>
-              <option value="52-PATUAKHALI">52-PATUAKHALI</option>
-              <option value="53-PIROJPUR">53-PIROJPUR</option>
-              <option value="54-RAJBARI">54-RAJBARI</option>
-              <option value="55-RAJSHAHI">55-RAJSHAHI</option>
-              <option value="56-RANGPUR">56-RANGPUR</option>
-              <option value="57-RANGAMATI">57-RANGAMATI</option>
-              <option value="58-SATKHIRA">58-SATKHIRA</option>
-              <option value="59-SHARIATPUR">59-SHARIATPUR</option>
-              <option value="60-SHERPUR">60-SHERPUR</option>
-              <option value="61-SIRAJGANJ">61-SIRAJGANJ</option>
-              <option value="62-SUNAMGANJ">62-SUNAMGANJ</option>
-              <option value="63-SYLHET">63-SYLHET</option>
-              <option value="64-TANGAIL">64-TANGAIL</option>
-              <option value="65-THAKURGAON">65-THAKURGAON</option>
-            </select>
+            <input type="text" formControlName="middleName" class="form-control form-control-lg border-2" />
           </div>
-          <div class="form-outline mb-4 password-visibility-container">
-            <label class="form-label fw-bold fs-5 mb-0">
-              Passport
-            </label>
-            <input type="text" formControlName="passport" class="form-control form-control-lg border-2" />
+        
+        
+         
+        </div>
+        <div class="mt-5 row">
+          <div class="col-6">
+
+            <div class="form-outline mb-4 password-visibility-container w-100">
+              <mat-form-field appearance="fill"> <mat-label class="form-label fw-bold fs-5 mb-0">Select Date of
+                  Birth</mat-label>
+                <input matInput [matDatepicker]="picker" formControlName="dob" maxlength="10">
+                <mat-hint>MM/DD/YYYY</mat-hint>
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+              </mat-form-field>
+            </div>
+
+
+
+
+            <div class="form-outline mb-4 password-visibility-container">
+              <label class="form-label fw-bold fs-5 mb-0">
+                Place of Birth
+              </label>
+              <select class="form-select form-control-lg border-2" formControlName="placeOfBirth">
+                <option value=""></option>
+                <option value="02-BAGHERHAT">02-BAGHERHAT</option>
+                <option value="03-BANDARBAN">03-BANDARBAN</option>
+                <option value="04-BARGUNA">04-BARGUNA</option>
+                <option value="05-BARISHAL">05-BARISHAL</option>
+                <option value="06-BHOLA">06-BHOLA</option>
+                <option value="07-BOGRA">07-BOGRA</option>
+                <option value="08-BRAHMANBARIA">08-BRAHMANBARIA</option>
+                <option value="09-CHANDPUR">09-CHANDPUR</option>
+                <option value="10-CHAPINAWABGANJ">10-CHAPINAWABGANJ</option>
+                <option value="11-CHITTAGONG">11-CHITTAGONG</option>
+                <option value="12-CHUADANGA">12-CHUADANGA</option>
+                <option value="13-COMILLA">13-COMILLA</option>
+                <option value="14-COX'S BAZAR">14-COX'S BAZAR</option>
+                <option value="15-DHAKA">15-DHAKA</option>
+                <option value="16-DINAJPUR">16-DINAJPUR</option>
+                <option value="17-FARIDPUR">17-FARIDPUR</option>
+                <option value="18-FENI">18-FENI</option>
+                <option value="19-GAIBANDHA">19-GAIBANDHA</option>
+                <option value="20-GAZIPUR">20-GAZIPUR</option>
+                <option value="21-GOPALGANJ">21-GOPALGANJ</option>
+                <option value="22-HOBIGANJ">22-HOBIGANJ</option>
+                <option value="23-JAMALPUR">23-JAMALPUR</option>
+                <option value="24-JESSORE">24-JESSORE</option>
+                <option value="25-JHALOKATHI">25-JHALOKATHI</option>
+                <option value="26-JOYPURHAT">26-JOYPURHAT</option>
+                <option value="27-JINAIDAHA">27-JINAIDAHA</option>
+                <option value="28-KHULNA">28-KHULNA</option>
+                <option value="29-KHAGRACHARI">29-KHAGRACHARI</option>
+                <option value="30-KISHOREGANJ">30-KISHOREGANJ</option>
+                <option value="31-KUSTIA">31-KUSTIA</option>
+                <option value="32-KURIGRAM">32-KURIGRAM</option>
+                <option value="33-LALMONIRHAT">33-LALMONIRHAT</option>
+                <option value="34-LAKSHMIPUR">34-LAKSHMIPUR</option>
+                <option value="35-MADARIPUR">35-MADARIPUR</option>
+                <option value="36-MAGURA">36-MAGURA</option>
+                <option value="37-MANIKGANJ">37-MANIKGANJ</option>
+                <option value="38-MEHERPUR">38-MEHERPUR</option>
+                <option value="39-MOULVIBAZAR">39-MOULVIBAZAR</option>
+                <option value="40-MUNSHIGANJ">40-MUNSHIGANJ</option>
+                <option value="41-MYMENSINGH">41-MYMENSINGH</option>
+                <option value="42-NARAIL">42-NARAIL</option>
+                <option value="43-NARAYANGANJ">43-NARAYANGANJ</option>
+                <option value="44-NARSHINGDI">44-NARSHINGDI</option>
+                <option value="45-NATORE">45-NATORE</option>
+                <option value="46-NETRAKONA">46-NETRAKONA</option>
+                <option value="47-NILPHAMARI">47-NILPHAMARI</option>
+                <option value="48-NAOGAON">48-NAOGAON</option>
+                <option value="49-NOAKHALI">49-NOAKHALI</option>
+                <option value="50-PABNA">50-PABNA</option>
+                <option value="51-PANCHAGARH">51-PANCHAGARH</option>
+                <option value="52-PATUAKHALI">52-PATUAKHALI</option>
+                <option value="53-PIROJPUR">53-PIROJPUR</option>
+                <option value="54-RAJBARI">54-RAJBARI</option>
+                <option value="55-RAJSHAHI">55-RAJSHAHI</option>
+                <option value="56-RANGPUR">56-RANGPUR</option>
+                <option value="57-RANGAMATI">57-RANGAMATI</option>
+                <option value="58-SATKHIRA">58-SATKHIRA</option>
+                <option value="59-SHARIATPUR">59-SHARIATPUR</option>
+                <option value="60-SHERPUR">60-SHERPUR</option>
+                <option value="61-SIRAJGANJ">61-SIRAJGANJ</option>
+                <option value="62-SUNAMGANJ">62-SUNAMGANJ</option>
+                <option value="63-SYLHET">63-SYLHET</option>
+                <option value="64-TANGAIL">64-TANGAIL</option>
+                <option value="65-THAKURGAON">65-THAKURGAON</option>
+              </select>
+            </div>
+            <div class="form-outline mb-4 password-visibility-container">
+              <label class="form-label fw-bold fs-5 mb-0">
+                Document Type
+              </label>
+              <select class="form-select form-control-lg border-2" formControlName="documentType">
+                <option value="">Select One</option>
+                <option value="NID">NID</option>
+                <option value="SNID">SNID</option>
+              </select>
+            </div>
+
           </div>
-          <div class="form-outline mb-4 password-visibility-container">
-            <label class="form-label fw-bold fs-5 mb-0">
-              Document ID
-            </label>
-            <input type="text" formControlName="documentId" class="form-control form-control-lg border-2" />
+          <div class="col-6">
+            <div class="form-outline mb-4 password-visibility-container">
+              <label class="form-label fw-bold fs-5 mb-0">
+                Relation with Account
+              </label>
+              <select class="form-select form-control-lg border-2" formControlName="relationWithAccount">
+                <option value="">Select One</option>
+                <option value="First Applicant">First Applicant</option>
+                <option value="Others">Others</option>
+                <option value=" Second Applicant"> Second Applicant</option>
+              </select>
+            </div>
+            <div class="form-outline mb-4 password-visibility-container">
+              <label class="form-label fw-bold fs-5 mb-0">
+                Passport
+              </label>
+              <input type="text" formControlName="passport" class="form-control form-control-lg border-2" />
+            </div>
+            <div class="form-outline mb-4 password-visibility-container">
+              <label class="form-label fw-bold fs-5 mb-0">
+                Document ID
+              </label>
+              <input type="text" formControlName="documentId" class="form-control form-control-lg border-2" />
+            </div>
+
           </div>
+          </div>
+        <div class="col-4">
+          
+          
+    
+      
         </div>
       </div>
     </mat-expansion-panel>
