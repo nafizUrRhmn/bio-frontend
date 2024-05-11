@@ -18,7 +18,6 @@
               <select id="funcCode" class="form-select border-2" formControlName="funcCode"
                 (change)="onChangeFunCode()"
               >
-                <option value="I">I-Inquiry</option>
                 <option *ngFor="let item of funcCodeOptions" [value]="item.optionValue">
                   {{item.optionText}}
                 <!-- <option value="A">A-Add</option>
@@ -29,7 +28,7 @@
                 <option value="X">X-Cancel</option>
                 <option value="C">C-Copy</option> -->
               </select>
-                
+
             </div>
           </div>
 
@@ -93,7 +92,7 @@
         </div>
         <div class="text-end">
           <button type="button" class="btn btn-secondary" (click)="onNext()"
-          [disabled]="(menuSearchForm.dirty || menuSearchForm.untouched) 
+          [disabled]="(menuSearchForm.dirty || menuSearchForm.untouched)
           && menuSearchForm.invalid">
             {{'BTN_NXT' | translate}}&nbsp;<span class="ti ti-arrow-right"></span></button>
         </div>
@@ -157,7 +156,7 @@
                       formControlName="menuDesc" [readOnly]="funCode !== 'A' && funCode !== 'M' && funCode !== 'C'">
                       <div class="invalid-feedback" *ngIf="menuDesc(i)?.invalid && (menuDesc(i)?.dirty || menuDesc(i)?.touched)">
                         <div *ngIf="menuDesc(i)?.errors">English Characters only</div>
-                       
+
                       </div>
 
                   </div>
@@ -365,13 +364,13 @@
           </div>
           <div class="mt-5">
             <div class="pt-1 w-50 row mt-5" *ngIf="menuFormData?.menuTp==='M'">
-              
+
                 <label for="funcCode" class="form-label text-muted col-6 ms-1 fw-bold">
                   {{'MENU_SECU_INDIC' | translate}} <span class="ms-2 text-danger fs-3">*</span>
                 </label>
 
-              
-              
+
+
               <div class="col-5">
                 <select id="secuInd" class="form-select border-2" formControlName="secuInd">
                   <option value="I">I-Inquiry</option>
@@ -397,12 +396,12 @@
             <div class="row pt-5" *ngIf="menuFormData?.menuTp==='R'">
               <div class="col-4 text-start">
                 <div class="text-muted fw-bold pe-5 pt-1">{{ 'MENU_PARAM_2' | translate}} <span class="ms-2 text-danger fs-3">*</span></div>
-                
+
               </div>
               <div class="col-3">
                 <input type="text" class="form-control border-2" formControlName="param2"
                 [class]="classInitializer(menuSaveForm.get('param2'))"
-                >               
+                >
                 <div class="invalid-feedback" *ngIf="param2.invalid && (param2.dirty || param2.touched)">
                   <div *ngIf="param2.errors?.['required']">Value is required</div>
                   <div *ngIf="param2.errors?.['englishOnly']">English Characters only</div>
@@ -459,7 +458,7 @@
                   <div *ngIf="param4.errors?.['required']">Value is required</div>
                   <div *ngIf="param4.errors?.['englishOnly']">English Characters only</div>
                 </div>
-                
+
               </div>
             </div>
             <!--            <div class="row pt-5">-->
