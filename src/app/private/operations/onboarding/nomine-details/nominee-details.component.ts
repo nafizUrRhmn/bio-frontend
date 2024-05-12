@@ -42,10 +42,12 @@ export class NomineeDetailsComponent implements OnInit {
   classInitializer = CommonUtil.classInitializer;
   @Output() submitEvent = new EventEmitter<unknown>();
   @Output() previousEvent = new EventEmitter<unknown>();
-  @ViewChild(NrxGridComponent) nrxGrid: NrxGridComponent;
+  @ViewChild('nomineeGrid') nrxNomineeGrid: NrxGridComponent;
+  @ViewChild('documentGrid') nrxDocumentGrid: NrxGridComponent;
+
   @ViewChild('relWithApplSelc') relWithApplSelc : ElementRef<HTMLSelectElement>;
 
-  isUpdate: boolean;
+  isUpdate: boolean=false;
   gridNode: any;
   nomineeDetailsForm: FormGroup;
   documentsForm : FormGroup;
@@ -70,7 +72,7 @@ export class NomineeDetailsComponent implements OnInit {
   documentTypeAll = [{
     id: 1, purposeType: 1, name: 'National ID'},
     {id: 2, purposeType: 1, name: 'TIN'},
-    {id: 3, purposeType: 2, name: 'Passport'}
+    {id: 3, purposeType: 1, name: 'Passport'}
   ];
 
   documentsColDef = [
@@ -102,8 +104,9 @@ export class NomineeDetailsComponent implements OnInit {
       { field: 'motherName',  headerName: 'Mother Name' , hide: true},
       { field: 'spouseName',  headerName: 'Spouse Name' , hide: true},
       { field: 'relWithAppl',  headerName: 'Relation With Applicant' ,cellRenderer: params => {
-          return this.relWithApplOptions[this.relWithApplSelc.nativeElement.selectedIndex].title;
-        }},
+          console.log(params.value);
+          this.relWithApplOptions.filter(u => u.val === params.value);
+      }},
       { field: 'percentage',  headerName: 'Percentage(%)' },
       { field: 'occup',  headerName: 'Percentage',hide: true},
 
@@ -189,7 +192,6 @@ export class NomineeDetailsComponent implements OnInit {
   }
 
   openTakePictureDialog() {
-
     const dialogRef = this.dialog.open(TakePictureDialogComponent, {
       width: '50%',
       height: '50%',
@@ -232,34 +234,36 @@ export class NomineeDetailsComponent implements OnInit {
     this.submitEvent.emit(payload);
   }
 
-  getOptionTitle() {
-    return this.relWithApplOptions[this.relWithApplSelc.nativeElement.selectedIndex].title;
+  getRelWithApplTitle() {
+    const value = this.relWithAppl.value;
+    return this.relWithApplOptions.filter(u => u.val === value);
   }
 
   onPurposeTypeChange() {
-    const value = <any>this.documentsForm.get('purposeType').value;
+    const value = <any>this.nomineeDetailsForm.get('purposeType').value;
+    console.log(value);
     this.documentType = this.documentTypeAll.filter(u => u.purposeType === value?.id);
   }
 
   addOnGrid(type:string) {
     let formData = this.nomineeDetailsForm.value;
     formData = {...formData};
-    console.log(formData);
-    let parentRows = <any>this.nrxGrid.gridApi.getRenderedNodes();
+    //let parentRows = <any>this.nrxNomineeGrid.gridApi.getRenderedNodes();
     let arr = [];
     /*let obj = parentRows.find(u => u.parMenuCode === formData.parMenuCode);
     if (!this.isUpdate && obj) {
       this.alertService.warningAlert(`Parent menu already exist ${obj.parMenuCode}`)
       return;
     }*/
+    console.log(this.isUpdate);
     if (this.isUpdate) {
       this.gridNode.updateData(formData);
     } else {
       arr.push(formData);
     }
-    this.nrxGrid.onGridReset(arr, type);
-    //this.nomineeDetailsForm.reset();
+    this.nrxNomineeGrid.onGridReset(arr, type);
     this.isUpdate = false;
+    this.nomineeDetailsForm.reset();
   }
 
   onRowClick($event: any) {

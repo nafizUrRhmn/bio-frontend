@@ -9,7 +9,7 @@
       </mat-expansion-panel-header>
       <div class="row mt-3">
         <div class="col-6">
-          <div class="w-50">
+          <div style="width: fit-content">
             <div>
               <img [src]="imageUrl" alt="" *ngIf="imageUrl"  style=" width: 60%;height: 50%;">
               <input type="file" (change)="onFileSelected($event)" accept="image/*" style="display: none; width: 30%;height: 30%;" #fileInput>
@@ -68,10 +68,10 @@
       <div class="row mt-3">
         <!-- DOB -->
         <div class="col-6">
-          <!--<label for="lastName" class="form-label text-muted fw-bold ">
+          <label for="lastName" class="form-label text-muted fw-bold ">
             Date of Birth
             <span class="ms-2 text-danger fs-3">*</span>
-          </label> -->
+          </label>
           <mat-form-field appearance="outline">
             <mat-label>Select Date of Birth</mat-label>
             <input matInput [matDatepicker]="picker1">
@@ -82,19 +82,20 @@
             <mat-datepicker #picker1></mat-datepicker>
           </mat-form-field>
         </div>
+
+          <!-- Father's Name -->
+          <div class="col-6">
+              <label for="fatherName" class="form-label text-muted fw-bold ">
+                  Father's Name
+                  <span class="ms-2 text-danger fs-3">*</span>
+              </label>
+              <input type="text" id="fatherName"
+                     formControlName="fatherName"
+                     class="form-control  border-2"/>
+          </div>
       </div>
 
       <div class="row mt-3">
-        <!-- Father's Name -->
-        <div class="col-6">
-          <label for="fatherName" class="form-label text-muted fw-bold ">
-            Father's Name
-            <span class="ms-2 text-danger fs-3">*</span>
-          </label>
-          <input type="text" id="fatherName"
-                 formControlName="fatherName"
-                 class="form-control  border-2"/>
-        </div>
         <div class="col-6">
           <!-- Mother's Name -->
           <label for="motherName" class="form-label text-muted fw-bold ">
@@ -105,53 +106,54 @@
                  formControlName="motherName"
                  class="form-control  border-2"/>
         </div>
+
+          <!-- Spouse Name -->
+        <div class="col-6">
+         <label for="spouseName" class="form-label text-muted fw-bold ">
+                  Husband/Wife's Name
+                  <span class="ms-2 text-danger fs-3">*</span>
+         </label>
+         <input type="text" id="spouseName"
+           formControlName="spouseName"
+           class="form-control border-2"/>
+        </div>
       </div>
 
       <div class="row mt-3">
-        <!-- Spouse Name -->
-        <div class="col-6">
-          <label for="spouseName" class="form-label text-muted fw-bold ">
-            Husband/Wife's Name
-            <span class="ms-2 text-danger fs-3">*</span>
-          </label>
-          <input type="text" id="spouseName"
-                 formControlName="spouseName"
-                 class="form-control border-2"/>
-        </div>
-
         <!-- RelationShip With Applicant -->
         <div class="col-6">
           <label class="form-label text-muted fw-bold ">
-            RelationShip With Applicant
+            Relationship With Applicant
             <span class="ms-2 text-danger fs-3">*</span>
           </label>
-          <select #relWithApplSelc (change)="getOptionTitle()"
+          <select #relWithApplSelc (change)="getRelWithApplTitle()"
                   class="form-select  border-2"
                   formControlName="relWithAppl">
             <option *ngFor="let option of relWithApplOptions" [value]="option.val">{{ option.title }}</option>
           </select>
         </div>
+
+          <!-- Percentage(%) -->
+          <div class="col-6">
+              <label for="percentage" class="form-label text-muted fw-bold ">
+                  Percentage(%)
+                  <span class="ms-2 text-danger fs-3">*</span>
+              </label>
+              <input type="number" id="percentage"
+                     formControlName="percentage"
+                     class="form-control border-2"
+                     [class]="classInitializer(percentage)"/>
+              <div class="invalid-feedback"
+                   *ngIf="percentage.invalid && (percentage.dirty || percentage.touched)">
+                  <div *ngIf="percentage.errors?.['required']">Value is required</div>
+                  <div *ngIf="percentage.errors?.['min']">Minimum number is {{ percentage.errors?.['min']?.min }}</div>
+                  <div *ngIf="percentage.errors?.['max']">Maximum number is {{ percentage.errors?.['max']?.max }}</div>
+                  <div *ngIf="percentage.errors?.['numbersOnly']">Integer Number Allowed Only</div>
+              </div>
+          </div>
       </div>
 
       <div class="row mt-3">
-        <!-- Percentage(%) -->
-        <div class="col-6">
-          <label for="percentage" class="form-label text-muted fw-bold ">
-            Percentage(%)
-            <span class="ms-2 text-danger fs-3">*</span>
-          </label>
-          <input type="number" id="percentage"
-                 formControlName="percentage"
-                 class="form-control border-2"
-                 [class]="classInitializer(percentage)"/>
-          <div class="invalid-feedback"
-               *ngIf="percentage.invalid && (percentage.dirty || percentage.touched)">
-            <div *ngIf="percentage.errors?.['required']">Value is required</div>
-            <div *ngIf="percentage.errors?.['min']">Minimum number is {{ percentage.errors?.['min']?.min }}</div>
-            <div *ngIf="percentage.errors?.['max']">Maximum number is {{ percentage.errors?.['max']?.max }}</div>
-            <div *ngIf="percentage.errors?.['numbersOnly']">Integer Number Allowed Only</div>
-          </div>
-        </div>
         <!-- Occupation -->
         <div class="col-6">
           <label for="occup" class="form-label text-muted fw-bold ">
@@ -588,7 +590,7 @@
         </div>
       </div>
       <div class="row mt-5">
-        <app-nrx-grid [columnDefs]="documentsColDef" [rowData]="documentObjList"
+        <app-nrx-grid #documentGrid [columnDefs]="documentsColDef" [rowData]="documentObjList"
                       [suppressRowSelection]="false" (onRowClickEvent)="onRowClick($event)">
         </app-nrx-grid>
       </div>
@@ -614,7 +616,7 @@
   </div>
   <!-- GRID SECTION-->
   <div class="mt-2">
-    <app-nrx-grid [columnDefs]="nomineeColDef" [rowData]="nomineeList"
+    <app-nrx-grid #nomineeGrid [columnDefs]="nomineeColDef" [rowData]="nomineeList"
                   [suppressRowSelection]="false" (onRowClickEvent)="onRowClick($event)">
     </app-nrx-grid>
   </div>
