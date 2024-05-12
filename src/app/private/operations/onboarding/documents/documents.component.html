@@ -1,83 +1,133 @@
-<form [formGroup]="detailsForm" (ngSubmit)="onSubmit()">
-  <mat-accordion>
-    <mat-expansion-panel (opened)="panelOpenState = true"
-                         (closed)="panelOpenState = false" class="pb-2">
-      <mat-expansion-panel-header class="border bg-light">
-        <mat-panel-title class="fs-3 fw-bold text-muted">
-          Basic Details
-        </mat-panel-title>
-      </mat-expansion-panel-header>
-
-      <div class="mt-5 row">
-        <div class="col-6">
-          <div class="form-outline mb-4 password-visibility-container">
+<div class="container">
+  <div class="mt-5 mb-5 container container-fluid">
+    <form [formGroup]="documentsForm">
+      <div class="row mb-3">
+        <div class="col">
+          <label class="form-label fw-bold fs-5 mb-0">
+            Purpose Type
+          </label>
+          <select id="purposeType" class="form-select form-select border-2"
+                  formControlName="purposeType" (change)="onPurposeTypeChange()">
+            <option *ngFor="let type1 of purposeType" [ngValue]="type1" >
+              {{type1.name}}
+          </select>
+        </div>
+        <div class="col">
+          <label class="form-label fw-bold fs-5 mb-0">
+            Document Type
+          </label>
+          <select id="documentType" class="form-select form-select border-2" formControlName="documentType">
+            <option *ngFor="let type of documentType" [ngValue]="type">
+              {{type.name}}
+          </select>
+        </div>
+      </div>
+      <div class="mt-5">
+        <h3 class="fs-3 fw-bolder text-muted">Details Information</h3>
+      </div>
+      <div class="pt-3 row border-top">
+        <div class="col-6 ">
+          <div class="form-outline mb-4">
             <label class="form-label fw-bold fs-5 mb-0">
-              First Name
+              Doc Number
             </label>
-            <input type="text" formControlName="firstName"
-                   class="form-control form-control-lg border-2"/>
+            <input type="text" formControlName="docNumber"
+                   class="form-control border-2"/>
           </div>
         </div>
         <div class="col-6">
-          <div class="form-outline mb-4 password-visibility-container">
+          <div class="form-outline mb-4">
             <label class="form-label fw-bold fs-5 mb-0">
-              Second Name
+              Authority
             </label>
-            <input type="text" formControlName="firstName"
-                   class="form-control form-control-lg border-2"/>
+            <input type="text" formControlName="authority"
+                   class="form-control border-2"/>
           </div>
         </div>
-
+      </div>
+      <div class="row">
+        <div class="col-6 ">
+          <label class="form-label fw-bold fs-5 mb-0">
+            Issue Date
+          </label>
+          <mat-form-field appearance="outline">
+            <input matInput [matDatepicker]="issueDatePicker"  formControlName="issueDate">
+            <mat-hint>DD/MM/YYYY</mat-hint>
+            <mat-datepicker-toggle matIconSuffix [for]="issueDatePicker"></mat-datepicker-toggle>
+            <mat-datepicker #issueDatePicker></mat-datepicker>
+          </mat-form-field>
+        </div>
+        <div class="col-6">
+          <label class="form-label fw-bold fs-5 mb-0">
+            Expiry Date
+          </label>
+          <mat-form-field appearance="outline">
+            <input matInput [matDatepicker]="expiryDatePicker" formControlName="expiryDate">
+            <mat-hint>DD/MM/YYYY</mat-hint>
+            <mat-datepicker-toggle matIconSuffix [for]="expiryDatePicker"></mat-datepicker-toggle>
+            <mat-datepicker #expiryDatePicker></mat-datepicker>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row mt-5">
+        <div class="col-6">
+          <div class="form-check">
+            <input
+              class="form-check-input"
+              type="checkbox"
+              formControlName="documentsVerified">
+            <label
+              class="form-check-label fw-bold fs-5 ms-3">
+              Documents Verified
+            </label>
+          </div>
+        </div>
+        <div class="col-6">
+          <input type="file" id="myFile" name="filename">
+          <!--          <input type="submit" class="btn btn-primary">-->
+        </div>
+      </div>
+      <div class="mt-5 col-12 text-end">
+        <!-- BUTTON UPDATE -->
+        <button class="btn btn-outline-success text-start" (click)="addOnParentGrid('update')"
+                *ngIf="isUpdate; else add">
+          <div class="d-flex align-items-center justify-content-center gap-1">
+            UPDATE
+            <i class="ti ti-edit fs-3 mb-1"></i>
+          </div>
+        </button>
+        <ng-template #add>
+          <!-- BUTTON ADD -->
+          <button class="btn btn-outline-success text-start" (click)="addOnParentGrid('add')">
+            <div class="d-flex align-items-center justify-content-center gap-1">
+              ADD
+              <i class="ti ti-plus fs-3 mb-1"></i>
+            </div>
+          </button>
+        </ng-template>
       </div>
 
-
-    </mat-expansion-panel>
-    <mat-expansion-panel (opened)="panelOpenState = true"
-                         (closed)="panelOpenState = false" class="pb-2">
-      <mat-expansion-panel-header class="border bg-light">
-        <mat-panel-title class="fs-3 fw-bold text-muted">
-          Contact
-        </mat-panel-title>
-      </mat-expansion-panel-header>
-
-      <div class="form-outline mb-4 password-visibility-container">
-        <label class="form-label fw-bold fs-5 mb-0">
-          First Name
-        </label>
-        <input type="text" formControlName="firstName"
-               class="form-control form-control-lg border-2"/>
-      </div>
-    </mat-expansion-panel>
-    <mat-expansion-panel (opened)="panelOpenState = true"
-                         (closed)="panelOpenState = false" class="pb-2">
-      <mat-expansion-panel-header class="border bg-light">
-        <mat-panel-title class="fs-3 fw-bold text-muted">
-          Additional Details
-        </mat-panel-title>
-      </mat-expansion-panel-header>
-      <div class="form-outline mb-4 password-visibility-container">
-        <label class="form-label fw-bold fs-5 mb-0">
-          First Name
-        </label>
-        <input type="text" formControlName="firstName"
-               class="form-control form-control-lg border-2"/>
-      </div>
-    </mat-expansion-panel>
-  </mat-accordion>
+    </form>
+  </div>
+  <div>
+    <app-nrx-grid [columnDefs]="documentsColDef" [rowData]="documentObjList"
+                  [suppressRowSelection]="false" (onRowClickEvent)="onRowClick($event)">
+    </app-nrx-grid>
+  </div>
 
   <div class="mt-4 d-flex justify-content-end">
-    <button type="button" mat-button class="btn btn-secondary mt-5 me-2" (click)="previous()">
+    <button type="button" class="btn btn-secondary mt-5 me-2" (click)="previous()">
       <div class="d-flex align-items-center justify-content-center gap-1">
         <i class="ti ti-arrow-left fs-3"></i>
         Previous
       </div>
     </button>
 
-    <button type="button" mat-button class="btn btn-secondary mt-5" (click)="onSubmit()">
+    <button type="button" class="btn btn-secondary mt-5" (click)="onSubmit()">
       <div class="d-flex align-items-center justify-content-center gap-1">
         Next
         <i class="ti ti-arrow-right fs-3"></i>
       </div>
     </button>
   </div>
-</form>
+</div>

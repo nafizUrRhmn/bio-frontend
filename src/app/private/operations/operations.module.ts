@@ -47,6 +47,9 @@ import {AdditionalInfoComponent} from "./onboarding/additional-info/additional-i
 import {DeclarationsComponent} from "./onboarding/declarations/declarations.component";
 import {DocumentsComponent} from "./onboarding/documents/documents.component";
 import {AccountPreferencesComponent} from "./onboarding/account-preferences/account-preferences.component";
+import { TakePictureDialogComponent } from './onboarding/take-picture-dialog/take-picture-dialog.component';
+import {MatButtonModule} from "@angular/material/button";
+import {MatStepperModule} from "@angular/material/stepper";
 
 
 const routes: Routes = [
@@ -112,7 +115,8 @@ const routes: Routes = [
         AdditionalInfoComponent,
         DeclarationsComponent,
         DocumentsComponent,
-        AccountPreferencesComponent
+        AccountPreferencesComponent,
+      MatButtonModule
     ],
 })
 export class OperationsModule {
