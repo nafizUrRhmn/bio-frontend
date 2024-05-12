@@ -1,4 +1,4 @@
-<form [formGroup]="detailsForm">
+<form [formGroup]="retailDeclarationsForm">
   <mat-accordion>
     <mat-expansion-panel (opened)="panelOpenState = true"
                          (closed)="panelOpenState = false" class="pb-2">
@@ -7,46 +7,263 @@
           Declarations
         </mat-panel-title>
       </mat-expansion-panel-header>
-
-      <div class="mt-5 row">
-        <div class="col-6">
-          <div class="form-outline mb-4 password-visibility-container">
-            <label class="form-label fw-bold fs-5 mb-0">
-              First Name
-            </label>
-            <input type="text" formControlName="firstName"
-                   class="form-control form-control-lg border-2"/>
-          </div>
-        </div>
-        <div class="col-6">
-          <div class="form-outline mb-4 password-visibility-container">
-            <label class="form-label fw-bold fs-5 mb-0">
-              Second Name
-            </label>
-            <input type="text" formControlName="firstName"
-                   class="form-control form-control-lg border-2"/>
-          </div>
-        </div>
-
+      <!-- SOURCE OF FUND IN DETAILS -->
+      <div class="mt-5 mb-4 ">
+        <label 
+          class="form-label fw-bold fs-5 mb-0"
+          for="sourceOfFund">
+          Source(s) of Fund(s) (in details)
+        </label>
+        <input 
+          type="text" 
+          id="sourceOfFund"
+          formControlName="sourceOfFund"
+          class="form-control border-2"/>
       </div>
 
+      <!-- BENIFICIAR OWNER IDENTIFIED? -->
+      <div class="row">
+        <div class="col-9 border-end">
+          <label 
+          class="form-label fw-bold fs-5 mb-0"
+          for="benificiarOwnersIdentified">
+          Whether the Benificiar Owners of the A/C has/have been identified? 
+          </label>
+        </div>
+        <div class="col-3">
+          <select 
+                id="benificiarOwnersIdentified"
+                class="form-select border-2" 
+                formControlName="benificiarOwnersIdentified">
+                <option value="" disabled selected hidden></option>
+                <option value="">Y-YES</option>
+                <option value="">N-NO</option>
+                <option value="">NOT APPROVED</option>
+          </select>
+        </div>
+      </div>
+
+      <hr>
+
+    <!-- PEP? STARTS -->
+      <div class="row mt-4">
+        <div class="col-9 border-end">
+          <label 
+          class="form-label fw-bold fs-5 mb-0"
+          for="pepOrNot">
+          Is the customer a Politically Exposed Person (PEP)/Influential Person 
+          (IP)/chief or high officials of an international 
+          organization and their family members or close associates 
+          (as per the definition in the circular issued by BFIU)
+          </label>
+        </div>
+        <div class="col-3 d-flex flex-row justify-content-between align-items-center">
+          <div class="form-check">
+            <input 
+              class="form-check-input" 
+              type="radio" 
+              id="pepYes" 
+              formControlName="pepOrNot" 
+              value="Y">
+            <label 
+              class="form-check-label fw-bold ms-3" 
+              for="pepYes">
+              YES
+            </label>
+          </div>
+          <div class="form-check">
+            <input 
+              class="form-check-input" 
+              type="radio" 
+              id="pepNo" 
+              formControlName="pepOrNot" 
+              value="N">
+            <label 
+              class="form-check-label fw-bold ms-3" 
+              for="pepNo">
+              NO
+            </label>
+          </div>
+        </div>
+        
+      </div>
+      <!-- PEP SENIOR MANAGEMENT APPROVAL -->
+      <div class="row mt-4 ">
+        <div class="col-9 border-end">
+          <label 
+          class="form-label fw-bold fs-5 mb-0 ms-5"
+          for="pepSeniorManagementApproval">
+          (a) Has the approval been taken from the senior management?
+          </label>
+        </div>
+        <div class="col-3 d-flex flex-row justify-content-between align-items-center">
+          <div class="form-check">
+            <input 
+              class="form-check-input" 
+              type="radio" 
+              id="pepSeniorManagementApprovalYes" 
+              formControlName="pepSeniorManagementApproval" 
+              value="Y">
+            <label 
+              class="form-check-label fw-bold ms-3" 
+              for="pepSeniorManagementApprovalYes">
+              YES
+            </label>
+          </div>
+          <div class="form-check">
+            <input 
+              class="form-check-input" 
+              type="radio" 
+              id="pepSeniorManagementApprovalNo" 
+              formControlName="pepSeniorManagementApproval" 
+              value="N">
+            <label 
+              class="form-check-label fw-bold ms-3" 
+              for="pepSeniorManagementApprovalNo">
+              NO
+            </label>
+          </div>
+        </div>
+        
+      </div>
+
+      <!-- PEP FACE TO FACE INTERVIEW -->
+      <div class="row mt-4 ">
+        <div class="col-9 border-end">
+          <label 
+          class="form-label fw-bold fs-5 mb-0 ms-5"
+          for="pepInterview">
+          (b)Has a face to face interview of the client been taken?
+          </label>
+        </div>
+        <div class="col-3 d-flex flex-row justify-content-between align-items-center">
+          <div class="form-check">
+            <input 
+              class="form-check-input" 
+              type="radio" 
+              id="pepInterviewYes" 
+              formControlName="pepInterview" 
+              value="Y">
+            <label 
+              class="form-check-label fw-bold ms-3" 
+              for="pepInterviewYes">
+              YES
+            </label>
+          </div>
+          <div class="form-check">
+            <input 
+              class="form-check-input" 
+              type="radio" 
+              id="pepInterviewNo" 
+              formControlName="pepInterview" 
+              value="N">
+            <label 
+              class="form-check-label fw-bold ms-3" 
+              for="pepInterviewNo">
+              NO
+            </label>
+          </div>
+        </div>
+        
+      </div>
+    <!-- PEP? ENDS -->
+
+    <hr>
+
+    <!-- CUSTOMER NAME MATCH WITH ILLEGAL ACTS? -->
+    <div class="row mt-4 ">
+      <div class="col-9 border-end">
+        <label 
+        class="form-label fw-bold fs-5 mb-0"
+        for="nameMatchWithIllegalActs">
+        While screening, in light of relevant acts, rules, and circulars, whether the customer
+        name matched with the suspected individuals or entities as listed under various resolutions
+        of the United Nations Security Council for terrorist activities, financing of terrorism
+        and financing the proliferation of weapons of mass destruction and banned list of
+        individuals or entities by the government of the people republic of Bangladesh?
+        </label>
+      </div>
+      <div class="col-3 d-flex flex-row justify-content-between align-items-center">
+        <div class="form-check">
+          <input 
+            class="form-check-input" 
+            type="radio" 
+            id="nameMatchWithIllegalActsYes" 
+            formControlName="nameMatchWithIllegalActs" 
+            value="Y">
+          <label 
+            class="form-check-label fw-bold ms-3" 
+            for="nameMatchWithIllegalActsYes">
+            YES
+          </label>
+        </div>
+        <div class="form-check">
+          <input 
+            class="form-check-input" 
+            type="radio" 
+            id="nameMatchWithIllegalActsNo" 
+            formControlName="nameMatchWithIllegalActs" 
+            value="N">
+          <label 
+            class="form-check-label fw-bold ms-3" 
+            for="nameMatchWithIllegalActsNo">
+            NO
+          </label>
+        </div>
+      </div>
+      
+    </div>
 
     </mat-expansion-panel>
     <mat-expansion-panel (opened)="panelOpenState = true"
                          (closed)="panelOpenState = false" class="pb-2">
       <mat-expansion-panel-header class="border bg-light">
         <mat-panel-title class="fs-3 fw-bold text-muted">
-          Risk Grading on Profession/Business
+          Risk Grading on Profession / Business
         </mat-panel-title>
       </mat-expansion-panel-header>
 
-      <div class="form-outline mb-4 password-visibility-container">
-        <label class="form-label fw-bold fs-5 mb-0">
-          First Name
-        </label>
-        <input type="text" formControlName="firstName"
-               class="form-control form-control-lg border-2"/>
+      <div class="mt-5">
+        <app-nrx-grid 
+            [columnDefs]="columnDefs" 
+            [rowData]="rowData"
+            [gridSize]="'width: auto; height: 250px;'">
+        </app-nrx-grid>
       </div>
+
+      <div class="row mt-4">
+        <div class="col-6">
+            <!-- OVERALL RISK RATING -->
+            <div class="form-outline mb-4  ">
+              <label 
+                  class="form-label fw-bold fs-5 mb-0"
+                  for="overallRistRating">
+                  Overall Risk Rating
+              </label>
+              <input 
+                  type="text" 
+                  id="overallRistRating"
+                  formControlName="overallRistRating"
+                  class="form-control border-2"/>
+            </div>
+        </div>
+        <div class="col-6">
+              <!-- COMMENT -->
+            <div class="form-outline mb-4  ">
+              <label 
+                  class="form-label fw-bold fs-5 mb-0"
+                  for="comment">
+                  Comment
+              </label>
+              <input 
+                  type="text" 
+                  id="comment"
+                  formControlName="comment"
+                  class="form-control border-2"/>
+            </div>
+        </div>
+      </div>
+
     </mat-expansion-panel>
   </mat-accordion>
 
