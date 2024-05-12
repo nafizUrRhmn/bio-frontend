@@ -56,9 +56,6 @@ export class NrxGridComponent implements OnInit {
     this.onRowClickEvent.emit($event);
   }
   onGridReset(row, type){
-    console.log(type);
-    console.log(row);
-    this.gridApi.getRowNode(row.parMenuCode);
     this.gridApi!.applyTransaction({[type]: row});
   }
 

@@ -40,13 +40,14 @@ import {CorporateComponent} from './corporate/corporate.component';
 import {TranslateModule} from "@ngx-translate/core";
 import {ReportComponent} from './report/report.component';
 import {OnboardingComponent} from "./onboarding/onboarding.component";
-import {MatStepperModule} from "@angular/material/stepper";
 import {DetailsComponent} from "./onboarding/details/details.component";
 import {ContactsComponent} from "./onboarding/contacts/contacts.component";
 import {AdditionalInfoComponent} from "./onboarding/additional-info/additional-info.component";
 import {DeclarationsComponent} from "./onboarding/declarations/declarations.component";
 import {DocumentsComponent} from "./onboarding/documents/documents.component";
 import {AccountPreferencesComponent} from "./onboarding/account-preferences/account-preferences.component";
+import {MatButtonModule} from "@angular/material/button";
+import {MatStepperModule} from "@angular/material/stepper";
 
 
 const routes: Routes = [
@@ -112,7 +113,8 @@ const routes: Routes = [
         AdditionalInfoComponent,
         DeclarationsComponent,
         DocumentsComponent,
-        AccountPreferencesComponent
+        AccountPreferencesComponent,
+        MatButtonModule
     ],
 })
 export class OperationsModule {
