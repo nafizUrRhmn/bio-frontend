@@ -2,17 +2,17 @@ import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
 import {ColDef} from "ag-grid-community";
 import {MatDialog} from "@angular/material/dialog";
-import {NomineeDetailsComponent} from "./nomine-details/nominee-details.component";
 import {CommonUtil} from "../../../../_helpers/common.util";
 import {MatExpansionModule} from "@angular/material/expansion";
 import {NrxGridModule} from "../../../../shared/components/nrx-grid/nrx-grid.module";
 import {TranslateModule} from "@ngx-translate/core";
 import {OnboardingConstant} from "../onboarding.constant";
+import {NgForOf} from "@angular/common";
 @Component({
   selector: 'app-account-preferences',
   templateUrl: './account-preferences.component.html',
   styleUrls: ['./account-preferences.component.scss'],
-  imports: [ReactiveFormsModule, MatExpansionModule, NrxGridModule, TranslateModule],
+  imports: [ReactiveFormsModule, MatExpansionModule, NrxGridModule, TranslateModule, NgForOf],
   standalone: true
 })
 export class AccountPreferencesComponent implements OnInit {
@@ -292,9 +292,9 @@ export class AccountPreferencesComponent implements OnInit {
   }
 
   addNominee() {
-    const dialogRef = this.dialog.open(NomineeDetailsComponent, {
+    /*const dialogRef = this.dialog.open(NomineeDetailsComponent, {
       width: '50%'
-    });
+    });*/
   }
 
   onSubmit(): void {

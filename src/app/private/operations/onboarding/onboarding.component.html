@@ -34,9 +34,13 @@
     <!-- Account Preference -->
     <mat-step 
               label="Account Preference">
-      <app-account-preferences (submitEvent)="onNext($event)" (previousEvent)="onPrevious($event)">
+      <app-account-preferences (submitEvent)="onNext($event)" (previousEvent)="onPrevious($event)"></app-account-preferences>
+    </mat-step>
 
-      </app-account-preferences>
+    <!-- Nominee details -->
+    <mat-step [completed]="false"
+              label="Nominee Details">
+      <nominee-details (submitEvent)="onNext($event)" (previousEvent)="onPrevious($event)"></nominee-details>
     </mat-step>
     <!-- Declaration -->
     <mat-step
