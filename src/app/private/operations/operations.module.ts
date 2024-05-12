@@ -46,7 +46,7 @@ import {AdditionalInfoComponent} from "./onboarding/additional-info/additional-i
 import {DeclarationsComponent} from "./onboarding/declarations/declarations.component";
 import {DocumentsComponent} from "./onboarding/documents/documents.component";
 import {AccountPreferencesComponent} from "./onboarding/account-preferences/account-preferences.component";
-import {MatButtonModule} from "@angular/material/button";
+import {NomineeDetailsComponent} from "./onboarding/nomine-details/nominee-details.component";
 import {MatStepperModule} from "@angular/material/stepper";
 
 
@@ -114,7 +114,7 @@ const routes: Routes = [
         DeclarationsComponent,
         DocumentsComponent,
         AccountPreferencesComponent,
-        MatButtonModule
+        NomineeDetailsComponent
     ],
 })
 export class OperationsModule {

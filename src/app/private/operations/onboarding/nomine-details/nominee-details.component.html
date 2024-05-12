@@ -1,0 +1,515 @@
+<form [formGroup]="nomineeDetailsForm">
+  <mat-accordion>
+    <mat-expansion-panel (opened)="panelOpenState = true"
+                         (closed)="panelOpenState = false" class="pb-2">
+      <mat-expansion-panel-header class="border bg-light">
+        <mat-panel-title class="fs-3  fw-bold text-muted">
+          Basic Details
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <div class="row mt-3">
+        <!-- First Name -->
+        <div class="col-6">
+          <label for="firstName" class="form-label text-muted fw-bold ">
+            First Name
+            <span class="ms-2 text-danger fs-3">*</span>
+          </label>
+          <input type="text" id="firstName"
+                 formControlName="firstName"
+                 class="form-control  border-2"/>
+        </div>
+        <!-- Middle Name -->
+        <div class="col-6">
+          <label for="middleName" class="form-label text-muted fw-bold ">
+            Middle Name
+            <span class="ms-2 text-danger fs-3">*</span>
+          </label>
+          <input type="text" id="middleName"
+                 formControlName="middleName"
+                 class="form-control  border-2"/>
+        </div>
+      </div>
+      <div class="row mt-3">
+        <!-- Last Name -->
+        <div class="col-6">
+          <label for="lastName" class="form-label text-muted fw-bold ">
+            Last Name
+            <span class="ms-2 text-danger fs-3">*</span>
+          </label>
+          <input type="text" id="lastName"
+                 formControlName="lastName"
+                 class="form-control  border-2"/>
+        </div>
+        <!-- DOB -->
+        <div class="col-6">
+          <!--<label for="lastName" class="form-label text-muted fw-bold ">
+            Date of Birth
+            <span class="ms-2 text-danger fs-3">*</span>
+          </label> -->
+          <mat-form-field appearance="outline">
+            <mat-label>Select Date of Birth</mat-label>
+            <input matInput [matDatepicker]="picker1">
+            <mat-hint>DD/MM/YYYY</mat-hint>
+            <mat-datepicker-toggle matIconSuffix [for]="picker1">
+
+            </mat-datepicker-toggle>
+            <mat-datepicker #picker1></mat-datepicker>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="row mt-3">
+        <!-- Father's Name -->
+        <div class="col-6">
+          <label for="fatherName" class="form-label text-muted fw-bold ">
+            Father's Name
+            <span class="ms-2 text-danger fs-3">*</span>
+          </label>
+          <input type="text" id="fatherName"
+                 formControlName="fatherName"
+                 class="form-control  border-2"/>
+        </div>
+        <div class="col-6">
+          <!-- Mother's Name -->
+          <label for="motherName" class="form-label text-muted fw-bold ">
+            Mother's Name
+            <span class="ms-2 text-danger fs-3">*</span>
+          </label>
+          <input type="text" id="motherName"
+                 formControlName="motherName"
+                 class="form-control  border-2"/>
+        </div>
+      </div>
+
+      <div class="row mt-3">
+        <!-- Spouse Name -->
+        <div class="col-6">
+          <label for="spouseName" class="form-label text-muted fw-bold ">
+            Husband/Wife's Name
+            <span class="ms-2 text-danger fs-3">*</span>
+          </label>
+          <input type="text" id="spouseName"
+                 formControlName="spouseName"
+                 class="form-control border-2"/>
+        </div>
+
+        <!-- RelationShip With Applicant -->
+        <div class="col-6">
+          <label for="relWithAppl" class="form-label text-muted fw-bold ">
+            RelationShip With Applicant
+            <span class="ms-2 text-danger fs-3">*</span>
+          </label>
+          <select id="relWithAppl"
+                  class="form-select  border-2"
+                  formControlName="relWithAppl"
+                  (change)="onChangeRelWithApplicant($event)" >
+            <option value="">Select one...</option>
+            <option value="admin" title="Administrator">Administrator</option>
+            <option value="aunt" title="Aunt">Aunt</option>
+            <option value="as" title="Authorized Signature">Authorized Signature</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="row mt-3">
+        <!-- Percentage(%) -->
+        <div class="col-6">
+          <label for="percentage" class="form-label text-muted fw-bold ">
+            Percentage(%)
+            <span class="ms-2 text-danger fs-3">*</span>
+          </label>
+          <input type="number" id="percentage"
+                 formControlName="percentage"
+                 class="form-control border-2"
+                 [class]="classInitializer(percentage)"/>
+          <div class="invalid-feedback"
+               *ngIf="percentage.invalid && (percentage.dirty || percentage.touched)">
+            <div *ngIf="percentage.errors?.['required']">Value is required</div>
+            <div *ngIf="percentage.errors?.['min']">Minimum number is {{ percentage.errors?.['min']?.min }}</div>
+            <div *ngIf="percentage.errors?.['max']">Maximum number is {{ percentage.errors?.['max']?.max }}</div>
+            <div *ngIf="percentage.errors?.['numbersOnly']">Integer Number Allowed Only</div>
+          </div>
+        </div>
+        <!-- Occupation -->
+        <div class="col-6">
+          <label for="occup" class="form-label text-muted fw-bold ">
+            Occupation
+            <span class="ms-2 text-danger fs-3">*</span>
+          </label>
+          <input type="text" id="occup" appUpperCase
+                 formControlName="occup"
+                 class="form-control  border-2"
+                 [class]="classInitializer(occup)"/>
+        </div>
+      </div>
+
+    </mat-expansion-panel>
+    <mat-expansion-panel (opened)="panelOpenState = true"
+                         (closed)="panelOpenState = false" class="pb-2">
+      <mat-expansion-panel-header class="border bg-light">
+        <mat-panel-title class="fs-3  fw-bold text-muted">
+          Present address of nominee
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+
+      <div class="mt-5 row">
+        <div class="col-6">
+          <!-- PRESENT ADDRESS LINE 1 -->
+          <div class="form-outline mb-4">
+            <label
+              class="form-label fw-bold fs-5 mb-0"
+              for="currAddrLine1">
+              Address Line 1
+            </label>
+            <input
+              id="currAddrLine1"
+              type="text"
+              formControlName="currAddrLine1"
+              class="form-control  border-2"/>
+          </div>
+          <!-- PRESENT COUNTRY -->
+          <div class="form-outline mb-4 ">
+            <label
+              class="form-label fw-bold fs-5 mb-0"
+              for="currCountry">
+              Country
+            </label>
+            <select class="form-select border-2" id="currCountry" formControlName="currCountry">
+              <option value="" disabled selected hidden></option>
+              <option value="Bagerhat">Bagerhat</option>
+              <option value="Bandarban">Bandarban</option>
+              <option value="Bogura">Bogura</option>
+            </select>
+          </div>
+          <!-- PRESENT CITY/DISTRICT -->
+          <div class="form-outline mb-4  ">
+            <label
+              class="form-label fw-bold fs-5 mb-0"
+              for="currCityDistrict">
+              City/District
+            </label>
+            <select class="form-select border-2" id="currCityDistrict" formControlName="currCityDistrict">
+              <option value="" disabled selected hidden></option>
+              <option value="1-D">1-Dhaka</option>
+              <option value="2-D">2-Dhaka</option>
+              <option value="3-D">3-Dhaka</option>
+            </select>
+          </div>
+          <!-- PRESENT POST CODE -->
+          <div class="form-outline mb-4  ">
+            <label
+              class="form-label fw-bold fs-5 mb-0"
+              for="currPostCode">
+              Post Code
+            </label>
+            <input
+              id="currPostCode"
+              type="text"
+              formControlName="currPostCode"
+              class="form-control border-2"/>
+          </div>
+
+          <!-- PRESENT MOBILE -->
+          <div class="form-outline mb-4 mt-4 pt-3  ">
+            <label
+              class="form-label fw-bold fs-5 mb-0"
+              for="currMobile">
+              Mobile
+            </label>
+            <input
+              type="text"
+              id="currMobile"
+              formControlName="currMobile"
+              class="form-control border-2"/>
+          </div>
+          <!-- PRESENT FAX -->
+          <div class="form-outline mb-4  ">
+            <label
+              class="form-label fw-bold fs-5 mb-0"
+              for="currFax">
+              Fax
+            </label>
+            <input
+              type="text"
+              id="currFax"
+              formControlName="currFax"
+              class="form-control border-2"/>
+          </div>
+        </div>
+        <div class="col-6">
+          <!-- PRESENT ADDRESS LINE 2 -->
+          <div class="form-outline mb-4  ">
+            <label
+              class="form-label fw-bold fs-5 mb-0"
+              for="currAddrLine2">
+              Address Line 2
+            </label>
+            <input
+              type="text"
+              id="currAddrLine2"
+              formControlName="currAddrLine2"
+              class="form-control border-2"/>
+          </div>
+          <!-- PRESENT DIVISION -->
+          <div class="form-outline mb-4  ">
+            <label
+              class="form-label fw-bold fs-5 mb-0"
+              for="currDivision">
+              Division
+            </label>
+            <select class="form-select border-2" id="currDivision" formControlName="currDivision">
+              <option value="" disabled selected hidden></option>
+              <option value="Dha">1-Dhaka</option>
+              <option value="Syl">2-Sylhet</option>
+              <option value="Bar">3-Barishal</option>
+            </select>
+          </div>
+          <!-- PRESENT UPAZILA/THANA -->
+          <div class="form-outline mb-4  ">
+            <label
+              class="form-label fw-bold fs-5 mb-0"
+              for="currUpazilaThana">
+              Upazila/Thana
+            </label>
+            <select
+              class="form-select border-2"
+              id="currUpazilaThana"
+              formControlName="currUpazilaThana">
+              <option value="" disabled selected hidden></option>
+              <option value="Tej">TEJGAON</option>
+              <option value="Bad">BADDA</option>
+              <option value="Khi">KHILKHET</option>
+            </select>
+          </div>
+          <!-- PRESENT NEAREST LANDMARK -->
+          <div class="form-outline mb-4  ">
+            <label
+              class="form-label fw-bold fs-5 mb-0"
+              for="currNearLandmark">
+              Nearest Landmark
+            </label>
+            <input
+              type="text"
+              id="currNearLandmark"
+              formControlName="currNearLandmark"
+              class="form-control border-2"/>
+          </div>
+          <!-- PRESENT EMAIL -->
+          <div class="form-outline mb-4  ">
+            <label
+              class="form-label fw-bold fs-5 mb-0"
+              for="currEmail">
+              Email
+            </label>
+            <input
+              id="currEmail"
+              type="text"
+              formControlName="currEmail"
+              class="form-control border-2"/>
+          </div>
+        </div>
+      </div>
+    </mat-expansion-panel>
+
+    <mat-expansion-panel (opened)="panelOpenState = true"
+                         (closed)="panelOpenState = false" class="pb-2">
+      <mat-expansion-panel-header class="border bg-light">
+        <mat-panel-title class="fs-3  fw-bold text-muted">
+          Permanent address of nominee
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <div class="mt-5 row">
+        <div class="form-outline mb-3">
+          <div class="form-check">
+            <input
+              id = "sameAsPresent"
+              class="form-check-input"
+              type="checkbox"
+              formControlName="sameAsPresent">
+            <label
+              class="form-check-label fs-4 ms-3"
+              for="sameAsPresent">
+              Permanent Address is same as Present Address
+            </label>
+          </div>
+        </div>
+        <div class="col-6">
+          <!-- PERMANENT ADDRESS LINE 1 -->
+          <div class="form-outline mb-4">
+            <label
+              class="form-label fw-bold fs-5 mb-0"
+              for="permAddrLine1">
+              Address Line 1
+            </label>
+            <input
+              id="permAddrLine1"
+              type="text"
+              formControlName="permAddrLine1"
+              class="form-control  border-2"/>
+          </div>
+          <!-- PERMANENT COUNTRY -->
+          <div class="form-outline mb-4 ">
+            <label
+              class="form-label fw-bold fs-5 mb-0"
+              for="permCountry">
+              Country
+            </label>
+            <select class="form-select border-2" id="permCountry" formControlName="permCountry">
+              <option value="" disabled selected hidden></option>
+              <option value="Bagerhat">Bagerhat</option>
+              <option value="Bandarban">Bandarban</option>
+              <option value="Bogura">Bogura</option>
+            </select>
+          </div>
+          <!-- PERMANENT CITY/DISTRICT -->
+          <div class="form-outline mb-4  ">
+            <label class="form-label fw-bold fs-5 mb-0" for="permCityDistrict">City/District</label>
+            <select class="form-select border-2" id="permCityDistrict" formControlName="permCityDistrict">
+              <option value="" disabled selected hidden></option>
+              <option value="1-D">1-Dhaka</option>
+              <option value="2-D">2-Dhaka</option>
+              <option value="3-D">3-Dhaka</option>
+            </select>
+          </div>
+          <!-- PERMANENT POST CODE -->
+          <div class="form-outline mb-4  ">
+            <label class="form-label fw-bold fs-5 mb-0" for="permPostCode"> Post Code </label>
+            <input
+              id="permPostCode"
+              type="text"
+              formControlName="permPostCode"
+              class="form-control border-2"/>
+          </div>
+
+          <!-- PERMANENT MOBILE -->
+          <div class="form-outline mb-4 mt-4 pt-3  ">
+            <label
+              class="form-label fw-bold fs-5 mb-0" for="permMobile">Mobile</label>
+            <input
+              type="text"
+              id="permMobile"
+              formControlName="permMobile"
+              class="form-control border-2"/>
+          </div>
+
+          <!-- PERMANENT FAX -->
+          <div class="form-outline mb-4  ">
+            <label class="form-label fw-bold fs-5 mb-0" for="permFax">Fax</label>
+            <input
+              type="text"
+              id="permFax"
+              formControlName="permFax"
+              class="form-control border-2"/>
+          </div>
+        </div>
+        <div class="col-6">
+          <!-- PERMANENT ADDRESS LINE 2 -->
+          <div class="form-outline mb-4  ">
+            <label class="form-label fw-bold fs-5 mb-0" for="permAddrLine2"> Address Line 2
+            </label>
+            <input
+              type="text"
+              id="permAddrLine2"
+              formControlName="permAddrLine2"
+              class="form-control border-2"/>
+          </div>
+          <!-- PERMANENT DIVISION -->
+          <div class="form-outline mb-4  ">
+            <label
+              class="form-label fw-bold fs-5 mb-0" for="permDivision"> Division
+            </label>
+
+            <select class="form-select border-2" id="permDivision" formControlName="permDivision">
+              <option value="" disabled selected hidden></option>
+              <option value="Dha">1-Dhaka</option>
+              <option value="Syl">2-Sylhet</option>
+              <option value="Bar">3-Barishal</option>
+            </select>
+          </div>
+          <!-- PERMANENT UPAZILA/THANA -->
+          <div class="form-outline mb-4  ">
+            <label
+              class="form-label fw-bold fs-5 mb-0"
+              for="permUpazilaThana">
+              Upazila/Thana
+            </label>
+            <select
+              class="form-select border-2"
+              id="permUpazilaThana"
+              formControlName="permUpazilaThana">
+              <option value="" disabled selected hidden></option>
+              <option value="Tej">TEJGAON</option>
+              <option value="Bad">BADDA</option>
+              <option value="Khi">KHILKHET</option>
+            </select>
+          </div>
+          <!-- PERMANENT NEAREST LANDMARK -->
+          <div class="form-outline mb-4  ">
+            <label
+              class="form-label fw-bold fs-5 mb-0"
+              for="permNearLandmark">
+              Nearest Landmark
+            </label>
+            <input
+              type="text"
+              id="permNearLandmark"
+              formControlName="permNearLandmark"
+              class="form-control border-2"/>
+          </div>
+          <!-- PERMANENT EMAIL -->
+          <div class="form-outline mb-4  ">
+            <label
+              class="form-label fw-bold fs-5 mb-0"
+              for="permEmail"> Email </label>
+            <input
+              id="permEmail"
+              type="text"
+              formControlName="permEmail"
+              class="form-control border-2"/>
+          </div>
+        </div>
+      </div>
+    </mat-expansion-panel>
+  </mat-accordion>
+
+
+  <div class="d-flex justify-content-end mb-1">
+    <button class="btn btn-outline-success text-start" (click)="addOnGrid('update')"
+            *ngIf="isUpdate; else add">
+      <div class="d-flex align-items-center justify-content-center gap-1">
+        {{'BTN_UPDT'|translate}}
+        <i class="ti ti-edit fs-3 mb-1"></i>
+      </div>
+    </button>
+    <ng-template #add>
+      <!-- BUTTON ADD -->
+      <button class="btn btn-outline-success text-start" (click)="addOnGrid('add')">
+        <div class="d-flex align-items-center justify-content-center gap-1">
+          {{'BTN_ADD'|translate}}
+          <i class="ti ti-plus fs-3 mb-1"></i>
+        </div>
+      </button>
+    </ng-template>
+  </div>
+
+  <!-- GRID SECTION-->
+  <app-nrx-grid [columnDefs]="nomineeColDef" [rowData]="nomineeList"
+                [suppressRowSelection]="false"  (onRowClickEvent)="onRowClick($event)" >
+  </app-nrx-grid>
+</form>
+
+<div class="mt-4 d-flex justify-content-end">
+  <button type="button" class="btn btn-secondary mt-5 me-2" (click)="previous()">
+    <div class="d-flex align-items-center justify-content-center gap-1">
+      <i class="ti ti-arrow-left fs-3"></i>
+      Previous
+    </div>
+  </button>
+
+  <button type="button" class="btn btn-secondary mt-5" (click)="onSubmit()">
+    <div class="d-flex align-items-center justify-content-center gap-1">
+      Next
+      <i class="ti ti-arrow-right fs-3"></i>
+    </div>
+  </button>
+</div>
