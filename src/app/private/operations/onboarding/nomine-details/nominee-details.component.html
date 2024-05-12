@@ -8,6 +8,28 @@
         </mat-panel-title>
       </mat-expansion-panel-header>
       <div class="row mt-3">
+        <div class="col-6">
+          <div class="w-50">
+            <div>
+              <img [src]="imageUrl" alt="" *ngIf="imageUrl"  style=" width: 60%;height: 50%;">
+              <input type="file" (change)="onFileSelected($event)" accept="image/*" style="display: none; width: 30%;height: 30%;" #fileInput>
+            </div>
+
+            <div class="btn-toolbar mt-1">
+              <button class="btn upload-profile-btn btn-outline-success btn-sm"
+                      (click)="fileInput.click();
+                      $event.preventDefault()">
+                <span *ngIf="!uploadedFileName" title="Click to upload profile picture">
+                  <i class="ti ti-upload">Upload</i></span>
+              </button>
+              <button class="btn take-picture-btn btn-outline-success btn-sm" title="Take Picture"
+                      (click)="openTakePictureDialog();
+                       $event.preventDefault()">
+                      <i class="ti ti-device-computer-camera">Take Picture</i>
+              </button>
+            </div>
+          </div>
+        </div>
         <!-- First Name -->
         <div class="col-6">
           <label for="firstName" class="form-label text-muted fw-bold ">
@@ -18,6 +40,8 @@
                  formControlName="firstName"
                  class="form-control  border-2"/>
         </div>
+      </div>
+      <div class="row mt-3">
         <!-- Middle Name -->
         <div class="col-6">
           <label for="middleName" class="form-label text-muted fw-bold ">
@@ -28,8 +52,7 @@
                  formControlName="middleName"
                  class="form-control  border-2"/>
         </div>
-      </div>
-      <div class="row mt-3">
+
         <!-- Last Name -->
         <div class="col-6">
           <label for="lastName" class="form-label text-muted fw-bold ">
@@ -40,6 +63,9 @@
                  formControlName="lastName"
                  class="form-control  border-2"/>
         </div>
+
+      </div>
+      <div class="row mt-3">
         <!-- DOB -->
         <div class="col-6">
           <!--<label for="lastName" class="form-label text-muted fw-bold ">
@@ -95,18 +121,14 @@
 
         <!-- RelationShip With Applicant -->
         <div class="col-6">
-          <label for="relWithAppl" class="form-label text-muted fw-bold ">
+          <label class="form-label text-muted fw-bold ">
             RelationShip With Applicant
             <span class="ms-2 text-danger fs-3">*</span>
           </label>
-          <select id="relWithAppl"
+          <select #relWithApplSelc (change)="getOptionTitle()"
                   class="form-select  border-2"
-                  formControlName="relWithAppl"
-                  (change)="onChangeRelWithApplicant($event)" >
-            <option value="">Select one...</option>
-            <option value="admin" title="Administrator">Administrator</option>
-            <option value="aunt" title="Aunt">Aunt</option>
-            <option value="as" title="Authorized Signature">Authorized Signature</option>
+                  formControlName="relWithAppl">
+            <option *ngFor="let option of relWithApplOptions" [value]="option.val">{{ option.title }}</option>
           </select>
         </div>
       </div>
@@ -322,7 +344,7 @@
         <div class="form-outline mb-3">
           <div class="form-check">
             <input
-              id = "sameAsPresent"
+              id="sameAsPresent"
               class="form-check-input"
               type="checkbox"
               formControlName="sameAsPresent">
@@ -470,32 +492,133 @@
         </div>
       </div>
     </mat-expansion-panel>
+
+    <mat-expansion-panel (opened)="panelOpenState = true"
+                         (closed)="panelOpenState = false" class="pb-2">
+      <mat-expansion-panel-header class="border bg-light">
+        <mat-panel-title class="fs-3  fw-bold text-muted">
+          Document Upload
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+
+      <div class="row mt-5">
+        <div class="col">
+          <label class="form-label fw-bold fs-5 mb-0">
+            Purpose Type
+          </label>
+          <select id="purposeType" class="form-select form-select border-2"
+                  formControlName="purposeType" (change)="onPurposeTypeChange()">
+            <option *ngFor="let type1 of purposeType" [ngValue]="type1">
+              {{ type1.name }}
+          </select>
+        </div>
+        <div class="col">
+          <label class="form-label fw-bold fs-5 mb-0">
+            Document Type
+          </label>
+          <select id="documentType" class="form-select form-select border-2" formControlName="documentType">
+            <option *ngFor="let type of documentType" [ngValue]="type">
+              {{ type.name }}
+          </select>
+        </div>
+      </div>
+      <div class="mt-5">
+        <h3 class="fs-3 fw-bolder text-muted">Details Information</h3>
+      </div>
+      <div class="pt-3 row border-top">
+        <div class="col-6 ">
+          <div class="form-outline mb-4">
+            <label class="form-label fw-bold fs-5 mb-0">
+              Doc Number
+            </label>
+            <input type="text" formControlName="docNumber"
+                   class="form-control border-2"/>
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="form-outline mb-4">
+            <label class="form-label fw-bold fs-5 mb-0">
+              Authority
+            </label>
+            <input type="text" formControlName="authority"
+                   class="form-control border-2"/>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-6 ">
+          <label class="form-label fw-bold fs-5 mb-0">
+            Issue Date
+          </label>
+          <mat-form-field appearance="outline">
+            <input matInput [matDatepicker]="issueDatePicker" formControlName="issueDate">
+            <mat-hint>DD/MM/YYYY</mat-hint>
+            <mat-datepicker-toggle matIconSuffix [for]="issueDatePicker"></mat-datepicker-toggle>
+            <mat-datepicker #issueDatePicker></mat-datepicker>
+          </mat-form-field>
+        </div>
+        <div class="col-6">
+          <label class="form-label fw-bold fs-5 mb-0">
+            Expiry Date
+          </label>
+          <mat-form-field appearance="outline">
+            <input matInput [matDatepicker]="expiryDatePicker" formControlName="expiryDate">
+            <mat-hint>DD/MM/YYYY</mat-hint>
+            <mat-datepicker-toggle matIconSuffix [for]="expiryDatePicker"></mat-datepicker-toggle>
+            <mat-datepicker #expiryDatePicker></mat-datepicker>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row mt-5">
+        <div class="col-6">
+          <div class="form-check">
+            <input
+              class="form-check-input"
+              type="checkbox"
+              formControlName="documentsVerified">
+            <label
+              class="form-check-label fw-bold fs-5 ms-3">
+              Documents Verified
+            </label>
+          </div>
+        </div>
+        <div class="col-6">
+          <input type="file" id="myFile" name="filename">
+          <!--          <input type="submit" class="btn btn-primary">-->
+        </div>
+      </div>
+      <div class="row mt-5">
+        <app-nrx-grid [columnDefs]="documentsColDef" [rowData]="documentObjList"
+                      [suppressRowSelection]="false" (onRowClickEvent)="onRowClick($event)">
+        </app-nrx-grid>
+      </div>
+    </mat-expansion-panel>
   </mat-accordion>
 
-
-  <div class="d-flex justify-content-end mb-1">
+  <div class="d-flex justify-content-end mt-2">
     <button class="btn btn-outline-success text-start" (click)="addOnGrid('update')"
             *ngIf="isUpdate; else add">
       <div class="d-flex align-items-center justify-content-center gap-1">
-        {{'BTN_UPDT'|translate}}
+        {{ 'BTN_UPDT'|translate }}
         <i class="ti ti-edit fs-3 mb-1"></i>
       </div>
     </button>
     <ng-template #add>
-      <!-- BUTTON ADD -->
       <button class="btn btn-outline-success text-start" (click)="addOnGrid('add')">
         <div class="d-flex align-items-center justify-content-center gap-1">
-          {{'BTN_ADD'|translate}}
+          {{ 'BTN_ADD'|translate }}
           <i class="ti ti-plus fs-3 mb-1"></i>
         </div>
       </button>
     </ng-template>
   </div>
-
   <!-- GRID SECTION-->
-  <app-nrx-grid [columnDefs]="nomineeColDef" [rowData]="nomineeList"
-                [suppressRowSelection]="false"  (onRowClickEvent)="onRowClick($event)" >
-  </app-nrx-grid>
+  <div class="mt-2">
+    <app-nrx-grid [columnDefs]="nomineeColDef" [rowData]="nomineeList"
+                  [suppressRowSelection]="false" (onRowClickEvent)="onRowClick($event)">
+    </app-nrx-grid>
+  </div>
+
 </form>
 
 <div class="mt-4 d-flex justify-content-end">

@@ -1,18 +1,25 @@
-import {Component, EventEmitter, OnInit, Output, ViewChild} from '@angular/core';
-import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
+import {Component, ElementRef, EventEmitter, OnInit, Output, ViewChild} from '@angular/core';
+import {FormBuilder,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from "@angular/forms";
 import {MatExpansionModule} from "@angular/material/expansion";
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import {MatInputModule} from "@angular/material/input";
-import {MatDialogModule} from "@angular/material/dialog";
+import {MatDialog, MatDialogModule} from "@angular/material/dialog";
 import {TranslateModule} from "@ngx-translate/core";
 import {CommonUtil} from "../../../../_helpers/common.util";
 import {OnboardingConstant} from "../onboarding.constant";
 import {numbersOnlyValidator} from "../../../../_custom-validator/custom-validators.component";
-import {NgIf} from "@angular/common";
+import {NgForOf, NgIf} from "@angular/common";
 import {DirectiveModule} from "../../../../directives/upper-case.directive";
 import {NrxGridModule} from "../../../../shared/components/nrx-grid/nrx-grid.module";
-import {ColDef, GridApi} from "ag-grid-community";
+import {ColDef} from "ag-grid-community";
 import {NrxGridComponent} from "../../../../shared/components/nrx-grid/nrx-grid.component";
+import {DocumentsComponent} from "../documents/documents.component";
+import {BtnCellRendererComponent} from "../../../../shared/components/btn-grid/btn-cell-renderer.component";
+import {TakePictureDialogComponent} from "../take-picture-dialog/take-picture-dialog.component";
 @Component({
   selector: 'nominee-details',
   templateUrl: './nominee-details.component.html',
@@ -26,22 +33,62 @@ import {NrxGridComponent} from "../../../../shared/components/nrx-grid/nrx-grid.
     TranslateModule,
     NgIf,
     DirectiveModule,
-    NrxGridModule]
+    NrxGridModule, NgForOf, DocumentsComponent]
 })
 export class NomineeDetailsComponent implements OnInit {
-  isUpdate: boolean;
-  gridNode: any;
-  nomineeDetailsForm: FormGroup;
-  panelOpenState = false;
+  constructor(private formBuilder: FormBuilder,
+              private dialog: MatDialog,) {}
+
   classInitializer = CommonUtil.classInitializer;
   @Output() submitEvent = new EventEmitter<unknown>();
   @Output() previousEvent = new EventEmitter<unknown>();
   @ViewChild(NrxGridComponent) nrxGrid: NrxGridComponent;
+  @ViewChild('relWithApplSelc') relWithApplSelc : ElementRef<HTMLSelectElement>;
 
+  isUpdate: boolean;
+  gridNode: any;
+  nomineeDetailsForm: FormGroup;
+  documentsForm : FormGroup;
+  panelOpenState = false;
   nomineeColDef: ColDef[];
   nomineeList: any[];
+  documentObjList = [];
+  actionType = '';
+  imageUrl: string = '../../../../../assets/images/empty-profile-pic.jpg';
+  uploadedFileName: string = '';
 
-  constructor(private fb: FormBuilder) {}
+
+  purposeType = [{id: 1, name: 'Proof of Identity'}];
+
+  relWithApplOptions = [
+    {val: "",title:"Select Option..."},
+    {val: "admin", title: "Administrator"},
+    {val: "aunt", title: "Aunt"},
+    {val: "as", title: "Authorized Signature"}
+  ];
+  documentType = [];
+  documentTypeAll = [{
+    id: 1, purposeType: 1, name: 'National ID'},
+    {id: 2, purposeType: 1, name: 'TIN'},
+    {id: 3, purposeType: 2, name: 'Passport'}
+  ];
+
+  documentsColDef = [
+    {field: 'purposeType', headerName: 'Purpose Type', colId: 'purposeType', hide: true},
+    {field: 'purposeTypeName', headerName: 'Purpose Type', colId: 'purposeTypeName'},
+    {field: 'documentType', headerName: 'Document Type', hide: true},
+    {field: 'documentTypeName', headerName: 'Document Type'},
+    {field: 'docNumber', headerName: 'Document Number'},
+    {field: 'authority', headerName: 'Authority'},
+    {
+      field: 'button', cellRenderer: BtnCellRendererComponent,
+      cellRendererParams: {
+        onClick: (value) => {
+          this.actionType = value;
+        }
+      }
+    }
+  ];
   ngOnInit() {
     this.nomineeColDef = [
       { field: 'rowId', headerName: 'primary Key',hide:true ,
@@ -55,8 +102,7 @@ export class NomineeDetailsComponent implements OnInit {
       { field: 'motherName',  headerName: 'Mother Name' , hide: true},
       { field: 'spouseName',  headerName: 'Spouse Name' , hide: true},
       { field: 'relWithAppl',  headerName: 'Relation With Applicant' ,cellRenderer: params => {
-          //return this.setRelWithApplValue(params.value);
-          this.onChangeRelWithApplicant(params.value);
+          return this.relWithApplOptions[this.relWithApplSelc.nativeElement.selectedIndex].title;
         }},
       { field: 'percentage',  headerName: 'Percentage(%)' },
       { field: 'occup',  headerName: 'Percentage',hide: true},
@@ -82,10 +128,9 @@ export class NomineeDetailsComponent implements OnInit {
       { field: 'permUpazilaThana',  headerName: 'Permanent Upazila or Thana' ,hide: true},
       { field: 'permNearLandmark',  headerName: 'Permanent Nearest Landmark' ,hide: true},
       { field: 'permEmail',  headerName: 'Permanent Email',hide: true}
-
     ];
     this.nomineeList = [];
-    this.nomineeDetailsForm = this.fb.group({
+    this.nomineeDetailsForm = this.formBuilder.group({
         firstName: ['', [Validators.required]],
         middleName: ['', [Validators.required]],
         lastName : ['',[Validators.required]],
@@ -119,12 +164,48 @@ export class NomineeDetailsComponent implements OnInit {
         permDivision :  ['',[Validators.required]],
         permUpazilaThana :  ['',[Validators.required]],
         permNearLandmark :  ['',[Validators.required]],
-        permEmail : ['',[Validators.required]]
+        permEmail : ['',[Validators.required]],
+
+        // Document Upload
+      purposeType: ['', Validators.required],
+      documentType: ['', Validators.required],
+      docNumber: ['', Validators.required],
+      authority: ['', Validators.required],
+      issueDate: [''],
+      expiryDate: [''],
+      documentsVerified: ['']
     });
   }
 
-  setRelWithApplValue(paramValue:string){
-    console.log(paramValue);
+  onFileSelected(event: any) {
+    const file: File = event.target.files[0];
+    const reader = new FileReader();
+    reader.onload = (e: any) => {
+      this.imageUrl = e.target.result;
+      //this.showDemoImage = false;
+      this.uploadedFileName = file.name;
+    };
+    reader.readAsDataURL(file);
+  }
+
+  openTakePictureDialog() {
+
+    const dialogRef = this.dialog.open(TakePictureDialogComponent, {
+      width: '50%',
+      height: '50%',
+      data: {
+        title: 'Take Picture',
+      },
+      disableClose: true
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log("Hi");
+      if (result) {
+        console.log("image data " + result);
+        this.imageUrl = result;
+      }
+    });
   }
 
   onSearch() {
@@ -151,8 +232,13 @@ export class NomineeDetailsComponent implements OnInit {
     this.submitEvent.emit(payload);
   }
 
-  onChangeRelWithApplicant($event: any) {
-    return $event.target.selectedOptions[0].title;
+  getOptionTitle() {
+    return this.relWithApplOptions[this.relWithApplSelc.nativeElement.selectedIndex].title;
+  }
+
+  onPurposeTypeChange() {
+    const value = <any>this.documentsForm.get('purposeType').value;
+    this.documentType = this.documentTypeAll.filter(u => u.purposeType === value?.id);
   }
 
   addOnGrid(type:string) {
@@ -172,14 +258,12 @@ export class NomineeDetailsComponent implements OnInit {
       arr.push(formData);
     }
     this.nrxGrid.onGridReset(arr, type);
-    this.nomineeDetailsForm.reset();
+    //this.nomineeDetailsForm.reset();
     this.isUpdate = false;
   }
 
   onRowClick($event: any) {
       this.gridNode = $event.node;
-      console.log(this.gridNode.rowIndex);
-      console.log(this.gridNode.data);
       let data = this.gridNode.data;
       this.nomineeDetailsForm.patchValue(data);
       this.isUpdate = true;
