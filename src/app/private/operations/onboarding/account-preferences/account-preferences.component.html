@@ -51,7 +51,7 @@
                   class="form-select form-select-sm border-2"
                   aria-label=".form-select-lg example"
                   formControlName="schemaCode"
-                  (change)="onChangeSchemeType($event)">
+                  (change)="onChangeSchemaCode($event)">
             <option value="">Select one...</option>
             <option *ngFor=" let opt of schemaCodeLists" [ngValue]="opt">{{ opt.title }}</option>
           </select>
@@ -59,7 +59,7 @@
       </div>
     </mat-expansion-panel>
 
-    <mat-expansion-panel (opened)="panelOpenState = true"
+    <!--<mat-expansion-panel (opened)="panelOpenState = true"
                          (closed)="panelOpenState = false" class="pb-2">
       <mat-expansion-panel-header class="border bg-light">
         <mat-panel-title class="fs-3  fw-bold text-muted">
@@ -71,11 +71,10 @@
         <button type="button" mat-button class="btn btn-secondary" (click)="addNominee()">
           <div class="d-flex align-items-center justify-content-center gap-1">
             Add Nominee
-            <!--<i class="person-add fs-3"></i> -->
           </div>
         </button>
       </div>
-    </mat-expansion-panel>
+    </mat-expansion-panel> -->
 
     <mat-expansion-panel (opened)="panelOpenState = true"
                          (closed)="panelOpenState = false"
